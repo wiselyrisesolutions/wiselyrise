@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DateWise — Remember What Matters</title>
+  <meta name="description" content="DateWise is a free, private reminder app for birthdays, anniversaries, bills, and life events. Explore our story, features, and more." />
+  <style>
+    :root{--bg:#fafafa;--fg:#1a1a1a;--muted:#666;--accent:#5e35b1;--accent-glow:#7c4dff;--soft:#f3eefc;--surface:#fff;--border:#e8e4ef;--green:#2e7d32;--green-bg:#e8f5e9;--warm:#ff8f00;--warm-bg:#fff3e0}
+    @media(prefers-color-scheme:dark){:root{--bg:#0d0b11;--fg:#eae6f0;--muted:#8a8a8a;--accent:#b39ddb;--accent-glow:#ce93d8;--soft:#1c1826;--surface:#181520;--border:#2a2535;--green:#66bb6a;--green-bg:#1b2e1b;--warm:#ffb74d;--warm-bg:#2a1f10}}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+
+    /* Header */
+    .header{padding:48px 24px 32px;text-align:center}
+    .app-icon{width:80px;height:80px;border-radius:0;margin-bottom:16px}
+    .app-icon-light{display:block}
+    .app-icon-dark{display:none}
+    @media(prefers-color-scheme:dark){.app-icon-light{display:none}.app-icon-dark{display:block}}
+    .header h1{font-size:clamp(1.8rem,5vw,2.6rem);font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
+    .header h1 span{background:linear-gradient(135deg,var(--accent),var(--accent-glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .header p{color:var(--muted);font-size:1rem;max-width:420px;margin:0 auto 24px}
+    .download-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:12px 28px;border-radius:28px;text-decoration:none;font-weight:700;font-size:.92rem;transition:transform .2s,box-shadow .2s}
+    .download-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(94,53,177,.2)}
+
+    /* Tiles grid */
+    .tiles{max-width:720px;margin:0 auto;padding:16px 20px 48px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    @media(max-width:520px){.tiles{grid-template-columns:1fr}}
+
+    .tile{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px 20px;text-decoration:none;color:var(--fg);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+    .tile:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+    .tile .tile-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+    .tile h3{font-size:.98rem;font-weight:600;line-height:1.3}
+    .tile p{font-size:.82rem;color:var(--muted);margin:0;line-height:1.5}
+    .tile .arrow{position:absolute;top:20px;right:16px;color:var(--muted);font-size:.8rem;opacity:.5}
+
+    .tile-story .tile-icon{background:var(--soft)}
+    .tile-product .tile-icon{background:var(--soft)}
+    .tile-landing .tile-icon{background:var(--green-bg)}
+    .tile-emotional .tile-icon{background:var(--warm-bg)}
+
+    /* Wide tile */
+    .tile-wide{grid-column:1 / -1}
+
+    /* Quick links */
+    .quick-links{max-width:720px;margin:0 auto;padding:0 20px 48px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .quick-link{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:20px;background:var(--soft);color:var(--fg);text-decoration:none;font-size:.82rem;font-weight:500;border:1px solid var(--border);transition:background .2s}
+    .quick-link:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+    /* Footer */
+    footer{text-align:center;padding:32px 24px;font-size:.8rem;color:var(--muted);border-top:1px solid var(--border)}
+    footer a{color:var(--accent);text-decoration:none}
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <img src="/app_icon_light_trans.png" alt="DateWise" class="app-icon app-icon-light" style="margin:0 auto" />
+  <img src="/app_icon_dark_trans.png" alt="DateWise" class="app-icon app-icon-dark" style="margin:0 auto" />
+  <h1>Date<span>Wise</span></h1>
+  <p>Your personal reminder companion for birthdays, anniversaries, bills, and every date you can't afford to forget.</p>
+  <a class="download-btn" href="https://play.google.com/store/apps/details?id=com.datewise.app">&#9654; Download Free on Play Store</a>
+</div>
+
+<!-- Tiles -->
+<div class="tiles">
+
+  <a class="tile tile-landing" href="/blog-landing">
+    <span class="arrow">&rarr;</span>
+    <div class="tile-icon">&#128218;</div>
+    <h3>Explore DateWise</h3>
+    <p>Full feature walkthrough, pricing, how it works, and why it's different from a calendar.</p>
+  </a>
+
+  <a class="tile tile-story" href="/blog-product">
+    <span class="arrow">&rarr;</span>
+    <div class="tile-icon">&#128161;</div>
+    <h3>Why We Built DateWise</h3>
+    <p>The product thinking behind a reminder app that wants to be invisible.</p>
+  </a>
+
+  <a class="tile tile-emotional" href="/blog-emotional">
+    <span class="arrow">&rarr;</span>
+    <div class="tile-icon">&#128148;</div>
+    <h3>The Cost of Forgetting</h3>
+    <p>A story about the dates we forget, the guilt that follows, and the quiet solution.</p>
+  </a>
+
+  <a class="tile tile-product" href="/blog-landing#pricing">
+    <span class="arrow">&rarr;</span>
+    <div class="tile-icon">&#128142;</div>
+    <h3>Free vs Pro</h3>
+    <p>Everything you need is free. Pro adds Google Drive backup, custom types, and more — one-time purchase.</p>
+  </a>
+
+  <a class="tile tile-wide tile-story" href="https://play.google.com/store/apps/details?id=com.datewise.app">
+    <span class="arrow">&rarr;</span>
+    <div class="tile-icon">&#9889;</div>
+    <h3>Get Started in 30 Seconds</h3>
+    <p>Download DateWise, add your first reminder, and never worry about forgetting again. Free forever, no signup required.</p>
+  </a>
+
+</div>
+
+<!-- Quick links -->
+<div class="quick-links">
+  <a class="quick-link" href="/privacy">&#128274; Privacy Policy</a>
+  <a class="quick-link" href="/terms">&#128221; Terms of Use</a>
+  <a class="quick-link" href="mailto:contact@wiselyrise.in">&#9993; Contact Us</a>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>A product of WiselyRise &middot; Made with &#10084;&#65039; in India</p>
+</footer>
+
+</body>
+</html>

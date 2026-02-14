@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why We Built DateWise — A Product Story by WiselyRise</title>
+  <meta name="description" content="The thinking behind DateWise: why calendars fail at personal dates, how offline-first design builds trust, and what it means to build a tool that succeeds by being invisible." />
+  <meta property="og:title" content="Why We Built DateWise" />
+  <meta property="og:description" content="The product thinking behind a reminder app that wants to be invisible." />
+  <meta property="og:type" content="article" />
+  <style>
+    :root{--bg:#fafafa;--fg:#1c1c1e;--muted:#6b6b6b;--accent:#5e35b1;--accent-light:#ede7f6;--surface:#fff;--border:#e5e5ea;--code-bg:#f5f2ff}
+    @media(prefers-color-scheme:dark){:root{--bg:#111113;--fg:#e5e5ea;--muted:#8e8e93;--accent:#b39ddb;--accent-light:#1e1730;--surface:#1c1c1e;--border:#2c2c2e;--code-bg:#1a1525}}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.72}
+    .hero{padding:72px 24px 48px;text-align:center;border-bottom:1px solid var(--border)}
+    .hero .badge{display:inline-block;background:var(--accent-light);color:var(--accent);font-size:.72rem;padding:4px 12px;border-radius:20px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px}
+    .hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;max-width:640px;margin:0 auto 16px;line-height:1.25}
+    .hero p{color:var(--muted);font-size:1rem;max-width:500px;margin:0 auto}
+    .container{max-width:680px;margin:0 auto;padding:48px 24px 80px}
+    .meta{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:48px;font-size:.82rem;color:var(--muted)}
+    .meta .dot{width:3px;height:3px;background:var(--muted);border-radius:50%}
+    h2{font-size:1.3rem;font-weight:700;margin:48px 0 16px;color:var(--fg)}
+    h3{font-size:1.05rem;font-weight:600;margin:32px 0 12px}
+    p{font-size:.97rem;margin-bottom:20px}
+    ul,ol{padding-left:24px;margin-bottom:20px}
+    li{font-size:.95rem;margin-bottom:8px}
+    code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.88rem;font-family:'SF Mono','Fira Code',monospace}
+    .callout{background:var(--accent-light);border-left:3px solid var(--accent);padding:20px 24px;border-radius:0 12px 12px 0;margin:32px 0}
+    .callout p{margin:0;font-weight:500}
+    .comparison{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0}
+    .comparison .col{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px}
+    .comparison .col h4{font-size:.85rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;color:var(--muted)}
+    .comparison .col.good{border-color:var(--accent)}
+    .comparison .col.good h4{color:var(--accent)}
+    .comparison .col ul{padding-left:16px;margin:0}
+    .comparison .col li{font-size:.88rem;margin-bottom:6px}
+    .principle{display:flex;gap:16px;margin:24px 0;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+    .principle .num{font-size:1.6rem;font-weight:800;color:var(--accent);min-width:40px}
+    .principle h4{font-size:.95rem;margin-bottom:4px}
+    .principle p{font-size:.88rem;color:var(--muted);margin:0}
+    .cta-bar{text-align:center;padding:48px 24px;background:var(--surface);border:1px solid var(--border);border-radius:16px;margin:48px 0}
+    .cta-bar h3{font-size:1.3rem;margin-bottom:8px}
+    .cta-bar p{color:var(--muted);margin-bottom:20px;font-size:.92rem}
+    .cta-bar a{display:inline-block;background:var(--accent);color:#fff;padding:12px 32px;border-radius:24px;text-decoration:none;font-weight:600;font-size:.92rem}
+    .footer{text-align:center;padding:40px 24px;font-size:.8rem;color:var(--muted);border-top:1px solid var(--border)}
+    .footer a{color:var(--accent);text-decoration:none}
+    @media(max-width:500px){.comparison{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <a href="/" style="text-decoration:none">
+    <picture>
+      <source srcset="/app_icon_dark_trans.png" media="(prefers-color-scheme:dark)" />
+      <img src="/app_icon_light_trans.png" alt="DateWise" style="width:56px;height:56px;border-radius:0;margin-bottom:12px" />
+    </picture>
+  </a>
+  <span class="badge">Product Story</span>
+  <h1>Why We Built DateWise</h1>
+  <p>The thinking behind a reminder app that wants to be invisible.</p>
+</div>
+
+<div class="container">
+  <div class="meta">
+    <span>WiselyRise</span>
+    <span class="dot"></span>
+    <span>7 min read</span>
+  </div>
+
+  <h2>The Observation</h2>
+
+  <p>Here's a pattern we noticed across dozens of conversations with real people: almost everyone has forgotten a date that cost them something — money, trust, or peace of mind. Insurance renewals. Birthdays. Medicine refills. Loan payment dates. Anniversary.</p>
+
+  <p>And yet, none of them consider themselves forgetful. They're organized people. They use calendars. They set alarms. But the dates still slip through.</p>
+
+  <p>We asked a simple question: <strong>why?</strong></p>
+
+  <h2>The Gap</h2>
+
+  <p>The answer came down to a fundamental mismatch between the tools available and the problem at hand:</p>
+
+  <div class="comparison">
+    <div class="col">
+      <h4>What calendars do</h4>
+      <ul>
+        <li>Manage schedules & meetings</li>
+        <li>Require daily engagement</li>
+        <li>Mix work + personal dates</li>
+        <li>Optimized for "today" view</li>
+        <li>Cloud-first, account-required</li>
+      </ul>
+    </div>
+    <div class="col good">
+      <h4>What people need</h4>
+      <ul>
+        <li>Remember specific life dates</li>
+        <li>Set and forget completely</li>
+        <li>Personal-only, private space</li>
+        <li>Optimized for "what's coming"</li>
+        <li>Works without internet</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>Calendars answer: "What do I have today?" DateWise answers: <strong>"What's coming up that I can't afford to forget?"</strong></p>
+
+  <p>That's not a feature difference. That's a category difference.</p>
+
+  <h2>Our Design Principles</h2>
+
+  <p>We wrote four rules before writing a single line of code. Every feature decision — what to build and what to reject — was filtered through these:</p>
+
+  <div class="principle">
+    <div class="num">01</div>
+    <div>
+      <h4>Trust beats beauty</h4>
+      <p>If users don't trust their reminders will fire reliably, nothing else matters. Reliability is the product.</p>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="num">02</div>
+    <div>
+      <h4>Speed beats richness</h4>
+      <p>Adding a reminder must take under 30 seconds. If it takes longer, the friction kills adoption.</p>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="num">03</div>
+    <div>
+      <h4>Notifications are the product</h4>
+      <p>The notification is the moment of truth. The app screen is just the setup interface for notifications.</p>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="num">04</div>
+    <div>
+      <h4>The app should disappear</h4>
+      <p>DateWise succeeds when you don't open it often — but rely on it completely. Invisible utility.</p>
+    </div>
+  </div>
+
+  <h2>What We Built</h2>
+
+  <p>DateWise is a private, offline-first reminder engine for life's important dates. Here's what it does:</p>
+
+  <ul>
+    <li><strong>Smart Timeline:</strong> Your reminders sorted by urgency — Today, Tomorrow, This Week, and beyond. No grid calendars. No week views. Just a clean timeline of what matters.</li>
+    <li><strong>12 Built-in Types:</strong> Birthdays, anniversaries, bills, renewals, insurance, medicine, appointments, exams, remembrance — each with contextual notification messages.</li>
+    <li><strong>Import from Contacts:</strong> Pull birthdays from your phone contacts in one tap. Assign relationship tags like Family, Friends, Work.</li>
+    <li><strong>Intelligent Notifications:</strong> Get reminded days before. Snooze smartly — 4 hours for today, tomorrow morning for tomorrow. No snooze for dates weeks away (because that doesn't make sense).</li>
+    <li><strong>Offline-First:</strong> Everything works without internet. No login required. Your data lives on your device.</li>
+    <li><strong>Local Backup:</strong> Export to JSON. Restore anytime. Your data is portable.</li>
+  </ul>
+
+  <h3>Pro Features (One-Time Purchase)</h3>
+  <ul>
+    <li>Google Drive backup & sync via Google Sign-In</li>
+    <li>Custom reminder types with emojis</li>
+    <li>Custom relationship tags</li>
+    <li>No ads</li>
+  </ul>
+
+  <div class="callout">
+    <p>No subscriptions. No forced accounts. No data harvesting. One price, forever.</p>
+  </div>
+
+  <h2>What We Deliberately Didn't Build</h2>
+
+  <p>This is where DateWise gets opinionated. We have a strict inclusion rule:</p>
+
+  <div class="callout">
+    <p>If the date matters more than the content → DateWise.<br>If the content matters more than the date → Not DateWise.</p>
+  </div>
+
+  <p>Things we will never build:</p>
+  <ul>
+    <li>Task lists or checklists</li>
+    <li>Calendar grid views</li>
+    <li>Collaboration or shared reminders</li>
+    <li>Email scanning or AI auto-detection</li>
+    <li>Enterprise or team features</li>
+    <li>Note-taking or journaling</li>
+  </ul>
+
+  <p>Every "no" makes the product stronger. DateWise is a scalpel, not a Swiss Army knife.</p>
+
+  <h2>The Business Model</h2>
+
+  <p>We wanted a model that respects users:</p>
+
+  <ul>
+    <li><strong>Free tier:</strong> Unlimited reminders, full notification engine, local backup, import from contacts, app lock. Everything you need to never forget a date.</li>
+    <li><strong>Pro tier:</strong> One-time purchase. Google Drive backup, custom types, custom tags, ad-free experience. Pay once, keep forever.</li>
+  </ul>
+
+  <p>No subscriptions. No upsell dark patterns. No feature walls that make the free version feel broken.</p>
+
+  <h2>Looking Ahead</h2>
+
+  <p>DateWise V1 is deliberately small. It does one thing and does it reliably. Future iterations — widgets, wearables, smart silence rules — will only happen if V1 earns trust first.</p>
+
+  <p>We believe the best products are the ones you don't think about. The ones that just work, quietly, in the background, and tap your shoulder at exactly the right moment.</p>
+
+  <p>That's what we're building.</p>
+
+  <div class="cta-bar">
+    <h3>Try DateWise</h3>
+    <p>Free, private, offline-first. Set it once, trust it always.</p>
+    <a href="https://play.google.com/store/apps/details?id=com.datewise.app">Get it on Google Play</a>
+  </div>
+</div>
+
+<div class="footer">
+  <p>A product of <a href="https://datewise-app.web.app">WiselyRise</a> &middot; <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
+  <p style="margin-top:8px">&copy; WiselyRise. All rights reserved.</p>
+</div>
+
+</body>
+</html>
