@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DateWise — Remember What Matters</title>
+  <meta name="description" content="DateWise is a free, private reminder app for birthdays, anniversaries, bills, and life events. Offline-first. No signup. Never forget a date again." />
+  <meta property="og:title" content="DateWise — Remember What Matters" />
+  <meta property="og:description" content="The personal reminder engine for dates you can't afford to forget." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wiselyrise.in/datewise" />
+  <meta property="og:image" content="https://wiselyrise.in/datewise/images/FeatureGraphic_main.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#fafafa;--fg:#111;--muted:#555;--accent:#5e35b1;--accent-glow:#7c4dff;--soft:#f3eefc;--surface:#fff;--border:#e0dce8;--green:#2e7d32;--green-bg:#e8f5e9;--warm:#e65100;--warm-bg:#fff3e0;--indigo:#3949ab;--indigo-bg:#e8eaf6}
+    @media(prefers-color-scheme:dark){:root{--bg:#0d0b11;--fg:#eae6f0;--muted:#999;--accent:#b39ddb;--accent-glow:#ce93d8;--soft:#1c1826;--surface:#181520;--border:#2a2535;--green:#66bb6a;--green-bg:#1b2e1b;--warm:#ffb74d;--warm-bg:#2a1f10;--indigo:#7986cb;--indigo-bg:#1a1a2e}}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
+    .hero{position:relative;text-align:center;padding:64px 24px 48px;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);opacity:.07;pointer-events:none}
+    .hero-icon{width:72px;height:72px;margin-bottom:20px;border-radius:0}
+    .icon-light{display:inline}
+    .icon-dark{display:none}
+    @media(prefers-color-scheme:dark){.icon-light{display:none}.icon-dark{display:inline}}
+    .hero h1{font-size:clamp(2rem,6vw,3rem);font-weight:800;line-height:1.1;max-width:560px;margin:0 auto 12px;letter-spacing:-.03em}
+    .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent-glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero .tagline{font-size:1.05rem;color:var(--muted);max-width:440px;margin:0 auto 28px}
+    .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:14px 32px;border-radius:28px;text-decoration:none;font-weight:700;font-size:.92rem;transition:transform .2s,box-shadow .2s}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(94,53,177,.25)}
+    .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:var(--surface);color:var(--fg);padding:14px 28px;border-radius:28px;text-decoration:none;font-weight:600;font-size:.92rem;border:1px solid var(--border)}
+    .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+    .trust{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:40px}
+    .trust span{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted);font-weight:500}
+    .feature-banner{max-width:780px;margin:48px auto 0;padding:0 24px}
+    .feature-banner img{width:100%;border-radius:16px;box-shadow:0 4px 32px rgba(0,0,0,.08)}
+    section{padding:72px 24px}
+    .inner{max-width:960px;margin:0 auto}
+    .section-label{text-transform:uppercase;letter-spacing:3px;font-size:.7rem;color:var(--accent);font-weight:700;margin-bottom:8px}
+    .section-title{font-size:clamp(1.4rem,3.5vw,2rem);font-weight:700;margin-bottom:12px;line-height:1.2}
+    .section-desc{font-size:.95rem;color:var(--muted);max-width:520px;margin-bottom:36px}
+    .screenshots{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px 0 16px;scrollbar-width:none}
+    .screenshots::-webkit-scrollbar{display:none}
+    .screenshots img{flex:0 0 220px;height:440px;object-fit:cover;border-radius:20px;scroll-snap-align:center;box-shadow:0 4px 20px rgba(0,0,0,.1);border:1px solid var(--border)}
+    @media(min-width:900px){.screenshots{justify-content:center;overflow:visible}.screenshots img{flex:0 0 200px;height:400px}}
+    .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:720px;margin:0 auto}
+    @media(max-width:560px){.tiles{grid-template-columns:1fr}}
+    .tile{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px 20px;text-decoration:none;color:var(--fg);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden}
+    .tile:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+    .tile .arrow{position:absolute;top:18px;right:14px;color:var(--muted);font-size:.75rem;opacity:.4}
+    .tile .tile-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+    .tile h3{font-size:.95rem;font-weight:600;line-height:1.3}
+    .tile p{font-size:.8rem;color:var(--muted);margin:0;line-height:1.5}
+    .tile-purple .tile-icon{background:var(--soft)}
+    .tile-green .tile-icon{background:var(--green-bg)}
+    .tile-warm .tile-icon{background:var(--warm-bg)}
+    .tile-indigo .tile-icon{background:var(--indigo-bg)}
+    .tile-wide{grid-column:1/-1}
+    .highlights{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:32px}
+    .highlights .item{text-align:center;padding:20px 16px}
+    .highlights .num{font-size:2rem;font-weight:800;color:var(--accent);line-height:1}
+    .highlights .label{font-size:.82rem;color:var(--muted);margin-top:4px}
+    .links{max-width:720px;margin:0 auto;padding:0 24px 48px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .link-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:20px;background:var(--soft);color:var(--fg);text-decoration:none;font-size:.82rem;font-weight:500;border:1px solid var(--border);transition:background .2s,color .2s}
+    .link-pill:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+    footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+    footer a{color:var(--accent);text-decoration:none}
+    .alt-bg{background:var(--soft)}
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <img src="/datewise/app_icon_light_trans.png" alt="DateWise" class="hero-icon icon-light" />
+  <img src="/datewise/app_icon_dark_trans.png" alt="DateWise" class="hero-icon icon-dark" />
+  <h1>Remember <span>What Matters</span></h1>
+  <p class="tagline">The private, offline-first reminder engine for birthdays, anniversaries, bills, and every date you can't afford to forget.</p>
+  <div class="cta-row">
+    <a class="btn-primary" href="https://play.google.com/store/apps/details?id=com.datewise.app">▶ Download Free</a>
+    <a class="btn-secondary" href="/datewise/blog-product">Our Story →</a>
+  </div>
+  <div class="trust">
+    <span>🔒 No signup</span>
+    <span>📴 Works offline</span>
+    <span>🚫 Zero tracking</span>
+    <span>💎 No subscriptions</span>
+  </div>
+</div>
+
+<div class="feature-banner">
+  <img src="/datewise/images/FeatureGraphic_main.png" alt="DateWise — Birthdays &amp; Life Events" />
+</div>
+
+<section>
+  <div class="inner" style="text-align:center">
+    <p class="section-label">App Preview</p>
+    <h2 class="section-title">See DateWise in action</h2>
+    <p class="section-desc" style="margin-left:auto;margin-right:auto">Four steps to never forget a date. Pick a type, set the date, choose your alerts, and you're done.</p>
+  </div>
+  <div class="screenshots" style="max-width:960px;margin:0 auto">
+    <img src="/datewise/images/add_reminder_screen_1.png" alt="Choose reminder type — 10 built-in types" />
+    <img src="/datewise/images/add_reminder_screen_2.png" alt="Set the date and year" />
+    <img src="/datewise/images/add_reminder_screen_3.png" alt="Configure notification timing" />
+    <img src="/datewise/images/add_reminder_screen_4.png" alt="Add details, photo, and save" />
+  </div>
+</section>
+
+<section class="alt-bg">
+  <div class="inner" style="text-align:center">
+    <p class="section-label">At a Glance</p>
+    <h2 class="section-title">Built for life, not for work</h2>
+    <div class="highlights">
+      <div class="item"><div class="num">10</div><div class="label">Reminder Types</div></div>
+      <div class="item"><div class="num">7</div><div class="label">Notification Offsets</div></div>
+      <div class="item"><div class="num">4</div><div class="label">Theme Modes</div></div>
+      <div class="item"><div class="num">&lt;30s</div><div class="label">Setup Time</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="inner" style="text-align:center">
+    <p class="section-label">Explore</p>
+    <h2 class="section-title">Learn more about DateWise</h2>
+  </div>
+  <div class="tiles" style="margin-top:32px">
+    <a class="tile tile-green" href="/datewise/blog-landing">
+      <span class="arrow">→</span>
+      <div class="tile-icon">📋</div>
+      <h3>Features &amp; Pricing</h3>
+      <p>Full walkthrough — timeline, 10 reminder types, smart notifications, Pro features, and pricing.</p>
+    </a>
+    <a class="tile tile-purple" href="/datewise/blog-product">
+      <span class="arrow">→</span>
+      <div class="tile-icon">💡</div>
+      <h3>Why We Built DateWise</h3>
+      <p>The product thinking behind a reminder app that wants to be invisible.</p>
+    </a>
+    <a class="tile tile-warm" href="/datewise/blog-emotional">
+      <span class="arrow">→</span>
+      <div class="tile-icon">💔</div>
+      <h3>The Cost of Forgetting</h3>
+      <p>A story about the dates we forget, the guilt that follows, and the quiet solution.</p>
+    </a>
+    <a class="tile tile-indigo" href="/datewise/blog-landing#pricing">
+      <span class="arrow">→</span>
+      <div class="tile-icon">💎</div>
+      <h3>Free vs Pro</h3>
+      <p>Everything you need is free. Pro adds cloud backup, custom types — one-time purchase.</p>
+    </a>
+    <a class="tile tile-purple tile-wide" href="https://play.google.com/store/apps/details?id=com.datewise.app">
+      <span class="arrow">→</span>
+      <div class="tile-icon">⚡</div>
+      <h3>Get Started in 30 Seconds</h3>
+      <p>Download DateWise, add your first reminder, and never worry about forgetting again. Free forever, no signup.</p>
+    </a>
+  </div>
+</section>
+
+<div class="links">
+  <a class="link-pill" href="/datewise/privacy">🔒 Privacy Policy</a>
+  <a class="link-pill" href="/datewise/terms">📜 Terms of Use</a>
+  <a class="link-pill" href="mailto:contact@wiselyrise.in">✉️ Contact Us</a>
+</div>
+
+<footer>
+  <p>A product of <a href="/">WiselyRise</a> &middot; Made with ❤️ in India</p>
+</footer>
+
+</body>
+</html>
