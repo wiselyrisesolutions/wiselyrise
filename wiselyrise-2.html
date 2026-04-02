@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WiselyRise — Software That Respects You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,700&family=Fraunces:opsz,wght@9..144,700;9..144,900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=Nunito:wght@400;600;700;800&family=Libre+Baskerville:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ──────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+img{display:block;max-width:100%}
+
+/* ─── PAGE SYSTEM ────────────────── */
+.page{display:none;min-height:100vh}
+.page.active{display:block;animation:pgIn .3s ease both}
+@keyframes pgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes floatB{0%,100%{transform:translateY(0) rotate(3deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulse{0%,100%{opacity:.2}50%{opacity:.6}}
+@keyframes shimmer{from{background-position:200% center}to{background-position:-200% center}}
+@keyframes scaleIn{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes bobble{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.02)}}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.40s}
+
+/* ════════════════════════════════════
+   HOME
+════════════════════════════════════ */
+#home{background:#030E07;color:#fff}
+
+/* NAV */
+.hn{position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 64px;
+  background:rgba(3,14,7,.85);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border-bottom:1px solid rgba(255,255,255,.045)}
+.hn-logo{font-family:'Fraunces',serif;font-size:20px;font-weight:900;
+  color:#fff;cursor:pointer;letter-spacing:-.3px}
+.hn-logo em{font-style:normal;color:#34D668}
+.hn-links{display:flex;gap:0;list-style:none}
+.hn-links a{color:rgba(255,255,255,.38);font-size:12.5px;font-weight:500;
+  padding:6px 14px;border-radius:7px;transition:all .18s}
+.hn-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.hn-pill{display:flex;align-items:center;gap:7px;padding:8px 18px;
+  border:1px solid rgba(52,214,104,.3);border-radius:100px;
+  font-size:12px;color:#34D668;cursor:pointer;transition:background .2s}
+.hn-pill:hover{background:rgba(52,214,104,.07)}
+.hn-pill-dot{width:6px;height:6px;border-radius:50%;background:#34D668;
+  animation:pulse 2.2s ease-in-out infinite}
+
+/* HERO */
+.h-hero{min-height:100vh;position:relative;overflow:hidden;
+  display:flex;align-items:center;padding:110px 64px 80px}
+.h-hero-bg{position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 80% at 0% 55%,#061A0C 0%,transparent 55%),
+    radial-gradient(ellipse 50% 60% at 100% 0%,rgba(8,24,14,.7) 0%,transparent 55%),
+    #030E07}
+.h-hero-grid{position:absolute;inset:0;opacity:.025;
+  background-image:linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px);
+  background-size:60px 60px}
+.h-hero-orb{position:absolute;pointer-events:none;border-radius:50%}
+.h-orb1{width:700px;height:700px;right:-150px;top:50%;transform:translateY(-50%);
+  background:radial-gradient(circle,rgba(52,214,104,.07) 0%,transparent 68%);
+  animation:float 12s ease-in-out infinite}
+.h-orb2{width:400px;height:400px;left:30%;bottom:-120px;
+  background:radial-gradient(circle,rgba(27,107,107,.05) 0%,transparent 70%)}
+
+.h-hero-content{position:relative;z-index:2;max-width:680px}
+.h-kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:24px;
+  padding:6px 16px 6px 8px;border-radius:100px;
+  background:rgba(52,214,104,.08);border:1px solid rgba(52,214,104,.2)}
+.h-kicker-dot{width:20px;height:20px;border-radius:50%;background:#34D668;
+  display:flex;align-items:center;justify-content:center;font-size:10px}
+.h-kicker-text{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:#34D668}
+.h-h1{font-family:'Fraunces',serif;font-size:clamp(50px,7.5vw,96px);
+  font-weight:900;color:#fff;line-height:.97;letter-spacing:-2.5px;margin-bottom:28px;
+  animation:fadeUp .8s ease both}
+.h-h1 i{font-style:italic;color:#34D668;font-weight:700}
+.h-sub{font-size:17px;color:rgba(255,255,255,.42);line-height:1.82;
+  max-width:460px;margin-bottom:44px;animation:fadeUp .8s ease .12s both}
+.h-chips{display:flex;gap:8px;flex-wrap:wrap;animation:fadeUp .8s ease .22s both}
+.h-chip{padding:7px 16px;border-radius:100px;border:1px solid rgba(255,255,255,.09);
+  font-size:12px;color:rgba(255,255,255,.35);letter-spacing:.02em}
+
+/* HERO FLOATING CARDS */
+.h-hero-right{position:absolute;right:64px;top:50%;transform:translateY(-50%);
+  z-index:2;display:flex;flex-direction:column;gap:14px;animation:fadeUp .8s ease .3s both}
+.h-app-float{display:flex;align-items:center;gap:14px;padding:14px 18px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;backdrop-filter:blur(10px);cursor:pointer;
+  transition:all .3s;width:260px}
+.h-app-float:hover{background:rgba(255,255,255,.07);transform:translateX(-6px)}
+.h-app-float:nth-child(1){animation:bobble 4s ease-in-out infinite}
+.h-app-float:nth-child(2){animation:bobble 4s ease-in-out .6s infinite}
+.h-app-float:nth-child(3){animation:bobble 4s ease-in-out 1.2s infinite}
+.h-app-float:nth-child(4){animation:bobble 4s ease-in-out 1.8s infinite}
+.h-af-icon{width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center}
+.h-af-name{font-weight:700;font-size:14px;color:#fff;margin-bottom:2px}
+.h-af-tag{font-size:11px;color:rgba(255,255,255,.3)}
+.h-af-arr{margin-left:auto;font-size:16px;opacity:.3;transition:opacity .2s}
+.h-app-float:hover .h-af-arr{opacity:.8}
+
+/* TICKER */
+.h-ticker{overflow:hidden;background:#020B05;
+  border-top:1px solid rgba(255,255,255,.04);
+  border-bottom:1px solid rgba(255,255,255,.04);
+  padding:14px 0}
+.h-ticker-inner{display:inline-flex;white-space:nowrap;
+  animation:ticker 28s linear infinite}
+.h-ticker-item{display:inline-flex;align-items:center;gap:10px;padding:0 28px;
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(255,255,255,.18)}
+.h-ticker-dot{width:3px;height:3px;border-radius:50%;background:#34D668;flex-shrink:0}
+
+/* APPS SECTION */
+.h-apps{padding:100px 64px;background:#020B05}
+.h-apps-header{margin-bottom:56px}
+.h-apps-top{display:flex;justify-content:space-between;align-items:flex-end}
+.h-apps-eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:#34D668;margin-bottom:12px}
+.h-apps-h2{font-family:'Fraunces',serif;font-size:clamp(32px,4vw,50px);
+  font-weight:900;color:#fff;line-height:1.08;letter-spacing:-1px}
+.h-apps-aside{font-size:13px;color:rgba(255,255,255,.24);
+  max-width:210px;text-align:right;line-height:1.78}
+
+/* APP CARDS - 2 col layout */
+.apps-duo{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:3px}
+
+.apc{border-radius:4px;padding:0;cursor:pointer;overflow:hidden;
+  position:relative;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.apc:hover{transform:scale(1.012);z-index:2}
+.apc-inner{padding:42px 40px 40px}
+.apc-img{width:100%;height:200px;object-fit:cover;display:block}
+.apc-img-placeholder{width:100%;height:200px;display:flex;align-items:center;justify-content:center}
+
+.apc-eye{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;margin-bottom:16px;opacity:.45}
+.apc-icon-wrap{width:56px;height:56px;border-radius:16px;display:flex;
+  align-items:center;justify-content:center;margin-bottom:22px;flex-shrink:0}
+.apc-name{font-family:'Fraunces',serif;font-size:26px;font-weight:900;
+  line-height:1;margin-bottom:12px}
+.apc-desc{font-size:13.5px;line-height:1.75;margin-bottom:24px;opacity:.55;max-width:340px}
+.apc-footer{display:flex;align-items:center;justify-content:space-between}
+.apc-tags{display:flex;gap:6px;flex-wrap:wrap}
+.apc-tag{font-size:10.5px;padding:4px 12px;border-radius:100px;font-weight:600}
+.apc-link{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;
+  opacity:.5;transition:opacity .2s}
+.apc:hover .apc-link{opacity:1}
+
+/* DW */
+.apc-dw{background:linear-gradient(145deg,#0D0921,#140E30)}
+.apc-dw:first-child{border-radius:20px 0 0 0 !important}
+.apc-dw .apc-eye,.apc-dw .apc-name,.apc-dw .apc-link{color:#818CF8}
+.apc-dw .apc-desc{color:#818CF8}
+.apc-dw .apc-icon-wrap{background:rgba(99,102,241,.15)}
+.apc-dw .apc-tag{background:rgba(99,102,241,.12);color:#6366F1}
+/* PW */
+.apc-pw{background:linear-gradient(145deg,#070714,#0D0D20)}
+.apc-pw:nth-child(2){border-radius:0 20px 0 0 !important}
+.apc-pw .apc-eye,.apc-pw .apc-name,.apc-pw .apc-link{color:#60A5FA}
+.apc-pw .apc-desc{color:#60A5FA}
+.apc-pw .apc-icon-wrap{background:rgba(37,99,235,.15)}
+.apc-pw .apc-tag{background:rgba(37,99,235,.12);color:#3B82F6}
+/* GW */
+.apc-gw{background:linear-gradient(145deg,#130E02,#1C1504)}
+.apc-gw:nth-child(1){border-radius:0 0 0 20px !important}
+.apc-gw .apc-eye,.apc-gw .apc-name,.apc-gw .apc-link{color:#D4AF37}
+.apc-gw .apc-desc{color:#D4AF37}
+.apc-gw .apc-icon-wrap{background:rgba(212,175,55,.12)}
+.apc-gw .apc-tag{background:rgba(212,175,55,.1);color:#B8921A}
+/* DU */
+.apc-du{background:linear-gradient(145deg,#040F0F,#071A1A)}
+.apc-du:nth-child(2){border-radius:0 0 20px 0 !important}
+.apc-du .apc-eye,.apc-du .apc-name,.apc-du .apc-link{color:#2DD4BF}
+.apc-du .apc-desc{color:#2DD4BF}
+.apc-du .apc-icon-wrap{background:rgba(27,107,107,.18)}
+.apc-du .apc-tag{background:rgba(27,107,107,.18);color:#1B8080}
+
+/* SOON ROW */
+.soon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:3px}
+.soon-c{background:rgba(255,255,255,.018);border-radius:4px;
+  padding:20px 22px;display:flex;align-items:center;gap:14px;
+  border:1px solid rgba(255,255,255,.04);transition:background .2s}
+.soon-c:hover{background:rgba(255,255,255,.03)}
+.soon-ico{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.04);
+  display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.soon-name{font-size:13px;font-weight:700;color:rgba(255,255,255,.35)}
+.soon-sub{font-size:10.5px;color:rgba(255,255,255,.15);margin-top:2px}
+
+/* MANIFESTO */
+.h-manifesto{padding:96px 64px;background:#030E07;
+  border-top:1px solid rgba(255,255,255,.04)}
+.h-mf-inner{display:grid;grid-template-columns:380px 1fr;gap:80px}
+.h-mf-left .eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:#34D668;margin-bottom:14px}
+.h-mf-left h2{font-family:'Fraunces',serif;font-size:clamp(30px,3.5vw,46px);
+  font-weight:900;color:#fff;line-height:1.12;letter-spacing:-1px;margin-bottom:18px}
+.h-mf-left p{font-size:14px;color:rgba(255,255,255,.3);line-height:1.9}
+.h-mf-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mf-card{padding:28px 26px;border-radius:16px;
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.055);
+  transition:border-color .3s}
+.mf-card:hover{border-color:rgba(52,214,104,.18)}
+.mf-num{font-family:'DM Mono',monospace;font-size:10px;
+  color:rgba(52,214,104,.4);margin-bottom:13px}
+.mf-title{font-family:'Fraunces',serif;font-size:17px;font-weight:700;
+  color:#fff;margin-bottom:9px}
+.mf-desc{font-size:13px;color:rgba(255,255,255,.3);line-height:1.78}
+
+/* QUOTE */
+.h-quote{padding:64px;background:#020B05;border-top:1px solid rgba(255,255,255,.04);
+  text-align:center}
+.h-quote q{font-family:'Fraunces',serif;font-size:clamp(18px,2.8vw,30px);
+  font-style:italic;color:rgba(255,255,255,.22);line-height:1.55;quotes:none}
+.h-quote strong{font-style:normal;color:rgba(255,255,255,.72)}
+
+/* HOME FOOTER */
+.h-footer{padding:28px 64px;background:#030E07;
+  border-top:1px solid rgba(255,255,255,.05);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.hf-brand{font-family:'Fraunces',serif;font-size:15px;font-weight:900;
+  color:rgba(255,255,255,.3)}
+.hf-brand em{font-style:normal;color:#34D668}
+.hf-tag{font-size:11px;color:rgba(255,255,255,.12);margin-top:3px}
+.hf-links{display:flex;gap:18px}
+.hf-links a{font-size:12px;color:rgba(255,255,255,.2);transition:color .2s}
+.hf-links a:hover{color:rgba(255,255,255,.55)}
+.hf-copy{font-size:11px;color:rgba(255,255,255,.12)}
+
+/* ════════════════════════════════════
+   SHARED APP NAV
+════════════════════════════════════ */
+.app-nav{position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:15px 56px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.back-btn{display:flex;align-items:center;gap:7px;font-size:13px;
+  font-weight:600;cursor:pointer;padding:8px 16px;border-radius:100px;
+  border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);
+  transition:all .2s;background:rgba(255,255,255,.04)}
+.back-btn:hover{border-color:rgba(255,255,255,.25);color:#fff}
+.app-nav-brand{font-family:'Fraunces',serif;font-size:19px;font-weight:900}
+.app-nav-cta{padding:9px 22px;border-radius:100px;font-size:13px;
+  font-weight:700;color:#fff;cursor:pointer;transition:opacity .2s}
+.app-nav-cta:hover{opacity:.82}
+
+/* PHONE FRAME (shared) */
+.pf{border-radius:44px;overflow:hidden;display:flex;flex-direction:column;flex-shrink:0}
+.pf-notch-wrap{display:flex;justify-content:center;padding-top:0;flex-shrink:0}
+.pf-notch{height:26px;width:90px;border-radius:0 0 18px 18px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pf-status{display:flex;justify-content:space-between;padding:3px 18px;
+  font-size:9px;font-weight:600;flex-shrink:0}
+.pf-body{flex:1;display:flex;flex-direction:column;overflow:hidden}
+
+/* SHARED APP FOOTER */
+.af{padding:28px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.af-brand{font-family:'Fraunces',serif;font-size:15px;font-weight:900}
+.af-sub{font-size:11px;opacity:.28;margin-top:2px}
+.af-links{display:flex;gap:18px}
+.af-links a{font-size:12px;opacity:.28;transition:opacity .2s}
+.af-links a:hover{opacity:.6}
+.af-copy{font-size:11px;opacity:.16}
+
+/* ════════════════════════════════════
+   DATEWISE — Indigo / Light airy
+════════════════════════════════════ */
+#datewise{background:#F7F6FF;color:#1E1B4B;font-family:'Nunito',sans-serif}
+:root{--dw:#4338CA;--dw-l:#6366F1;--dw-ll:#818CF8;--dw-bg:#F7F6FF;--dw-bg2:#EEF2FF}
+
+#datewise .app-nav{background:rgba(247,246,255,.93);border-bottom:1px solid rgba(67,56,202,.08)}
+#datewise .back-btn{border-color:rgba(67,56,202,.2);color:rgba(30,27,75,.45)}
+#datewise .app-nav-brand{color:#4338CA}
+#datewise .app-nav-cta{background:#4338CA}
+#datewise .af{background:#1E1B4B;border-top:1px solid rgba(99,102,241,.12)}
+#datewise .af-brand{color:#818CF8}
+#datewise .af-links a,#datewise .af-copy{color:rgba(255,255,255,.3)}
+
+/* DW HERO SECTION */
+.dw-hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding:100px 56px 72px;gap:0;
+  position:relative;overflow:hidden}
+.dw-hero-bg{position:absolute;inset:0;
+  background:linear-gradient(135deg,#EEF2FF 0%,#F7F6FF 50%,#E0E7FF 100%)}
+.dw-hero-dots{position:absolute;inset:0;
+  background-image:radial-gradient(rgba(99,102,241,.15) 1.5px,transparent 1.5px);
+  background-size:28px 28px;opacity:.8}
+
+.dw-left{position:relative;z-index:2}
+.dw-rating{display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;
+  padding:7px 16px;background:rgba(99,102,241,.08);border-radius:100px;
+  border:1px solid rgba(99,102,241,.15)}
+.dw-stars{color:#F59E0B;font-size:13px;letter-spacing:1px}
+.dw-rating-text{font-size:12px;font-weight:700;color:#4338CA}
+.dw-h1{font-family:'Fraunces',serif;font-size:clamp(38px,4.5vw,62px);
+  font-weight:900;color:#1E1B4B;line-height:1.06;letter-spacing:-1.5px;margin-bottom:22px}
+.dw-h1 i{font-style:italic;color:#4338CA}
+.dw-sub{font-size:16.5px;color:rgba(30,27,75,.52);line-height:1.82;
+  max-width:420px;margin-bottom:36px}
+.dw-proof{display:flex;gap:32px;margin-bottom:36px;
+  padding:20px 24px;background:rgba(99,102,241,.05);border-radius:14px;
+  border:1px solid rgba(99,102,241,.1);max-width:380px}
+.dw-proof-item .val{font-family:'Fraunces',serif;font-size:28px;font-weight:900;color:#4338CA}
+.dw-proof-item .lbl{font-size:11.5px;color:rgba(30,27,75,.4);margin-top:2px;font-weight:600}
+.dw-btns{display:flex;gap:12px;flex-wrap:wrap}
+.dw-btn-p{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;
+  background:#4338CA;color:#fff;border-radius:14px;font-size:14.5px;
+  font-weight:800;transition:all .2s;cursor:pointer}
+.dw-btn-p:hover{background:#3730A3;transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(67,56,202,.35)}
+.dw-btn-g{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;
+  border:1.5px solid rgba(67,56,202,.2);color:rgba(30,27,75,.55);
+  border-radius:14px;font-size:14px;font-weight:700;transition:all .2s;cursor:pointer}
+.dw-btn-g:hover{border-color:rgba(67,56,202,.5);color:#4338CA}
+.btn-sub{font-size:10px;font-weight:400;opacity:.7;display:block;line-height:1.2}
+.btn-main{display:block;font-weight:800}
+
+/* DW PHONE AREA */
+.dw-right{position:relative;z-index:2;display:flex;justify-content:center;align-items:center}
+.dw-pf-wrap{position:relative}
+.dw-pf{width:260px;height:530px;border:7px solid #D0D5FF;background:#FDFEFF;
+  box-shadow:0 50px 100px rgba(67,56,202,.14),0 16px 40px rgba(67,56,202,.08);
+  animation:float 7s ease-in-out infinite}
+.dw-pf .pf-notch{background:#FDFEFF;border-radius:0 0 16px 16px;height:24px;width:88px}
+.dw-pf .pf-status{color:#7C7CA0;font-size:9.5px}
+
+.dw-ph-top{padding:11px 14px 9px;border-bottom:1px solid rgba(99,102,241,.08)}
+.dw-ph-top-row{display:flex;justify-content:space-between;align-items:center}
+.dw-ph-title{font-family:'Fraunces',serif;font-size:16px;font-weight:900;color:#1E1B4B}
+.dw-ph-fab{width:27px;height:27px;border-radius:8px;background:#4338CA;
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:18px;font-weight:300}
+.dw-ph-date{font-size:10.5px;color:rgba(30,27,75,.38);margin-top:2px}
+
+.dw-ph-body{flex:1;padding:10px 13px;overflow:hidden;display:flex;flex-direction:column;gap:6px}
+.dw-ph-sec{font-size:9px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(30,27,75,.28);margin:4px 0 2px}
+.dw-ec{display:flex;align-items:center;gap:10px;padding:10px 12px;
+  background:#fff;border-radius:12px;border:1px solid rgba(99,102,241,.08);
+  box-shadow:0 2px 8px rgba(67,56,202,.05)}
+.dw-ec-ico{font-size:22px;flex-shrink:0}
+.dw-ec-info{flex:1;min-width:0}
+.dw-ec-name{font-size:12.5px;font-weight:800;color:#1E1B4B;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dw-ec-days{font-size:10px;color:rgba(30,27,75,.42);margin-top:1px}
+.dw-ec-badge{padding:3px 9px;border-radius:100px;font-size:9.5px;font-weight:800}
+.badge-hot{background:#FEF2F2;color:#EF4444}
+.badge-soon{background:#FFF7ED;color:#F97316}
+.badge-ok{background:#F0FDF4;color:#22C55E}
+
+.dw-ph-add{margin-top:auto;background:#4338CA;border-radius:10px;color:#fff;
+  text-align:center;padding:10px;font-size:12px;font-weight:800;margin-bottom:12px;
+  cursor:pointer}
+
+/* DW FLOAT CARDS */
+.dw-float-1{position:absolute;right:-62px;top:40px;width:176px;
+  background:#fff;border-radius:16px;padding:14px 16px;
+  box-shadow:0 10px 36px rgba(67,56,202,.12);border:1px solid rgba(99,102,241,.12);
+  animation:floatB 5.5s ease-in-out infinite}
+.dw-float-2{position:absolute;left:-70px;bottom:60px;width:168px;
+  background:#4338CA;border-radius:14px;padding:13px 15px;
+  box-shadow:0 12px 32px rgba(67,56,202,.28);
+  animation:floatB 6s ease-in-out .8s infinite}
+.dfc-ico{font-size:22px;margin-bottom:7px}
+.dfc-t{font-size:12px;font-weight:800;margin-bottom:3px}
+.dfc-s{font-size:10.5px;opacity:.5;line-height:1.5}
+.dfc-bar{height:4px;background:rgba(0,0,0,.06);border-radius:100px;
+  overflow:hidden;margin-top:10px}
+.dfc-fill{height:100%;border-radius:100px}
+
+/* DW SCREENSHOT SECTION */
+.dw-shots{padding:88px 56px;background:#EEF2FF}
+.dw-shots-hd{text-align:center;margin-bottom:56px}
+.dw-shots-eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:#4338CA;margin-bottom:11px}
+.dw-shots-h2{font-family:'Fraunces',serif;font-size:clamp(28px,3.5vw,44px);
+  font-weight:900;color:#1E1B4B;letter-spacing:-1px}
+
+.dw-shots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.dw-shot{background:#fff;border-radius:20px;overflow:hidden;
+  border:1px solid rgba(99,102,241,.1);
+  transition:transform .3s,box-shadow .3s}
+.dw-shot:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(67,56,202,.1)}
+.dw-shot-img{width:100%;height:200px;object-fit:cover}
+.dw-shot-img-ph{width:100%;height:200px;display:flex;align-items:center;justify-content:center}
+.dw-shot-body{padding:20px}
+.dw-shot-title{font-family:'Fraunces',serif;font-size:16px;font-weight:900;
+  color:#1E1B4B;margin-bottom:6px}
+.dw-shot-desc{font-size:13px;color:rgba(30,27,75,.5);line-height:1.7}
+
+/* DW FEATURES */
+.dw-feats{padding:88px 56px;background:#F7F6FF}
+.dw-feats-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.dw-feats-left{position:relative}
+.dw-feats-img{width:100%;height:460px;object-fit:cover;border-radius:24px;
+  box-shadow:0 30px 70px rgba(67,56,202,.12)}
+.dw-feats-img-ph{width:100%;height:460px;border-radius:24px;overflow:hidden}
+.dw-feats-right .eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:#4338CA;margin-bottom:12px}
+.dw-feats-right h2{font-family:'Fraunces',serif;font-size:clamp(26px,3vw,40px);
+  font-weight:900;color:#1E1B4B;letter-spacing:-1px;margin-bottom:32px}
+.dw-feat-list{display:flex;flex-direction:column;gap:16px}
+.dw-fl{display:flex;gap:14px;padding:18px;border-radius:14px;
+  background:#fff;border:1px solid rgba(99,102,241,.09);
+  transition:border-color .2s}
+.dw-fl:hover{border-color:rgba(99,102,241,.3)}
+.dw-fl-ico{width:40px;height:40px;border-radius:11px;background:#EEF2FF;
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.dw-fl-t{font-size:14px;font-weight:800;color:#1E1B4B;margin-bottom:4px}
+.dw-fl-s{font-size:12.5px;color:rgba(30,27,75,.48);line-height:1.65}
+
+/* DW CTA */
+.dw-cta{padding:88px 56px;background:#1E1B4B;text-align:center;
+  position:relative;overflow:hidden}
+.dw-cta::before{content:'';position:absolute;width:600px;height:600px;
+  border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.dw-cta-eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:#818CF8;margin-bottom:12px;position:relative;z-index:1}
+.dw-cta-h2{font-family:'Fraunces',serif;font-size:clamp(30px,4vw,50px);
+  font-weight:900;color:#fff;letter-spacing:-1.5px;margin-bottom:14px;position:relative;z-index:1}
+.dw-cta-p{font-size:15.5px;color:rgba(255,255,255,.4);margin-bottom:32px;position:relative;z-index:1}
+.dw-cta-chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:32px;position:relative;z-index:1}
+.dw-cta-chip{padding:6px 16px;border-radius:100px;
+  border:1px solid rgba(129,140,248,.25);font-size:12px;color:rgba(255,255,255,.4)}
+.dw-cta-btns{display:flex;gap:12px;justify-content:center;position:relative;z-index:1}
+
+/* ════════════════════════════════════
+   PIXWISE — Pure black / pixel-teal-violet
+════════════════════════════════════ */
+#pixwise{background:#060608;color:#fff}
+:root{--pw:#7C4DFF;--pw-t:#00D4AA;--pw-b:#1A0533}
+
+#pixwise .app-nav{background:rgba(6,6,8,.88);border-bottom:1px solid rgba(124,77,255,.1)}
+#pixwise .back-btn{border-color:rgba(124,77,255,.2);color:rgba(255,255,255,.4)}
+#pixwise .app-nav-brand{color:#fff;font-family:'DM Mono',monospace;font-size:16px;letter-spacing:.05em}
+#pixwise .app-nav-cta{background:linear-gradient(135deg,#7C4DFF,#4C00E0)}
+#pixwise .af{background:#040406;border-top:1px solid rgba(255,255,255,.04)}
+#pixwise .af-brand{color:#A78BFA}
+#pixwise .af-links a,#pixwise .af-copy{color:rgba(255,255,255,.2)}
+
+/* PW HERO */
+.pw-hero{min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:110px 48px 60px;position:relative;overflow:hidden;text-align:center}
+.pw-hero-glow{position:absolute;width:800px;height:800px;
+  border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(124,77,255,.13) 0%,rgba(0,212,170,.05) 50%,transparent 70%);
+  animation:pulse 6s ease-in-out infinite;pointer-events:none}
+.pw-hero-lines{position:absolute;inset:0;opacity:.04;
+  background-image:
+    linear-gradient(rgba(124,77,255,.5) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,77,255,.5) 1px,transparent 1px);
+  background-size:40px 40px}
+.pw-content{position:relative;z-index:2;max-width:720px}
+.pw-kicker{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.24em;
+  text-transform:uppercase;color:#7C4DFF;margin-bottom:20px;
+  display:inline-flex;align-items:center;gap:10px}
+.pw-kicker::before,.pw-kicker::after{content:'';width:30px;height:1px;background:rgba(124,77,255,.4)}
+.pw-h1{font-family:'DM Mono',monospace;font-size:clamp(32px,5.5vw,66px);
+  font-weight:500;color:#fff;line-height:1.08;letter-spacing:-1.5px;margin-bottom:22px}
+.pw-h1 em{font-style:italic;color:#A78BFA;font-family:'Fraunces',serif;font-weight:700}
+.pw-sub{font-size:16px;color:rgba(255,255,255,.38);line-height:1.82;
+  max-width:460px;margin:0 auto 32px}
+.pw-hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.pw-hero-tag{padding:6px 14px;border-radius:100px;
+  border:1px solid rgba(124,77,255,.22);font-size:12px;color:rgba(255,255,255,.35)}
+.pw-hero-cta{display:inline-flex;align-items:center;gap:10px;
+  padding:15px 32px;background:linear-gradient(135deg,#7C4DFF,#4C00E0);
+  color:#fff;border-radius:14px;font-size:15px;font-weight:700;
+  cursor:pointer;transition:all .2s;position:relative;z-index:2}
+.pw-hero-cta:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(124,77,255,.4)}
+
+/* 3 PHONES */
+.pw-phones-wrap{position:relative;z-index:2;display:flex;
+  gap:16px;align-items:flex-end;justify-content:center;margin-top:52px}
+.pw-ph-c{display:flex;flex-direction:column;align-items:center}
+.pw-ph-c.side-l{opacity:.45;transform:translateY(28px) rotate(-6deg)}
+.pw-ph-c.side-r{opacity:.45;transform:translateY(28px) rotate(6deg)}
+.pw-ph-c.center{animation:float 5.5s ease-in-out infinite;z-index:3}
+.pw-pf{width:220px;height:450px;border:5.5px solid #1C1C2E;background:#10101C;
+  box-shadow:0 40px 80px rgba(124,77,255,.22),0 0 0 1px rgba(124,77,255,.05)}
+.pw-pf .pf-notch{background:#10101C;height:20px;width:76px;border-radius:0 0 12px 12px}
+.pw-pf .pf-status{color:rgba(255,255,255,.3);font-size:8.5px}
+
+/* Phone 1: Gallery grid */
+.pwp1-hdr{display:flex;justify-content:space-between;align-items:center;padding:9px 13px}
+.pwp1-t{font-size:14.5px;font-weight:700;color:#fff}
+.pwp1-search{height:28px;margin:0 13px 7px;background:rgba(255,255,255,.07);
+  border-radius:9px;display:flex;align-items:center;padding:0 11px;
+  font-size:10px;color:rgba(255,255,255,.3)}
+.pwp1-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5px;flex:1}
+.pwp1-cell{aspect-ratio:1}
+.pwp1-nav{display:flex;border-top:1px solid rgba(255,255,255,.04);padding:7px 0;flex-shrink:0}
+.pwp1-tab{flex:1;text-align:center;font-size:9px;color:rgba(255,255,255,.25)}
+.pwp1-tab.on{color:#7C4DFF;font-weight:700}
+
+/* Phone 2: Guest Mode */
+.pwp2-gmbar{background:linear-gradient(90deg,#4C00E0,#7C4DFF);
+  padding:9px 13px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.pwp2-gml{font-size:9px;font-weight:700;color:#fff;letter-spacing:.1em}
+.pwp2-gmr{font-size:9px;color:rgba(255,255,255,.6)}
+.pwp2-body{flex:1;padding:7px 12px;overflow:hidden}
+.pwp2-row{display:flex;align-items:center;gap:9px;padding:7px 0;
+  border-bottom:1px solid rgba(255,255,255,.04)}
+.pwp2-th{width:34px;height:34px;border-radius:8px;flex-shrink:0}
+.pwp2-nm{font-size:11.5px;font-weight:700;color:rgba(255,255,255,.78)}
+.pwp2-ct{font-size:9px;color:rgba(255,255,255,.28);margin-top:1px}
+.pwp2-hidden-chip{margin-top:7px;padding:7px 11px;border-radius:8px;
+  background:rgba(124,77,255,.14);border:1px solid rgba(124,77,255,.2);
+  display:flex;align-items:center;gap:7px}
+.pwp2-hidden-chip span{font-size:9.5px;color:rgba(255,255,255,.4)}
+.pwp2-nav{display:flex;border-top:1px solid rgba(255,255,255,.04);padding:7px 0;flex-shrink:0}
+.pwp2-tab{flex:1;text-align:center;font-size:9px;color:rgba(255,255,255,.26)}
+.pwp2-tab.on{color:#7C4DFF;font-weight:700}
+
+/* Phone 3: Hidden Space */
+.pwp3-body{flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:16px;text-align:center}
+.pwp3-vault{font-size:40px;margin-bottom:8px}
+.pwp3-t{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px}
+.pwp3-c{font-size:10.5px;color:rgba(255,255,255,.3);margin-bottom:14px}
+.pwp3-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;width:100%}
+.pwp3-cell{aspect-ratio:1;border-radius:5px}
+.pwp3-btns{display:flex;gap:7px;margin-top:12px;width:100%}
+.pwp3-btn{flex:1;padding:9px;border-radius:9px;text-align:center;font-size:10px;font-weight:700;cursor:pointer}
+.pwp3-sec{background:rgba(255,255,255,.06);color:rgba(255,255,255,.5)}
+.pwp3-pri{background:#7C4DFF;color:#fff}
+.pwp3-nav{display:flex;border-top:1px solid rgba(255,255,255,.04);padding:7px 0;flex-shrink:0}
+.pwp3-tab{flex:1;text-align:center;font-size:9px;color:rgba(255,255,255,.26)}
+.pwp3-tab.on{color:#7C4DFF;font-weight:700}
+
+/* PW TRUST STRIP */
+.pw-strip{display:grid;grid-template-columns:repeat(4,1fr);
+  background:#0A0A0F;border-top:1px solid rgba(255,255,255,.04)}
+.pw-strip-item{text-align:center;padding:20px 16px;border-right:1px solid rgba(255,255,255,.04)}
+.pw-strip-item:last-child{border-right:none}
+.pw-strip-ico{font-size:20px;margin-bottom:7px}
+.pw-strip-t{font-size:12.5px;font-weight:700;color:#fff;margin-bottom:3px}
+.pw-strip-s{font-size:10.5px;color:rgba(255,255,255,.26)}
+
+/* PW FEATURES */
+.pw-feats{padding:88px 56px;background:#080810}
+.pw-feats-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px}
+.pw-feats-eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:#7C4DFF;margin-bottom:11px}
+.pw-feats-h2{font-family:'DM Mono',monospace;font-size:clamp(26px,3.5vw,44px);
+  font-weight:500;color:#fff;letter-spacing:-1px}
+.pw-feats-aside{font-size:13px;color:rgba(255,255,255,.24);max-width:200px;text-align:right;line-height:1.7}
+
+.pw-fg{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.pw-fc{padding:38px 36px;background:#0E0E1C;transition:background .25s;cursor:default}
+.pw-fc:hover{background:#121220}
+.pw-fc:nth-child(1){border-radius:18px 0 0 0}.pw-fc:nth-child(2){border-radius:0 18px 0 0}
+.pw-fc:nth-child(3){border-radius:0 0 0 18px}.pw-fc:nth-child(4){border-radius:0 0 18px 0}
+.pw-fc-n{font-family:'DM Mono',monospace;font-size:9px;
+  color:rgba(124,77,255,.45);margin-bottom:14px;letter-spacing:.1em}
+.pw-fc-ico{font-size:28px;margin-bottom:12px}
+.pw-fc-t{font-size:16px;font-weight:700;color:#fff;margin-bottom:9px}
+.pw-fc-d{font-size:13px;color:rgba(255,255,255,.3);line-height:1.75}
+
+/* PW SCREENSHOTS */
+.pw-screenshots{padding:88px 56px;background:#060608}
+.pw-ss-eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:#7C4DFF;margin-bottom:12px}
+.pw-ss-h2{font-family:'DM Mono',monospace;font-size:clamp(24px,3vw,38px);
+  font-weight:500;color:#fff;letter-spacing:-1px;margin-bottom:48px}
+.pw-ss-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pw-ss-card{border-radius:18px;overflow:hidden;border:1px solid rgba(124,77,255,.12);
+  transition:transform .3s,border-color .3s}
+.pw-ss-card:hover{transform:translateY(-6px);border-color:rgba(124,77,255,.3)}
+.pw-ss-img{width:100%;height:220px;object-fit:cover}
+.pw-ss-img-ph{width:100%;height:220px;display:flex;align-items:center;justify-content:center}
+.pw-ss-info{padding:18px 18px;background:#0E0E1C}
+.pw-ss-t{font-size:14px;font-weight:700;color:#fff;margin-bottom:5px}
+.pw-ss-s{font-size:12px;color:rgba(255,255,255,.3)}
+
+/* PW PRICING */
+.pw-price{padding:88px 56px;background:#080810;text-align:center}
+.pw-price-eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:#7C4DFF;margin-bottom:12px}
+.pw-price-h2{font-family:'DM Mono',monospace;font-size:clamp(24px,3.5vw,42px);
+  font-weight:500;color:#fff;letter-spacing:-1px;margin-bottom:44px}
+.pw-price-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:680px;margin:0 auto 20px}
+.pw-pc{border-radius:22px;padding:34px 30px;border:1px solid;text-align:left}
+.pw-pc-free{background:#0E0E1C;border-color:rgba(255,255,255,.06)}
+.pw-pc-pro{background:linear-gradient(145deg,#12063A,#1A0848);border-color:rgba(124,77,255,.3)}
+.pw-pc-tier{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:14px}
+.pw-pc-price{font-family:'Fraunces',serif;font-size:52px;font-weight:900;
+  color:#fff;line-height:1;margin-bottom:4px}
+.pw-pc-price sup{font-size:22px;vertical-align:top;margin-top:12px}
+.pw-pc-note{font-size:13px;color:rgba(255,255,255,.28);margin-bottom:20px;padding-bottom:20px;
+  border-bottom:1px solid rgba(255,255,255,.05)}
+.pw-pc-feats{list-style:none;display:flex;flex-direction:column;gap:10px}
+.pw-pc-feats li{display:flex;gap:10px;font-size:13px;color:rgba(255,255,255,.55);align-items:flex-start}
+.pw-pc-feats .y{color:#7C4DFF;font-size:15px;flex-shrink:0;margin-top:-1px}
+.pw-pc-btn{width:100%;margin-top:22px;padding:13px;border-radius:100px;
+  font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif}
+.pw-pc-btn-f{background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border:none}
+.pw-pc-btn-p{background:linear-gradient(135deg,#7C4DFF,#4C00E0);color:#fff;border:none}
+.pw-price-note{font-size:12px;color:rgba(255,255,255,.18);max-width:480px;margin:0 auto}
+
+/* ════════════════════════════════════
+   GRAMWISE — Dark warm brown / luxury gold
+════════════════════════════════════ */
+#gramwise{background:#0C0A02;color:#fff;font-family:'DM Sans',sans-serif}
+
+#gramwise .app-nav{background:rgba(12,10,2,.9);border-bottom:1px solid rgba(212,175,55,.1)}
+#gramwise .back-btn{border-color:rgba(212,175,55,.18);color:rgba(255,255,255,.38)}
+#gramwise .app-nav-brand{color:#D4AF37;font-family:'Fraunces',serif}
+#gramwise .app-nav-cta{background:linear-gradient(135deg,#C9980A,#D4AF37);color:#1C1200}
+#gramwise .af{background:#080600;border-top:1px solid rgba(212,175,55,.07)}
+#gramwise .af-brand{color:#D4AF37}
+#gramwise .af-links a,#gramwise .af-copy{color:rgba(255,255,255,.2)}
+
+/* GW HERO */
+.gw-hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:0;padding:100px 56px 72px;
+  position:relative;overflow:hidden}
+.gw-hero-bg{position:absolute;inset:0;
+  background:linear-gradient(130deg,#0C0A02 0%,#141002 50%,#0C0A02 100%)}
+.gw-hero-orb{position:absolute;width:500px;height:500px;border-radius:50%;
+  right:-100px;bottom:-100px;
+  background:radial-gradient(circle,rgba(212,175,55,.06) 0%,transparent 68%);
+  pointer-events:none}
+.gw-hero-orb2{position:absolute;width:300px;height:300px;border-radius:50%;
+  left:45%;top:10%;
+  background:radial-gradient(circle,rgba(212,175,55,.04) 0%,transparent 68%);
+  pointer-events:none}
+
+.gw-left{position:relative;z-index:2}
+.gw-kicker{display:flex;align-items:center;gap:9px;margin-bottom:18px;
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:#D4AF37}
+.gw-kicker::before{content:'';width:22px;height:1px;background:rgba(212,175,55,.5)}
+.gw-h1{font-family:'Fraunces',serif;font-size:clamp(36px,4.5vw,62px);
+  font-weight:900;color:#fff;line-height:1.06;letter-spacing:-1.5px;margin-bottom:22px}
+.gw-h1 i{font-style:italic;color:#D4AF37}
+.gw-sub{font-size:16px;color:rgba(255,255,255,.4);line-height:1.85;
+  max-width:420px;margin-bottom:28px}
+
+.gw-goal-preview{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.14);
+  border-radius:16px;padding:18px 20px;margin-bottom:32px;max-width:400px}
+.gw-gp-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.gw-gp-name{font-family:'Fraunces',serif;font-size:16px;font-weight:700;color:#D4AF37}
+.gw-gp-pct{font-size:22px;font-weight:900;font-family:'Fraunces',serif;color:#D4AF37}
+.gw-gp-sub{font-size:12px;color:rgba(255,255,255,.3);margin-bottom:12px}
+.gw-gp-bar{height:5px;background:rgba(255,255,255,.05);border-radius:100px;overflow:hidden;margin-bottom:7px}
+.gw-gp-fill{height:100%;background:linear-gradient(90deg,#B8921A,#D4AF37,#F0CC55);border-radius:100px}
+.gw-gp-detail{font-size:11.5px;color:rgba(212,175,55,.55);font-weight:600}
+
+.gw-btns{display:flex;gap:12px;flex-wrap:wrap}
+.gw-btn-p{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;
+  background:linear-gradient(135deg,#C9980A,#D4AF37);
+  color:#1C1200;border-radius:14px;font-size:14.5px;font-weight:800;
+  transition:all .2s;cursor:pointer}
+.gw-btn-p:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(212,175,55,.3)}
+.gw-btn-g{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;
+  border:1px solid rgba(212,175,55,.2);color:rgba(255,255,255,.42);
+  border-radius:14px;font-size:14px;font-weight:600;transition:all .2s;cursor:pointer}
+.gw-btn-g:hover{border-color:rgba(212,175,55,.5);color:rgba(212,175,55,.8)}
+
+/* GW PHONE */
+.gw-right{position:relative;z-index:2;display:flex;justify-content:center}
+.gw-pf-wrap{position:relative}
+.gw-pf{width:252px;height:514px;border:5.5px solid #1E1A04;background:#0E0C02;
+  box-shadow:0 50px 100px rgba(0,0,0,.6),0 0 0 1px rgba(212,175,55,.06);
+  animation:float 7.5s ease-in-out infinite}
+.gw-pf .pf-notch{background:#0E0C02;height:22px;width:80px;border-radius:0 0 13px 13px}
+.gw-pf .pf-status{color:rgba(212,175,55,.3);font-size:9px}
+
+.gw-pb-hdr{display:flex;justify-content:space-between;align-items:center;
+  padding:9px 13px;border-bottom:1px solid rgba(212,175,55,.07);margin-bottom:7px}
+.gw-pb-t{font-family:'Fraunces',serif;font-size:14px;font-weight:700;color:#fff}
+.gw-pb-curr{font-size:10.5px;font-weight:700;color:rgba(212,175,55,.55);
+  background:rgba(212,175,55,.07);padding:3px 9px;border-radius:6px}
+
+.gw-rate-bar{margin:0 13px 7px;padding:9px 12px;
+  background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.12);
+  border-radius:10px;display:flex;justify-content:space-between;align-items:center}
+.gw-rate-l{font-size:10.5px;color:rgba(255,255,255,.4)}
+.gw-rate-v{font-size:12px;font-weight:700;color:#D4AF37}
+.gw-rate-chg{font-size:9.5px;font-weight:700;color:#22C55E}
+
+.gw-gc{margin:0 13px 6px;background:rgba(255,255,255,.03);
+  border:1px solid rgba(212,175,55,.09);border-radius:11px;padding:10px 12px}
+.gw-gc-top{display:flex;justify-content:space-between;align-items:start;margin-bottom:7px}
+.gw-gc-name{font-size:11.5px;font-weight:700;color:#fff}
+.gw-gc-metal{font-size:9.5px;color:rgba(212,175,55,.45);margin-top:1px}
+.gw-gc-pct{font-family:'Fraunces',serif;font-size:14px;font-weight:700;color:#D4AF37}
+.gw-gc-bar{height:3.5px;background:rgba(255,255,255,.04);border-radius:100px;overflow:hidden;margin-bottom:5px}
+.gw-gc-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,#B8921A,#D4AF37)}
+.gw-gc-detail{font-size:9.5px;color:rgba(255,255,255,.28)}
+.gw-pb-nav{display:flex;border-top:1px solid rgba(255,255,255,.04);
+  padding:8px 0;flex-shrink:0;margin-top:auto}
+.gw-pb-tab{flex:1;text-align:center;font-size:9px;color:rgba(255,255,255,.24)}
+.gw-pb-tab.on{color:#D4AF37;font-weight:700}
+
+/* GW float */
+.gw-float{position:absolute;right:-60px;bottom:50px;width:178px;
+  background:#0E0C02;border:1px solid rgba(212,175,55,.18);border-radius:14px;
+  padding:14px 16px;box-shadow:0 16px 40px rgba(0,0,0,.5);
+  animation:floatB 6s ease-in-out infinite}
+.gf-t{font-size:12px;font-weight:700;color:#fff;margin-bottom:3px}
+.gf-s{font-size:10px;color:rgba(255,255,255,.3);margin-bottom:12px}
+.gf-metals{display:flex;flex-direction:column;gap:7px}
+.gf-metal{display:flex;justify-content:space-between;align-items:center}
+.gf-ml{display:flex;align-items:center;gap:7px}
+.gf-mdot{width:7px;height:7px;border-radius:50%}
+.gf-mn{font-size:10.5px;color:rgba(255,255,255,.5)}
+.gf-mv{font-size:11px;font-weight:700}
+
+/* GW METALS */
+.gw-metals{padding:88px 56px;background:#080600;text-align:center}
+.gw-metals-eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:#D4AF37;margin-bottom:12px}
+.gw-metals-h2{font-family:'Fraunces',serif;font-size:clamp(28px,3.5vw,46px);
+  font-weight:900;color:#fff;letter-spacing:-1.5px;margin-bottom:14px}
+.gw-metals-sub{font-size:15px;color:rgba(255,255,255,.3);margin-bottom:44px}
+.gw-metals-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:680px;margin:0 auto}
+.gw-mc{border-radius:20px;padding:32px 28px;text-align:left;border:1px solid rgba(255,255,255,.05);
+  transition:transform .3s,border-color .3s}
+.gw-mc:hover{transform:translateY(-5px)}
+.gw-mc-gold{background:linear-gradient(145deg,#180E00,#200E00)}
+.gw-mc-gold:hover{border-color:rgba(212,175,55,.2)}
+.gw-mc-silver{background:linear-gradient(145deg,#0E1018,#141620)}
+.gw-mc-silver:hover{border-color:rgba(192,192,192,.15)}
+.gw-mc-plat{background:linear-gradient(145deg,#0A1020,#101828)}
+.gw-mc-plat:hover{border-color:rgba(176,190,200,.15)}
+.gw-mc-sym{font-size:36px;margin-bottom:14px}
+.gw-mc-name{font-size:11px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;margin-bottom:6px;opacity:.5}
+.gw-mc-rate{font-family:'Fraunces',serif;font-size:26px;font-weight:900;margin-bottom:4px}
+.gw-mc-unit{font-size:11px;opacity:.35}
+.gw-mc-chg{font-size:12px;font-weight:700;color:#22C55E;margin-top:8px}
+.gw-mc-gold .gw-mc-name,.gw-mc-gold .gw-mc-rate{color:#D4AF37}
+.gw-mc-silver .gw-mc-name,.gw-mc-silver .gw-mc-rate{color:#C0C0C0}
+.gw-mc-plat .gw-mc-name,.gw-mc-plat .gw-mc-rate{color:#B0BEC8}
+
+/* GW FEATURES */
+.gw-feats{padding:88px 56px;background:#0C0A02}
+.gw-feats-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.gw-feats-img-col{position:relative}
+.gw-feats-img{width:100%;height:480px;object-fit:cover;border-radius:24px}
+.gw-feats-img-ph{width:100%;height:480px;border-radius:24px;overflow:hidden}
+.gw-feats-text .eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:#D4AF37;margin-bottom:12px}
+.gw-feats-text h2{font-family:'Fraunces',serif;font-size:clamp(26px,3vw,42px);
+  font-weight:900;color:#fff;letter-spacing:-1px;margin-bottom:36px}
+.gw-feat-items{display:flex;flex-direction:column;gap:18px}
+.gw-fi{display:flex;gap:16px;align-items:flex-start}
+.gw-fi-ico{width:44px;height:44px;border-radius:12px;
+  background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.12);
+  display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.gw-fi-t{font-size:15px;font-weight:700;color:#fff;margin-bottom:5px}
+.gw-fi-s{font-size:13px;color:rgba(255,255,255,.32);line-height:1.72}
+
+/* GW CTA */
+.gw-cta{padding:88px 56px;background:#080600;text-align:center}
+.gw-cta-eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:#D4AF37;margin-bottom:12px}
+.gw-cta-h2{font-family:'Fraunces',serif;font-size:clamp(30px,4vw,52px);
+  font-weight:900;color:#fff;letter-spacing:-2px;margin-bottom:14px}
+.gw-cta-p{font-size:15.5px;color:rgba(255,255,255,.35);margin-bottom:32px}
+.gw-cta-btns{display:flex;justify-content:center;gap:12px}
+
+/* ════════════════════════════════════
+   DOCUWISE — Dark teal + clean white
+════════════════════════════════════ */
+#docuwise{background:#F4FAF9;color:#0A2828;font-family:'DM Sans',sans-serif}
+
+#docuwise .app-nav{background:rgba(244,250,249,.94);border-bottom:1px solid rgba(27,107,107,.1)}
+#docuwise .back-btn{border-color:rgba(27,107,107,.2);color:rgba(10,40,40,.42)}
+#docuwise .app-nav-brand{color:#1B6B6B;font-family:'Fraunces',serif}
+#docuwise .app-nav-cta{background:#1B6B6B}
+#docuwise .af{background:#071414;border-top:1px solid rgba(27,107,107,.12)}
+#docuwise .af-brand{color:#2DD4BF}
+#docuwise .af-links a,#docuwise .af-copy{color:rgba(255,255,255,.22)}
+
+/* DU HERO */
+.du-hero{min-height:100vh;position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding:100px 56px 72px}
+.du-hero-bg{position:absolute;inset:0;
+  background:linear-gradient(140deg,#E6F5F3 0%,#F4FAF9 55%,#DAF0EC 100%)}
+.du-hero-wave{position:absolute;bottom:0;left:0;right:0;height:120px;
+  background:linear-gradient(to top,rgba(27,107,107,.04),transparent);pointer-events:none}
+
+.du-left{position:relative;z-index:2}
+.du-kicker{display:flex;align-items:center;gap:9px;margin-bottom:18px;
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:#1B6B6B}
+.du-kicker::before{content:'';width:22px;height:1px;background:rgba(27,107,107,.5)}
+.du-h1{font-family:'Fraunces',serif;font-size:clamp(36px,4.3vw,60px);
+  font-weight:900;color:#0A2828;line-height:1.06;letter-spacing:-1.5px;margin-bottom:22px}
+.du-h1 i{font-style:italic;color:#1B6B6B}
+.du-sub{font-size:16px;color:rgba(10,40,40,.52);line-height:1.85;
+  max-width:420px;margin-bottom:32px}
+.du-trust{display:flex;gap:28px;margin-bottom:32px;
+  padding:20px 24px;background:rgba(27,107,107,.05);border-radius:16px;
+  border:1px solid rgba(27,107,107,.1);max-width:380px}
+.du-trust-item .val{font-family:'Fraunces',serif;font-size:26px;font-weight:900;color:#1B6B6B}
+.du-trust-item .lbl{font-size:11px;color:rgba(10,40,40,.4);margin-top:2px;font-weight:600}
+.du-btns{display:flex;gap:12px;flex-wrap:wrap}
+.du-btn-p{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;
+  background:#1B6B6B;color:#fff;border-radius:14px;font-size:14.5px;
+  font-weight:700;transition:all .2s;cursor:pointer}
+.du-btn-p:hover{background:#155555;transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(27,107,107,.3)}
+.du-btn-g{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;
+  border:1.5px solid rgba(27,107,107,.2);color:rgba(10,40,40,.5);
+  border-radius:14px;font-size:14px;font-weight:600;transition:all .2s;cursor:pointer}
+.du-btn-g:hover{border-color:rgba(27,107,107,.5);color:#1B6B6B}
+
+/* DU PHONE */
+.du-right{position:relative;z-index:2;display:flex;justify-content:center}
+.du-pf-wrap{position:relative}
+.du-pf{width:252px;height:514px;border:6px solid #B8D8D8;background:#fff;
+  box-shadow:0 50px 100px rgba(27,107,107,.12),0 12px 32px rgba(27,107,107,.07);
+  animation:float 6.5s ease-in-out infinite}
+.du-pf .pf-notch{background:#fff;height:23px;width:84px;border-radius:0 0 14px 14px}
+.du-pf .pf-status{color:#5A9090;font-size:9px}
+
+.du-ph-hdr{background:#1B6B6B;padding:11px 13px;
+  display:flex;justify-content:space-between;align-items:center}
+.du-ph-title{font-size:14px;font-weight:700;color:#fff;font-family:'Fraunces',serif}
+.du-ph-sync{display:flex;align-items:center;gap:5px;font-size:9px;color:rgba(255,255,255,.6)}
+.du-ph-sync-dot{width:6px;height:6px;border-radius:50%;background:#34D668}
+
+.du-ph-body{flex:1;padding:9px 12px;overflow:hidden}
+.du-ph-search{height:28px;background:#F0F9F9;border:1px solid rgba(27,107,107,.1);
+  border-radius:8px;display:flex;align-items:center;padding:0 10px;
+  font-size:10px;color:rgba(10,40,40,.35);margin-bottom:9px}
+.du-ph-sec{font-size:8.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(10,40,40,.28);margin:6px 0 5px}
+.du-dc{display:flex;align-items:center;gap:9px;padding:8px 10px;
+  margin-bottom:5px;background:#F8FEFF;border-radius:10px;
+  border:1px solid rgba(27,107,107,.07);transition:border-color .2s}
+.du-dc:hover{border-color:rgba(27,107,107,.2)}
+.ddc-ico{font-size:18px;flex-shrink:0}
+.ddc-name{font-size:11.5px;font-weight:700;color:#0A2828}
+.ddc-owner{font-size:9px;color:rgba(10,40,40,.4);margin-top:1px}
+.ddc-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.dot-ok{background:#22C55E}
+.dot-warn{background:#F97316}
+.du-ph-nav{display:flex;border-top:1px solid rgba(27,107,107,.07);
+  padding:8px 0;flex-shrink:0}
+.du-ph-tab{flex:1;text-align:center;font-size:9px;color:rgba(10,40,40,.28)}
+.du-ph-tab.on{color:#1B6B6B;font-weight:700}
+
+/* DU float */
+.du-float{position:absolute;right:-60px;top:40px;width:180px;
+  background:#fff;border:1px solid rgba(27,107,107,.12);border-radius:16px;
+  padding:14px 16px;box-shadow:0 12px 36px rgba(27,107,107,.1);
+  animation:floatB 5.5s ease-in-out infinite}
+.duf-t{font-size:12px;font-weight:700;color:#0A2828;margin-bottom:3px}
+.duf-s{font-size:10.5px;color:rgba(10,40,40,.4);margin-bottom:12px}
+.duf-members{display:flex;margin-bottom:0}
+.duf-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:13px;font-weight:800;color:#fff;
+  border:2.5px solid #fff;margin-right:-8px;flex-shrink:0}
+
+/* DU HOW IT WORKS */
+.du-how{padding:88px 56px;background:#E6F5F3}
+.du-how-hd{text-align:center;margin-bottom:56px}
+.du-how-eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:#1B6B6B;margin-bottom:12px}
+.du-how-h2{font-family:'Fraunces',serif;font-size:clamp(28px,3.5vw,46px);
+  font-weight:900;color:#0A2828;letter-spacing:-1.5px}
+.du-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.du-step{background:#fff;border-radius:20px;padding:30px 26px;
+  border:1px solid rgba(27,107,107,.08);
+  transition:transform .3s,box-shadow .3s;text-align:left}
+.du-step:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(27,107,107,.09)}
+.du-step-num{font-family:'Fraunces',serif;font-size:38px;font-weight:900;
+  color:rgba(27,107,107,.12);line-height:1;margin-bottom:10px}
+.du-step-ico{font-size:28px;margin-bottom:12px}
+.du-step-t{font-family:'Fraunces',serif;font-size:16px;font-weight:700;
+  color:#0A2828;margin-bottom:8px}
+.du-step-s{font-size:13px;color:rgba(10,40,40,.5);line-height:1.72}
+
+/* DU FEATURES */
+.du-feats{padding:88px 56px;background:#F4FAF9}
+.du-feats-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.du-feats-img-ph{width:100%;height:480px;border-radius:24px;overflow:hidden}
+.du-feats-img{width:100%;height:480px;object-fit:cover;border-radius:24px;
+  box-shadow:0 30px 70px rgba(27,107,107,.12)}
+.du-feats-text .eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:#1B6B6B;margin-bottom:12px}
+.du-feats-text h2{font-family:'Fraunces',serif;font-size:clamp(26px,3vw,42px);
+  font-weight:900;color:#0A2828;letter-spacing:-1.5px;margin-bottom:36px}
+.du-feat-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.du-fc{background:#fff;border-radius:16px;padding:22px;
+  border:1px solid rgba(27,107,107,.08);transition:border-color .2s,transform .2s}
+.du-fc:hover{border-color:rgba(27,107,107,.22);transform:translateY(-3px)}
+.du-fc-ico{font-size:26px;margin-bottom:10px}
+.du-fc-t{font-size:14px;font-weight:700;color:#0A2828;margin-bottom:6px}
+.du-fc-s{font-size:12.5px;color:rgba(10,40,40,.5);line-height:1.68}
+
+/* DU CTA */
+.du-cta{padding:88px 56px;background:#0A2828;text-align:center;
+  position:relative;overflow:hidden}
+.du-cta::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(27,107,107,.2) 0%,transparent 68%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.du-cta-eye{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:#2DD4BF;margin-bottom:12px;position:relative;z-index:1}
+.du-cta-h2{font-family:'Fraunces',serif;font-size:clamp(30px,4vw,52px);
+  font-weight:900;color:#fff;letter-spacing:-1.5px;margin-bottom:14px;position:relative;z-index:1}
+.du-cta-p{font-size:15.5px;color:rgba(255,255,255,.38);margin-bottom:32px;position:relative;z-index:1}
+.du-cta-btns{display:flex;justify-content:center;gap:12px;position:relative;z-index:1}
+.du-cta-btn-p{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;
+  background:#1B6B6B;color:#fff;border-radius:14px;font-size:14.5px;font-weight:700;
+  border:1px solid rgba(255,255,255,.1);cursor:pointer;transition:all .2s}
+.du-cta-btn-p:hover{background:#155555;box-shadow:0 14px 36px rgba(27,107,107,.35)}
+.du-cta-btn-g{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;
+  border:1.5px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);
+  border-radius:14px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.du-cta-btn-g:hover{border-color:rgba(255,255,255,.35);color:#fff}
+
+/* ════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════ */
+@media(max-width:980px){
+  .hn{padding:15px 22px}.hn-links{display:none}
+  .h-hero{padding:90px 22px 60px}.h-hero-right{display:none}
+  .h-apps{padding:60px 22px}.apps-duo{grid-template-columns:1fr}.h-manifesto{padding:60px 22px}
+  .h-mf-inner{grid-template-columns:1fr}.h-mf-grid{grid-template-columns:1fr 1fr}
+  .h-quote{padding:48px 22px}.h-footer{padding:20px 22px}
+  .soon-grid{grid-template-columns:1fr 1fr}
+  .app-nav{padding:14px 22px}
+  .dw-hero,.gw-hero,.du-hero{grid-template-columns:1fr;gap:40px;padding:90px 22px 52px}
+  .dw-right,.gw-right,.du-right{display:none}
+  .dw-shots,.dw-feats,.dw-cta,.pw-feats,.pw-screenshots,.pw-price,.gw-metals,.gw-feats,.gw-cta,.du-how,.du-feats,.du-cta{padding:56px 22px}
+  .dw-shots-grid,.pw-ss-grid{grid-template-columns:1fr 1fr}
+  .dw-feats-inner,.gw-feats-inner,.du-feats-inner{grid-template-columns:1fr}
+  .dw-feats-img-col,.gw-feats-img-col,.du-feats-img-col{display:none}
+  .pw-phones-wrap{display:none}
+  .pw-fg{grid-template-columns:1fr}
+  .pw-fc:nth-child(1){border-radius:18px 18px 0 0}.pw-fc:nth-child(2){border-radius:0}
+  .pw-fc:nth-child(3){border-radius:0}.pw-fc:nth-child(4){border-radius:0 0 18px 18px}
+  .pw-price-cards{grid-template-columns:1fr}
+  .gw-metals-row{grid-template-columns:1fr}
+  .du-steps{grid-template-columns:1fr 1fr}
+  .du-feat-cards{grid-template-columns:1fr}
+  .af{padding:22px}
+}
+@media(max-width:600px){
+  .apps-duo,.soon-grid,.dw-shots-grid,.pw-ss-grid,.h-mf-grid{grid-template-columns:1fr}
+  .du-steps{grid-template-columns:1fr}
+  .apc-dw,.apc-pw,.apc-gw,.apc-du{border-radius:16px !important}
+  .h-h1{font-size:46px;letter-spacing:-2px}
+}
+</style>
+</head>
+<body>
+<div id="home" class="page active">
+
+<nav class="hn" id="homeNav">
+  <div class="hn-logo" onclick="showPage('home')" style="cursor:pointer">Wisely<em>Rise</em></div>
+  <ul class="hn-links">
+    <li><a href="#" onclick="showPage('home');return false">Home</a></li>
+    <li><a href="#" onclick="showPage('datewise');return false">DateWise</a></li>
+    <li><a href="#" onclick="showPage('pixwise');return false">PixWise</a></li>
+    <li><a href="#" onclick="showPage('gramwise');return false">GramWise</a></li>
+    <li><a href="#" onclick="showPage('docuwise');return false">DocuWise</a></li>
+  </ul>
+  <div class="hn-pill" onclick="window.location.href='mailto:contact@wiselyrise.in'">
+    <span class="hn-pill-dot"></span>
+    contact@wiselyrise.in
+  </div>
+</nav>
+
+<section class="h-hero">
+  <div class="h-hero-bg"></div>
+  <div class="h-hero-grid"></div>
+  <div class="h-hero-orb h-orb1"></div>
+  <div class="h-hero-orb h-orb2"></div>
+  <div class="h-hero-content">
+    <div class="h-kicker reveal">
+      <span class="h-kicker-dot">🇮🇳</span>
+      <span class="h-kicker-text">Built in Tamil Nadu · Udyam Registered</span>
+    </div>
+    <h1 class="h-h1 reveal d1">Software<br>that <i>respects</i><br>you</h1>
+    <p class="h-sub reveal d2">We build thoughtful apps for everyday Indians. Privacy-first. Offline-capable. No data harvested. No dark patterns. No nonsense.</p>
+    <div class="h-chips reveal d3">
+      <span class="h-chip">🔒 Privacy by Default</span>
+      <span class="h-chip">📴 Works Offline</span>
+      <span class="h-chip">🚫 Zero Dark Patterns</span>
+      <span class="h-chip">🆓 Free Core Features</span>
+      <span class="h-chip">🇮🇳 Made for Bharat</span>
+    </div>
+  </div>
+  <div class="h-hero-right reveal d2">
+    <div class="h-app-float" onclick="showPage('datewise')">
+      <div class="h-af-icon" style="background:rgba(99,102,241,.15)">
+        <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="10" fill="#4338CA" opacity=".15"/>
+          <rect x="7" y="11" width="26" height="22" rx="5" fill="#4338CA"/>
+          <rect x="13" y="7" width="4" height="8" rx="2" fill="#818CF8"/>
+          <rect x="23" y="7" width="4" height="8" rx="2" fill="#818CF8"/>
+          <path d="M16 23c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="#fff" stroke-width="1.8" fill="none"/>
+          <path d="M20 19v-2M17.5 24l-1-1M22.5 24l1-1" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="20" cy="25" r="1.5" fill="#fff"/>
+        </svg>
+      </div>
+      <div>
+        <div class="h-af-name">DateWise</div>
+        <div class="h-af-tag">Smart Reminders · Free</div>
+      </div>
+      <div class="h-af-arr">→</div>
+    </div>
+    <div class="h-app-float" onclick="showPage('pixwise')">
+      <div class="h-af-icon" style="background:rgba(124,77,255,.15)">
+        <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="10" fill="#7C4DFF" opacity=".15"/>
+          <ellipse cx="20" cy="22" rx="11" ry="9" fill="#1C1C2E"/>
+          <circle cx="15" cy="21" r="3.5" fill="#fff" opacity=".9"/>
+          <circle cx="25" cy="21" r="3.5" fill="#fff" opacity=".9"/>
+          <circle cx="15" cy="21" r="2" fill="#1C1C2E"/>
+          <circle cx="25" cy="21" r="2" fill="#1C1C2E"/>
+          <path d="M9 22 Q10 14 20 13 Q30 14 31 22" fill="#4C2EC8" opacity=".8"/>
+          <rect x="7" y="22" width="26" height="2" rx="1" fill="#7C4DFF" opacity=".2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="h-af-name">PixWise</div>
+        <div class="h-af-tag">Private Gallery · No Cloud</div>
+      </div>
+      <div class="h-af-arr">→</div>
+    </div>
+    <div class="h-app-float" onclick="showPage('gramwise')">
+      <div class="h-af-icon" style="background:rgba(212,175,55,.12)">
+        <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="10" fill="#D4AF37" opacity=".12"/>
+          <circle cx="20" cy="14" r="8" stroke="#D4AF37" stroke-width="2" fill="none"/>
+          <path d="M17 14 h3 M20 14 v-4" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+          <line x1="8" y1="22" x2="32" y2="22" stroke="#D4AF37" stroke-width="2"/>
+          <circle cx="20" cy="22" r="2" fill="#D4AF37"/>
+          <line x1="20" y1="24" x2="20" y2="30" stroke="#D4AF37" stroke-width="2"/>
+          <line x1="14" y1="30" x2="26" y2="30" stroke="#D4AF37" stroke-width="2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="h-af-name">GramWise</div>
+        <div class="h-af-tag">Gold & Metal Goals</div>
+      </div>
+      <div class="h-af-arr">→</div>
+    </div>
+    <div class="h-app-float" onclick="showPage('docuwise')">
+      <div class="h-af-icon" style="background:rgba(27,107,107,.18)">
+        <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="10" fill="#1B6B6B" opacity=".18"/>
+          <path d="M12 10 h10 l6 6 v18 H12 z" fill="#1B6B6B" stroke="#2DD4BF" stroke-width="1.5"/>
+          <path d="M22 10 v6 h6" stroke="#2DD4BF" stroke-width="1.5" fill="none"/>
+          <line x1="16" y1="21" x2="24" y2="21" stroke="#fff" stroke-width="1.5" opacity=".7"/>
+          <line x1="16" y1="25" x2="24" y2="25" stroke="#fff" stroke-width="1.5" opacity=".5"/>
+          <line x1="16" y1="29" x2="21" y2="29" stroke="#fff" stroke-width="1.5" opacity=".35"/>
+        </svg>
+      </div>
+      <div>
+        <div class="h-af-name">DocuWise</div>
+        <div class="h-af-tag">Family Document Vault</div>
+      </div>
+      <div class="h-af-arr">→</div>
+    </div>
+  </div>
+</section>
+
+<div class="h-ticker">
+  <div class="h-ticker-inner"><span class="h-ticker-item"><span class="h-ticker-dot"></span>Privacy First</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Made in Erode</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>No Ads Ever</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Offline Capable</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Your Data Stays Yours</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>No Dark Patterns</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Built for Bharat</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Udyam Registered</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Open App · Use App</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>No Signup Required</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>₹0 Core Features</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Your Phone · Your Data</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Privacy First</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Made in Erode</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>No Ads Ever</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Offline Capable</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Your Data Stays Yours</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>No Dark Patterns</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Built for Bharat</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Udyam Registered</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Open App · Use App</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>No Signup Required</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>₹0 Core Features</span><span class="h-ticker-item"><span class="h-ticker-dot"></span>Your Phone · Your Data</span>
+  </div>
+</div>
+
+<section class="h-apps">
+  <div class="h-apps-header reveal">
+    <div class="h-apps-top">
+      <div>
+        <div class="h-apps-eye">Our Products</div>
+        <h2 class="h-apps-h2">One problem.<br>Solved brilliantly.</h2>
+      </div>
+      <div class="h-apps-aside">Every WiselyRise app does one thing and does it with precision. No feature bloat. No upsells.</div>
+    </div>
+  </div>
+  <div class="apps-duo">
+    <div class="apc apc-dw reveal" onclick="showPage('datewise')">
+      <div class="apc-inner">
+        <div class="apc-eye">DateWise · Smart Reminders</div>
+        <div class="apc-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+            <rect x="5" y="9" width="30" height="26" rx="6" fill="#4338CA"/>
+            <rect x="13" y="5" width="5" height="9" rx="2.5" fill="#818CF8"/>
+            <rect x="22" y="5" width="5" height="9" rx="2.5" fill="#818CF8"/>
+            <path d="M14 24c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#fff" stroke-width="2" fill="none"/>
+            <path d="M20 18v-3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <path d="M16 25.5l-1.5-1.5M24 25.5l1.5-1.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="20" cy="27" r="2" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="apc-name">DateWise</div>
+        <div class="apc-desc">The personal reminder engine for dates you cannot afford to forget. Birthdays, anniversaries, bills, renewals. Offline-first, no signup required.</div>
+        <div class="apc-footer">
+          <div class="apc-tags">
+            <span class="apc-tag">Android</span>
+            <span class="apc-tag">Offline First</span>
+            <span class="apc-tag">Free Forever</span>
+          </div>
+          <div class="apc-link">Explore →</div>
+        </div>
+      </div>
+    </div>
+    <div class="apc apc-pw reveal d1" onclick="showPage('pixwise')">
+      <div class="apc-inner">
+        <div class="apc-eye">PixWise · Privacy Gallery</div>
+        <div class="apc-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="10" fill="#0D0D1A"/>
+            <rect x="2" y="2" width="36" height="36" rx="9" fill="none" stroke="#7C4DFF" stroke-width=".5" opacity=".3"/>
+            <g opacity=".9">
+              <rect x="4" y="4" width="8" height="8" rx="1" fill="#7C4DFF" opacity=".7"/>
+              <rect x="16" y="4" width="8" height="8" rx="1" fill="#5B21B6" opacity=".6"/>
+              <rect x="28" y="4" width="8" height="8" rx="1" fill="#00D4AA" opacity=".5"/>
+              <rect x="4" y="16" width="8" height="8" rx="1" fill="#00D4AA" opacity=".5"/>
+              <rect x="16" y="16" width="8" height="8" rx="1" fill="#7C4DFF" opacity=".8"/>
+              <rect x="28" y="16" width="8" height="8" rx="1" fill="#5B21B6" opacity=".6"/>
+              <rect x="4" y="28" width="8" height="8" rx="1" fill="#5B21B6" opacity=".5"/>
+              <rect x="16" y="28" width="8" height="8" rx="1" fill="#00D4AA" opacity=".6"/>
+              <rect x="28" y="28" width="8" height="8" rx="1" fill="#7C4DFF" opacity=".7"/>
+            </g>
+          </svg>
+        </div>
+        <div class="apc-name">PixWise</div>
+        <div class="apc-desc">Your gallery with a true hidden space and one-tap guest mode. No cloud. No AI scanning your memories. No account ever needed.</div>
+        <div class="apc-footer">
+          <div class="apc-tags">
+            <span class="apc-tag">Native Kotlin</span>
+            <span class="apc-tag">No Cloud</span>
+            <span class="apc-tag">Guest Mode</span>
+          </div>
+          <div class="apc-link">Explore →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="apps-duo">
+    <div class="apc apc-gw reveal" onclick="showPage('gramwise')">
+      <div class="apc-inner">
+        <div class="apc-eye">GramWise · Precious Metals</div>
+        <div class="apc-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="10" fill="#1C1200"/>
+            <circle cx="20" cy="14" r="9" stroke="#D4AF37" stroke-width="2" fill="none"/>
+            <path d="M17 14 h5 M20 14 v-5" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+            <line x1="6" y1="23" x2="34" y2="23" stroke="#D4AF37" stroke-width="2"/>
+            <circle cx="20" cy="23" r="2.5" fill="#D4AF37"/>
+            <line x1="20" y1="25.5" x2="20" y2="33" stroke="#D4AF37" stroke-width="2"/>
+            <line x1="13" y1="33" x2="27" y2="33" stroke="#D4AF37" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="apc-name">GramWise</div>
+        <div class="apc-desc">Goal-directed savings planner for Indian families accumulating gold, silver, and platinum toward life's biggest milestones.</div>
+        <div class="apc-footer">
+          <div class="apc-tags">
+            <span class="apc-tag">Flutter</span>
+            <span class="apc-tag">Firebase</span>
+            <span class="apc-tag">Multi-Currency</span>
+          </div>
+          <div class="apc-link">Explore →</div>
+        </div>
+      </div>
+    </div>
+    <div class="apc apc-du reveal d1" onclick="showPage('docuwise')">
+      <div class="apc-inner">
+        <div class="apc-eye">DocuWise · Family Vault</div>
+        <div class="apc-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="10" fill="#071414"/>
+            <path d="M20 4 L34 12 L34 24 Q34 34 20 38 Q6 34 6 24 L6 12 Z" fill="#1B6B6B" opacity=".4" stroke="#2DD4BF" stroke-width="1.5"/>
+            <path d="M14 20 l4 4 8-8" stroke="#2DD4BF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="apc-name">DocuWise</div>
+        <div class="apc-desc">Your family's secure document vault powered by your own Google Drive. Every important document — Aadhaar, passport, insurance — one search away.</div>
+        <div class="apc-footer">
+          <div class="apc-tags">
+            <span class="apc-tag">Flutter</span>
+            <span class="apc-tag">Google Drive</span>
+            <span class="apc-tag">Zero Server</span>
+          </div>
+          <div class="apc-link">Explore →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="soon-grid reveal d2">
+    <div class="soon-c"><div class="soon-ico">💒</div><div><div class="soon-name">MandapamWise</div><div class="soon-sub">Community booking · Coming 2025</div></div></div>
+    <div class="soon-c"><div class="soon-ico">📒</div><div><div class="soon-name">LedgerWise</div><div class="soon-sub">Personal credit tracker · In development</div></div></div>
+    <div class="soon-c"><div class="soon-ico">📖</div><div><div class="soon-name">ChitBook</div><div class="soon-sub">Group savings tracker · In development</div></div></div>
+    <div class="soon-c"><div class="soon-ico">🏥</div><div><div class="soon-name">ClinicWise</div><div class="soon-sub">Small clinic manager · Planned</div></div></div>
+  </div>
+</section>
+
+<section class="h-manifesto">
+  <div class="h-mf-inner">
+    <div class="h-mf-left reveal">
+      <div class="eye">Our Philosophy</div>
+      <h2>We build software like it's for our own family</h2>
+      <p>WiselyRise is a Udyam-registered proprietorship built in Tamil Nadu, rooted in the Kongu community. Every product decision starts with one question: would we trust this app with our own family's data?</p>
+    </div>
+    <div class="h-mf-grid">
+      <div class="mf-card reveal d1"><div class="mf-num">01</div><div class="mf-title">Privacy by Design</div><div class="mf-desc">Data stays on your device. We build zero-server architectures wherever possible. Your data is yours — legally and technically.</div></div>
+      <div class="mf-card reveal d2"><div class="mf-num">02</div><div class="mf-title">Offline First</div><div class="mf-desc">Every WiselyRise app works without internet. Your reminder doesn't need a server. Your documents load in 3 seconds regardless of signal.</div></div>
+      <div class="mf-card reveal d3"><div class="mf-num">03</div><div class="mf-title">No Dark Patterns</div><div class="mf-desc">No fake urgency. No confusing toggles. No data harvesting behind a feature. We earn when you find our apps valuable — not when we sell your data.</div></div>
+      <div class="mf-card reveal d4"><div class="mf-num">04</div><div class="mf-title">Built for Bharat</div><div class="mf-desc">Indian number formats. Indian document types. Kongu community knowledge. From Erode to the Gulf diaspora — built for real Indian life.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="h-quote reveal">
+  <q>"We built for <strong>Sivagiri before Mumbai</strong>. For the family in Erode before the startup in Bengaluru. <strong>That's the whole strategy.</strong>"</q>
+</div>
+
+<footer class="h-footer">
+  <div>
+    <div class="hf-brand">Wisely<em>Rise</em></div>
+    <div class="hf-tag">Software That Respects You · wiselyrise.in</div>
+  </div>
+  <div class="hf-links">
+    <a href="#" onclick="showPage('datewise');return false">DateWise</a>
+    <a href="#" onclick="showPage('pixwise');return false">PixWise</a>
+    <a href="#" onclick="showPage('gramwise');return false">GramWise</a>
+    <a href="#" onclick="showPage('docuwise');return false">DocuWise</a>
+    <a href="mailto:contact@wiselyrise.in">Contact</a>
+  </div>
+  <div class="hf-copy">© 2025 WiselyRise Solutions · Made with love in Tamil Nadu</div>
+</footer>
+</div>
+
+<div id="datewise" class="page">
+<nav class="app-nav">
+  <button class="back-btn" onclick="showPage('home')">← All Apps</button>
+  <div class="app-nav-brand" style="color:#4338CA;font-family:'Fraunces',serif">DateWise</div>
+  <a href="https://play.google.com/store" target="_blank" class="app-nav-cta" style="background:#4338CA">Download Free</a>
+</nav>
+
+<!-- HERO -->
+<section class="dw-hero">
+  <div class="dw-hero-bg"></div>
+  <div class="dw-hero-dots"></div>
+  <div class="dw-left">
+    <div class="dw-rating reveal">
+      <span class="dw-stars">★★★★★</span>
+      <span class="dw-rating-text">4.8 · 10,000+ Downloads</span>
+    </div>
+    <h1 class="dw-h1 reveal d1">Never miss a<br>date that <i>matters</i></h1>
+    <p class="dw-sub reveal d2">Birthdays. Anniversaries. Insurance renewals. Passport expiry. DateWise is your personal reminder engine — offline-first, no signup, no tracking. Just the reminders that matter.</p>
+    <div class="dw-proof reveal d2">
+      <div class="dw-proof-item"><div class="val">100%</div><div class="lbl">Offline</div></div>
+      <div class="dw-proof-item"><div class="val">0</div><div class="lbl">Data Collected</div></div>
+      <div class="dw-proof-item"><div class="val">Free</div><div class="lbl">Always</div></div>
+    </div>
+    <div class="dw-btns reveal d3">
+      <a href="https://play.google.com/store" target="_blank" class="dw-btn-p">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.36.6 1.24 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+        <span><span class="btn-sub">Get it on</span><span class="btn-main">Play Store</span></span>
+      </a>
+      <a href="#features" class="dw-btn-g">See Features ↓</a>
+    </div>
+  </div>
+
+  <div class="dw-right">
+    <div class="dw-pf-wrap">
+      <!-- PHONE -->
+      <div class="pf dw-pf" style="width:260px;height:530px;border-radius:44px;border:7px solid #D0D5FF">
+        <div style="display:flex;justify-content:center"><div class="pf-notch" style="background:#FDFEFF;height:24px;width:88px;border-radius:0 0 16px 16px"></div></div>
+        <div class="pf-status" style="color:#7C7CA0;font-size:9.5px"><span>9:41</span><span>◼◼◼</span></div>
+        <div class="pf-body">
+          <div class="dw-ph-top">
+            <div class="dw-ph-top-row">
+              <div>
+                <div class="dw-ph-title">DateWise</div>
+                <div class="dw-ph-date">January 2026 · 8 upcoming</div>
+              </div>
+              <div class="dw-ph-fab">+</div>
+            </div>
+          </div>
+          <div class="dw-ph-body">
+            <div class="dw-ph-sec">Urgent</div>
+            <div class="dw-ec">
+              <span class="dw-ec-ico">🎂</span>
+              <div class="dw-ec-info">
+                <div class="dw-ec-name">Amma's Birthday</div>
+                <div class="dw-ec-days">Tomorrow · Jan 12</div>
+              </div>
+              <span class="dw-ec-badge badge-hot">1 day</span>
+            </div>
+            <div class="dw-ph-sec">This Week</div>
+            <div class="dw-ec">
+              <span class="dw-ec-ico">💍</span>
+              <div class="dw-ec-info">
+                <div class="dw-ec-name">Wedding Anniversary</div>
+                <div class="dw-ec-days">In 4 days · Jan 15</div>
+              </div>
+              <span class="dw-ec-badge badge-soon">4 days</span>
+            </div>
+            <div class="dw-ec">
+              <span class="dw-ec-ico">💳</span>
+              <div class="dw-ec-info">
+                <div class="dw-ec-name">HDFC Card Bill</div>
+                <div class="dw-ec-days">In 6 days · Jan 17</div>
+              </div>
+              <span class="dw-ec-badge badge-soon">6 days</span>
+            </div>
+            <div class="dw-ph-sec">Upcoming</div>
+            <div class="dw-ec">
+              <span class="dw-ec-ico">🛡</span>
+              <div class="dw-ec-info">
+                <div class="dw-ec-name">LIC Premium Due</div>
+                <div class="dw-ec-days">In 18 days · Jan 29</div>
+              </div>
+              <span class="dw-ec-badge badge-ok">18 days</span>
+            </div>
+            <div class="dw-ec">
+              <span class="dw-ec-ico">🎓</span>
+              <div class="dw-ec-info">
+                <div class="dw-ec-name">Vairaa's School Fest</div>
+                <div class="dw-ec-days">In 24 days · Feb 4</div>
+              </div>
+              <span class="dw-ec-badge badge-ok">24 days</span>
+            </div>
+            <div class="dw-ec">
+              <span class="dw-ec-ico">✈</span>
+              <div class="dw-ec-info">
+                <div class="dw-ec-name">Passport Expiry</div>
+                <div class="dw-ec-days">In 3 months · Apr 2026</div>
+              </div>
+              <span class="dw-ec-badge" style="background:#EEF2FF;color:#4338CA">3 mo</span>
+            </div>
+            <div class="dw-ph-add">+ Add New Date</div>
+          </div>
+        </div>
+      </div>
+      <!-- Float 1 -->
+      <div class="dw-float-1">
+        <div class="dfc-ico">🔔</div>
+        <div class="dfc-t" style="color:#1E1B4B">Smart Reminders</div>
+        <div class="dfc-s" style="color:rgba(30,27,75,.5)">7 days · 1 day · Morning</div>
+        <div class="dfc-bar"><div class="dfc-fill" style="width:72%;background:#4338CA"></div></div>
+      </div>
+      <!-- Float 2 -->
+      <div class="dw-float-2">
+        <div class="dfc-ico">📴</div>
+        <div class="dfc-t" style="color:#fff">100% Offline</div>
+        <div class="dfc-s" style="color:rgba(255,255,255,.55)">Works with zero bars. No internet ever needed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section class="dw-shots" id="features">
+  <div class="dw-shots-hd reveal">
+    <div class="dw-shots-eye">How It Works</div>
+    <h2 class="dw-shots-h2">Everything important,<br>always visible</h2>
+  </div>
+  <div class="dw-shots-grid">
+    <div class="dw-shot reveal d1">
+      <div class="dw-shot-img-ph" style="background:linear-gradient(135deg,#EEF2FF,#E0E7FF)">
+        <img src="https://picsum.photos/seed/calendar2/400/200" alt="DateWise calendar view" style="width:100%;height:100%;object-fit:cover;opacity:.7" loading="lazy" onerror="this.style.display='none'">
+        <div style="position:absolute;text-align:center;color:#4338CA">
+          <div style="font-size:48px">📅</div>
+          <div style="font-size:13px;font-weight:700;margin-top:8px">Calendar View</div>
+        </div>
+      </div>
+      <div class="dw-shot-body">
+        <div class="dw-shot-title">Timeline View</div>
+        <div class="dw-shot-desc">See all upcoming dates at a glance — sorted by urgency with colour-coded badges so you never miss what's imminent.</div>
+      </div>
+    </div>
+    <div class="dw-shot reveal d2">
+      <div class="dw-shot-img-ph" style="background:linear-gradient(135deg,#E0E7FF,#EDE9FE);position:relative;overflow:hidden">
+        <img src="https://picsum.photos/seed/notification/400/200" alt="Notifications" style="width:100%;height:100%;object-fit:cover;opacity:.6" loading="lazy" onerror="this.style.display='none'">
+        <div style="position:absolute;text-align:center;color:#4338CA">
+          <div style="font-size:48px">🔔</div>
+          <div style="font-size:13px;font-weight:700;margin-top:8px">Smart Alerts</div>
+        </div>
+      </div>
+      <div class="dw-shot-body">
+        <div class="dw-shot-title">Multi-Layer Reminders</div>
+        <div class="dw-shot-desc">7-day advance, 1-day, and morning-of alerts. Set different patterns per event type. Never caught off guard again.</div>
+      </div>
+    </div>
+    <div class="dw-shot reveal d3">
+      <div class="dw-shot-img-ph" style="background:linear-gradient(135deg,#EDE9FE,#F5F3FF);position:relative;overflow:hidden">
+        <img src="https://picsum.photos/seed/india3/400/200" alt="Indian events" style="width:100%;height:100%;object-fit:cover;opacity:.6" loading="lazy" onerror="this.style.display='none'">
+        <div style="position:absolute;text-align:center;color:#4338CA">
+          <div style="font-size:48px">🇮🇳</div>
+          <div style="font-size:13px;font-weight:700;margin-top:8px">India-Ready</div>
+        </div>
+      </div>
+      <div class="dw-shot-body">
+        <div class="dw-shot-title">Built for Indian Life</div>
+        <div class="dw-shot-desc">LIC premiums, Aadhaar renewal, vehicle registration, school admissions — categories built for Indian family needs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES SPLIT -->
+<section class="dw-feats">
+  <div class="dw-feats-inner">
+    <div class="dw-feats-left reveal">
+      <div class="dw-feats-img-ph" style="background:linear-gradient(145deg,#EEF2FF,#E0E7FF);border-radius:24px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px">
+        <img src="https://picsum.photos/seed/family5/600/460" alt="Family using phone" style="width:100%;height:100%;object-fit:cover;border-radius:24px;opacity:.8" loading="lazy" onerror="this.style.opacity=0">
+        <div style="text-align:center;padding:40px;position:absolute">
+          <div style="font-size:72px;margin-bottom:12px">👨‍👩‍👧</div>
+          <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:900;color:#1E1B4B">For the whole family</div>
+          <div style="font-size:14px;color:rgba(30,27,75,.5);margin-top:8px">One app, every important date</div>
+        </div>
+      </div>
+    </div>
+    <div class="dw-feats-right reveal d1">
+      <div class="eye">Why DateWise</div>
+      <h2>Your family's memory<br>assistant</h2>
+      <div class="dw-feat-list">
+        <div class="dw-fl">
+          <div class="dw-fl-ico">📴</div>
+          <div>
+            <div class="dw-fl-t">100% Offline — Always</div>
+            <div class="dw-fl-s">No internet needed. Ever. Works on a flight, in a basement, in a village with zero signal. No servers, no downtime, no excuses.</div>
+          </div>
+        </div>
+        <div class="dw-fl">
+          <div class="dw-fl-ico">🚫</div>
+          <div>
+            <div class="dw-fl-t">Zero Signup Required</div>
+            <div class="dw-fl-s">Open the app and start adding dates. No account. No email. No phone number. Your private dates remain private — on your device only.</div>
+          </div>
+        </div>
+        <div class="dw-fl">
+          <div class="dw-fl-ico">🇮🇳</div>
+          <div>
+            <div class="dw-fl-t">India-Specific Categories</div>
+            <div class="dw-fl-s">Aadhaar renewal. Passport expiry. LIC premiums. Vehicle registration. Categories built for Indian life, not western templates.</div>
+          </div>
+        </div>
+        <div class="dw-fl">
+          <div class="dw-fl-ico">🔔</div>
+          <div>
+            <div class="dw-fl-t">Smart Notification Layers</div>
+            <div class="dw-fl-s">7-day advance, 1-day, and morning-of notifications with custom patterns per event. Never be caught scrambling at the last minute.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="dw-cta">
+  <div class="dw-cta-eye reveal">Free · No Signup · Offline</div>
+  <h2 class="dw-cta-h2 reveal d1">Start remembering<br>what matters</h2>
+  <p class="dw-cta-p reveal d2">Join thousands of Indian families who never miss an important date.</p>
+  <div class="dw-cta-chips reveal d2">
+    <span class="dw-cta-chip">📴 100% Offline</span>
+    <span class="dw-cta-chip">🚫 No Account</span>
+    <span class="dw-cta-chip">🆓 Free Forever</span>
+    <span class="dw-cta-chip">🇮🇳 India-Ready</span>
+    <span class="dw-cta-chip">🔒 Your Data Stays Yours</span>
+  </div>
+  <div class="dw-cta-btns reveal d3">
+    <a href="https://play.google.com/store" target="_blank" class="dw-btn-p">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.36.6 1.24 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+      <span><span class="btn-sub">Get it on</span><span class="btn-main">Play Store</span></span>
+    </a>
+    <a href="#" onclick="showPage('home');return false" class="dw-btn-g" style="border-color:rgba(129,140,248,.3);color:rgba(255,255,255,.5)">← All Apps</a>
+  </div>
+</section>
+<footer class="af">
+  <div><div class="af-brand" style="color:#818CF8">DateWise</div><div class="af-sub">by WiselyRise · wiselyrise.in</div></div>
+  <div class="af-links"><a href="mailto:contact@wiselyrise.in">Contact</a><a href="#">Privacy Policy</a></div>
+  <div class="af-copy">© 2025 WiselyRise Solutions</div>
+</footer>
+</div>
+
+<div id="pixwise" class="page">
+<nav class="app-nav">
+  <button class="back-btn" onclick="showPage('home')">← All Apps</button>
+  <div class="app-nav-brand" style="color:#fff;font-family:'DM Mono',monospace;font-size:16px;letter-spacing:.05em">PixWise</div>
+  <a href="https://play.google.com/store" target="_blank" class="app-nav-cta" style="background:linear-gradient(135deg,#7C4DFF,#4C00E0)">Download</a>
+</nav>
+
+<section class="pw-hero">
+  <div class="pw-hero-glow"></div>
+  <div class="pw-hero-lines"></div>
+  <div class="pw-content">
+    <div class="pw-kicker">Privacy Gallery · Native Kotlin · Android</div>
+    <h1 class="pw-h1">Your photos.<br><em>Nobody else's business.</em></h1>
+    <p class="pw-sub">Guest Mode hides sensitive albums in one tap. Hidden Space physically moves photos out of every gallery and file manager. No cloud. No AI. No account.</p>
+    <div class="pw-hero-tags">
+      <span class="pw-hero-tag">☁ No Cloud Ever</span>
+      <span class="pw-hero-tag">🤖 No AI Scanning</span>
+      <span class="pw-hero-tag">👤 No Account</span>
+      <span class="pw-hero-tag">🕵 Guest Mode</span>
+      <span class="pw-hero-tag">🔐 Hidden Space</span>
+      <span class="pw-hero-tag">📺 No Ads</span>
+    </div>
+    <a href="https://play.google.com/store" target="_blank" class="pw-hero-cta">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.36.6 1.24 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+      Download Free on Play Store
+    </a>
+  </div>
+
+  <!-- 3 PHONES -->
+  <div class="pw-phones-wrap">
+    <!-- Phone L: Guest Mode -->
+    <div class="pw-ph-c pw-side pw-side-l">
+      <div class="pf pw-pf" style="width:210px;height:430px;border-radius:36px">
+        <div style="display:flex;justify-content:center"><div style="height:18px;width:70px;background:#10101C;border-radius:0 0 11px 11px"></div></div>
+        <div style="display:flex;justify-content:space-between;padding:2px 14px;font-size:8.5px;color:rgba(255,255,255,.3)"><span>9:41</span><span>◼◼</span></div>
+        <div class="pwp2-gmbar"><span class="pwp2-gml">GUEST MODE</span><span class="pwp2-gmr">Tap to exit</span></div>
+        <div class="pwp2-body">
+          <div class="pwp2-row"><div class="pwp2-th" style="background:linear-gradient(135deg,#2A2040,#3A2060)"></div><div><div class="pwp2-nm">Camera</div><div class="pwp2-ct">847 photos visible</div></div></div>
+          <div class="pwp2-row"><div class="pwp2-th" style="background:linear-gradient(135deg,#1A2A3A,#204050)"></div><div><div class="pwp2-nm">Screenshots</div><div class="pwp2-ct">234 photos visible</div></div></div>
+          <div class="pwp2-row"><div class="pwp2-th" style="background:linear-gradient(135deg,#2A1A3A,#3A2050)"></div><div><div class="pwp2-nm">WhatsApp</div><div class="pwp2-ct">1,204 photos visible</div></div></div>
+          <div class="pwp2-hidden-chip"><span>🔒</span><span>2 albums are hidden</span></div>
+        </div>
+        <div class="pwp2-nav"><div class="pwp2-tab on">Gallery</div><div class="pwp2-tab">Albums</div><div class="pwp2-tab">Vault</div></div>
+      </div>
+    </div>
+
+    <!-- Phone C: Gallery (Center) -->
+    <div class="pw-ph-c center">
+      <div class="pf pw-pf" style="width:220px;height:450px;border-radius:38px">
+        <div style="display:flex;justify-content:center"><div style="height:20px;width:76px;background:#10101C;border-radius:0 0 12px 12px"></div></div>
+        <div style="display:flex;justify-content:space-between;padding:2px 15px;font-size:8.5px;color:rgba(255,255,255,.3)"><span>9:41</span><span>◼◼◼</span></div>
+        <div class="pwp1-hdr"><span class="pwp1-t">Gallery</span><span style="font-size:18px;color:rgba(255,255,255,.35)">⚙</span></div>
+        <div class="pwp1-search" style="margin:0 13px 7px">🔍 Search photos...</div>
+        <div class="pwp1-grid">
+          <div class="pwp1-cell" style="background:linear-gradient(135deg,#2A2040,#4A3080)"></div>
+          <div class="pwp1-cell" style="background:linear-gradient(135deg,#1A2A3A,#204060)"></div>
+          <div class="pwp1-cell" style="background:linear-gradient(135deg,#2A1A30,#401850)"></div>
+          <div class="pwp1-cell" style="background:linear-gradient(135deg,#1A3020,#204830)"></div>
+          <div class="pwp1-cell" style="background:linear-gradient(135deg,#301A1A,#502020)"></div>
+          <div class="pwp1-cell" style="background:linear-gradient(135deg,#1A2030,#203040)"></div>
+          <div class="pwp1-cell" style="background:linear-gradient(135deg,#202030,#30304A)"></div>
+          <div class="pwp1-cell" style="background:linear-gradient(135deg,#301A20,#502030)"></div>
+          <div class="pwp1-cell" style="background:linear-gradient(135deg,#1A3020,#285040)"></div>
+        </div>
+        <div class="pwp1-nav"><div class="pwp1-tab on">Photos</div><div class="pwp1-tab">Albums</div><div class="pwp1-tab">🔒 Vault</div></div>
+      </div>
+    </div>
+
+    <!-- Phone R: Hidden Space -->
+    <div class="pw-ph-c pw-side pw-side-r">
+      <div class="pf pw-pf" style="width:210px;height:430px;border-radius:36px">
+        <div style="display:flex;justify-content:center"><div style="height:18px;width:70px;background:#10101C;border-radius:0 0 11px 11px"></div></div>
+        <div style="display:flex;justify-content:space-between;padding:2px 14px;font-size:8.5px;color:rgba(255,255,255,.3)"><span>9:41</span><span>◼◼</span></div>
+        <div class="pwp3-body">
+          <div class="pwp3-vault">🔐</div>
+          <div class="pwp3-t">Hidden Space</div>
+          <div class="pwp3-c">23 photos · Secured</div>
+          <div class="pwp3-grid">
+            <div class="pwp3-cell" style="background:#1C1C2A"></div><div class="pwp3-cell" style="background:#201820"></div><div class="pwp3-cell" style="background:#1A1C22"></div>
+            <div class="pwp3-cell" style="background:#221A1A"></div><div class="pwp3-cell" style="background:#1A2020"></div><div class="pwp3-cell" style="background:#201A22"></div>
+          </div>
+          <div class="pwp3-btns"><div class="pwp3-btn pwp3-sec">Export ZIP</div><div class="pwp3-btn pwp3-pri">+ Add</div></div>
+        </div>
+        <div class="pwp3-nav"><div class="pwp3-tab">Gallery</div><div class="pwp3-tab">Albums</div><div class="pwp3-tab on">🔒 Vault</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE STRIP -->
+<div class="pw-strip">
+  <div class="pw-strip-item"><div class="pw-strip-ico">☁</div><div class="pw-strip-t">No Cloud</div><div class="pw-strip-s">Everything stays on device</div></div>
+  <div class="pw-strip-item"><div class="pw-strip-ico">🤖</div><div class="pw-strip-t">No AI Scanning</div><div class="pw-strip-s">Memories aren't training data</div></div>
+  <div class="pw-strip-item"><div class="pw-strip-ico">👤</div><div class="pw-strip-t">No Account</div><div class="pw-strip-s">Open and use. That's it.</div></div>
+  <div class="pw-strip-item"><div class="pw-strip-ico">📺</div><div class="pw-strip-t">No Ads</div><div class="pw-strip-s">Privacy is never paywalled</div></div>
+</div>
+
+<!-- SCREENSHOTS -->
+<section class="pw-screenshots">
+  <div class="pw-ss-eye reveal">App Screenshots</div>
+  <h2 class="pw-ss-h2 reveal d1">Three screens that<br>protect your privacy</h2>
+  <div class="pw-ss-grid">
+    <div class="pw-ss-card reveal d1">
+      <div class="pw-ss-img-ph" style="background:linear-gradient(145deg,#0D0D20,#1A1A38);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px">
+        <div style="font-size:52px">🖼</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:'DM Mono',monospace">GALLERY GRID</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;width:120px">
+          <div style="height:36px;background:rgba(124,77,255,.3);border-radius:3px"></div>
+          <div style="height:36px;background:rgba(0,212,170,.2);border-radius:3px"></div>
+          <div style="height:36px;background:rgba(124,77,255,.2);border-radius:3px"></div>
+          <div style="height:36px;background:rgba(0,212,170,.3);border-radius:3px"></div>
+          <div style="height:36px;background:rgba(124,77,255,.4);border-radius:3px"></div>
+          <div style="height:36px;background:rgba(0,212,170,.2);border-radius:3px"></div>
+        </div>
+      </div>
+      <div class="pw-ss-info"><div class="pw-ss-t">Gallery View</div><div class="pw-ss-s">Date-grouped grid with pinch-to-change columns. Fast, smooth, beautiful.</div></div>
+    </div>
+    <div class="pw-ss-card reveal d2">
+      <div class="pw-ss-img-ph" style="background:linear-gradient(145deg,#0A0818,#150A28);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px">
+        <div style="font-size:52px">🕵</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:'DM Mono',monospace">GUEST MODE</div>
+        <div style="padding:8px 14px;background:linear-gradient(90deg,rgba(124,77,255,.8),rgba(76,0,224,.8));border-radius:8px;font-size:11px;color:#fff;font-weight:700">GUEST MODE ACTIVE</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.35);text-align:center">Sensitive albums hidden</div>
+      </div>
+      <div class="pw-ss-info"><div class="pw-ss-t">Guest Mode</div><div class="pw-ss-s">Long-press any album → Mark sensitive → one tap hides everything. Instantly reversible.</div></div>
+    </div>
+    <div class="pw-ss-card reveal d3">
+      <div class="pw-ss-img-ph" style="background:linear-gradient(145deg,#080818,#100820);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px">
+        <div style="font-size:52px">🔐</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.4);font-family:'DM Mono',monospace">HIDDEN SPACE</div>
+        <div style="padding:8px 14px;background:rgba(124,77,255,.15);border:1px solid rgba(124,77,255,.3);border-radius:8px;font-size:11px;color:#A78BFA">Biometric Protected</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.35)">Invisible to other apps</div>
+      </div>
+      <div class="pw-ss-info"><div class="pw-ss-t">Hidden Space</div><div class="pw-ss-s">Files physically moved to private storage. Invisible to every gallery, file manager, and USB transfer.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES GRID -->
+<section class="pw-feats">
+  <div class="pw-feats-top reveal">
+    <div>
+      <div class="pw-feats-eye">Core Features</div>
+      <div class="pw-feats-h2">Privacy built into<br>the architecture</div>
+    </div>
+    <div class="pw-feats-aside">Every feature designed to keep your photos yours — not a feature race.</div>
+  </div>
+  <div class="pw-fg reveal d1">
+    <div class="pw-fc"><div class="pw-fc-n">01 / GUEST MODE</div><div class="pw-fc-ico">🕵</div><div class="pw-fc-t">One Tap to Hide Sensitive Albums</div><div class="pw-fc-d">Long-press any album to mark it sensitive. Tap the Guest Mode icon. Albums vanish instantly — no file moves, fully reversible. Hand someone your phone without anxiety.</div></div>
+    <div class="pw-fc"><div class="pw-fc-n">02 / HIDDEN SPACE</div><div class="pw-fc-ico">🔐</div><div class="pw-fc-t">True Physical Hidden Storage</div><div class="pw-fc-d">Photos moved to Hidden Space are physically moved to private app storage. Invisible to every other gallery, file manager, and USB transfer on your device. Biometric lock required to enter.</div></div>
+    <div class="pw-fc"><div class="pw-fc-n">03 / SAFETY</div><div class="pw-fc-ico">📦</div><div class="pw-fc-t">One-Tap ZIP Export — Always Free</div><div class="pw-fc-d">Your hidden photos can be exported to an encrypted ZIP at any time. Always free. Always available. Your photos never disappear without warning — even if you uninstall.</div></div>
+    <div class="pw-fc"><div class="pw-fc-n">04 / DESIGN</div><div class="pw-fc-ico">🎨</div><div class="pw-fc-t">4 Themes · 6 Accent Colours</div><div class="pw-fc-d">Dark, AMOLED, Pastel, Warm themes. Violet, Teal, Rose, Amber, Sage, Coral accents. 2 themes free, 4 paid. Because your gallery should feel as personal as the photos inside.</div></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pw-price">
+  <div class="pw-price-eye reveal">Honest Pricing</div>
+  <h2 class="pw-price-h2 reveal d1">Privacy is always free.<br>Polish costs once.</h2>
+  <div class="pw-price-cards reveal d2">
+    <div class="pw-pc pw-pc-free">
+      <div class="pw-pc-tier">PixWise Free</div>
+      <div class="pw-pc-price">$0</div>
+      <div class="pw-pc-note">Forever. No credit card. No expiry.</div>
+      <ul class="pw-pc-feats">
+        <li><span class="y">✓</span>Full gallery + album view</li>
+        <li><span class="y">✓</span>Guest Mode — unlimited sensitive albums</li>
+        <li><span class="y">✓</span>Hidden Space — unlimited photos</li>
+        <li><span class="y">✓</span>Biometric app lock</li>
+        <li><span class="y">✓</span>One-tap ZIP export (always free)</li>
+        <li><span class="y">✓</span>Bulk select + batch hide</li>
+        <li><span class="y">✓</span>Dark + AMOLED themes</li>
+        <li><span class="y">✓</span>Violet + Teal accent colours</li>
+      </ul>
+      <button class="pw-pc-btn pw-pc-btn-f">Download Free</button>
+    </div>
+    <div class="pw-pc pw-pc-pro">
+      <div class="pw-pc-tier">PixWise Pro</div>
+      <div class="pw-pc-price"><sup>$</sup>4.99</div>
+      <div class="pw-pc-note">One-time purchase. Yours forever.</div>
+      <ul class="pw-pc-feats">
+        <li><span class="y">✓</span>Everything in Free</li>
+        <li><span class="y">✓</span>Pastel + Warm themes</li>
+        <li><span class="y">✓</span>All 6 accent colours</li>
+        <li><span class="y">✓</span>Relaxed + Comfort grid spacing</li>
+        <li><span class="y">✓</span>Album cover photo override</li>
+        <li><span class="y">✓</span>Session unlock for Hidden Space</li>
+        <li><span class="y">✓</span>Decoy mode (wrong PIN → fake gallery)</li>
+        <li><span class="y">✓</span>All future paid features</li>
+      </ul>
+      <button class="pw-pc-btn pw-pc-btn-p">Get Pro — $4.99 once</button>
+    </div>
+  </div>
+  <p class="pw-price-note reveal d3">Decoy mode and premium themes are paid. Guest Mode, Hidden Space, biometric lock, and ZIP export are always free — because privacy is not optional.</p>
+</section>
+
+<footer class="af">
+  <div><div class="af-brand" style="color:#A78BFA">PixWise</div><div class="af-sub">by WiselyRise · wiselyrise.in</div></div>
+  <div class="af-links"><a href="mailto:contact@wiselyrise.in">Contact</a><a href="#">Privacy Policy</a></div>
+  <div class="af-copy">© 2025 WiselyRise Solutions</div>
+</footer>
+</div>
+
+<div id="gramwise" class="page">
+<nav class="app-nav">
+  <button class="back-btn" onclick="showPage('home')">← All Apps</button>
+  <div class="app-nav-brand" style="color:#D4AF37;font-family:'Fraunces',serif">GramWise</div>
+  <a href="https://play.google.com/store" target="_blank" class="app-nav-cta" style="background:linear-gradient(135deg,#C9980A,#D4AF37);color:#1C1200">Get GramWise</a>
+</nav>
+
+<section class="gw-hero">
+  <div class="gw-hero-bg"></div>
+  <div class="gw-hero-orb"></div>
+  <div class="gw-hero-orb2"></div>
+  <div class="gw-left">
+    <div class="gw-kicker reveal">Precious Metals · Flutter · Firebase</div>
+    <h1 class="gw-h1 reveal d1">Save gold<br>with <i>purpose</i></h1>
+    <p class="gw-sub reveal d2">Not a tracker. A savings companion. Every gram tagged to a goal — Priya's wedding, the family home, an emergency reserve. Track progress. Celebrate milestones.</p>
+    <div class="gw-goal-preview reveal d2">
+      <div class="gw-gp-top"><div class="gw-gp-name">Priya's Wedding — Gold</div><div class="gw-gp-pct">62%</div></div>
+      <div class="gw-gp-sub">Target: 500g · Accumulated: 311g · Value: ₹43.2L</div>
+      <div class="gw-gp-bar"><div class="gw-gp-fill" style="width:62%"></div></div>
+      <div class="gw-gp-detail">189g remaining · Est. 18 months to goal at current pace</div>
+    </div>
+    <div class="gw-btns reveal d3">
+      <a href="https://play.google.com/store" target="_blank" class="gw-btn-p">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#1C1200"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.36.6 1.24 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+        <span><span class="btn-sub">Download on</span><span class="btn-main">Play Store</span></span>
+      </a>
+      <a href="#features" class="gw-btn-g">View Features ↓</a>
+    </div>
+  </div>
+  <div class="gw-right">
+    <div class="gw-pf-wrap">
+      <div class="pf gw-pf" style="width:252px;height:514px;border-radius:42px;border:5.5px solid #1E1A04">
+        <div style="display:flex;justify-content:center"><div style="height:22px;width:80px;background:#0E0C02;border-radius:0 0 13px 13px"></div></div>
+        <div style="display:flex;justify-content:space-between;padding:2px 16px;font-size:9px;color:rgba(212,175,55,.3)"><span>9:41</span><span>◼◼◼</span></div>
+        <div class="pf-body">
+          <div class="gw-pb-hdr">
+            <span class="gw-pb-t">GramWise</span>
+            <span class="gw-pb-curr">₹ INR</span>
+          </div>
+          <div class="gw-rate-bar">
+            <span class="gw-rate-l">Gold · 24K · Live</span>
+            <div><span class="gw-rate-v">₹6,842/g</span> <span class="gw-rate-chg">↑ 0.3%</span></div>
+          </div>
+          <div class="gw-gc">
+            <div class="gw-gc-top"><div><div class="gw-gc-name">Priya's Wedding</div><div class="gw-gc-metal">Gold · 22K goal</div></div><div class="gw-gc-pct">62%</div></div>
+            <div class="gw-gc-bar"><div class="gw-gc-fill" style="width:62%"></div></div>
+            <div class="gw-gc-detail">311g saved · ₹43.2L · 189g remaining</div>
+          </div>
+          <div class="gw-gc">
+            <div class="gw-gc-top"><div><div class="gw-gc-name">Emergency Reserve</div><div class="gw-gc-metal">Silver · 999</div></div><div class="gw-gc-pct" style="color:#C0C0C0">38%</div></div>
+            <div class="gw-gc-bar"><div class="gw-gc-fill" style="width:38%;background:linear-gradient(90deg,#707070,#C0C0C0)"></div></div>
+            <div class="gw-gc-detail">380g saved · ₹88K · 620g remaining</div>
+          </div>
+          <div class="gw-gc">
+            <div class="gw-gc-top"><div><div class="gw-gc-name">House Down Payment</div><div class="gw-gc-metal">Gold · 18K</div></div><div class="gw-gc-pct">89%</div></div>
+            <div class="gw-gc-bar"><div class="gw-gc-fill" style="width:89%"></div></div>
+            <div class="gw-gc-detail">89g saved · ₹6.1L · 11g remaining</div>
+          </div>
+          <div class="gw-pb-nav" style="margin-top:auto">
+            <div class="gw-pb-tab on">Goals</div><div class="gw-pb-tab">Assets</div><div class="gw-pb-tab">Rates</div><div class="gw-pb-tab">Profile</div>
+          </div>
+        </div>
+      </div>
+      <div class="gw-float">
+        <div style="font-size:11px;font-weight:700;color:rgba(212,175,55,.6);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase">Portfolio</div>
+        <div class="gf-t">Total Value</div>
+        <div class="gf-s">3 metals · Real-time rates</div>
+        <div class="gf-metals">
+          <div class="gf-metal"><div class="gf-ml"><div class="gf-mdot" style="background:#D4AF37"></div><div class="gf-mn">Gold</div></div><div class="gf-mv" style="color:#D4AF37">₹49.3L</div></div>
+          <div class="gf-metal"><div class="gf-ml"><div class="gf-mdot" style="background:#C0C0C0"></div><div class="gf-mn">Silver</div></div><div class="gf-mv" style="color:#C0C0C0">₹88K</div></div>
+          <div class="gf-metal"><div class="gf-ml"><div class="gf-mdot" style="background:#B0BEC8"></div><div class="gf-mn">Platinum</div></div><div class="gf-mv" style="color:#B0BEC8">₹12K</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METALS -->
+<section class="gw-metals">
+  <div class="gw-metals-eye reveal">Live Market Data</div>
+  <h2 class="gw-metals-h2 reveal d1">Gold. Silver. Platinum.<br>Updated daily at 10 AM IST.</h2>
+  <p class="gw-metals-sub reveal d2">GoldAPI.io rates · Converted to INR, USD, EUR, GBP · Local premium adjustment built in</p>
+  <div class="gw-metals-row">
+    <div class="gw-mc gw-mc-gold reveal d1">
+      <div class="gw-mc-sym">🥇</div>
+      <div class="gw-mc-name">Gold</div>
+      <div class="gw-mc-rate">₹6,842<span style="font-size:14px;font-weight:400">/g</span></div>
+      <div class="gw-mc-unit">24 Karat Pure · India</div>
+      <div class="gw-mc-chg">↑ +0.3% today</div>
+    </div>
+    <div class="gw-mc gw-mc-silver reveal d2">
+      <div class="gw-mc-sym">🥈</div>
+      <div class="gw-mc-name">Silver</div>
+      <div class="gw-mc-rate">₹231<span style="font-size:14px;font-weight:400">/g</span></div>
+      <div class="gw-mc-unit">999 Fineness · Pure</div>
+      <div class="gw-mc-chg">↑ +0.1% today</div>
+    </div>
+    <div class="gw-mc gw-mc-plat reveal d3">
+      <div class="gw-mc-sym">💎</div>
+      <div class="gw-mc-name">Platinum</div>
+      <div class="gw-mc-rate">₹3,210<span style="font-size:14px;font-weight:400">/g</span></div>
+      <div class="gw-mc-unit">999 Fineness · Pure</div>
+      <div class="gw-mc-chg">↓ -0.2% today</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES SPLIT -->
+<section class="gw-feats" id="features">
+  <div class="gw-feats-inner">
+    <div class="gw-feats-img-col reveal">
+      <div class="gw-feats-img-ph" style="height:480px;border-radius:24px;overflow:hidden;
+        background:linear-gradient(145deg,#1A1000,#241600);display:flex;align-items:center;justify-content:center;flex-direction:column;position:relative">
+        <img src="https://picsum.photos/seed/gold-jewelry/600/480" alt="Gold and precious metals" style="width:100%;height:100%;object-fit:cover;opacity:.35;position:absolute;inset:0" loading="lazy" onerror="this.style.display='none'">
+        <div style="position:relative;z-index:1;text-align:center;padding:40px">
+          <div style="font-size:80px;margin-bottom:16px">🏅</div>
+          <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:900;color:#D4AF37;margin-bottom:8px">Every gram counts</div>
+          <div style="font-size:14px;color:rgba(255,255,255,.4);line-height:1.7">Track gold, silver & platinum<br>toward life's biggest goals</div>
+          <div style="margin-top:24px;padding:14px 20px;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);border-radius:12px;display:inline-block">
+            <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:900;color:#D4AF37">₹49.3L</div>
+            <div style="font-size:11px;color:rgba(212,175,55,.5);margin-top:2px">Total portfolio value</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gw-feats-text reveal d1">
+      <div class="eye">Why GramWise</div>
+      <h2>Not an inventory tracker.<br>A savings companion.</h2>
+      <div class="gw-feat-items">
+        <div class="gw-fi"><div class="gw-fi-ico">🎯</div><div><div class="gw-fi-t">Goal-Directed Accumulation</div><div class="gw-fi-s">Every gram is tagged to a purpose — not just stored. See exactly how far you are from Priya's wedding or the family home down payment.</div></div></div>
+        <div class="gw-fi"><div class="gw-fi-ico">📈</div><div><div class="gw-fi-t">Live GoldAPI Rates Daily</div><div class="gw-fi-s">USD spot rates from GoldAPI, converted to INR/EUR/GBP automatically. Local market premium adjustment built in for import duty and dealer margins.</div></div></div>
+        <div class="gw-fi"><div class="gw-fi-ico">🔢</div><div><div class="gw-fi-t">Accurate Purity Mathematics</div><div class="gw-fi-s">22K, 18K, 916, 925 sterling, 950 platinum — cross-purity valuations with transparent calculation breakdowns. No guessing, no rounding errors.</div></div></div>
+        <div class="gw-fi"><div class="gw-fi-ico">🌍</div><div><div class="gw-fi-t">Multi-Currency — INR, USD, EUR, GBP</div><div class="gw-fi-s">Switch currencies anytime. Exchange rates updated daily. Built for the Indian diaspora managing gold in multiple currencies across countries.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="gw-cta">
+  <div class="gw-cta-eye reveal">Track Every Gram</div>
+  <h2 class="gw-cta-h2 reveal d1">Save gold with<br>purpose and precision</h2>
+  <p class="gw-cta-p reveal d2">Free to download. Premium themes and analytics as a one-time upgrade. No subscriptions.</p>
+  <div class="gw-cta-btns reveal d3">
+    <a href="https://play.google.com/store" target="_blank" class="gw-btn-p">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#1C1200"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.36.6 1.24 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+      <span><span class="btn-sub">Download on</span><span class="btn-main">Play Store</span></span>
+    </a>
+    <a href="#" onclick="showPage('home');return false" class="gw-btn-g">← All Apps</a>
+  </div>
+</section>
+<footer class="af">
+  <div><div class="af-brand" style="color:#D4AF37">GramWise</div><div class="af-sub">by WiselyRise · wiselyrise.in</div></div>
+  <div class="af-links"><a href="mailto:contact@wiselyrise.in">Contact</a><a href="#">Privacy Policy</a></div>
+  <div class="af-copy">© 2025 WiselyRise Solutions</div>
+</footer>
+</div>
+
+<div id="docuwise" class="page">
+<nav class="app-nav">
+  <button class="back-btn" onclick="showPage('home')">← All Apps</button>
+  <div class="app-nav-brand" style="color:#1B6B6B;font-family:'Fraunces',serif">DocuWise</div>
+  <a href="https://play.google.com/store" target="_blank" class="app-nav-cta" style="background:#1B6B6B">Download</a>
+</nav>
+
+<section class="du-hero">
+  <div class="du-hero-bg"></div>
+  <div class="du-left">
+    <div class="du-kicker reveal">Family Document Vault · Flutter · Android + iOS</div>
+    <h1 class="du-h1 reveal d1">Every family document,<br><i>3 seconds away</i></h1>
+    <p class="du-sub reveal d2">Stop scrambling through WhatsApp chats when your wife asks for the insurance paper. DocuWise organises your family's documents — Aadhaar, passport, insurance, property papers — all in your own Google Drive.</p>
+    <div class="du-trust reveal d2">
+      <div class="du-trust-item"><div class="val">0</div><div class="lbl">Servers</div></div>
+      <div class="du-trust-item"><div class="val">15GB</div><div class="lbl">Free Storage</div></div>
+      <div class="du-trust-item"><div class="val">&lt; 3s</div><div class="lbl">Find Any Doc</div></div>
+    </div>
+    <div class="du-btns reveal d3">
+      <a href="https://play.google.com/store" target="_blank" class="du-btn-p">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.36.6 1.24 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+        <span><span class="btn-sub">Download on</span><span class="btn-main">Play Store</span></span>
+      </a>
+      <a href="#how" class="du-btn-g">How It Works ↓</a>
+    </div>
+  </div>
+
+  <div class="du-right">
+    <div class="du-pf-wrap">
+      <div class="pf du-pf" style="width:252px;height:514px;border-radius:42px;border:6px solid #B8D8D8">
+        <div style="display:flex;justify-content:center"><div style="height:23px;width:84px;background:#fff;border-radius:0 0 14px 14px"></div></div>
+        <div style="display:flex;justify-content:space-between;padding:2px 16px;font-size:9px;color:#5A9090"><span>9:41</span><span>◼◼◼</span></div>
+        <div class="pf-body">
+          <div class="du-ph-hdr">
+            <span class="du-ph-title">DocuWise</span>
+            <div class="du-ph-sync"><div class="du-ph-sync-dot"></div>Synced</div>
+          </div>
+          <div class="du-ph-body">
+            <div class="du-ph-search">🔍 Search documents...</div>
+            <div class="du-ph-sec">Identity</div>
+            <div class="du-dc"><span class="ddc-ico">🪪</span><div><div class="ddc-name">Aadhaar — Suresh</div><div class="ddc-owner">Owner · PDF · 340KB</div></div><div class="ddc-dot dot-ok"></div></div>
+            <div class="du-dc"><span class="ddc-ico">🪪</span><div><div class="ddc-name">PAN Card — Suresh</div><div class="ddc-owner">Owner · JPG · 180KB</div></div><div class="ddc-dot dot-ok"></div></div>
+            <div class="du-ph-sec">Insurance</div>
+            <div class="du-dc"><span class="ddc-ico">🏥</span><div><div class="ddc-name">Health Policy 2025</div><div class="ddc-owner">Family · ⚠ Expires Jun 2025</div></div><div class="ddc-dot dot-warn"></div></div>
+            <div class="du-dc"><span class="ddc-ico">🚗</span><div><div class="ddc-name">Car Insurance</div><div class="ddc-owner">Owner · PDF · 1.2MB</div></div><div class="ddc-dot dot-ok"></div></div>
+            <div class="du-ph-sec">Property</div>
+            <div class="du-dc"><span class="ddc-ico">🏠</span><div><div class="ddc-name">Sale Deed — House</div><div class="ddc-owner">Owner + Wife · PDF · 4.2MB</div></div><div class="ddc-dot dot-ok"></div></div>
+            <div class="du-ph-nav">
+              <div class="du-ph-tab on">Home</div><div class="du-ph-tab">Docs</div><div class="du-ph-tab">Family</div><div class="du-ph-tab">Settings</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="du-float">
+        <div style="font-size:22px;margin-bottom:7px">👨‍👩‍👧</div>
+        <div class="duf-t">Family Access</div>
+        <div class="duf-s">4 members · own devices</div>
+        <div class="duf-members">
+          <div class="duf-av" style="background:#1B6B6B">S</div>
+          <div class="duf-av" style="background:#2D9B9B">P</div>
+          <div class="duf-av" style="background:#E8A030">V</div>
+          <div class="duf-av" style="background:#5C8C5C;margin-right:0">+1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="du-how" id="how">
+  <div class="du-how-hd reveal">
+    <div class="du-how-eye">How It Works</div>
+    <h2 class="du-how-h2">Your Google Drive.<br>Organised by DocuWise.</h2>
+  </div>
+  <div class="du-steps">
+    <div class="du-step reveal d1">
+      <div class="du-step-num">01</div>
+      <div class="du-step-ico">📱</div>
+      <div class="du-step-t">Sign in with Google</div>
+      <div class="du-step-s">Use your own Google account. DocuWise accesses only the files it creates — nothing else in your Drive is touched.</div>
+    </div>
+    <div class="du-step reveal d2">
+      <div class="du-step-num">02</div>
+      <div class="du-step-ico">📤</div>
+      <div class="du-step-t">Upload Documents</div>
+      <div class="du-step-s">Scan from camera, pick from gallery, or choose from files. 4 taps from open app to document saved. Cards appear instantly while upload runs in background.</div>
+    </div>
+    <div class="du-step reveal d3">
+      <div class="du-step-num">03</div>
+      <div class="du-step-ico">🔍</div>
+      <div class="du-step-t">Find in 3 Seconds</div>
+      <div class="du-step-s">Category filter + member filter + search. All render from local cache — never waiting for network. Any document in 3 seconds, always.</div>
+    </div>
+    <div class="du-step reveal d4">
+      <div class="du-step-num">04</div>
+      <div class="du-step-ico">👨‍👩‍👧</div>
+      <div class="du-step-t">Share with Family</div>
+      <div class="du-step-s">Invite wife or adult children with their own Google accounts. No shared passwords. No session conflicts. Each person sees what you've allowed.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES SPLIT -->
+<section class="du-feats">
+  <div class="du-feats-inner">
+    <div class="du-feats-img-col reveal">
+      <div class="du-feats-img-ph" style="height:480px;border-radius:24px;overflow:hidden;
+        background:linear-gradient(145deg,#DAF0EC,#E6F5F3);display:flex;align-items:center;justify-content:center;flex-direction:column;position:relative">
+        <img src="https://picsum.photos/seed/family-docs/600/480" alt="Family documents" style="width:100%;height:100%;object-fit:cover;opacity:.5;position:absolute;inset:0" loading="lazy" onerror="this.style.display='none'">
+        <div style="position:relative;z-index:1;text-align:center;padding:40px">
+          <div style="font-size:72px;margin-bottom:16px">🗂</div>
+          <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:900;color:#0A2828;margin-bottom:8px">Secure. Private. Forever.</div>
+          <div style="font-size:14px;color:rgba(10,40,40,.5);line-height:1.7">Your documents live in<br>your Google Drive — not ours</div>
+          <div style="margin-top:22px;display:flex;gap:10px;justify-content:center">
+            <div style="padding:10px 16px;background:rgba(27,107,107,.1);border:1px solid rgba(27,107,107,.2);border-radius:10px;font-size:12px;font-weight:700;color:#1B6B6B">☁ Your Drive</div>
+            <div style="padding:10px 16px;background:rgba(27,107,107,.1);border:1px solid rgba(27,107,107,.2);border-radius:10px;font-size:12px;font-weight:700;color:#1B6B6B">🔒 Your Data</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="du-feats-text reveal d1">
+      <div class="eye">Core Features</div>
+      <h2>Your family's complete<br>document vault</h2>
+      <div class="du-feat-cards">
+        <div class="du-fc"><div class="du-fc-ico">⚡</div><div class="du-fc-t">3-Second Rule</div><div class="du-fc-s">Category + member filter + search. Renders from local DB. Never waits for network.</div></div>
+        <div class="du-fc"><div class="du-fc-ico">🇮🇳</div><div class="du-fc-t">India-Ready Types</div><div class="du-fc-s">Aadhaar, PAN, Voter ID, Passport, LIC — built for Indian family life, not western templates.</div></div>
+        <div class="du-fc"><div class="du-fc-ico">⏰</div><div class="du-fc-t">Expiry Reminders</div><div class="du-fc-s">30-day, 7-day, 1-day alerts for passport, insurance, vehicle registration. On-device notifications.</div></div>
+        <div class="du-fc"><div class="du-fc-ico">👨‍👩‍👧</div><div class="du-fc-t">Family Access</div><div class="du-fc-s">Wife and adult children get their own login. No shared passwords. Document-level permissions.</div></div>
+        <div class="du-fc"><div class="du-fc-ico">📴</div><div class="du-fc-t">Works Offline</div><div class="du-fc-s">Browse your vault with no internet. Syncs silently when you're back online.</div></div>
+        <div class="du-fc"><div class="du-fc-ico">☁</div><div class="du-fc-t">Your Drive, Zero Servers</div><div class="du-fc-s">Files live in your Google Drive. DocuWise has no servers. 15GB free, no vendor lock-in.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="du-cta">
+  <div class="du-cta-eye reveal">Free Download</div>
+  <h2 class="du-cta-h2 reveal d1">Start your family's<br>document vault today</h2>
+  <p class="du-cta-p reveal d2">Free for up to 20 documents and 3 family profiles. Pro is a one-time purchase — no subscription ever.</p>
+  <div class="du-cta-btns reveal d3">
+    <a href="https://play.google.com/store" target="_blank" class="du-cta-btn-p">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.36.6 1.24 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+      <span><span class="btn-sub">Download on</span><span class="btn-main">Play Store</span></span>
+    </a>
+    <a href="#" onclick="showPage('home');return false" class="du-cta-btn-g">← All Apps</a>
+  </div>
+</section>
+<footer class="af">
+  <div><div class="af-brand" style="color:#2DD4BF">DocuWise</div><div class="af-sub">by WiselyRise · wiselyrise.in</div></div>
+  <div class="af-links"><a href="mailto:contact@wiselyrise.in">Contact</a><a href="#">Privacy Policy</a></div>
+  <div class="af-copy">© 2025 WiselyRise Solutions</div>
+</footer>
+</div>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  setTimeout(initReveal,50);
+}
+function initReveal(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>{
+    el.classList.remove('vis');io.observe(el);
+  });
+}
+window.addEventListener('scroll',()=>{
+  const n=document.getElementById('homeNav');
+  if(n)n.style.background=window.scrollY>60?'rgba(3,14,7,.97)':'rgba(3,14,7,.85)';
+});
+initReveal();
+</script>
+</body></html>

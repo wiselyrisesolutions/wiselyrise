@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixWise — Your Gallery, Your Rules</title>
+  <meta name="description" content="PixWise is a private, offline gallery app for Android. Secure Space, Guest Mode, smart albums, pinch-to-zoom viewer, and zero cloud dependency." />
+  <meta property="og:title" content="PixWise — Your Gallery, Your Rules" />
+  <meta property="og:description" content="A private, offline-first gallery app that keeps your photos safe." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wiselyrise.in/pixwise" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#fafafa;--fg:#111;--muted:#555;--accent:#1565c0;--accent-glow:#42a5f5;--soft:#e3f2fd;--surface:#fff;--border:#e0e0e0;--green:#2e7d32;--green-bg:#e8f5e9;--warm:#e65100;--warm-bg:#fff3e0;--indigo:#5e35b1;--indigo-bg:#ede7f6;--teal:#00796b;--teal-bg:#e0f2f1}
+    @media(prefers-color-scheme:dark){:root{--bg:#0b0e14;--fg:#e8eaf0;--muted:#999;--accent:#64b5f6;--accent-glow:#90caf9;--soft:#131a26;--surface:#151b26;--border:#253040;--green:#66bb6a;--green-bg:#1b2e1b;--warm:#ffb74d;--warm-bg:#2a1f10;--indigo:#b39ddb;--indigo-bg:#1c1826;--teal:#80cbc4;--teal-bg:#102020}}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
+    .hero{position:relative;text-align:center;padding:64px 24px 48px;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);opacity:.08;pointer-events:none}
+    .hero-icon{width:80px;height:80px;margin-bottom:20px;border-radius:18px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+    .hero h1{font-size:clamp(2rem,6vw,3rem);font-weight:800;line-height:1.1;max-width:600px;margin:0 auto 12px;letter-spacing:-.03em}
+    .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent-glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero .tagline{font-size:1.1rem;color:var(--muted);max-width:480px;margin:0 auto 28px}
+    .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:14px 32px;border-radius:28px;text-decoration:none;font-weight:700;font-size:.92rem;transition:transform .2s,box-shadow .2s}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(21,101,192,.3)}
+    .trust{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:40px}
+    .trust span{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted);font-weight:500}
+    section{padding:72px 24px}
+    .inner{max-width:960px;margin:0 auto}
+    .section-label{text-transform:uppercase;letter-spacing:3px;font-size:.7rem;color:var(--accent);font-weight:700;margin-bottom:8px}
+    .section-title{font-size:clamp(1.4rem,3.5vw,2rem);font-weight:700;margin-bottom:12px;line-height:1.2}
+    .section-desc{font-size:.95rem;color:var(--muted);max-width:520px;margin-bottom:36px}
+    .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:760px;margin:0 auto}
+    @media(max-width:560px){.tiles{grid-template-columns:1fr}}
+    .tile{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px 20px;text-decoration:none;color:var(--fg);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden}
+    .tile:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+    .tile .tile-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+    .tile h3{font-size:.95rem;font-weight:600;line-height:1.3}
+    .tile p{font-size:.8rem;color:var(--muted);margin:0;line-height:1.5}
+    .tile-blue .tile-icon{background:var(--soft)}
+    .tile-green .tile-icon{background:var(--green-bg)}
+    .tile-warm .tile-icon{background:var(--warm-bg)}
+    .tile-indigo .tile-icon{background:var(--indigo-bg)}
+    .tile-teal .tile-icon{background:var(--teal-bg)}
+    .tile-wide{grid-column:1/-1}
+    .highlights{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:32px}
+    .highlights .item{text-align:center;padding:20px 16px}
+    .highlights .num{font-size:2rem;font-weight:800;color:var(--accent);line-height:1}
+    .highlights .label{font-size:.82rem;color:var(--muted);margin-top:4px}
+    .links{max-width:720px;margin:0 auto;padding:0 24px 48px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .link-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:20px;background:var(--soft);color:var(--fg);text-decoration:none;font-size:.82rem;font-weight:500;border:1px solid var(--border);transition:background .2s,color .2s}
+    .link-pill:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .alt-bg{background:var(--soft)}
+    footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+    footer a{color:var(--accent);text-decoration:none}
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <img src="/pixwise/app_icon.png" alt="PixWise" class="hero-icon" />
+  <h1>Your Gallery, <span>Your Rules</span></h1>
+  <p class="tagline">A private, offline-first gallery app that keeps your photos organized and your memories safe. No cloud. No AI. No account.</p>
+  <div class="cta-row">
+    <a class="btn-primary" href="#">▶ Coming Soon on Play Store</a>
+  </div>
+  <div class="trust">
+    <span>🔒 Secure Space</span>
+    <span>👤 Guest Mode</span>
+    <span>📴 100% Offline</span>
+    <span>🚫 Zero Tracking</span>
+  </div>
+</div>
+
+<section class="alt-bg">
+  <div class="inner" style="text-align:center">
+    <p class="section-label">At a Glance</p>
+    <h2 class="section-title">Everything you expect—and more</h2>
+    <div class="highlights">
+      <div class="item"><div class="num">🔐</div><div class="label">Secure Space</div></div>
+      <div class="item"><div class="num">👤</div><div class="label">Guest Mode</div></div>
+      <div class="item"><div class="num">🗑️</div><div class="label">Recycle Bin</div></div>
+      <div class="item"><div class="num">⭐</div><div class="label">Favorites</div></div>
+      <div class="item"><div class="num">📌</div><div class="label">Pinned Albums</div></div>
+      <div class="item"><div class="num">🔍</div><div class="label">Smart Search</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="inner" style="text-align:center">
+    <p class="section-label">Features</p>
+    <h2 class="section-title">Built for privacy-conscious people</h2>
+    <p class="section-desc" style="margin-left:auto;margin-right:auto">PixWise doesn't upload your photos, scan your face, or phone home. It's a gallery app that does its job and stays out of your way.</p>
+  </div>
+  <div class="tiles" style="margin-top:32px">
+    <div class="tile tile-blue">
+      <div class="tile-icon">🔐</div>
+      <h3>Secure Space</h3>
+      <p>Move private photos to an encrypted hidden vault. Protected by biometric or PIN authentication. Invisible in guest mode.</p>
+    </div>
+    <div class="tile tile-green">
+      <div class="tile-icon">👤</div>
+      <h3>Guest Mode</h3>
+      <p>Hand your phone to anyone without worry. Guest mode hides Secure Space, restricts albums, and disables sensitive features.</p>
+    </div>
+    <div class="tile tile-warm">
+      <div class="tile-icon">🖼️</div>
+      <h3>Full-Featured Viewer</h3>
+      <p>Pinch-to-zoom, double-tap zoom, swipe between photos, video playback, EXIF info, rotation, slideshow, and wallpaper setting.</p>
+    </div>
+    <div class="tile tile-indigo">
+      <div class="tile-icon">📁</div>
+      <h3>Smart Albums</h3>
+      <p>Auto-organized by folder. Pin your favorites to the top. Hide albums you don't want to see. Copy, move, and rename with ease.</p>
+    </div>
+    <div class="tile tile-teal">
+      <div class="tile-icon">🗑️</div>
+      <h3>Recycle Bin</h3>
+      <p>Deleted a photo by accident? Recycle Bin keeps it safe for 30 days. Restore with a single tap—no cloud needed.</p>
+    </div>
+    <div class="tile tile-blue">
+      <div class="tile-icon">🔍</div>
+      <h3>Instant Search</h3>
+      <p>Find any photo by name, type, date, or size. Debounced search keeps things snappy even with thousands of photos.</p>
+    </div>
+    <div class="tile tile-green tile-wide">
+      <div class="tile-icon">🛡️</div>
+      <h3>Privacy by Design</h3>
+      <p>No internet permission. No analytics SDK. No account required. Your photos never leave your device. PixWise is built for people who believe privacy isn't optional—it's a right.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt-bg">
+  <div class="inner" style="text-align:center">
+    <p class="section-label">Why PixWise?</p>
+    <h2 class="section-title">Your stock gallery can't do this</h2>
+    <p class="section-desc" style="margin-left:auto;margin-right:auto">Most gallery apps are either bloated with AI features you didn't ask for, or they quietly upload your photos to someone else's server. PixWise is different.</p>
+    <div class="tiles" style="margin-top:32px">
+      <div class="tile tile-warm">
+        <div class="tile-icon">🚫</div>
+        <h3>No Cloud Uploads</h3>
+        <p>Your photos stay on your device. Period. No sync, no backup we control, no surprise bandwidth usage.</p>
+      </div>
+      <div class="tile tile-indigo">
+        <div class="tile-icon">⚡</div>
+        <h3>Lightning Fast</h3>
+        <p>Built with Jetpack Compose and optimized thumbnail caching. Scrolls smoothly through 50,000+ photos.</p>
+      </div>
+      <div class="tile tile-teal">
+        <div class="tile-icon">🎨</div>
+        <h3>Material You Theming</h3>
+        <p>Follows your system theme automatically. Light, dark, and dynamic color support. Looks native on every Android device.</p>
+      </div>
+      <div class="tile tile-blue">
+        <div class="tile-icon">📱</div>
+        <h3>Configurable Grid</h3>
+        <p>2, 3, or 4 column layouts. Choose timeline or album view as your default. Your gallery, your way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="links">
+  <a class="link-pill" href="/pixwise/privacy">🔒 Privacy Policy</a>
+  <a class="link-pill" href="/pixwise/terms">📜 Terms of Service</a>
+  <a class="link-pill" href="mailto:contact@wiselyrise.in">✉️ Contact Us</a>
+  <a class="link-pill" href="/">🏠 WiselyRise Home</a>
+</div>
+
+<footer>
+  <p>A product of <a href="/">WiselyRise</a> &middot; Made with ❤️ in India</p>
+</footer>
+
+</body>
+</html>
