@@ -164,11 +164,10 @@
     }
     .hero-phone-col{
       display:flex;justify-content:center;align-items:center;
-      position:relative;z-index:2;padding:24px 8px 0;
+      position:relative;z-index:2;padding:16px 0 0;
     }
     .hero-phone{
-      width:100%;max-width:720px;
-      box-shadow:0 28px 72px rgba(91,33,182,.20),0 8px 20px rgba(0,0,0,.10);
+      width:100%;max-width:480px;
       animation:float 7s ease-in-out infinite;
       display:block;
     }
@@ -430,14 +429,15 @@
       .hero{padding-top:44px}
       /* Hero: stack to phone + chips row below */
       .hero-visual-wrap{
-        max-width:460px;
+        max-width:100%;
         grid-template-columns:1fr;
         grid-template-rows:auto auto;
         gap:20px;
         margin-top:36px;
+        padding:0;
       }
-      .hero-phone-col{grid-row:1;padding-top:0}
-      .hero-phone{max-width:min(360px,90vw)}
+      .hero-phone-col{grid-row:1;padding:0}
+      .hero-phone{max-width:min(420px,88vw)}
       .hero-glow{width:300px;height:300px}
       .hero-feat-col{
         grid-row:2;
@@ -465,7 +465,7 @@
       .hero h1{font-size:clamp(2.1rem,9vw,3rem)}
       .hero-sub{font-size:.97rem}
       .hero-visual-wrap{max-width:100%}
-      .hero-phone{max-width:min(380px,95vw)}
+      .hero-phone{max-width:min(460px,90vw)}
       .hero-glow{width:260px;height:260px}
       .feat-chip{width:56px;height:56px;padding:10px}
       .footer-top{grid-template-columns:1fr;gap:28px}
