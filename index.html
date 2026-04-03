@@ -101,25 +101,42 @@
     .products-inner{max-width:800px;margin:0 auto}
     .section-label{text-transform:uppercase;letter-spacing:3px;font-size:.7rem;color:var(--accent);font-weight:700;margin-bottom:28px;text-align:center}
     .product-card{
-      background:var(--surface);border:1px solid var(--border);border-radius:20px;
-      padding:32px;display:flex;align-items:flex-start;gap:24px;
-      color:inherit;transition:transform .2s,box-shadow .2s;
-      margin-bottom:16px;
+      background:var(--surface);border:1.5px solid var(--border);border-radius:20px;
+      padding:28px 28px 28px 28px;display:flex;align-items:flex-start;gap:20px;
+      color:inherit;transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s,border-color .22s;
+      margin-bottom:14px;position:relative;overflow:hidden;cursor:pointer;
     }
-    .product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-    .product-icon{width:60px;height:60px;border-radius:14px;flex-shrink:0;object-fit:contain}
-    .product-info{flex:1}
-    .product-name{font-size:1.15rem;font-weight:700;margin-bottom:6px}
-    .product-desc{font-size:.88rem;color:var(--muted);line-height:1.55;margin-bottom:12px}
-    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .pill{font-size:.74rem;color:var(--muted);background:#fafafa;border:1px solid var(--border);border-radius:20px;padding:3px 10px}
+    .product-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--accent-light)}
+    .product-card:hover .product-arrow{opacity:1;transform:translateX(0)}
+    .product-card::after{
+      content:'';position:absolute;inset:0;border-radius:20px;
+      background:linear-gradient(135deg,rgba(91,33,182,.03) 0%,transparent 60%);
+      pointer-events:none;
+    }
+    .product-icon{width:56px;height:56px;border-radius:13px;flex-shrink:0;object-fit:contain;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+    .product-info{flex:1;min-width:0}
+    .product-name{font-size:1.1rem;font-weight:800;margin-bottom:5px;letter-spacing:-.02em}
+    .product-desc{font-size:.87rem;color:var(--muted);line-height:1.58;margin-bottom:12px}
+    .pill-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
+    .pill{font-size:.72rem;color:var(--muted);background:#fafafa;border:1px solid var(--border);border-radius:20px;padding:3px 10px}
     .badge{
       display:inline-flex;align-items:center;gap:6px;
       background:var(--accent-bg);color:var(--accent);
-      font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:20px;
+      font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:20px;
       text-transform:uppercase;letter-spacing:.05em;
     }
     .badge-soon{background:#fef3c7;color:#92400e}
+    .product-arrow{
+      flex-shrink:0;
+      width:36px;height:36px;border-radius:50%;
+      background:var(--accent-bg);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1rem;color:var(--accent);
+      opacity:0;transform:translateX(-6px);
+      transition:opacity .2s,transform .2s;
+      margin-top:2px;
+      align-self:center;
+    }
 
     /* ── MANIFESTO ────────────────────── */
     .manifesto{padding:64px 24px;text-align:center;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -143,6 +160,7 @@
       .values-inner{grid-template-columns:1fr 1fr}
       .product-card{flex-direction:column;align-items:center;text-align:center}
       .pill-row{justify-content:center}
+      .product-arrow{opacity:1;transform:translateX(0);align-self:center;margin-top:10px}
     }
     @media(max-width:480px){
       .values-inner{grid-template-columns:1fr}
@@ -213,6 +231,7 @@
 <section class="products" id="products">
   <div class="products-inner">
     <div class="section-label reveal">Our Products</div>
+    <p style="text-align:center;font-size:.82rem;color:var(--muted);margin-bottom:24px;margin-top:-16px" class="reveal d1">Tap a product to explore</p>
 
     <a href="/datewise" class="product-card reveal d1">
       <img src="/datewise/images/app_icon_light_trans.png" alt="DateWise icon" class="product-icon" />
@@ -228,10 +247,11 @@
           <span class="badge">Available on Play Store →</span>
         </div>
       </div>
+      <div class="product-arrow">→</div>
     </a>
 
     <a href="/pixwise" class="product-card reveal d2">
-      <img src="/pixwise/app_icon.png" alt="PixWise icon" class="product-icon" />
+      <img src="/pixwise/app_icon.png" alt="PixWise icon" class="product-icon" onerror="this.style.background='#f5f3ff';this.style.objectFit='none'" />
       <div class="product-info">
         <div class="product-name">PixWise</div>
         <div class="product-desc">Your gallery, your rules. A private, offline-first gallery app with Secure Space, Guest Mode, smart albums, and a full-featured photo viewer. No cloud. No AI. No account.</div>
@@ -244,6 +264,7 @@
           <span class="badge badge-soon">Coming Soon →</span>
         </div>
       </div>
+      <div class="product-arrow">→</div>
     </a>
   </div>
 </section>
