@@ -168,6 +168,7 @@
     }
     .hero-phone{
       width:100%;max-width:480px;
+      margin:0 auto;
       animation:float 7s ease-in-out infinite;
       display:block;
     }
@@ -181,11 +182,11 @@
       display:flex;align-items:center;justify-content:center;
       background:#fff;
       border-radius:18px;
-      padding:12px;
+      padding:14px;
       box-shadow:0 8px 24px rgba(91,33,182,.1),0 2px 6px rgba(0,0,0,.06);
-      width:64px;height:64px;
+      width:76px;height:76px;
     }
-    .feat-chip img{width:38px;height:38px;object-fit:contain;flex-shrink:0}
+    .feat-chip img{width:46px;height:46px;object-fit:contain;flex-shrink:0}
     .feat-chip-text,.feat-chip-label,.feat-chip-sub{display:none}
     /* stagger float animations */
     .fc1{animation:floatA 5.2s ease-in-out infinite;animation-delay:0s}
@@ -436,18 +437,18 @@
         margin-top:36px;
         padding:0;
       }
-      .hero-phone-col{grid-row:1;padding:0}
-      .hero-phone{max-width:min(420px,88vw)}
+      .hero-phone-col{grid-row:1;padding:0;width:100%}
+      .hero-phone{width:min(88vw,480px);max-width:none}
       .hero-glow{width:300px;height:300px}
       .hero-feat-col{
         grid-row:2;
-        flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px;
+        flex-direction:row;flex-wrap:wrap;justify-content:center;gap:10px;
       }
       .hero-feat-col.left,.hero-feat-col.right{
         align-items:center;padding:0;
       }
-      .feat-chip{width:58px;height:58px;padding:10px}
-      .feat-chip img{width:34px;height:34px}
+      .feat-chip{width:70px;height:70px;padding:12px}
+      .feat-chip img{width:42px;height:42px}
       /* Features: hide desktop tabs, show accordion */
       .feat-panels-desktop{display:none}
       .feat-accordion{display:flex}
@@ -464,10 +465,15 @@
       .hero{padding:36px 5% 0}
       .hero h1{font-size:clamp(2.1rem,9vw,3rem)}
       .hero-sub{font-size:.97rem}
-      .hero-visual-wrap{max-width:100%}
-      .hero-phone{max-width:min(460px,90vw)}
+      .hero-visual-wrap{
+        max-width:100vw;
+        width:100vw;
+        margin-left:calc(50% - 50vw);
+        padding:0;
+      }
+      .hero-phone{width:min(88vw,480px);max-width:none}
       .hero-glow{width:260px;height:260px}
-      .feat-chip{width:56px;height:56px;padding:10px}
+      .feat-chip{width:66px;height:66px;padding:12px}
       .footer-top{grid-template-columns:1fr;gap:28px}
       .about-feat-grid{grid-template-columns:1fr}
       .notif-img{max-width:240px}
@@ -479,8 +485,8 @@
       .hero h1{font-size:2rem}
       .hero-actions{flex-direction:column;align-items:stretch}
       .btn-primary,.btn-secondary{justify-content:center;padding:15px 20px}
-      .feat-chip{width:48px;height:48px;padding:8px}
-      .feat-chip img{width:28px;height:28px}
+      .feat-chip{width:58px;height:58px;padding:10px}
+      .feat-chip img{width:34px;height:34px}
     }
   </style>
 </head>
