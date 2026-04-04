@@ -118,7 +118,7 @@
       font-size:1.05rem;color:var(--muted);max-width:480px;
       line-height:1.72;margin-bottom:32px;animation:fadeUp .6s ease .14s both;font-weight:400;
     }
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;animation:fadeUp .6s ease .2s both}
+    .hero-actions{display:flex;gap:12px;flex-wrap:nowrap;justify-content:center;align-items:center;animation:fadeUp .6s ease .2s both}
     .btn-primary{
       display:inline-flex;align-items:center;gap:8px;
       background:var(--accent);color:#fff;
@@ -128,10 +128,10 @@
     }
     .btn-primary:hover{background:var(--accent-mid);transform:translateY(-2px);box-shadow:0 10px 32px rgba(91,33,182,.35)}
     .btn-secondary{
-      display:inline-flex;align-items:center;gap:8px;
+      display:inline-flex;align-items:center;gap:7px;
       background:var(--surface);color:var(--fg);
-      padding:14px 22px;border-radius:100px;
-      font-size:.91rem;font-weight:600;
+      padding:10px 16px;border-radius:100px;
+      font-size:.84rem;font-weight:600;
       border:1.5px solid var(--border);
       transition:border-color .2s,color .2s;
     }
@@ -182,11 +182,11 @@
       display:flex;align-items:center;justify-content:center;
       background:#fff;
       border-radius:18px;
-      padding:14px;
+      padding:8px;
       box-shadow:0 8px 24px rgba(91,33,182,.1),0 2px 6px rgba(0,0,0,.06);
-      width:76px;height:76px;
+      width:72px;height:72px;
     }
-    .feat-chip img{width:46px;height:46px;object-fit:contain;flex-shrink:0}
+    .feat-chip img{width:56px;height:56px;object-fit:contain;flex-shrink:0}
     .feat-chip-text,.feat-chip-label,.feat-chip-sub{display:none}
     /* stagger float animations */
     .fc1{animation:floatA 5.2s ease-in-out infinite;animation-delay:0s}
@@ -198,7 +198,7 @@
 
     /* ── MARQUEE ────────────────────────────────────────── */
     .marquee-section{padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;background:var(--surface)}
-    .marquee-track{display:flex;white-space:nowrap;animation:marquee 18s linear infinite}
+    .marquee-track{display:flex;white-space:nowrap;animation:marquee 13.5s linear infinite}
     .marquee-item{display:inline-flex;align-items:center;gap:10px;padding:0 28px;font-size:.8rem;font-weight:500;color:var(--muted);border-right:1px solid var(--border)}
 
     /* ── SECTIONS COMMON ───────────────────────────────── */
@@ -229,7 +229,7 @@
     /* ── NOTIFICATION SECTION ──────────────────────────── */
     .notif-section{background:linear-gradient(170deg,#f0fdf4 0%,#fff 70%)}
     .notif-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-    .notif-img{max-width:340px;margin:0 auto;filter:drop-shadow(0 16px 40px rgba(0,0,0,.1))}
+    .notif-img{max-width:420px;margin:0 auto;filter:drop-shadow(0 16px 40px rgba(0,0,0,.1))}
     .notif-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:20px}
     .notif-bullets li{display:flex;align-items:flex-start;gap:10px;font-size:.88rem;line-height:1.5}
     .nb-check{width:22px;height:22px;border-radius:50%;background:var(--green-bg);color:var(--green);font-size:.72rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-weight:700}
@@ -321,23 +321,38 @@
     .ss-dot.active{background:var(--accent);width:22px;border-radius:100px}
 
     /* ── PRICING ────────────────────────────────────────── */
-    .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:700px;margin:44px auto 0}
-    .pricing-card{border-radius:var(--radius);padding:30px;border:1.5px solid var(--border);position:relative}
-    .pricing-card.featured{border-color:var(--accent-mid);background:linear-gradient(160deg,var(--accent-bg) 0%,#fff 60%);box-shadow:0 0 0 1px var(--accent-mid),var(--shadow-md)}
-    .pricing-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--accent),var(--accent-mid));color:#fff;font-size:.68rem;font-weight:700;padding:4px 16px;border-radius:100px;white-space:nowrap;letter-spacing:.04em}
-    .pricing-plan{font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
-    .pricing-price{font-family:'Inter Tight',sans-serif;font-size:2.8rem;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:4px}
-    .pricing-price sup{font-size:1.2rem;vertical-align:top;margin-top:8px;display:inline-block;font-weight:700}
-    .pricing-note{font-size:.8rem;color:var(--muted);margin-bottom:22px}
-    .pricing-feats{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
-    .pricing-feats li{font-size:.86rem;display:flex;align-items:flex-start;gap:8px}
+    .pricing-compare-wrap{max-width:600px;margin:44px auto 0}
+    .pricing-compare-card{border-radius:var(--radius);border:1.5px solid var(--border);overflow:hidden;box-shadow:var(--shadow-md);text-align:left}
+    .pcc-tiers{display:grid;grid-template-columns:1fr 1fr}
+    .pcc-tier-free{padding:24px 28px;background:var(--surface)}
+    .pcc-tier-pro{padding:24px 28px;background:linear-gradient(160deg,var(--accent-bg) 0%,#ede9ff 100%);border-left:1.5px solid var(--accent-light);position:relative}
+    .pcc-pro-badge{position:absolute;top:12px;right:12px;background:linear-gradient(90deg,var(--accent),var(--accent-mid));color:#fff;font-size:.62rem;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap;letter-spacing:.04em}
+    .pcc-tier-name{font-size:.7rem;font-weight:700;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+    .pcc-tier-price{font-family:'Inter Tight',sans-serif;font-size:2.6rem;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:4px}
+    .pcc-tier-price sup{font-size:1.1rem;vertical-align:top;margin-top:7px;font-weight:700;display:inline-block}
+    .pcc-tier-note{font-size:.74rem;color:var(--muted)}
+    .pcc-shared{padding:20px 28px;background:var(--surface);border-top:1px solid var(--border)}
+    .pcc-pro-extras{padding:20px 28px;background:linear-gradient(160deg,var(--accent-bg) 0%,#f5f2ff 100%);border-top:1px dashed var(--accent-light)}
+    .pcc-section-label{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+    .pcc-section-label--pro{color:var(--accent-mid)}
+    .pcc-extras-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+    .pcc-extras-header .pcc-section-label{margin-bottom:0}
+    .pcc-pro-only-tag{background:var(--accent);color:#fff;font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:100px;letter-spacing:.04em;white-space:nowrap}
+    .pcc-feat-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+    .pcc-feat-list li{font-size:.87rem;display:flex;align-items:flex-start;gap:8px;color:var(--fg)}
     .pf-check{color:var(--green);font-weight:700;flex-shrink:0}
-    .pf-cross{color:#cbd5e1;flex-shrink:0}
-    .btn-plan{display:block;text-align:center;padding:13px;border-radius:100px;font-size:.88rem;font-weight:700;transition:all .2s}
+    .pcc-actions{padding:20px 28px;border-top:1px solid var(--border);display:flex;gap:12px;background:var(--surface)}
+    .btn-plan{display:block;text-align:center;padding:13px;border-radius:100px;font-size:.88rem;font-weight:700;transition:all .2s;flex:1}
     .btn-plan-p{background:var(--accent);color:#fff}
     .btn-plan-p:hover{box-shadow:0 6px 20px rgba(79,70,229,.3);transform:translateY(-1px)}
     .btn-plan-s{border:1.5px solid var(--border);color:var(--fg)}
     .btn-plan-s:hover{border-color:var(--accent);color:var(--accent)}
+    @media(max-width:500px){
+      .pcc-tier-free,.pcc-tier-pro{padding:18px 14px}
+      .pcc-tier-price{font-size:2.1rem}
+      .pcc-shared,.pcc-pro-extras{padding:16px 14px}
+      .pcc-actions{padding:14px;flex-direction:column}
+    }
 
     /* ── FAQ ────────────────────────────────────────────── */
     .faq-bg{background:var(--bg)}
@@ -365,8 +380,8 @@
     .btn-ghost:hover{background:rgba(255,255,255,.1)}
 
     /* ── GOOGLE PLAY BADGE ─────────────────── */
-    .gp-badge-img{height:52px;width:auto;display:block;border-radius:8px}
-    @media(max-width:400px){.gp-badge-img{height:46px}}
+    .gp-badge-img{height:62px;width:auto;display:block;border-radius:8px}
+    @media(max-width:400px){.gp-badge-img{height:52px}}
 
     /* ── SCREENSHOT LIGHTBOX ───────────────── */
     .ss-lightbox{
@@ -428,34 +443,32 @@
     }
     @media(max-width:900px){
       .hero{padding-top:44px}
-      /* Hero: stack to phone + chips row below */
+      /* Hero: phone centered, all chips in row below */
       .hero-visual-wrap{
         max-width:100%;
-        grid-template-columns:1fr;
-        grid-template-rows:auto auto;
+        display:flex;flex-direction:column;align-items:center;
         gap:20px;
         margin-top:36px;
         padding:0;
       }
-      .hero-phone-col{grid-row:1;padding:0;width:100%}
-      .hero-phone{width:min(88vw,480px);max-width:none}
+      .hero-phone-col{order:1;padding:0;width:100%}
+      .hero-phone{width:min(92vw,540px);max-width:none}
       .hero-glow{width:300px;height:300px}
       .hero-feat-col{
-        grid-row:2;
-        flex-direction:row;flex-wrap:wrap;justify-content:center;gap:10px;
+        order:2;
+        flex-direction:row;flex-wrap:wrap;justify-content:center;gap:10px;width:100%;
       }
       .hero-feat-col.left,.hero-feat-col.right{
         align-items:center;padding:0;
       }
-      .feat-chip{width:70px;height:70px;padding:12px}
-      .feat-chip img{width:42px;height:42px}
+      .feat-chip{width:64px;height:64px;padding:7px}
+      .feat-chip img{width:50px;height:50px}
       /* Features: hide desktop tabs, show accordion */
       .feat-panels-desktop{display:none}
       .feat-accordion{display:flex}
       /* Layout fixes */
       .about-grid,.notif-grid{grid-template-columns:1fr;gap:36px}
       .how-grid{grid-template-columns:1fr}
-      .pricing-grid{grid-template-columns:1fr;max-width:360px}
       .stats-grid{grid-template-columns:repeat(2,1fr);gap:16px}
       .footer-top{grid-template-columns:1fr 1fr;gap:32px}
       .section{padding:68px 5%}
@@ -471,22 +484,20 @@
         margin-left:calc(50% - 50vw);
         padding:0;
       }
-      .hero-phone{width:min(88vw,480px);max-width:none}
+      .hero-phone{width:min(92vw,540px);max-width:none}
       .hero-glow{width:260px;height:260px}
-      .feat-chip{width:66px;height:66px;padding:12px}
+      .feat-chip{width:60px;height:60px;padding:6px}
       .footer-top{grid-template-columns:1fr;gap:28px}
       .about-feat-grid{grid-template-columns:1fr}
-      .notif-img{max-width:240px}
+      .notif-img{max-width:100%}
       .cta-band{padding:60px 5%}
       .ss-header{padding:56px 5% 28px}
       .ss-track img{flex:0 0 155px;height:330px}
     }
     @media(max-width:400px){
       .hero h1{font-size:2rem}
-      .hero-actions{flex-direction:column;align-items:stretch}
-      .btn-primary,.btn-secondary{justify-content:center;padding:15px 20px}
-      .feat-chip{width:58px;height:58px;padding:10px}
-      .feat-chip img{width:34px;height:34px}
+      .feat-chip{width:56px;height:56px;padding:6px}
+      .feat-chip img{width:44px;height:44px}
     }
   </style>
 </head>
@@ -530,7 +541,7 @@
   <div class="hero">
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
-      Free &amp; Offline-First Reminder App
+      Your Personal Reminder Companion
     </div>
     <h1>Never Forget<br /><span class="accent">a Date</span> Again.</h1>
     <p class="hero-sub">The personal reminder engine for birthdays, anniversaries, bills, and every date you can't afford to forget — no signup, no tracking, works offline.</p>
@@ -539,12 +550,6 @@
         <img class="gp-badge-img" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" />
       </a>
       <a class="btn-secondary" href="#features">Explore Features →</a>
-    </div>
-    <div class="hero-trust">
-      <span class="trust-pill"><span class="trust-check">✓</span> No signup</span>
-      <span class="trust-pill"><span class="trust-check">✓</span> Works offline</span>
-      <span class="trust-pill"><span class="trust-check">✓</span> Zero ads</span>
-      <span class="trust-pill"><span class="trust-check">✓</span> Free forever</span>
     </div>
 
     <!-- Hero visual: 3-column grid on desktop, stacked on mobile -->
@@ -955,35 +960,48 @@
     <span class="section-label reveal">Pricing</span>
     <h2 class="section-title reveal d1">Simple, Honest<br /><span class="text-accent">Pricing</span></h2>
     <p class="section-desc reveal d2" style="margin:0 auto">Free forever. Or upgrade once — no recurring fees, ever.</p>
-    <div class="pricing-grid">
-      <div class="pricing-card reveal d1">
-        <div class="pricing-plan">Free</div>
-        <div class="pricing-price">₹0</div>
-        <div class="pricing-note">Always free · No credit card</div>
-        <ul class="pricing-feats">
-          <li><span class="pf-check">✓</span> Up to 50 reminders</li>
-          <li><span class="pf-check">✓</span> Smart notifications</li>
-          <li><span class="pf-check">✓</span> Works offline · No account</li>
-          <li><span class="pf-check">✓</span> Import from contacts</li>
-          <li><span class="pf-cross">–</span> Google Drive backup</li>
-          <li><span class="pf-cross">–</span> Custom reminder types</li>
-          <li><span class="pf-cross">–</span> Unlimited reminders</li>
-        </ul>
-        <a class="btn-plan btn-plan-s" href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener">Download Free</a>
-      </div>
-      <div class="pricing-card featured reveal d2">
-        <div class="pricing-badge">Best Value</div>
-        <div class="pricing-plan">Pro</div>
-        <div class="pricing-price"><sup>₹</sup>49</div>
-        <div class="pricing-note">One-time · No subscription · Prices vary by region</div>
-        <ul class="pricing-feats">
-          <li><span class="pf-check">✓</span> Everything in Free</li>
-          <li><span class="pf-check">✓</span> Unlimited reminders</li>
-          <li><span class="pf-check">✓</span> Google Drive backup &amp; restore</li>
-          <li><span class="pf-check">✓</span> Custom types + emoji</li>
-          <li><span class="pf-check">✓</span> Pro stats dashboard</li>
-        </ul>
-        <a class="btn-plan btn-plan-p" href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener">Get Pro — One Time</a>
+    <div class="pricing-compare-wrap">
+      <div class="pricing-compare-card reveal d1">
+        <!-- Tier headers -->
+        <div class="pcc-tiers">
+          <div class="pcc-tier-free">
+            <div class="pcc-tier-name">Free</div>
+            <div class="pcc-tier-price">₹0</div>
+            <div class="pcc-tier-note">Always free · No credit card</div>
+          </div>
+          <div class="pcc-tier-pro">
+            <div class="pcc-pro-badge">Best Value</div>
+            <div class="pcc-tier-name">Pro</div>
+            <div class="pcc-tier-price"><sup>₹</sup>49</div>
+            <div class="pcc-tier-note">One-time · No subscription</div>
+          </div>
+        </div>
+        <!-- Shared features -->
+        <div class="pcc-shared">
+          <div class="pcc-section-label">Included in Free &amp; Pro</div>
+          <ul class="pcc-feat-list">
+            <li><span class="pf-check">✓</span> Smart notifications</li>
+            <li><span class="pf-check">✓</span> Works offline · No account</li>
+            <li><span class="pf-check">✓</span> Import from contacts</li>
+          </ul>
+        </div>
+        <!-- Pro extras -->
+        <div class="pcc-pro-extras">
+          <div class="pcc-extras-header">
+            <span class="pcc-section-label pcc-section-label--pro">Pro also unlocks</span>
+            <span class="pcc-pro-only-tag">PRO ONLY</span>
+          </div>
+          <ul class="pcc-feat-list">
+            <li><span class="pf-check">✓</span> Google Drive backup &amp; restore</li>
+            <li><span class="pf-check">✓</span> Custom types + emoji</li>
+            <li><span class="pf-check">✓</span> Pro stats dashboard</li>
+          </ul>
+        </div>
+        <!-- CTA actions -->
+        <div class="pcc-actions">
+          <a class="btn-plan btn-plan-s" href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener">Download Free</a>
+          <a class="btn-plan btn-plan-p" href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener">Get Pro — One Time</a>
+        </div>
       </div>
     </div>
   </div>
