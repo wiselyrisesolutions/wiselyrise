@@ -8,7 +8,7 @@
 (function () {
   /* ── Config ───────────────────────────────────────────────────────── */
   // Update this URL after deploying the Firebase Function.
-  const FUNCTION_URL = 'https://us-central1-YOUR-PROJECT-ID.cloudfunctions.net/submitContactForm';
+  const FUNCTION_URL = 'https://submitcontactform-c6cct7lpba-uc.a.run.app';
   const MAX = 3, MAXSZ = 3 * 1024 * 1024;
 
   /* ── Inject CSS ───────────────────────────────────────────────────── */
