@@ -7,9 +7,8 @@
  * ─────────────────────────────────────────────────────────────────── */
 (function () {
   /* ── Config ───────────────────────────────────────────────────────── */
-  const REPO = 'wiselyrisesolutions/wiselyrise';
-  const _a = 'github_pat_11B44VFRY0pfymoY', _b = 'UNBRB8_XyPUMpUZnRkwodMU', _c = 'XIYc20Rrb1dqthAG90r9IHn1A4lUTBIZTCXNnkbwIgb';
-  const tk = _a + _b + _c;
+  // Update this URL after deploying the Firebase Function.
+  const FUNCTION_URL = 'https://us-central1-YOUR-PROJECT-ID.cloudfunctions.net/submitContactForm';
   const MAX = 3, MAXSZ = 3 * 1024 * 1024;
 
   /* ── Inject CSS ───────────────────────────────────────────────────── */
@@ -98,6 +97,8 @@
               <option value="pixwise">PixWise</option>
               <option value="gramwise">GramWise</option>
               <option value="docuwise">DocuWise</option>
+              <option value="clinicwise">ClinicWise</option>
+              <option value="chitwise">ChitWise</option>
               <option value="other">Something Else 💡</option>
             </select>
           </div>
@@ -206,26 +207,6 @@
   function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   function setStatus(msg, type) { const el = document.getElementById('cmStatus'); if (!el) return; el.textContent = msg; el.className = 'cm-status' + (type ? ' cm-status--' + type : ''); }
   function toB64(f) { return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result.split(',')[1]); r.onerror = rej; r.readAsDataURL(f); }); }
-  function safeName(n) { return n.replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 60); }
-  function sid() { return new Date().toISOString().slice(0, 10) + '_' + Math.random().toString(36).slice(2, 8); }
-
-  async function ghPut(path, content) {
-    const r = await fetch('https://api.github.com/repos/' + REPO + '/contents/' + path, {
-      method: 'PUT',
-      headers: { 'Authorization': 'Bearer ' + tk, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: 'Contact form attachment', content })
-    });
-    if (!r.ok) throw new Error(r.status);
-  }
-
-  async function ghIssue(title, body) {
-    const r = await fetch('https://api.github.com/repos/' + REPO + '/issues', {
-      method: 'POST',
-      headers: { 'Authorization': 'Bearer ' + tk, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, body })
-    });
-    if (!r.ok) throw new Error(r.status);
-  }
 
   /* ── Wire up events after DOM is ready ───────────────────────────── */
   function init() {
@@ -263,48 +244,34 @@
       if (!product || !category || !subject || !desc) { setStatus('Please fill all required fields.', 'error'); return; }
       if (subject.length < 4) { setStatus('Subject is too short.', 'error'); return; }
 
-      const catMap = { bug: '🐛 Bug Report', feature: '✨ New Feature', improvement: '🔧 Improvement', general: '💬 General Feedback' };
-      const prodMap = { datewise: 'DateWise', pixwise: 'PixWise', gramwise: 'GramWise', docuwise: 'DocuWise', other: 'Other' };
-
       const btn = document.getElementById('cmSubmit');
-      btn.disabled = true; btn.textContent = 'Uploading…';
+      btn.disabled = true; btn.textContent = 'Sending…';
       setStatus('', '');
 
-      const session = sid();
-      let imgSection = '';
+      // Convert files to base64 for the server-side proxy
+      const filePayload = [];
       for (let i = 0; i < files.length; i++) {
-        setStatus('Uploading image ' + (i + 1) + ' of ' + files.length + '…', 'loading');
+        setStatus('Preparing image ' + (i + 1) + ' of ' + files.length + '…', 'loading');
         try {
-          const b64 = await toB64(files[i]);
-          const safe = safeName(files[i].name);
-          const path = 'uploads/contact/' + product + '/' + session + '/' + safe;
-          await ghPut(path, b64);
-          const url = 'https://raw.githubusercontent.com/' + REPO + '/main/' + path;
-          imgSection += '\n![' + safe + '](' + url + ')\n';
-        } catch (_) {
-          imgSection += '\n*(Image ' + (i + 1) + ' upload failed)*\n';
-        }
+          const content = await toB64(files[i]);
+          filePayload.push({ name: files[i].name, type: files[i].type, content });
+        } catch (_) { /* skip unreadable file */ }
       }
 
-      const title = '[' + (prodMap[product] || product) + '][' + (catMap[category] || category) + '] ' + subject;
-      const parts = [
-        '## ' + (catMap[category] || category) + ' — ' + (prodMap[product] || product), '',
-        '**Subject:** ' + subject, '',
-        '**Description:**', desc, '',
-        device ? '**Device / OS:** ' + device : null,
-        email ? '**Contact:** ' + email : null,
-        imgSection ? '\n---\n### Attachments\n' + imgSection : null,
-        '---', '*Submitted via wiselyrise.in*'
-      ].filter(l => l !== null).join('\n');
-
-      btn.textContent = 'Submitting…';
+      setStatus('Submitting…', 'loading');
       try {
-        await ghIssue(title, parts);
+        const r = await fetch(FUNCTION_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ product, category, subject, desc, device, email, files: filePayload })
+        });
+        const data = await r.json();
+        if (!r.ok) throw new Error(data.error || r.status);
         document.getElementById('cmForm').style.display = 'none';
         document.getElementById('cmSuccess').style.display = 'flex';
       } catch (err) {
         btn.disabled = false; btn.textContent = 'Send Feedback';
-        setStatus('Submission failed. Please email contact@wiselyrise.in directly.', 'error');
+        setStatus(err.message || 'Submission failed. Please email contact@wiselyrise.in directly.', 'error');
       }
     });
   }

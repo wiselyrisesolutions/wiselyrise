@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "YOUR-FIREBASE-PROJECT-ID"
+  },
+  "targets": {},
+  "etags": {}
+}
