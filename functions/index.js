@@ -24,7 +24,7 @@ function setCors(req, res) {
 }
 
 exports.submitContactForm = onRequest(
-  { timeoutSeconds: 30, memory: '256MiB' },
+  { invoker: 'public', timeoutSeconds: 30, memory: '256MiB' },
   async (req, res) => {
     setCors(req, res);
 
