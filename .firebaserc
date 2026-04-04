@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "YOUR-FIREBASE-PROJECT-ID"
+    "default": "wiselyrise-web"
   },
   "targets": {},
   "etags": {}
