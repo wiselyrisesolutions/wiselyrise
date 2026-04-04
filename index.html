@@ -88,55 +88,41 @@
     .tagline{font-size:1.1rem;color:var(--muted);max-width:480px;margin:0 auto 12px;animation:fadeUp .6s ease .14s both}
     .sub{font-size:.9rem;color:var(--muted);max-width:420px;margin:0 auto 0;animation:fadeUp .6s ease .2s both}
 
-    /* ── VALUES ────────────────────────── */
-    .values{padding:0 24px 64px}
-    .values-inner{max-width:800px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .value-card{text-align:center;padding:24px 16px;border-radius:16px;background:var(--surface);border:1px solid var(--border)}
-    .value-icon{font-size:1.6rem;margin-bottom:8px}
-    .value-card h3{font-size:.82rem;font-weight:700;margin-bottom:4px}
-    .value-card p{font-size:.76rem;color:var(--muted);line-height:1.5}
-
-    /* ── PRODUCTS ─────────────────────── */
-    .products{padding:48px 24px 80px}
-    .products-inner{max-width:800px;margin:0 auto}
-    .section-label{text-transform:uppercase;letter-spacing:3px;font-size:.7rem;color:var(--accent);font-weight:700;margin-bottom:28px;text-align:center}
-    .product-card{
-      background:var(--surface);border:1.5px solid var(--border);border-radius:20px;
-      padding:28px 28px 28px 28px;display:flex;align-items:flex-start;gap:20px;
-      color:inherit;transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s,border-color .22s;
-      margin-bottom:14px;position:relative;overflow:hidden;cursor:pointer;
+    /* ── SHOWCASE ──────────────────────── */
+    .showcase{padding:32px 24px 80px}
+    .showcase-inner{max-width:1000px;margin:0 auto}
+    .showcase-heading{text-align:center;margin-bottom:36px}
+    .showcase-heading small{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px}
+    .showcase-heading h2{font-size:clamp(1.3rem,2.5vw,1.7rem);font-weight:700;letter-spacing:-.03em;color:var(--muted)}
+    .sc-card{
+      border-radius:24px;border:1.5px solid var(--border);
+      overflow:hidden;box-shadow:var(--shadow-md);
+      margin-bottom:20px;
+      background:var(--surface);
+      display:grid;grid-template-columns:1fr 340px;
+      transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s;
+      text-decoration:none;color:inherit;
     }
-    .product-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--accent-light)}
-    .product-card:hover .product-arrow{opacity:1;transform:translateX(0)}
-    .product-card::after{
-      content:'';position:absolute;inset:0;border-radius:20px;
-      background:linear-gradient(135deg,rgba(91,33,182,.03) 0%,transparent 60%);
-      pointer-events:none;
+    a.sc-card:hover{transform:translateY(-5px);box-shadow:0 20px 60px rgba(91,33,182,.14)}
+    .sc-body{padding:44px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+    .sc-status{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;background:#dcfce7;color:#15803d;width:fit-content}
+    .sc-status-soon{background:#fef9c3;color:#854d0e}
+    .sc-title-row{display:flex;align-items:center;gap:14px}
+    .sc-icon{width:48px;height:48px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.12);flex-shrink:0;object-fit:contain}
+    .sc-title{font-size:2rem;font-weight:800;letter-spacing:-.05em}
+    .sc-desc{font-size:.9rem;color:var(--muted);line-height:1.7;max-width:460px}
+    .sc-tags{display:flex;gap:7px;flex-wrap:wrap}
+    .sc-tag{font-size:.72rem;color:var(--muted);background:#fafafa;border:1px solid var(--border);border-radius:20px;padding:3px 10px}
+    .sc-action{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:11px 24px;border-radius:100px;font-size:.86rem;font-weight:700;width:fit-content;transition:background .2s}
+    a.sc-card:hover .sc-action{background:var(--accent-mid)}
+    .sc-visual{
+      background:linear-gradient(150deg,#ede9fd 0%,#c7d2fe 100%);
+      display:flex;align-items:flex-end;justify-content:center;
+      overflow:hidden;padding:28px 28px 0;
     }
-    .product-icon{width:56px;height:56px;border-radius:13px;flex-shrink:0;object-fit:contain;box-shadow:0 2px 10px rgba(0,0,0,.1)}
-    .product-info{flex:1;min-width:0}
-    .product-name{font-size:1.1rem;font-weight:800;margin-bottom:5px;letter-spacing:-.02em}
-    .product-desc{font-size:.87rem;color:var(--muted);line-height:1.58;margin-bottom:12px}
-    .pill-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
-    .pill{font-size:.72rem;color:var(--muted);background:#fafafa;border:1px solid var(--border);border-radius:20px;padding:3px 10px}
-    .badge{
-      display:inline-flex;align-items:center;gap:6px;
-      background:var(--accent-bg);color:var(--accent);
-      font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:20px;
-      text-transform:uppercase;letter-spacing:.05em;
-    }
-    .badge-soon{background:#fef3c7;color:#92400e}
-    .product-arrow{
-      flex-shrink:0;
-      width:36px;height:36px;border-radius:50%;
-      background:var(--accent-bg);
-      display:flex;align-items:center;justify-content:center;
-      font-size:1rem;color:var(--accent);
-      opacity:0;transform:translateX(-6px);
-      transition:opacity .2s,transform .2s;
-      margin-top:2px;
-      align-self:center;
-    }
+    .sc-mockup{width:180px;display:block;filter:drop-shadow(0 12px 28px rgba(91,33,182,.22))}
+    .sc-visual-soon{align-items:center;padding:28px;background:linear-gradient(150deg,#f5f3ff 0%,#ede9fe 100%)}
+    .sc-soon-text{font-size:2.8rem;font-weight:900;letter-spacing:-.06em;color:rgba(91,33,182,.15);text-align:center;line-height:1.15}
 
     /* ── MANIFESTO ────────────────────── */
     .manifesto{padding:64px 24px;text-align:center;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -157,14 +143,15 @@
     @media(max-width:768px){
       .nav-links,.nav-contact{display:none}
       .hamburger{display:flex}
-      .values-inner{grid-template-columns:1fr 1fr}
-      .product-card{flex-direction:column;align-items:center;text-align:center}
-      .pill-row{justify-content:center}
-      .product-arrow{opacity:1;transform:translateX(0);align-self:center;margin-top:10px}
+      .sc-card{grid-template-columns:1fr}
+      .sc-visual{height:200px;padding:20px 20px 0}
+      .sc-mockup{width:130px}
+      .sc-body{padding:28px}
     }
     @media(max-width:480px){
-      .values-inner{grid-template-columns:1fr}
       h1{font-size:2rem}
+      .sc-body{padding:22px}
+      .sc-title{font-size:1.6rem}
     }
   </style>
 </head>
@@ -201,71 +188,54 @@
   <p class="sub reveal d3">No data harvested. No dark patterns. No subscriptions traps. Just honest software that works for you.</p>
 </div>
 
-<!-- ═══ VALUES ════════════════════════════════ -->
-<div class="values">
-  <div class="values-inner">
-    <div class="value-card reveal">
-      <div class="value-icon">🔒</div>
-      <h3>Privacy First</h3>
-      <p>Your data stays on your device. Period.</p>
+<!-- ═══ SHOWCASE ════════════════════════════════ -->
+<section class="showcase" id="products">
+  <div class="showcase-inner">
+    <div class="showcase-heading reveal">
+      <small>Our Products</small>
+      <h2>Tap a product to explore</h2>
     </div>
-    <div class="value-card reveal d1">
-      <div class="value-icon">📴</div>
-      <h3>Offline Capable</h3>
-      <p>No internet? No problem. Everything works locally.</p>
-    </div>
-    <div class="value-card reveal d2">
-      <div class="value-icon">💡</div>
-      <h3>Simple by Design</h3>
-      <p>No bloat. Just focused tools that do one thing well.</p>
-    </div>
-    <div class="value-card reveal d3">
-      <div class="value-icon">🤝</div>
-      <h3>Honest Pricing</h3>
-      <p>Free forever or one-time purchase. No subscription traps.</p>
-    </div>
-  </div>
-</div>
 
-<!-- ═══ PRODUCTS ═════════════════════════════ -->
-<section class="products" id="products">
-  <div class="products-inner">
-    <div class="section-label reveal">Our Products</div>
-    <p style="text-align:center;font-size:.82rem;color:var(--muted);margin-bottom:24px;margin-top:-16px" class="reveal d1">Tap a product to explore</p>
-
-    <a href="/datewise" class="product-card reveal d1">
-      <img src="/datewise/images/app_icon_light_trans.png" alt="DateWise icon" class="product-icon" />
-      <div class="product-info">
-        <div class="product-name">DateWise</div>
-        <div class="product-desc">The personal reminder engine for dates you cannot afford to forget. Birthdays, anniversaries, bills, and life events. Offline-first. No signup required.</div>
-        <div class="pill-row">
-          <span class="pill">Android</span>
-          <span class="pill">Privacy-first</span>
-          <span class="pill">Free forever</span>
+    <!-- DateWise -->
+    <a href="/datewise" class="sc-card reveal d1">
+      <div class="sc-body">
+        <span class="sc-status">Available on Play Store</span>
+        <div class="sc-title-row">
+          <img src="/datewise/images/app_icon_playstore.png" class="sc-icon" alt="DateWise" />
+          <span class="sc-title">DateWise</span>
         </div>
-        <div style="margin-top:12px">
-          <span class="badge">Available on Play Store →</span>
+        <p class="sc-desc">The personal reminder engine for dates you can't afford to forget. Birthdays, anniversaries, bills — offline-first, no signup, free forever.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">Android</span>
+          <span class="sc-tag">Privacy-first</span>
+          <span class="sc-tag">Free forever</span>
         </div>
+        <span class="sc-action">Explore DateWise →</span>
       </div>
-      <div class="product-arrow">→</div>
+      <div class="sc-visual">
+        <img src="/datewise/images/web_hero_reduced.png" class="sc-mockup" alt="DateWise app" />
+      </div>
     </a>
 
-    <a href="/pixwise" class="product-card reveal d2">
-      <img src="/pixwise/app_icon.png" alt="PixWise icon" class="product-icon" onerror="this.style.background='#f5f3ff';this.style.objectFit='none'" />
-      <div class="product-info">
-        <div class="product-name">PixWise</div>
-        <div class="product-desc">Your gallery, your rules. A private, offline-first gallery app with Secure Space, Guest Mode, smart albums, and a full-featured photo viewer. No cloud. No AI. No account.</div>
-        <div class="pill-row">
-          <span class="pill">Android</span>
-          <span class="pill">Privacy-first</span>
-          <span class="pill">Secure Space</span>
+    <!-- PixWise -->
+    <div class="sc-card reveal d2">
+      <div class="sc-body">
+        <span class="sc-status sc-status-soon">Coming Soon</span>
+        <div class="sc-title-row">
+          <img src="/pixwise/app_icon.png" class="sc-icon" alt="PixWise" onerror="this.style.background='#f5f3ff'" />
+          <span class="sc-title">PixWise</span>
         </div>
-        <div style="margin-top:12px">
-          <span class="badge badge-soon">Coming Soon →</span>
+        <p class="sc-desc">Your gallery, your rules. A private, offline-first gallery app with Secure Space, Guest Mode, and smart albums. No cloud. No AI. No account.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">Android</span>
+          <span class="sc-tag">Privacy-first</span>
+          <span class="sc-tag">Secure Space</span>
         </div>
       </div>
-      <div class="product-arrow">→</div>
-    </a>
+      <div class="sc-visual sc-visual-soon">
+        <span class="sc-soon-text">Coming<br/>Soon</span>
+      </div>
+    </div>
   </div>
 </section>
 
