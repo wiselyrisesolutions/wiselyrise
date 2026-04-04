@@ -129,13 +129,13 @@
     .btn-primary:hover{background:var(--accent-mid);transform:translateY(-2px);box-shadow:0 10px 32px rgba(91,33,182,.35)}
     .btn-secondary{
       display:inline-flex;align-items:center;gap:7px;
-      background:var(--surface);color:var(--fg);
+      background:var(--accent-bg);color:var(--accent);
       padding:10px 16px;border-radius:100px;
       font-size:.84rem;font-weight:600;
-      border:1.5px solid var(--border);
-      transition:border-color .2s,color .2s;
+      border:1.5px solid var(--accent-light);
+      transition:border-color .2s,color .2s,background .2s;
     }
-    .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+    .btn-secondary:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
     .hero-trust{
       display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:24px;
       animation:fadeUp .6s ease .26s both;
@@ -256,8 +256,8 @@
     .facc-item{border:1.5px solid var(--border);border-radius:16px;overflow:hidden;background:var(--surface);transition:border-color .2s}
     .facc-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;user-select:none;gap:12px}
     .facc-title{font-size:.92rem;font-weight:700;color:var(--fg)}
-    .facc-arrow{font-size:.7rem;color:var(--muted);transition:transform .25s;flex-shrink:0}
-    .facc-item.open .facc-arrow{transform:rotate(180deg)}
+    .facc-arrow{width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--accent-bg);color:var(--accent-mid);transition:transform .25s,background .2s;flex-shrink:0}
+    .facc-item.open .facc-arrow{transform:rotate(180deg);background:var(--accent);color:#fff}
     .facc-item.open{border-color:var(--accent-light)}
     .facc-body{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.22,1,.36,1)}
     .facc-item.open .facc-body{max-height:640px}
@@ -376,12 +376,12 @@
     .cta-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
     .btn-white{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);padding:14px 28px;border-radius:100px;font-size:.9rem;font-weight:700;transition:transform .2s,box-shadow .2s}
     .btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
-    .btn-ghost{display:inline-flex;align-items:center;gap:8px;border:2px solid rgba(255,255,255,.48);color:#fff;padding:12px 24px;border-radius:100px;font-size:.9rem;font-weight:600;transition:background .2s}
+    .btn-ghost{display:inline-flex;align-items:center;gap:8px;border:2px solid rgba(255,255,255,.48);color:#fff;padding:14px 28px;border-radius:100px;font-size:.9rem;font-weight:700;transition:background .2s}
     .btn-ghost:hover{background:rgba(255,255,255,.1)}
 
     /* ── GOOGLE PLAY BADGE ─────────────────── */
-    .gp-badge-img{height:62px;width:auto;display:block;border-radius:8px}
-    @media(max-width:400px){.gp-badge-img{height:52px}}
+    .gp-badge-img{height:44px;width:auto;display:block;border-radius:8px}
+    @media(max-width:400px){.gp-badge-img{height:40px}}
 
     /* ── SCREENSHOT LIGHTBOX ───────────────── */
     .ss-lightbox{
@@ -688,44 +688,6 @@
   </div>
 </section>
 
-<!-- ═══ ABOUT ════════════════════════════════ -->
-<section class="section" id="about">
-  <div class="section-inner">
-    <div class="about-grid">
-      <div>
-        <span class="section-label reveal">About DateWise</span>
-        <h2 class="section-title reveal d1">Remember What<br /><span class="text-accent">Actually Matters</span></h2>
-        <p class="section-desc reveal d2">At DateWise, we believe important dates shouldn't get lost in the noise. We built a focused, private app that helps you remember the people and obligations that matter — without subscriptions, sign-ups, or distractions.</p>
-        <div class="about-feat-grid">
-          <div class="about-feat reveal d2">
-            <div class="fi">🔒</div>
-            <h4>Fully Private</h4>
-            <p>Everything stays on your device. No cloud, no tracking, no data harvesting.</p>
-          </div>
-          <div class="about-feat reveal d3">
-            <div class="fi">📴</div>
-            <h4>Works Offline</h4>
-            <p>Add reminders, get notifications — no internet connection ever needed.</p>
-          </div>
-          <div class="about-feat reveal d3">
-            <div class="fi">🎯</div>
-            <h4>Smart Timeline</h4>
-            <p>See Today, Tomorrow, This Week, This Month and Later — at a glance.</p>
-          </div>
-          <div class="about-feat reveal d4">
-            <div class="fi">💎</div>
-            <h4>Free Forever</h4>
-            <p>Core features are free. Upgrade to Pro once for cloud backup &amp; more.</p>
-          </div>
-        </div>
-      </div>
-      <div class="reveal d2" style="display:flex;justify-content:center">
-        <img class="about-img" src="/datewise/images/Screen-0.png" alt="DateWise — get started" />
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ FEATURES ═════════════════════════════ -->
 <section class="section features-bg" id="features">
   <div class="section-inner">
@@ -738,7 +700,7 @@
     <!-- Desktop tab + panel -->
     <div class="feat-panels-desktop">
       <div class="feat-tabs reveal d2">
-        <button class="feat-tab active" data-tab="timeline">📅 Smart Timeline</button>
+        <button class="feat-tab active" data-tab="timeline">⏱ Smart Timeline</button>
         <button class="feat-tab" data-tab="contacts">👥 Contact Import</button>
         <button class="feat-tab" data-tab="privacy">🔒 Privacy &amp; Security</button>
         <button class="feat-tab" data-tab="pro">💎 Pro Features</button>
@@ -815,8 +777,8 @@
     <div class="feat-accordion" id="featAccordion">
       <div class="facc-item open">
         <div class="facc-header">
-          <span class="facc-title">📅 Smart Timeline</span>
-          <span class="facc-arrow">▼</span>
+          <span class="facc-title">⏱ Smart Timeline</span>
+          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
         <div class="facc-body">
           <div class="facc-inner">
@@ -837,7 +799,7 @@
       <div class="facc-item">
         <div class="facc-header">
           <span class="facc-title">👥 Contact Import</span>
-          <span class="facc-arrow">▼</span>
+          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
         <div class="facc-body">
           <div class="facc-inner">
@@ -857,7 +819,7 @@
       <div class="facc-item">
         <div class="facc-header">
           <span class="facc-title">🔒 Privacy &amp; Security</span>
-          <span class="facc-arrow">▼</span>
+          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
         <div class="facc-body">
           <div class="facc-inner">
@@ -877,7 +839,7 @@
       <div class="facc-item">
         <div class="facc-header">
           <span class="facc-title">💎 Pro Features</span>
-          <span class="facc-arrow">▼</span>
+          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
         <div class="facc-body">
           <div class="facc-inner">
@@ -994,7 +956,8 @@
           <ul class="pcc-feat-list">
             <li><span class="pf-check">✓</span> Google Drive backup &amp; restore</li>
             <li><span class="pf-check">✓</span> Custom types + emoji</li>
-            <li><span class="pf-check">✓</span> Pro stats dashboard</li>
+            <li><span class="pf-check">✓</span> Custom reminder intervals</li>
+            <li><span class="pf-check">✓</span> Custom relationship tags</li>
           </ul>
         </div>
         <!-- CTA actions -->
@@ -1051,9 +1014,7 @@
   <h2 class="reveal">Start Remembering<br />What Actually Matters</h2>
   <p class="reveal d1">Free forever. No account. Works offline. Set up in 30 seconds.</p>
   <div class="cta-btns reveal d2">
-    <a href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener">
-      <img class="gp-badge-img" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" />
-    </a>
+    <a class="btn-white" href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener">Get it on Google Play</a>
     <a class="btn-ghost" href="#features">See All Features →</a>
   </div>
 </div>
@@ -1230,8 +1191,8 @@
       if (e.key === 'ArrowRight') goTo(current + 1);
     });
 
-    // Init after layout settles
-    function init() { goTo(0); }
+    // Init after layout settles — start on slide 1 so there's one each side
+    function init() { goTo(1); }
     if (document.readyState === 'complete') {
       init();
     } else {
