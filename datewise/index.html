@@ -525,6 +525,7 @@
     <li><a href="#faq">FAQ</a></li>
     <li><a href="/" style="color:var(--accent-mid);font-weight:600">WiselyRise 🏠︎</a></li>
   </ul>
+  <a href="#" class="nav-cta nav-desktop" onclick="openContactModal('datewise');return false;" style="margin-right:8px;background:none;border:1.5px solid var(--accent);color:var(--accent)">Feedback</a>
   <a class="nav-cta nav-desktop" href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener">
     Get it on Google Play
   </a>
@@ -540,6 +541,7 @@
   <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
   <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
   <a href="/" onclick="closeMobileMenu()">WiselyRise</a>
+  <a href="#" onclick="closeMobileMenu();openContactModal('datewise');return false;">Feedback</a>
   <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener" onclick="closeMobileMenu()">
     Get the App
   </a>
@@ -1057,7 +1059,7 @@
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="mailto:contact@wiselyrise.in">Contact Us</a></li>
+          <li><a href="#" onclick="openContactModal('datewise');return false;">Contact Us</a></li>
           <li><a href="/">WiselyRise</a></li>
         </ul>
       </div>
@@ -1282,5 +1284,6 @@
     });
   });
 </script>
+<script src="/shared/contact-modal.js"></script>
 </body>
 </html>
