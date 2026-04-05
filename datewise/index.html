@@ -1285,5 +1285,9 @@
   });
 </script>
 <script src="/shared/contact-modal.js"></script>
+<script>
+  if (new URLSearchParams(window.location.search).get('contact') === '1')
+    window.addEventListener('load', function () { openContactModal('datewise'); });
+</script>
 </body>
 </html>
