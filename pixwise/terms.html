@@ -1,69 +1,118 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms of Service — PixWise</title>
-  <meta name="description" content="PixWise terms of service. Simple, fair terms for a simple, fair app." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>Terms of Use — PixWise</title>
   <style>
-    :root{--bg:#fafafa;--fg:#111;--muted:#555;--accent:#1565c0;--surface:#fff;--border:#e0e0e0}
-    @media(prefers-color-scheme:dark){:root{--bg:#0b0e14;--fg:#e8eaf0;--muted:#999;--accent:#64b5f6;--surface:#151b26;--border:#253040}}
+    :root{--bg:#fafafa;--fg:#0f0f0f;--muted:#6b7280;--border:#e5e7eb;--accent:#1565c0;--accent-bg:#eff6ff}
+    @media(prefers-color-scheme:dark){:root{--bg:#0f0f0f;--fg:#e8e8e8;--muted:#9ca3af;--border:#2d2d2d;--accent:#60a5fa;--accent-bg:#0f1f38}}
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.7}
-    .container{max-width:680px;margin:0 auto;padding:64px 24px}
-    h1{font-size:2rem;font-weight:800;margin-bottom:8px}
-    .updated{font-size:.85rem;color:var(--muted);margin-bottom:36px}
-    h2{font-size:1.15rem;font-weight:700;margin:32px 0 8px}
-    p,ul{font-size:.92rem;color:var(--muted);margin-bottom:16px}
-    ul{padding-left:20px}
-    li{margin-bottom:6px}
+    body{font-family:'DM Sans',system-ui,-apple-system,sans-serif;
+      background:var(--bg);color:var(--fg);line-height:1.68;padding:28px 20px}
+    .container{max-width:700px;margin:0 auto}
+    h1{font-size:1.7rem;margin-bottom:6px;font-weight:800;letter-spacing:-.03em}
+    .subtitle{color:var(--muted);font-size:.83rem;margin-bottom:32px}
+    h2{font-size:1.1rem;margin:32px 0 10px;color:var(--accent);font-weight:700}
+    h3{font-size:.97rem;margin:22px 0 8px;font-weight:600}
+    p,li{font-size:.91rem;margin-bottom:8px;color:var(--fg);line-height:1.7}
+    ul{padding-left:22px;margin-bottom:14px}
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
-    .back{display:inline-block;margin-bottom:24px;font-size:.85rem;color:var(--accent);font-weight:600}
+    .divider{border:none;border-top:1px solid var(--border);margin:32px 0}
+    .nav-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+    .nav-bar a{font-size:.83rem;font-weight:500;color:var(--muted)}
+    .nav-bar a:hover{color:var(--accent)}
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet" />
 </head>
 <body>
 <div class="container">
-  <a class="back" href="/pixwise">← Back to PixWise</a>
-  <h1>Terms of Service</h1>
-  <p class="updated">Last updated: January 2025</p>
 
-  <h2>Acceptance of Terms</h2>
-  <p>By downloading, installing, or using PixWise ("the App"), you agree to these Terms of Service. If you do not agree, please do not use the App.</p>
+  <div class="nav-bar">
+    <a href="/pixwise/" style="display:inline-flex;align-items:center;gap:6px">
+      <img src="/pixwise/images/app_icon_playstore.png" alt="PixWise" style="width:32px;height:32px;border-radius:20%;vertical-align:middle" />
+      <strong style="color:var(--fg)">PixWise</strong>
+    </a>
+    <div style="display:flex;gap:16px">
+      <a href="/pixwise/">&#10094; Back to App</a>
+      <a href="/">WiselyRise &#127968;</a>
+    </div>
+  </div>
 
-  <h2>Description of Service</h2>
-  <p>PixWise is a free Android gallery application that lets you browse, organize, and manage photos and videos stored on your device. The App operates entirely offline and does not require an account or internet connection.</p>
+  <h1>Terms of Use</h1>
+  <p class="subtitle">Last updated: 8 April 2026</p>
 
-  <h2>Your Content</h2>
-  <p>PixWise does not claim any ownership or rights over your photos, videos, or any other content. All media remains on your device under your control. We do not access, copy, or transmit your content in any way.</p>
+  <p>These Terms of Use ("Terms") govern your use of the PixWise mobile application ("the app") developed by WiselyRise. By downloading, installing, or using PixWise, you agree to these Terms.</p>
 
-  <h2>Secure Space</h2>
-  <p>The Secure Space feature moves files to app-private storage protected by biometric or PIN authentication. Please note:</p>
+  <h2>1. Acceptance of Terms</h2>
+  <p>By accessing or using PixWise, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, please do not use the app.</p>
+
+  <h2>2. Description of Service</h2>
+  <p>PixWise is a local gallery application for Android that lets you browse, organize, and manage photos and videos stored on your device. Key features include:</p>
   <ul>
-    <li>Files in Secure Space are deleted when you uninstall the App.</li>
-    <li>If you forget your PIN and biometric authentication fails, there is no recovery mechanism for Secure Space files.</li>
-    <li>We recommend keeping backups of important files outside of Secure Space.</li>
+    <li><strong>Timeline &amp; Albums view</strong> &mdash; Chronological timeline and album-based organization.</li>
+    <li><strong>Lite Mode</strong> &mdash; One-tap hiding of private albums when handing your device to others.</li>
+    <li><strong>Secure Space</strong> &mdash; Biometric-protected private vault stored in app-private storage.</li>
+    <li><strong>Recycle Bin</strong> &mdash; 30-day soft-delete recovery for deleted media.</li>
+    <li><strong>Rename, rotate, wallpaper, share</strong> &mdash; In-viewer media management tools.</li>
+    <li><strong>Smart search</strong> &mdash; Search by date, type, and file size.</li>
+  </ul>
+  <p>PixWise is a free app. All features are available without payment, subscription, or account creation.</p>
+
+  <h2>3. User Data &amp; Content</h2>
+  <ul>
+    <li>You retain full ownership of all photos, videos, and other media on your device.</li>
+    <li>PixWise does not upload, copy, or transmit your media to any server.</li>
+    <li>Data stored within the app (Secure Space, Recycle Bin, album metadata) remains on your device and is your responsibility to back up externally if desired.</li>
+    <li>Uninstalling the app permanently deletes Secure Space contents. We are not responsible for data lost due to uninstallation or device failure.</li>
   </ul>
 
-  <h2>Recycle Bin</h2>
-  <p>Deleted items are moved to a Recycle Bin and automatically purged after 30 days. Items in the Recycle Bin can be restored before the purge period expires.</p>
+  <h2>4. Acceptable Use</h2>
+  <p>You agree not to:</p>
+  <ul>
+    <li>Reverse-engineer, decompile, or disassemble the app.</li>
+    <li>Attempt to circumvent biometric or PIN authentication measures.</li>
+    <li>Use the app for any unlawful or prohibited purpose under applicable law.</li>
+    <li>Distribute, sublicense, or resell the app or any of its features.</li>
+  </ul>
 
-  <h2>Disclaimer of Warranties</h2>
-  <p>PixWise is provided "as is" without warranty of any kind, express or implied. We do not guarantee that the App will be error-free, uninterrupted, or free from data loss. Use the App at your own risk.</p>
+  <h2>5. Permissions</h2>
+  <p>PixWise requests only the Android permissions necessary to function as a gallery app. You may revoke permissions at any time through your device settings; doing so may limit app functionality. See our <a href="/pixwise/privacy.html">Privacy Policy</a> for a full description of each permission.</p>
 
-  <h2>Limitation of Liability</h2>
-  <p>To the fullest extent permitted by law, WiselyRise shall not be liable for any indirect, incidental, or consequential damages arising from your use of PixWise, including but not limited to loss of photos or data.</p>
+  <h2>6. Intellectual Property</h2>
+  <p>The PixWise app, including its design, code, icons, and branding, is the intellectual property of WiselyRise. You are granted a limited, non-exclusive, non-transferable licence to use the app for personal, non-commercial purposes.</p>
 
-  <h2>Changes to Terms</h2>
-  <p>We may update these terms from time to time. Continued use of the App after changes constitutes acceptance of the new terms.</p>
+  <h2>7. Disclaimer of Warranties</h2>
+  <p>PixWise is provided "as is" without warranties of any kind. We do not guarantee that:</p>
+  <ul>
+    <li>The app will be uninterrupted, error-free, or free of harmful components.</li>
+    <li>Recycle Bin items will be preserved if you clear app data or reinstall.</li>
+    <li>Secure Space data will survive a factory reset or app uninstall.</li>
+    <li>The update checker will always reach our servers (requires active internet).</li>
+  </ul>
 
-  <h2>Governing Law</h2>
-  <p>These terms are governed by the laws of India. Any disputes will be resolved under the jurisdiction of courts in India.</p>
+  <h2>8. Limitation of Liability</h2>
+  <p>To the maximum extent permitted by law, WiselyRise shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the app, including but not limited to data loss, accidental deletion, or device issues.</p>
 
-  <h2>Contact</h2>
-  <p>For questions about these terms, contact us at <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>.</p>
+  <h2>9. Modifications to the App &amp; Terms</h2>
+  <ul>
+    <li>We reserve the right to modify, update, or discontinue any part of the app at any time.</li>
+    <li>We may update these Terms from time to time. Changes will be reflected by the "Last updated" date above.</li>
+    <li>Continued use of the app after changes constitutes acceptance of the revised Terms.</li>
+  </ul>
+
+  <h2>10. Governing Law</h2>
+  <p>These Terms are governed by the laws of India. Any disputes arising from these Terms shall be subject to the jurisdiction of the courts in India.</p>
+
+  <h2>11. Contact Us</h2>
+  <p>If you have questions about these Terms, please contact us at:</p>
+  <p><strong>Email:</strong> <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a></p>
+
+  <hr class="divider" />
+  <p style="color:var(--muted);font-size:.8rem;text-align:center">&copy; 2026 WiselyRise. All rights reserved.</p>
+  <p style="text-align:center;margin-top:16px;font-size:.84rem"><a href="/pixwise/">&#10094; Back to PixWise</a> &nbsp;&middot;&nbsp; <a href="/pixwise/privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/">WiselyRise &#127968;</a></p>
 </div>
 </body>
 </html>

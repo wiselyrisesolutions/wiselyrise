@@ -1,71 +1,104 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — PixWise</title>
-  <meta name="description" content="PixWise privacy policy. We don't collect, store, or transmit any of your data. Zero tracking. Zero analytics." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="PixWise privacy policy. Your photos never leave your device. Zero tracking. Zero analytics." />
   <style>
-    :root{--bg:#fafafa;--fg:#111;--muted:#555;--accent:#1565c0;--surface:#fff;--border:#e0e0e0}
-    @media(prefers-color-scheme:dark){:root{--bg:#0b0e14;--fg:#e8eaf0;--muted:#999;--accent:#64b5f6;--surface:#151b26;--border:#253040}}
+    :root{--bg:#fafafa;--fg:#0f0f0f;--muted:#6b7280;--border:#e5e7eb;--accent:#1565c0;--accent-bg:#eff6ff}
+    @media(prefers-color-scheme:dark){:root{--bg:#0f0f0f;--fg:#e8e8e8;--muted:#9ca3af;--border:#2d2d2d;--accent:#60a5fa;--accent-bg:#0f1f38}}
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.7}
-    .container{max-width:680px;margin:0 auto;padding:64px 24px}
-    h1{font-size:2rem;font-weight:800;margin-bottom:8px}
-    .updated{font-size:.85rem;color:var(--muted);margin-bottom:36px}
-    h2{font-size:1.15rem;font-weight:700;margin:32px 0 8px}
-    p,ul{font-size:.92rem;color:var(--muted);margin-bottom:16px}
-    ul{padding-left:20px}
-    li{margin-bottom:6px}
+    body{font-family:'DM Sans',system-ui,-apple-system,sans-serif;
+      background:var(--bg);color:var(--fg);line-height:1.68;padding:28px 20px}
+    .container{max-width:700px;margin:0 auto}
+    h1{font-size:1.7rem;margin-bottom:6px;font-weight:800;letter-spacing:-.03em}
+    .subtitle{color:var(--muted);font-size:.83rem;margin-bottom:32px}
+    h2{font-size:1.1rem;margin:32px 0 10px;color:var(--accent);font-weight:700}
+    h3{font-size:.97rem;margin:22px 0 8px;font-weight:600}
+    p,li{font-size:.91rem;margin-bottom:8px;color:var(--fg);line-height:1.7}
+    ul{padding-left:22px;margin-bottom:14px}
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
-    .back{display:inline-block;margin-bottom:24px;font-size:.85rem;color:var(--accent);font-weight:600}
+    .divider{border:none;border-top:1px solid var(--border);margin:32px 0}
+    .nav-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+    .nav-bar a{font-size:.83rem;font-weight:500;color:var(--muted)}
+    .nav-bar a:hover{color:var(--accent)}
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet" />
 </head>
 <body>
 <div class="container">
-  <a class="back" href="/pixwise">← Back to PixWise</a>
+
+  <div class="nav-bar">
+    <a href="/pixwise/" style="display:inline-flex;align-items:center;gap:6px">
+      <img src="/pixwise/images/app_icon_playstore.png" alt="PixWise" style="width:32px;height:32px;border-radius:20%;vertical-align:middle" />
+      <strong style="color:var(--fg)">PixWise</strong>
+    </a>
+    <div style="display:flex;gap:16px">
+      <a href="/pixwise/">&#10094; Back to App</a>
+      <a href="/">WiselyRise &#127968;</a>
+    </div>
+  </div>
+
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: January 2025</p>
+  <p class="subtitle">Last updated: 8 April 2026</p>
 
-  <h2>Summary</h2>
-  <p>PixWise does not collect, store, or transmit any personal data. Your photos never leave your device. There are no analytics, no tracking pixels, no ad networks, and no cloud services.</p>
+  <p>PixWise ("we", "our", or "the app") is developed by WiselyRise. This Privacy Policy explains how we handle your information when you use the PixWise mobile application.</p>
 
-  <h2>Data We Collect</h2>
-  <p><strong>None.</strong> PixWise operates entirely on-device. We do not collect:</p>
+  <h2>1. Summary</h2>
+  <p>PixWise is a <strong>local-first</strong> gallery app. Your photos and videos never leave your device. We do not collect personal data, usage analytics, or telemetry. The only outbound network request the app makes is a brief, anonymous version check to notify you of app updates.</p>
+
+  <h2>2. Information We Collect</h2>
+
+  <h3>2.1 Information You Provide</h3>
+  <p>PixWise does not require you to create an account or provide any personal information. All data you create within the app (album names, folder renames, Secure Space contents, Recycle Bin items) is stored exclusively on your device.</p>
+
+  <h3>2.2 Information Collected Automatically</h3>
   <ul>
-    <li>Personal information (name, email, phone number)</li>
-    <li>Usage analytics or telemetry</li>
-    <li>Location data</li>
-    <li>Photo metadata or file contents</li>
-    <li>Device identifiers</li>
+    <li><strong>Version check:</strong> The app periodically fetches a small JSON file from <code>wiselyrise-web.web.app</code> to check whether an update is available. This request contains no personal data &mdash; no device ID, no user ID, no IP address is retained by us.</li>
+    <li>We do <strong>not</strong> collect usage analytics, crash reports, advertising identifiers, location data, or any other telemetry.</li>
   </ul>
 
-  <h2>Permissions</h2>
-  <p>PixWise requests the following Android permissions solely to function as a gallery app:</p>
+  <h3>2.3 Photos &amp; Videos</h3>
+  <p>PixWise reads your device media solely to display it within the app. Photo and video content is <strong>never</strong> uploaded, transmitted, or shared with any server or third party. Files moved into Secure Space are stored in app-private internal storage and cannot be accessed by other apps.</p>
+
+  <h2>3. Permissions</h2>
+  <p>PixWise requests the following Android permissions, each used only for its stated purpose:</p>
   <ul>
-    <li><strong>READ_MEDIA_IMAGES / READ_MEDIA_VIDEO</strong> — To display your photos and videos from device storage.</li>
-    <li><strong>USE_BIOMETRIC</strong> — To authenticate access to Secure Space using your fingerprint or face.</li>
-    <li><strong>SET_WALLPAPER</strong> — To allow you to set a photo as your device wallpaper from the viewer.</li>
+    <li><strong>READ_MEDIA_IMAGES / READ_MEDIA_VIDEO</strong> &mdash; Core gallery functionality: display, browse, search, organize, and manage photos and videos stored on your device.</li>
+    <li><strong>READ_MEDIA_VISUAL_USER_SELECTED</strong> &mdash; Android 14+ partial access grant when you choose to give access to specific photos only.</li>
+    <li><strong>READ_EXTERNAL_STORAGE</strong> (Android &le; 12 only) &mdash; Read media on older devices.</li>
+    <li><strong>WRITE_EXTERNAL_STORAGE</strong> (Android &le; 8 only) &mdash; Write/rename media files on older devices.</li>
+    <li><strong>MANAGE_MEDIA</strong> &mdash; Enables silent move-to-trash and delete operations without a per-file system confirmation dialog (API 31+). Used for Move to Recycle Bin and Secure Space.</li>
+    <li><strong>USE_BIOMETRIC</strong> &mdash; Authenticate access to Secure Space and Lite Mode using your fingerprint or face.</li>
+    <li><strong>SET_WALLPAPER</strong> &mdash; Set any photo as your device wallpaper from the viewer.</li>
+    <li><strong>INTERNET</strong> &mdash; Used only for the update version check described above. No photo or personal data is sent.</li>
   </ul>
-  <p>No data accessed through these permissions is ever transmitted off your device.</p>
 
-  <h2>Secure Space</h2>
-  <p>Photos moved to Secure Space are stored in app-private internal storage, inaccessible to other apps. They are protected by biometric authentication or PIN. Secure Space data is never backed up to cloud services and is deleted when you uninstall the app.</p>
+  <h2>4. Secure Space</h2>
+  <p>Photos and videos moved to Secure Space are stored in app-private internal storage, isolated from your main gallery and inaccessible to other apps. They are protected by biometric authentication. Secure Space data is never backed up to cloud services automatically, and is permanently deleted when you uninstall the app unless you export it first.</p>
 
-  <h2>Third-Party Services</h2>
-  <p>PixWise does not integrate any third-party analytics, advertising, crash reporting, or cloud services. The app has no internet permission and cannot communicate with any server.</p>
+  <h2>5. Recycle Bin</h2>
+  <p>Deleted items are moved to the Recycle Bin and stored locally on your device. They are automatically purged after 30 days, or you can clear them manually. Items in the Recycle Bin are never transmitted off your device.</p>
 
-  <h2>Children's Privacy</h2>
-  <p>PixWise does not knowingly collect any data from children. Since we collect no data at all, there is no personal information at risk.</p>
+  <h2>6. Data Sharing</h2>
+  <p>We do <strong>not</strong> sell, trade, or share any data with third parties. PixWise has no advertising SDK, analytics SDK, or social login integration.</p>
 
-  <h2>Changes to This Policy</h2>
-  <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated date.</p>
+  <h2>7. Children's Privacy</h2>
+  <p>PixWise is not directed at children under 13. Since we collect no personal data, there is no personal information about children at risk. If you have concerns, contact us at the address below.</p>
 
-  <h2>Contact</h2>
-  <p>If you have any questions about this privacy policy, contact us at <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>.</p>
+  <h2>8. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. Changes will be reflected by the "Last updated" date above. Continued use of the app after changes constitutes acceptance of the revised policy.</p>
+
+  <h2>9. Contact Us</h2>
+  <p>If you have questions or concerns about this Privacy Policy, please contact us at:</p>
+  <p><strong>Email:</strong> <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a></p>
+
+  <hr class="divider" />
+  <p style="color:var(--muted);font-size:.8rem;text-align:center">&copy; 2026 WiselyRise. All rights reserved.</p>
+  <p style="text-align:center;margin-top:16px;font-size:.84rem"><a href="/pixwise/">&#10094; Back to PixWise</a> &nbsp;&middot;&nbsp; <a href="/pixwise/terms.html">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="/">WiselyRise &#127968;</a></p>
 </div>
 </body>
 </html>
