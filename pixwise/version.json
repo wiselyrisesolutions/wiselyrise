@@ -1,7 +1,7 @@
 {
-  "latest_build": 2,
+  "latest_build": 3,
   "latest_version": "1.0.0",
   "min_build": 2,
-  "changelog": "First release — Timeline & Albums view, Lite Mode, Secure Space, Recycle Bin, rename, long-press zoom.",
+  "changelog": "UX polish: smoother animations, edit button in viewer, album storage sizes, cinematic long-press view, faster video controls, lifecycle-aware playback, and more.",
   "store_url": "https://play.google.com/store/apps/details?id=com.pixwise.app"
 }
