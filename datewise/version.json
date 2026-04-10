@@ -1,7 +1,7 @@
 {
-  "latest_build": 28,
-  "latest_version": "2.3.8",
+  "latest_build": 29,
+  "latest_version": "2.3.9",
   "min_build": 1,
-  "changelog": "Smarter wishes with copy/edit/share. Bug fixes.",
+  "changelog": "Tag filter fixes, smarter notifications, wish messages. Bug fixes.",
   "store_url": "https://play.google.com/store/apps/details?id=com.datewise.app"
 }
