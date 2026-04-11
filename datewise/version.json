@@ -1,7 +1,7 @@
 {
-  "latest_build": 29,
-  "latest_version": "2.3.9",
+  "latest_build": 30,
+  "latest_version": "2.4.0",
   "min_build": 1,
-  "changelog": "Tag filter fixes, smarter notifications, wish messages. Bug fixes.",
+  "changelog": "Fix: update notification now reliably appears. Wish messages, tag filters, smarter notifications.",
   "store_url": "https://play.google.com/store/apps/details?id=com.datewise.app"
 }
