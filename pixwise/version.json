@@ -1,7 +1,7 @@
 {
-  "latest_build": 9,
-  "latest_version": "2.1.0",
+  "latest_build": 10,
+  "latest_version": "2.2.0",
   "min_build": 9,
-  "changelog": "UX polish: smoother animations, edit button in viewer, album storage sizes, cinematic long-press view, faster video controls, lifecycle-aware playback, and more.",
+  "changelog": "Pinch-to-zoom grid columns on all screens, delete confirmation gate, lite mode deactivation fix, correct version display in update dialog.",
   "store_url": "https://play.google.com/store/apps/details?id=com.pixwise.app"
 }
