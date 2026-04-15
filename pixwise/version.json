@@ -1,6 +1,6 @@
 {
-  "latest_build": 16,
-  "latest_version": "2.5.0",
+  "latest_build": 17,
+  "latest_version": "2.5.1",
   "min_build": 9,
   "changelog": "3rd onboarding screen: Tap & Hold gesture tutorial with animated bottom sheet, Show/Hide in Lite Mode and Move to Secure Space highlights.",
   "store_url": "https://play.google.com/store/apps/details?id=com.pixwise.app"
