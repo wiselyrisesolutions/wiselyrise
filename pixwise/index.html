@@ -4,176 +4,442 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PixWise — Your Gallery, Your Rules</title>
-  <meta name="description" content="PixWise is a private, offline gallery app for Android. Secure Space, Guest Mode, smart albums, pinch-to-zoom viewer, and zero cloud dependency." />
+  <meta name="description" content="PixWise is a private, offline gallery for Android. Lite Mode, Secure Space vault, Recycle Bin, smart search — 100% on-device. No cloud, no account." />
   <meta property="og:title" content="PixWise — Your Gallery, Your Rules" />
-  <meta property="og:description" content="A private, offline-first gallery app that keeps your photos safe." />
+  <meta property="og:description" content="Private offline-first gallery for Android with Lite Mode, Secure Space, and smart albums." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://wiselyrise.in/pixwise" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root{--bg:#fafafa;--fg:#111;--muted:#555;--accent:#1565c0;--accent-glow:#42a5f5;--soft:#e3f2fd;--surface:#fff;--border:#e0e0e0;--green:#2e7d32;--green-bg:#e8f5e9;--warm:#e65100;--warm-bg:#fff3e0;--indigo:#5e35b1;--indigo-bg:#ede7f6;--teal:#00796b;--teal-bg:#e0f2f1}
-    @media(prefers-color-scheme:dark){:root{--bg:#0b0e14;--fg:#e8eaf0;--muted:#999;--accent:#64b5f6;--accent-glow:#90caf9;--soft:#131a26;--surface:#151b26;--border:#253040;--green:#66bb6a;--green-bg:#1b2e1b;--warm:#ffb74d;--warm-bg:#2a1f10;--indigo:#b39ddb;--indigo-bg:#1c1826;--teal:#80cbc4;--teal-bg:#102020}}
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-    .hero{position:relative;text-align:center;padding:64px 24px 48px;overflow:hidden}
-    .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);opacity:.08;pointer-events:none}
-    .hero-icon{width:80px;height:80px;margin-bottom:20px;border-radius:18px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
-    .hero h1{font-size:clamp(2rem,6vw,3rem);font-weight:800;line-height:1.1;max-width:600px;margin:0 auto 12px;letter-spacing:-.03em}
-    .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent-glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero .tagline{font-size:1.1rem;color:var(--muted);max-width:480px;margin:0 auto 28px}
-    .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:14px 32px;border-radius:28px;text-decoration:none;font-weight:700;font-size:.92rem;transition:transform .2s,box-shadow .2s}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(21,101,192,.3)}
-    .trust{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:40px}
-    .trust span{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted);font-weight:500}
-    section{padding:72px 24px}
-    .inner{max-width:960px;margin:0 auto}
-    .section-label{text-transform:uppercase;letter-spacing:3px;font-size:.7rem;color:var(--accent);font-weight:700;margin-bottom:8px}
-    .section-title{font-size:clamp(1.4rem,3.5vw,2rem);font-weight:700;margin-bottom:12px;line-height:1.2}
-    .section-desc{font-size:.95rem;color:var(--muted);max-width:520px;margin-bottom:36px}
-    .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:760px;margin:0 auto}
-    @media(max-width:560px){.tiles{grid-template-columns:1fr}}
-    .tile{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px 20px;text-decoration:none;color:var(--fg);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden}
-    .tile:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
-    .tile .tile-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
-    .tile h3{font-size:.95rem;font-weight:600;line-height:1.3}
-    .tile p{font-size:.8rem;color:var(--muted);margin:0;line-height:1.5}
-    .tile-blue .tile-icon{background:var(--soft)}
-    .tile-green .tile-icon{background:var(--green-bg)}
-    .tile-warm .tile-icon{background:var(--warm-bg)}
-    .tile-indigo .tile-icon{background:var(--indigo-bg)}
-    .tile-teal .tile-icon{background:var(--teal-bg)}
-    .tile-wide{grid-column:1/-1}
-    .highlights{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:32px}
-    .highlights .item{text-align:center;padding:20px 16px}
-    .highlights .num{font-size:2rem;font-weight:800;color:var(--accent);line-height:1}
-    .highlights .label{font-size:.82rem;color:var(--muted);margin-top:4px}
-    .links{max-width:720px;margin:0 auto;padding:0 24px 48px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-    .link-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:20px;background:var(--soft);color:var(--fg);text-decoration:none;font-size:.82rem;font-weight:500;border:1px solid var(--border);transition:background .2s,color .2s}
-    .link-pill:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-    .alt-bg{background:var(--soft)}
-    footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted)}
-    footer a{color:var(--accent);text-decoration:none}
+/* ── RESET ─────────────────────────────────── */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;background:#070d0e;color:#e8f4f3;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+ul{list-style:none}
+
+/* ── VARIABLES ──────────────────────────────── */
+:root{
+  --bg:#070d0e;--bg1:#0d1b1e;--bg2:#122124;--bg3:#172a2e;
+  --border:rgba(46,191,173,.12);--border-s:#1a3a3f;
+  --amber:#f5a623;--amber-d:rgba(245,166,35,.12);--amber-b:rgba(245,166,35,.28);
+  --blue:#4a9edb;--blue-d:rgba(74,158,219,.12);--blue-b:rgba(74,158,219,.28);
+  --teal:#2ebfad;--teal-d:rgba(46,191,173,.1);--teal-b:rgba(46,191,173,.25);
+  --fg:#e8f4f3;--fg2:#8ab8b5;--fg3:#4a7a77;
+  --r-md:18px;--r-lg:28px;--r-xl:40px;
+}
+
+/* ── REVEAL ─────────────────────────────────── */
+[data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+[data-reveal].in-view{opacity:1;transform:none}
+[data-reveal][data-d="1"]{transition-delay:.08s}[data-reveal][data-d="2"]{transition-delay:.16s}
+[data-reveal][data-d="3"]{transition-delay:.24s}[data-reveal][data-d="4"]{transition-delay:.32s}
+[data-reveal][data-d="5"]{transition-delay:.40s}[data-reveal][data-d="6"]{transition-delay:.48s}
+@media(prefers-reduced-motion:reduce){[data-reveal]{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* ── NAV ────────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;display:flex;align-items:center;padding:0 5%;background:rgba(7,13,14,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{width:100%;max-width:1100px;margin:0 auto;display:flex;align-items:center}
+.nav-brand{display:flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:800;letter-spacing:-.03em;flex-shrink:0}
+.nav-icon{width:30px;height:30px;border-radius:8px}
+.nav-links{display:flex;gap:2px;list-style:none;margin-left:auto}
+.nav-links a{font-size:.83rem;font-weight:500;color:var(--fg2);padding:7px 14px;border-radius:8px;transition:background .18s,color .18s}
+.nav-links a:hover{background:var(--bg2);color:var(--fg)}
+.nav-cta{display:inline-flex;align-items:center;gap:7px;background:var(--amber);color:#0a0f00;padding:9px 22px;border-radius:100px;font-size:.8rem;font-weight:700;margin-left:16px;flex-shrink:0;transition:filter .2s,transform .2s}
+.nav-cta:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;margin-left:auto;cursor:pointer;background:none;border:none}
+.hamburger span{width:20px;height:2px;background:var(--fg);border-radius:2px;transition:transform .25s,opacity .25s;display:block}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(7,13,14,.97);backdrop-filter:blur(20px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.05rem;font-weight:600;color:var(--fg);padding:12px 32px;border-radius:12px;transition:background .18s}
+.mobile-menu a:hover{background:var(--bg2)}
+
+/* ── HERO ───────────────────────────────────── */
+.hero{position:relative;padding:120px 5% 60px;overflow:hidden;min-height:100vh;display:flex;align-items:center}
+.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 78% 50%,rgba(245,166,35,.07) 0%,transparent 60%),radial-gradient(ellipse 55% 65% at 15% 40%,rgba(46,191,173,.05) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 50% 100%,rgba(74,158,219,.04) 0%,transparent 60%)}
+.hero-inner{position:relative;z-index:1;width:100%;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:55% 45%;gap:48px;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border-s);border-radius:100px;padding:5px 14px 5px 10px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:20px}
+.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.hero-title{font-size:clamp(2.8rem,5vw,4.6rem);font-weight:800;line-height:1.04;letter-spacing:-.04em;margin-bottom:20px}
+.hero-title .grad{background:linear-gradient(135deg,var(--amber) 0%,#e8820a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.02rem;color:var(--fg2);max-width:440px;margin-bottom:32px;line-height:1.75}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:#0a0f00;padding:14px 28px;border-radius:100px;font-size:.9rem;font-weight:700;transition:filter .2s,transform .2s,box-shadow .2s}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,166,35,.3)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid var(--border-s);color:var(--fg2);padding:13px 24px;border-radius:100px;font-size:.9rem;font-weight:600;transition:border-color .2s,color .2s,background .2s}
+.btn-outline:hover{border-color:var(--teal-b);color:var(--teal);background:var(--teal-d)}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border-s);border-radius:100px;padding:6px 14px;font-size:.75rem;font-weight:600;color:var(--fg2)}
+.hero-visual{display:flex;align-items:center;justify-content:center}
+.hero-visual img{width:100%;max-width:540px;filter:drop-shadow(0 28px 52px rgba(0,0,0,.55));animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* ── SECTION COMMONS ────────────────────────── */
+.section{padding:88px 5%}
+.section-inner{max-width:1100px;margin:0 auto}
+.eyebrow{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.section-h{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.15;letter-spacing:-.03em;margin-bottom:12px}
+.section-p{font-size:.95rem;color:var(--fg2);max-width:520px;margin-bottom:48px;line-height:1.75}
+
+/* ── FEATURE SPOTLIGHT ──────────────────────── */
+.feature-spotlight{padding:88px 5%}
+.feat-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.feat-grid.rev{direction:rtl}
+.feat-grid.rev>*{direction:ltr}
+.feat-badge{display:inline-flex;align-items:center;gap:7px;border-radius:100px;padding:6px 16px;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;width:fit-content}
+.badge-a{background:var(--amber-d);border:1px solid var(--amber-b);color:var(--amber)}
+.badge-b{background:var(--blue-d);border:1px solid var(--blue-b);color:var(--blue)}
+.feat-h{font-size:clamp(2rem,3.8vw,3.2rem);font-weight:800;line-height:1.08;letter-spacing:-.04em;margin-bottom:16px}
+.feat-h .a{color:var(--amber)}.feat-h .b{color:var(--blue)}
+.feat-p{font-size:.95rem;color:var(--fg2);line-height:1.75;margin-bottom:24px;max-width:440px}
+.feat-list{display:flex;flex-direction:column;gap:10px}
+.feat-list li{display:flex;align-items:flex-start;gap:10px;font-size:.88rem;color:var(--fg2)}
+.chk{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:.68rem;font-weight:900;flex-shrink:0;margin-top:2px}
+.chk-a{background:var(--amber-d);color:var(--amber)}.chk-b{background:var(--blue-d);color:var(--blue)}
+.feat-img{border-radius:var(--r-lg);overflow:hidden;position:relative}
+.feat-img img{width:100%;border-radius:var(--r-lg);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.feat-img.glow-a::after{content:'';position:absolute;inset:0;border-radius:var(--r-lg);box-shadow:0 0 70px rgba(245,166,35,.18) inset;pointer-events:none}
+.feat-img.glow-b::after{content:'';position:absolute;inset:0;border-radius:var(--r-lg);box-shadow:0 0 70px rgba(74,158,219,.18) inset;pointer-events:none}
+.bg-a{background:radial-gradient(ellipse 100% 80% at 70% 50%,rgba(245,166,35,.045) 0%,transparent 70%)}
+.bg-b{background:radial-gradient(ellipse 100% 80% at 30% 50%,rgba(74,158,219,.045) 0%,transparent 70%)}
+
+/* ── SCREENSHOTS ────────────────────────────── */
+.screenshots{background:var(--bg1);padding:88px 5%}
+.ss-scroll{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:8px 4px 28px;scrollbar-width:none;-ms-overflow-style:none}
+.ss-scroll::-webkit-scrollbar{display:none}
+.ss-item{scroll-snap-align:start;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.ss-item img{height:440px;width:auto;border-radius:22px;box-shadow:0 8px 32px rgba(0,0,0,.45);transition:transform .25s,box-shadow .25s}
+.ss-item:hover img{transform:translateY(-5px) scale(1.015);box-shadow:0 16px 48px rgba(0,0,0,.55)}
+.ss-label{font-size:.78rem;font-weight:600;color:var(--fg2);text-align:center}
+.ss-hint{text-align:center;font-size:.76rem;color:var(--fg3);margin-top:6px;display:none}
+
+/* ── UX FEATURE (PINCH ZOOM) ────────────────── */
+.ux-section{background:var(--bg);padding:88px 5%}
+.ux-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.col-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.col-chip{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;font-size:.82rem;font-weight:700;background:var(--bg2);border:1px solid var(--border-s);color:var(--fg2);transition:all .2s;cursor:default}
+.col-chip.on{background:var(--teal-d);border-color:var(--teal-b);color:var(--teal)}
+.ux-note{font-size:.76rem;color:var(--fg3);margin-top:12px}
+
+/* ── FEATURES GRID ──────────────────────────── */
+.more-features{background:var(--bg1);padding:88px 5%}
+.feats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat-card{background:var(--bg2);border:1px solid var(--border-s);border-radius:var(--r-md);padding:24px 22px;transition:border-color .2s,transform .22s,box-shadow .22s}
+.feat-card:hover{border-color:var(--teal-b);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.feat-card .icon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;background:var(--bg3);margin-bottom:14px}
+.feat-card h3{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.feat-card p{font-size:.82rem;color:var(--fg2);line-height:1.6}
+
+/* ── PRIVACY ────────────────────────────────── */
+.privacy{background:var(--bg);padding:88px 5%}
+.priv-card{max-width:840px;margin:0 auto;background:var(--bg1);border:1px solid var(--border);border-radius:var(--r-xl);padding:56px 56px 48px;text-align:center;position:relative;overflow:hidden}
+.priv-card::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:480px;height:400px;background:radial-gradient(circle,rgba(46,191,173,.06) 0%,transparent 70%);pointer-events:none}
+.priv-card h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-.03em;margin-bottom:16px}
+.priv-card h2 span{background:linear-gradient(135deg,var(--teal),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.priv-card p{font-size:.93rem;color:var(--fg2);max-width:500px;margin:0 auto 32px;line-height:1.75}
+.priv-badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.priv-badge{display:inline-flex;align-items:center;gap:7px;background:var(--bg2);border:1px solid var(--border-s);border-radius:100px;padding:8px 16px;font-size:.8rem;font-weight:600;color:var(--fg2)}
+
+/* ── CTA ────────────────────────────────────── */
+.cta-section{padding:80px 5%;text-align:center;background:var(--bg1)}
+.cta-section h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+.cta-section p{font-size:.95rem;color:var(--fg2);margin-bottom:28px}
+.store-chip{display:inline-flex;align-items:center;gap:10px;background:rgba(232,244,243,.08);border:1.5px solid var(--border-s);color:var(--fg2);padding:14px 28px;border-radius:14px;font-size:.9rem;font-weight:600;cursor:default}
+
+/* ── LINKS + FOOTER ─────────────────────────── */
+.page-links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:0 24px 44px}
+.link-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:20px;background:var(--bg1);color:var(--fg2);font-size:.82rem;font-weight:500;border:1px solid var(--border-s);transition:background .2s,color .2s,border-color .2s}
+.link-pill:hover{background:var(--teal-d);color:var(--teal);border-color:var(--teal-b)}
+footer{text-align:center;padding:28px 24px;border-top:1px solid var(--border-s);font-size:.8rem;color:var(--fg3)}
+footer a{color:var(--fg2);transition:color .18s}
+footer a:hover{color:var(--teal)}
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media(max-width:900px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero-eyebrow,.hero-btns,.hero-chips{justify-content:center}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .hero-visual{margin-top:36px}
+  .hero-visual img{max-width:380px}
+  .feat-grid{grid-template-columns:1fr;gap:36px}
+  .feat-grid.rev{direction:ltr}
+  .feat-p{max-width:100%}
+  .ux-grid{grid-template-columns:1fr;gap:36px}
+  .feats-grid{grid-template-columns:repeat(2,1fr)}
+  .priv-card{padding:36px 28px}
+}
+@media(max-width:560px){
+  .feats-grid{grid-template-columns:1fr}
+  .ss-hint{display:block}
+  section,.section,.feature-spotlight,.screenshots,.ux-section,.more-features,.privacy{padding:64px 5%}
+}
   </style>
 </head>
 <body>
 
-<div class="hero">
-  <img src="/pixwise/app_icon.png" alt="PixWise" class="hero-icon" />
-  <h1>Your Gallery, <span>Your Rules</span></h1>
-  <p class="tagline">A private, offline-first gallery app that keeps your photos organized and your memories safe. No cloud. No AI. No account.</p>
-  <div class="cta-row">
-    <a class="btn-primary" href="#">▶ Coming Soon on Play Store</a>
+<!-- ══ NAV ═══════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/pixwise">
+      <img src="/pixwise/images/app_icon_playstore.png" alt="PixWise" class="nav-icon" />
+      PixWise
+    </a>
+    <ul class="nav-links">
+      <li><a href="#lite-mode">Lite Mode</a></li>
+      <li><a href="#secure-space">Secure Space</a></li>
+      <li><a href="#screenshots">Screenshots</a></li>
+      <li><a href="#privacy">Privacy</a></li>
+    </ul>
+    <a class="nav-cta" href="#">▶ Coming Soon</a>
+    <button class="hamburger" id="hb" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <div class="trust">
-    <span>🔒 Secure Space</span>
-    <span>👤 Guest Mode</span>
-    <span>📴 100% Offline</span>
-    <span>🚫 Zero Tracking</span>
-  </div>
+</nav>
+
+<div class="mobile-menu" id="mm">
+  <a href="#lite-mode" onclick="closeMM()">Lite Mode</a>
+  <a href="#secure-space" onclick="closeMM()">Secure Space</a>
+  <a href="#screenshots" onclick="closeMM()">Screenshots</a>
+  <a href="#privacy" onclick="closeMM()">Privacy</a>
+  <a href="/pixwise/privacy" onclick="closeMM()">Privacy Policy</a>
+  <a href="/" onclick="closeMM()">← WiselyRise</a>
 </div>
 
-<section class="alt-bg">
-  <div class="inner" style="text-align:center">
-    <p class="section-label">At a Glance</p>
-    <h2 class="section-title">Everything you expect—and more</h2>
-    <div class="highlights">
-      <div class="item"><div class="num">🔐</div><div class="label">Secure Space</div></div>
-      <div class="item"><div class="num">👤</div><div class="label">Guest Mode</div></div>
-      <div class="item"><div class="num">🗑️</div><div class="label">Recycle Bin</div></div>
-      <div class="item"><div class="num">⭐</div><div class="label">Favorites</div></div>
-      <div class="item"><div class="num">📌</div><div class="label">Pinned Albums</div></div>
-      <div class="item"><div class="num">🔍</div><div class="label">Smart Search</div></div>
+<!-- ══ HERO ══════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow" data-reveal>
+        <span class="dot"></span>Private Gallery · Android
+      </div>
+      <h1 class="hero-title" data-reveal data-d="1">Your Gallery,<br /><span class="grad">Your Rules.</span></h1>
+      <p class="hero-sub" data-reveal data-d="2">Blazing fast. Zero cloud. Every photo stays on YOUR device — no account, no data harvested, no compromise on privacy.</p>
+      <div class="hero-btns" data-reveal data-d="3">
+        <a class="btn-primary" href="#">▶ Coming Soon on Play Store</a>
+        <a class="btn-outline" href="#lite-mode">Explore Features →</a>
+      </div>
+      <div class="hero-chips" data-reveal data-d="4">
+        <span class="hero-chip">⊘ 100% Offline</span>
+        <span class="hero-chip">🔒 Secure Space</span>
+        <span class="hero-chip">👁 Lite Mode</span>
+        <span class="hero-chip">🚫 No Tracking</span>
+      </div>
+    </div>
+    <div class="hero-visual" data-reveal data-d="2">
+      <img src="/pixwise/images/hero_feature.png" alt="PixWise — Lite Mode, Secure Space, and Quick Toggle callouts" />
     </div>
   </div>
 </section>
 
-<section>
-  <div class="inner" style="text-align:center">
-    <p class="section-label">Features</p>
-    <h2 class="section-title">Built for privacy-conscious people</h2>
-    <p class="section-desc" style="margin-left:auto;margin-right:auto">PixWise doesn't upload your photos, scan your face, or phone home. It's a gallery app that does its job and stays out of your way.</p>
-  </div>
-  <div class="tiles" style="margin-top:32px">
-    <div class="tile tile-blue">
-      <div class="tile-icon">🔐</div>
-      <h3>Secure Space</h3>
-      <p>Move private photos to an encrypted hidden vault. Protected by biometric or PIN authentication. Invisible in guest mode.</p>
+<!-- ══ LITE MODE ═════════════════════════════ -->
+<section id="lite-mode" class="feature-spotlight bg-a">
+  <div class="feat-grid">
+    <div data-reveal>
+      <div class="feat-badge badge-a">👁 Lite Mode</div>
+      <h2 class="feat-h">One tap.<br />Your phone,<br /><span class="a">your rules.</span></h2>
+      <p class="feat-p">Before handing your phone to kids, guests, or anyone else — activate Lite Mode in a single tap. Private albums disappear instantly. One tap to bring them right back when you're done.</p>
+      <ul class="feat-list">
+        <li><span class="chk chk-a">✓</span>Per-album visibility — you decide exactly what shows</li>
+        <li><span class="chk chk-a">✓</span>Biometric-protected deactivation, no accidental toggle</li>
+        <li><span class="chk chk-a">✓</span>Always-on Lite Mode option in settings</li>
+        <li><span class="chk chk-a">✓</span>Instant — no extra menus, no delay</li>
+      </ul>
     </div>
-    <div class="tile tile-green">
-      <div class="tile-icon">👤</div>
-      <h3>Guest Mode</h3>
-      <p>Hand your phone to anyone without worry. Guest mode hides Secure Space, restricts albums, and disables sensitive features.</p>
-    </div>
-    <div class="tile tile-warm">
-      <div class="tile-icon">🖼️</div>
-      <h3>Full-Featured Viewer</h3>
-      <p>Pinch-to-zoom, double-tap zoom, swipe between photos, video playback, EXIF info, rotation, slideshow, and wallpaper setting.</p>
-    </div>
-    <div class="tile tile-indigo">
-      <div class="tile-icon">📁</div>
-      <h3>Smart Albums</h3>
-      <p>Auto-organized by folder. Pin your favorites to the top. Hide albums you don't want to see. Copy, move, and rename with ease.</p>
-    </div>
-    <div class="tile tile-teal">
-      <div class="tile-icon">🗑️</div>
-      <h3>Recycle Bin</h3>
-      <p>Deleted a photo by accident? Recycle Bin keeps it safe for 30 days. Restore with a single tap—no cloud needed.</p>
-    </div>
-    <div class="tile tile-blue">
-      <div class="tile-icon">🔍</div>
-      <h3>Instant Search</h3>
-      <p>Find any photo by name, type, date, or size. Debounced search keeps things snappy even with thousands of photos.</p>
-    </div>
-    <div class="tile tile-green tile-wide">
-      <div class="tile-icon">🛡️</div>
-      <h3>Privacy by Design</h3>
-      <p>No internet permission. No analytics SDK. No account required. Your photos never leave your device. PixWise is built for people who believe privacy isn't optional—it's a right.</p>
+    <div class="feat-img glow-a" data-reveal data-d="2">
+      <img src="/pixwise/images/Screen-02.jpg" alt="Lite Mode and Secure Space explained in onboarding" />
     </div>
   </div>
 </section>
 
-<section class="alt-bg">
-  <div class="inner" style="text-align:center">
-    <p class="section-label">Why PixWise?</p>
-    <h2 class="section-title">Your stock gallery can't do this</h2>
-    <p class="section-desc" style="margin-left:auto;margin-right:auto">Most gallery apps are either bloated with AI features you didn't ask for, or they quietly upload your photos to someone else's server. PixWise is different.</p>
-    <div class="tiles" style="margin-top:32px">
-      <div class="tile tile-warm">
-        <div class="tile-icon">🚫</div>
-        <h3>No Cloud Uploads</h3>
-        <p>Your photos stay on your device. Period. No sync, no backup we control, no surprise bandwidth usage.</p>
+<!-- ══ SECURE SPACE ══════════════════════════ -->
+<section id="secure-space" class="feature-spotlight bg-b">
+  <div class="feat-grid rev">
+    <div data-reveal>
+      <div class="feat-badge badge-b">🔒 Secure Space</div>
+      <h2 class="feat-h">A private vault<br /><span class="b">inside</span> your gallery.</h2>
+      <p class="feat-p">Secure Space is PixWise's dedicated vault — a biometric-locked folder completely invisible to other apps. Move photos in with a tap. Export as encrypted ZIP anytime.</p>
+      <ul class="feat-list">
+        <li><span class="chk chk-b">✓</span>Biometric or device-credential authentication</li>
+        <li><span class="chk chk-b">✓</span>Other apps can never read or list Secure Space</li>
+        <li><span class="chk chk-b">✓</span>Completely hidden in Lite Mode — doubly protected</li>
+        <li><span class="chk chk-b">✓</span>Export as encrypted ZIP directly to Downloads</li>
+      </ul>
+    </div>
+    <div class="feat-img glow-b" data-reveal data-d="2">
+      <img src="/pixwise/images/Screen-03.jpg" alt="Tap and hold album to reveal Move to Secure Space option" />
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCREENSHOTS ═══════════════════════════ -->
+<section id="screenshots" class="screenshots">
+  <div class="section-inner">
+    <span class="eyebrow" data-reveal>Inside PixWise</span>
+    <h2 class="section-h" data-reveal data-d="1">See it in action</h2>
+    <p class="section-p" data-reveal data-d="2">Six screens — from first launch to full control.</p>
+    <div class="ss-scroll" data-reveal data-d="3">
+      <div class="ss-item">
+        <img src="/pixwise/images/Screen-01.jpg" alt="PixWise onboarding splash screen" />
+        <span class="ss-label">Welcome</span>
       </div>
-      <div class="tile tile-indigo">
-        <div class="tile-icon">⚡</div>
-        <h3>Lightning Fast</h3>
-        <p>Built with Jetpack Compose and optimized thumbnail caching. Scrolls smoothly through 50,000+ photos.</p>
+      <div class="ss-item">
+        <img src="/pixwise/images/Screen-02.jpg" alt="Lite Mode and Secure Space feature intro" />
+        <span class="ss-label">Lite Mode</span>
       </div>
-      <div class="tile tile-teal">
-        <div class="tile-icon">🎨</div>
-        <h3>Material You Theming</h3>
-        <p>Follows your system theme automatically. Light, dark, and dynamic color support. Looks native on every Android device.</p>
+      <div class="ss-item">
+        <img src="/pixwise/images/Screen-03.jpg" alt="Tap and hold album context menu" />
+        <span class="ss-label">Quick Actions</span>
       </div>
-      <div class="tile tile-blue">
-        <div class="tile-icon">📱</div>
-        <h3>Configurable Grid</h3>
-        <p>2, 3, or 4 column layouts. Choose timeline or album view as your default. Your gallery, your way.</p>
+      <div class="ss-item">
+        <img src="/pixwise/images/Screen-04.jpg" alt="Clean album grid gallery view" />
+        <span class="ss-label">Gallery View</span>
+      </div>
+      <div class="ss-item">
+        <img src="/pixwise/images/Screen-05.jpg" alt="Settings — grid columns, Lite Mode, Secure Space" />
+        <span class="ss-label">Settings</span>
+      </div>
+      <div class="ss-item">
+        <img src="/pixwise/images/Screen-06.jpg" alt="Material You theme picker bottom sheet" />
+        <span class="ss-label">Themes</span>
+      </div>
+    </div>
+    <p class="ss-hint">← Swipe to explore →</p>
+  </div>
+</section>
+
+<!-- ══ PINCH ZOOM UX ═════════════════════════ -->
+<section class="ux-section">
+  <div class="ux-grid">
+    <div data-reveal>
+      <span class="eyebrow">UX Feature</span>
+      <h2 class="section-h">Pinch to adjust<br />your grid.</h2>
+      <p class="feat-p" style="max-width:420px">Pinch in or out on any gallery, album, or recycle bin screen to instantly change grid density. From one full-width photo to a 6-column mosaic. Applied everywhere, remembered forever.</p>
+      <div class="col-chips">
+        <span class="col-chip">1</span>
+        <span class="col-chip">2</span>
+        <span class="col-chip on">3</span>
+        <span class="col-chip">4</span>
+        <span class="col-chip">5</span>
+        <span class="col-chip">6</span>
+      </div>
+      <p class="ux-note">1–6 columns · Persisted via DataStore · Applied across all screens</p>
+    </div>
+    <div class="feat-img" data-reveal data-d="2">
+      <img src="/pixwise/images/Screen-05.jpg" alt="Grid Columns stepper in Settings" />
+    </div>
+  </div>
+</section>
+
+<!-- ══ MORE FEATURES ═════════════════════════ -->
+<section id="features" class="more-features">
+  <div class="section-inner">
+    <span class="eyebrow" data-reveal>Everything Else</span>
+    <h2 class="section-h" data-reveal data-d="1">Built for everyday use</h2>
+    <p class="section-p" data-reveal data-d="2">Smart features that stay out of your way until you need them.</p>
+    <div class="feats-grid">
+      <div class="feat-card" data-reveal>
+        <div class="icon">🗑️</div>
+        <h3>Recycle Bin</h3>
+        <p>Deleted a photo by accident? It stays in the bin for 30 days. Restore with one tap — permanently gone only when you decide.</p>
+      </div>
+      <div class="feat-card" data-reveal data-d="1">
+        <div class="icon">🔍</div>
+        <h3>Smart Search</h3>
+        <p>Find photos by name, date range, media type, or file size. Advanced filters with instant results — no cloud index required.</p>
+      </div>
+      <div class="feat-card" data-reveal data-d="2">
+        <div class="icon">📅</div>
+        <h3>Timeline & Albums</h3>
+        <p>Switch between chronological timeline and folder-based albums with one compact tap. Pin your most-used albums to the top.</p>
+      </div>
+      <div class="feat-card" data-reveal data-d="3">
+        <div class="icon">✏️</div>
+        <h3>Rename Photos & Videos</h3>
+        <p>Edit file names directly in the viewer. Only the name, not the extension — clean, precise, no file manager needed.</p>
+      </div>
+      <div class="feat-card" data-reveal data-d="4">
+        <div class="icon">🖼️</div>
+        <h3>Viewer Actions</h3>
+        <p>Rotate, share, wallpaper, copy, move, delete — all from a single swipe-up sheet. Ken Burns long-press for cinematic zoom.</p>
+      </div>
+      <div class="feat-card" data-reveal data-d="5">
+        <div class="icon">🎨</div>
+        <h3>Material You Themes</h3>
+        <p>Light, Dark, AMOLED, Pastel, Warm, or Material You. Adapts to your wallpaper. Looks native on every Android device.</p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="links">
+<!-- ══ PRIVACY ════════════════════════════════ -->
+<section id="privacy" class="privacy">
+  <div class="section-inner">
+    <div class="priv-card" data-reveal>
+      <span class="eyebrow" style="display:block;margin-bottom:12px">Privacy by Design</span>
+      <h2>Your photos <span>never leave</span><br />your device.</h2>
+      <p>PixWise was built around one principle: your data belongs to you. There's no server to breach, no account to hack, no upload to intercept. Everything happens on your phone — full stop.</p>
+      <div class="priv-badges">
+        <span class="priv-badge">⊘ No internet permission</span>
+        <span class="priv-badge">📊 No analytics SDK</span>
+        <span class="priv-badge">👤 No account required</span>
+        <span class="priv-badge">☁️ No cloud uploads</span>
+        <span class="priv-badge">🚫 No ads</span>
+        <span class="priv-badge">🇮🇳 Made in India</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════════ -->
+<section class="cta-section">
+  <h2 data-reveal>Coming to Play Store</h2>
+  <p data-reveal data-d="1">PixWise is completing its final testing phase. Follow WiselyRise for the launch announcement.</p>
+  <span class="store-chip" data-reveal data-d="2">▶ Coming Soon on Google Play</span>
+</section>
+
+<!-- ══ LINKS ══════════════════════════════════ -->
+<div class="page-links">
   <a class="link-pill" href="/pixwise/privacy">🔒 Privacy Policy</a>
   <a class="link-pill" href="/pixwise/terms">📜 Terms of Service</a>
-  <a class="link-pill" href="mailto:contact@wiselyrise.in">✉️ Contact Us</a>
-  <a class="link-pill" href="/">🏠 WiselyRise Home</a>
+  <a class="link-pill" href="mailto:contact@wiselyrise.in">✉️ Contact</a>
+  <a class="link-pill" href="/">🏠 WiselyRise</a>
 </div>
 
 <footer>
-  <p>A product of <a href="/">WiselyRise</a> &middot; Made with ❤️ in India</p>
+  <p>A product of <a href="/">WiselyRise</a> · Made with ❤️ in India</p>
 </footer>
 
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+
+  const hb = document.getElementById('hb');
+  const mm = document.getElementById('mm');
+  hb.addEventListener('click', () => {
+    hb.classList.toggle('open');
+    mm.classList.toggle('open');
+    document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMM() {
+    hb.classList.remove('open');
+    mm.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
 </body>
 </html>
+
