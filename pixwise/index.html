@@ -198,7 +198,8 @@ footer a:hover{color:var(--teal)}
       <li><a href="#screenshots">Screenshots</a></li>
       <li><a href="#privacy">Privacy</a></li>
     </ul>
-    <a class="nav-cta" href="#">▶ Coming Soon</a>
+    <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.pixwise.app" target="_blank" rel="noopener">▶ Get on Play Store</a>
+    <a href="#" onclick="openContactModal('pixwise');return false;" class="nav-links" style="font-size:.83rem;font-weight:500;color:var(--fg2);padding:7px 14px;border-radius:8px;transition:background .18s,color .18s;display:inline-flex;align-items:center;margin-left:8px">Feedback</a>
     <button class="hamburger" id="hb" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -210,6 +211,7 @@ footer a:hover{color:var(--teal)}
   <a href="#secure-space" onclick="closeMM()">Secure Space</a>
   <a href="#screenshots" onclick="closeMM()">Screenshots</a>
   <a href="#privacy" onclick="closeMM()">Privacy</a>
+  <a href="#" onclick="closeMM();openContactModal('pixwise');return false;">Feedback</a>
   <a href="/pixwise/privacy" onclick="closeMM()">Privacy Policy</a>
   <a href="/" onclick="closeMM()">← WiselyRise</a>
 </div>
@@ -225,7 +227,7 @@ footer a:hover{color:var(--teal)}
       <h1 class="hero-title" data-reveal data-d="1">Your Gallery,<br /><span class="grad">Your Rules.</span></h1>
       <p class="hero-sub" data-reveal data-d="2">Blazing fast. Zero cloud. Every photo stays on YOUR device — no account, no data harvested, no compromise on privacy.</p>
       <div class="hero-btns" data-reveal data-d="3">
-        <a class="btn-primary" href="#">▶ Coming Soon on Play Store</a>
+        <a class="btn-primary" href="https://play.google.com/store/apps/details?id=com.pixwise.app" target="_blank" rel="noopener">▶ Get on Play Store</a>
         <a class="btn-outline" href="#lite-mode">Explore Features →</a>
       </div>
       <div class="hero-chips" data-reveal data-d="4">
@@ -402,16 +404,16 @@ footer a:hover{color:var(--teal)}
 
 <!-- ══ CTA ════════════════════════════════════ -->
 <section class="cta-section">
-  <h2 data-reveal>Coming to Play Store</h2>
-  <p data-reveal data-d="1">PixWise is completing its final testing phase. Follow WiselyRise for the launch announcement.</p>
-  <span class="store-chip" data-reveal data-d="2">▶ Coming Soon on Google Play</span>
+  <h2 data-reveal>Now on Google Play</h2>
+  <p data-reveal data-d="1">PixWise is in closed testing. Join to get early access and shape the app with your feedback.</p>
+  <a class="btn-primary" href="https://play.google.com/store/apps/details?id=com.pixwise.app" target="_blank" rel="noopener" data-reveal data-d="2" style="margin:0 auto">▶ Get it on Google Play</a>
 </section>
 
 <!-- ══ LINKS ══════════════════════════════════ -->
 <div class="page-links">
   <a class="link-pill" href="/pixwise/privacy">🔒 Privacy Policy</a>
   <a class="link-pill" href="/pixwise/terms">📜 Terms of Service</a>
-  <a class="link-pill" href="mailto:contact@wiselyrise.in">✉️ Contact</a>
+  <a class="link-pill" href="#" onclick="openContactModal('pixwise');return false;">✉️ Feedback</a>
   <a class="link-pill" href="/">🏠 WiselyRise</a>
 </div>
 
@@ -419,6 +421,11 @@ footer a:hover{color:var(--teal)}
   <p>A product of <a href="/">WiselyRise</a> · Made with ❤️ in India</p>
 </footer>
 
+<script src="/shared/contact-modal.js"></script>
+<script>
+  if (new URLSearchParams(window.location.search).get('contact') === '1')
+    setTimeout(function () { openContactModal('pixwise'); }, 0);
+</script>
 <script>
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
