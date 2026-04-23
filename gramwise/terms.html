@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — GramWise</title>
+  <meta name="description" content="Terms of Service for GramWise — the private gold and jewellery portfolio tracker by WiselyRise." />
+  <link rel="icon" type="image/png" href="/gramwise/images/app_icon_playstore.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0c0d11;--surface:#13151e;--surface-2:#1a1d28;
+      --fg:#f0ede8;--muted:#8a8fa8;--border:rgba(255,255,255,.07);
+      --gold:#C9A84C;--gold-light:#E8C66F;--gold-bg:rgba(201,168,76,.08);
+      --gold-border:rgba(201,168,76,.2);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',system-ui,-apple-system,sans-serif;
+      background:var(--bg);color:var(--fg);line-height:1.72;
+      padding:0;overflow-x:hidden;
+    }
+    a{color:var(--gold-light);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .nav-bar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 5%;
+      background:rgba(12,13,17,.95);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--gold-border);
+      position:sticky;top:0;z-index:10;
+      flex-wrap:wrap;gap:10px;
+    }
+    .nav-brand{display:flex;align-items:center;gap:9px}
+    .nav-brand img{width:30px;height:30px;border-radius:20%;box-shadow:0 2px 8px rgba(201,168,76,.3)}
+    .nav-brand-name{font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:800;color:var(--fg)}
+    .nav-links-bar{display:flex;gap:16px;font-size:.82rem}
+    .nav-links-bar a{color:var(--muted);transition:color .18s}
+    .nav-links-bar a:hover{color:var(--gold-light);text-decoration:none}
+
+    .doc-hero{
+      background:linear-gradient(160deg,#101218 0%,#0c0d11 100%);
+      border-bottom:1px solid var(--gold-border);
+      padding:52px 5% 44px;
+    }
+    .doc-hero-inner{max-width:760px;margin:0 auto}
+    .doc-badge{
+      display:inline-flex;align-items:center;gap:7px;
+      background:var(--gold-bg);border:1px solid var(--gold-border);
+      border-radius:100px;padding:5px 14px;
+      font-size:.72rem;font-weight:700;color:var(--gold);
+      letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px;
+    }
+    .doc-hero h1{
+      font-family:'Outfit',sans-serif;
+      font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;
+      letter-spacing:-.03em;margin-bottom:10px;color:var(--fg);
+    }
+    .doc-hero .subtitle{font-size:.88rem;color:var(--muted)}
+    .doc-hero .updated{
+      display:inline-flex;align-items:center;gap:6px;
+      margin-top:14px;font-size:.78rem;color:var(--muted);
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:8px;padding:5px 12px;
+    }
+
+    .doc-wrap{max-width:760px;margin:0 auto;padding:44px 5% 80px}
+    .intro-box{
+      background:var(--surface);border-radius:16px;
+      border:1px solid var(--gold-border);
+      padding:22px 24px;margin-bottom:40px;
+      font-size:.9rem;color:var(--fg);line-height:1.75;
+    }
+    .intro-box strong{color:var(--gold-light)}
+    .intro-box ul{padding-left:20px;margin-top:10px;display:flex;flex-direction:column;gap:5px}
+    .intro-box li{font-size:.88rem;color:var(--muted)}
+
+    h2{
+      font-family:'Outfit',sans-serif;
+      font-size:1.15rem;margin:44px 0 12px;
+      color:var(--gold-light);font-weight:700;
+      padding-bottom:10px;
+      border-bottom:1px solid var(--gold-border);
+    }
+    h2:first-of-type{margin-top:0}
+    h3{font-size:.97rem;margin:24px 0 8px;font-weight:600;color:var(--fg)}
+    p{font-size:.9rem;margin-bottom:12px;color:var(--muted);line-height:1.78}
+    p strong{color:var(--fg)}
+    ul,ol{padding-left:22px;margin-bottom:14px}
+    li{font-size:.9rem;color:var(--muted);line-height:1.72;margin-bottom:4px}
+    li strong{color:var(--fg)}
+    .divider{border:none;border-top:1px solid var(--border);margin:36px 0}
+
+    .highlight-box{
+      background:var(--surface-2);border-left:3px solid var(--gold);
+      border-radius:0 12px 12px 0;padding:16px 18px;margin:18px 0;
+    }
+    .highlight-box p{margin:0;font-size:.88rem}
+
+    .contact-box{
+      background:var(--surface);border:1px solid var(--gold-border);
+      border-radius:14px;padding:20px 22px;margin-top:36px;text-align:center;
+    }
+    .contact-box p{margin-bottom:6px;font-size:.9rem}
+    .contact-box a.btn{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--gold);color:#000;padding:10px 22px;border-radius:100px;
+      font-weight:700;font-size:.86rem;text-decoration:none;margin-top:8px;
+      transition:background .2s;
+    }
+    .contact-box a.btn:hover{background:var(--gold-light)}
+
+    @media(max-width:600px){
+      .doc-hero,.doc-wrap{padding-left:5%;padding-right:5%}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-bar">
+  <a class="nav-brand" href="/gramwise">
+    <img src="/gramwise/images/app_icon_playstore.png" alt="GramWise" />
+    <span class="nav-brand-name">GramWise</span>
+  </a>
+  <div class="nav-links-bar">
+    <a href="/gramwise">← App Home</a>
+    <a href="/gramwise/privacy">Privacy Policy</a>
+    <a href="/">WiselyRise 🏠︎</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="doc-hero">
+  <div class="doc-hero-inner">
+    <div class="doc-badge">📄 Legal Document</div>
+    <h1>Terms of Service</h1>
+    <p class="subtitle">The rules and expectations for using GramWise.</p>
+    <div class="updated">📅 Last updated: 23 April 2026</div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="doc-wrap">
+
+  <div class="intro-box">
+    <strong>Key points at a glance:</strong>
+    <ul>
+      <li>GramWise is provided free of charge by WiselyRise.</li>
+      <li>Metal prices shown are <strong>indicative only</strong> — not financial advice.</li>
+      <li>Your data is your responsibility — back it up before uninstalling.</li>
+      <li>The App is for personal use — not for commercial resale.</li>
+      <li>We may update the App or these terms at any time.</li>
+    </ul>
+  </div>
+
+  <h2>1. Acceptance of Terms</h2>
+  <p>By downloading, installing, or using GramWise ("the App"), you agree to be bound by these Terms of Service ("Terms"). These Terms form a legal agreement between you ("User", "you") and WiselyRise Solutions ("WiselyRise", "we", "us").</p>
+  <p>If you do not agree to these Terms, do not use the App.</p>
+
+  <h2>2. Description of Service</h2>
+  <p>GramWise is a <strong>personal gold and jewellery portfolio tracker</strong> for Android devices. It allows users to:</p>
+  <ul>
+    <li>Log precious metal items (gold, silver, platinum, palladium) with details such as weight, purity, and purchase price.</li>
+    <li>Assign items to family members and storage locations.</li>
+    <li>View live precious metal market prices fetched from a third-party API.</li>
+    <li>Set and track savings goals related to gold purchases.</li>
+    <li>Secure their portfolio data with biometric or PIN-based app lock.</li>
+  </ul>
+  <p>The App operates primarily in <strong>offline mode</strong> — all user data is stored locally on the device. Internet connectivity is only used to fetch live metal prices.</p>
+
+  <h2>3. Eligibility</h2>
+  <p>You must be at least <strong>13 years of age</strong> to use GramWise. By using the App, you represent that you meet this requirement. If you are under 18, you should use the App with the knowledge and consent of a parent or legal guardian.</p>
+
+  <h2>4. License to Use</h2>
+  <p>WiselyRise grants you a limited, non-exclusive, non-transferable, revocable license to install and use GramWise on your personal Android device(s) solely for your personal, non-commercial purposes.</p>
+  <p>You may <strong>not</strong>:</p>
+  <ul>
+    <li>Copy, modify, distribute, sell, or sublicense the App or any portion of it.</li>
+    <li>Reverse-engineer, decompile, or disassemble the App.</li>
+    <li>Use the App for any commercial purpose without our prior written consent.</li>
+    <li>Remove or alter any copyright, trademark, or other proprietary notices.</li>
+    <li>Use the App to violate any applicable law or regulation.</li>
+  </ul>
+
+  <h2>5. No Financial or Investment Advice</h2>
+  <div class="highlight-box">
+    <p><strong>Important:</strong> GramWise is a personal tracking tool only. Nothing in the App — including metal price displays, portfolio valuations, or any calculated figures — constitutes financial, investment, or tax advice.</p>
+  </div>
+  <p>The metal prices displayed are sourced from a third-party API (metals.dev) and may not reflect the exact spot price, buy rate, or sell rate offered by any jeweller, bank, or exchange. Actual transaction values may differ significantly.</p>
+  <p>You should consult a qualified financial advisor before making any investment or purchase decisions related to precious metals.</p>
+
+  <h2>6. Accuracy of Information</h2>
+  <p>WiselyRise does not guarantee the accuracy, completeness, or timeliness of:</p>
+  <ul>
+    <li>Live metal prices displayed in the App (sourced from a third-party API).</li>
+    <li>Calculated portfolio valuations (which are estimates based on current market rates).</li>
+    <li>Any other information presented in the App.</li>
+  </ul>
+  <p>You are responsible for verifying all valuations with appropriate sources before relying on them for any financial purpose (e.g., insurance, estate planning, sale).</p>
+
+  <h2>7. User Data &amp; Responsibility</h2>
+
+  <h3>7.1 Your Data</h3>
+  <p>All data you enter in GramWise (item details, family members, locations, photos, etc.) is stored locally on your device. <strong>WiselyRise does not have access to this data.</strong> You are solely responsible for the accuracy and integrity of the data you enter.</p>
+
+  <h3>7.2 Data Loss</h3>
+  <p>WiselyRise is not responsible for any loss of data resulting from:</p>
+  <ul>
+    <li>Device loss, theft, damage, or failure.</li>
+    <li>Uninstalling the App (which deletes all local data).</li>
+    <li>Factory resets or OS reinstallations.</li>
+    <li>Forgotten PIN or biometric lock configurations.</li>
+  </ul>
+  <p>We strongly recommend maintaining regular device backups through Android's standard backup features or other reliable methods.</p>
+
+  <h3>7.3 Acceptable Use</h3>
+  <p>You agree to use GramWise only for lawful purposes and in a manner consistent with these Terms. You must not use the App in connection with any illegal activity, including but not limited to tax evasion, money laundering, or fraud.</p>
+
+  <h2>8. Third-Party Services</h2>
+  <p>GramWise integrates with the following third-party service:</p>
+  <ul>
+    <li><strong>metals.dev</strong> — Precious metal price data API. This service has its own terms of service and privacy policy. WiselyRise is not responsible for the availability, accuracy, or terms of this third-party service.</li>
+  </ul>
+  <p>GramWise may be distributed via the <strong>Google Play Store</strong>, which has its own terms of service that apply to your use of the Play Store platform.</p>
+
+  <h2>9. Intellectual Property</h2>
+  <p>GramWise and all associated content — including but not limited to the App design, logo, SVG icon assets, user interface, source code, and branding — are the intellectual property of WiselyRise Solutions and are protected by applicable copyright, trademark, and other intellectual property laws.</p>
+  <p>The GramWise name and logo are trademarks of WiselyRise Solutions. You may not use them without prior written permission.</p>
+
+  <h2>10. Disclaimers</h2>
+  <p>GramWise is provided on an <strong>"as is" and "as available"</strong> basis without any warranties of any kind, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+  <p>WiselyRise does not warrant that:</p>
+  <ul>
+    <li>The App will be available at all times or free from errors or bugs.</li>
+    <li>Live metal prices will be accurate, up-to-date, or complete.</li>
+    <li>The App will meet your specific requirements.</li>
+  </ul>
+
+  <h2>11. Limitation of Liability</h2>
+  <p>To the fullest extent permitted by applicable law, WiselyRise shall not be liable for any indirect, incidental, special, consequential, or punitive damages — including but not limited to loss of profits, data, goodwill, or other intangible losses — arising from:</p>
+  <ul>
+    <li>Your use of or inability to use the App.</li>
+    <li>Any inaccuracy in metal price data or portfolio valuations.</li>
+    <li>Loss of App data for any reason.</li>
+    <li>Unauthorized access to your device or App data.</li>
+  </ul>
+  <p>In no event shall WiselyRise's total liability to you exceed the amount you paid for the App (which, as the App is free, is ₹0 / $0).</p>
+
+  <h2>12. Updates to the App</h2>
+  <p>WiselyRise may release updates, new versions, or patches to GramWise at any time. We may also discontinue the App or any feature at any time without prior notice. Continued use of the App after an update constitutes acceptance of any changes introduced by that update.</p>
+
+  <h2>13. Changes to These Terms</h2>
+  <p>We may revise these Terms from time to time. The updated date at the top of this page reflects when the Terms were last changed. Material changes will be communicated via in-app notice or Play Store update notes. Continued use of the App after changes take effect constitutes your acceptance of the revised Terms.</p>
+
+  <h2>14. Governing Law</h2>
+  <p>These Terms are governed by and construed in accordance with the laws of <strong>India</strong>. Any disputes arising from or related to these Terms or your use of GramWise shall be subject to the exclusive jurisdiction of the courts located in India.</p>
+
+  <h2>15. Contact Us</h2>
+  <p>If you have any questions about these Terms, please contact us:</p>
+
+  <div class="contact-box">
+    <p><strong>WiselyRise Solutions</strong></p>
+    <p style="font-size:.84rem;color:var(--muted)">Developer of GramWise — Made in India</p>
+    <a class="btn" href="mailto:contact@wiselyrise.in">✉ contact@wiselyrise.in</a>
+    <p style="margin-top:12px;font-size:.78rem;color:var(--muted)">We aim to respond within 5 business days.</p>
+  </div>
+
+  <hr class="divider" />
+  <p style="font-size:.8rem;color:var(--muted);text-align:center">
+    GramWise is a product of <a href="/">WiselyRise Solutions</a>. 
+    View our <a href="/gramwise/privacy">Privacy Policy</a>. 
+    © 2026 WiselyRise Solutions.
+  </p>
+
+</div>
+</body>
+</html>

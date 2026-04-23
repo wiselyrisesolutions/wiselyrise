@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GramWise — Track Every Gram, Treasure Every Moment</title>
+  <meta name="description" content="GramWise is the private gold &amp; jewellery portfolio tracker for Indian families. Log items, assign to family members, view live metal prices, and secure your wealth — 100% offline." />
+  <meta property="og:title" content="GramWise — Track Every Gram, Treasure Every Moment" />
+  <meta property="og:description" content="Private gold &amp; jewellery portfolio tracker. Offline-first. No signup." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wiselyrise.in/gramwise" />
+  <meta property="og:image" content="https://wiselyrise.in/gramwise/images/app_icon_playstore.png" />
+  <link rel="icon" type="image/png" href="/gramwise/images/app_icon_playstore.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── RESET ─────────────────────────────────────────── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#0c0d11;color:#f0ede8;overflow-x:hidden;line-height:1.75}
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+    /* ── DESIGN TOKENS ─────────────────────────────────── */
+    :root{
+      --gold:#C9A84C;
+      --gold-light:#E8C66F;
+      --gold-pale:#F5E6C0;
+      --gold-dark:#9A7B2C;
+      --gold-glow:rgba(201,168,76,.18);
+      --gold-bg:rgba(201,168,76,.07);
+      --gold-border:rgba(201,168,76,.18);
+      --bg:#0c0d11;
+      --surface:#13151e;
+      --surface-2:#1a1d28;
+      --surface-3:#20232f;
+      --border:rgba(255,255,255,.07);
+      --border-gold:rgba(201,168,76,.18);
+      --fg:#f0ede8;
+      --muted:#8a8fa8;
+      --muted-light:#5e6278;
+      --nav-h:64px;
+      --radius:20px;
+      --shadow-sm:0 1px 4px rgba(0,0,0,.3);
+      --shadow-md:0 6px 24px rgba(0,0,0,.4);
+      --shadow-lg:0 16px 56px rgba(0,0,0,.5);
+      --shadow-gold:0 8px 32px rgba(201,168,76,.22);
+    }
+
+    /* ── ANIMATIONS ────────────────────────────────────── */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes floatA{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-9px) rotate(1.5deg)}}
+    @keyframes floatB{0%,100%{transform:translateY(0) rotate(1deg)}50%{transform:translateY(-7px) rotate(-1deg)}}
+    @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    @keyframes glow{0%,100%{box-shadow:0 0 20px rgba(201,168,76,.3)}50%{box-shadow:0 0 40px rgba(201,168,76,.6)}}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+    .reveal.vis{opacity:1;transform:none}
+    .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+    /* ── NAVBAR ─────────────────────────────────────────── */
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      height:var(--nav-h);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 5%;
+      background:rgba(12,13,17,.92);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border-gold);
+      transition:box-shadow .3s;
+    }
+    .nav.scrolled{box-shadow:0 4px 20px rgba(0,0,0,.6)}
+    .nav-logo{display:flex;align-items:center;gap:10px}
+    .nav-logo img{width:34px;height:34px;border-radius:20%;box-shadow:0 2px 8px rgba(201,168,76,.3)}
+    .nav-logo-text{font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:800;letter-spacing:-.03em;color:var(--fg)}
+    .nav-logo-sub{font-size:.68rem;font-weight:500;color:var(--gold);letter-spacing:.04em;display:block;margin-top:-2px;opacity:.8}
+    .nav-links{display:flex;gap:2px;list-style:none}
+    .nav-links a{font-size:.84rem;font-weight:500;color:var(--muted);padding:7px 14px;border-radius:8px;transition:background .18s,color .18s}
+    .nav-links a:hover{background:var(--gold-bg);color:var(--gold-light)}
+    .nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#000;padding:9px 22px;border-radius:100px;font-size:.84rem;font-weight:700;transition:transform .2s,box-shadow .2s}
+    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,168,76,.4)}
+    .nav-desktop{display:flex;align-items:center;gap:6px}
+
+    /* hamburger */
+    .hamburger{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer;z-index:110}
+    .hamburger span{width:22px;height:2px;background:var(--gold);border-radius:2px;transition:transform .25s,opacity .25s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:rgba(12,13,17,.98);backdrop-filter:blur(20px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{font-size:1.05rem;font-weight:600;color:var(--fg);padding:12px 24px;border-radius:12px;transition:background .2s}
+    .mobile-menu a:hover{background:var(--gold-bg)}
+    .mobile-menu .nav-cta{margin-top:8px;padding:14px 32px;font-size:1rem;color:#000}
+
+    /* ── HERO ───────────────────────────────────────────── */
+    .hero-wrap{
+      background:linear-gradient(160deg,#0e0f15 0%,#111218 50%,#0c0d11 100%);
+      overflow:hidden;padding-top:var(--nav-h);
+      position:relative;
+    }
+    .hero-wrap::before{
+      content:'';position:absolute;
+      top:-100px;left:50%;transform:translateX(-50%);
+      width:800px;height:800px;
+      background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 65%);
+      pointer-events:none;
+    }
+    .hero{
+      padding:72px 6% 0;
+      display:flex;flex-direction:column;align-items:center;
+      text-align:center;
+      max-width:1080px;margin:0 auto;
+      position:relative;z-index:2;
+    }
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(201,168,76,.1);border:1.5px solid rgba(201,168,76,.3);border-radius:100px;
+      padding:6px 18px 6px 10px;font-size:.74rem;font-weight:600;color:var(--gold-light);
+      margin-bottom:24px;animation:fadeUp .5s ease both;letter-spacing:.03em;
+    }
+    .hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+    .hero h1{
+      font-family:'Outfit',sans-serif;
+      font-size:clamp(2.4rem,6vw,4.4rem);
+      font-weight:900;line-height:1.08;letter-spacing:-.03em;
+      margin-bottom:20px;animation:fadeUp .6s ease .08s both;
+      max-width:720px;color:var(--fg);
+    }
+    .hero h1 .gold-text{
+      background:linear-gradient(135deg,var(--gold-dark) 0%,var(--gold) 40%,var(--gold-light) 70%,var(--gold) 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      animation:shimmer 4s linear infinite;
+    }
+    .hero-sub{
+      font-size:1.05rem;color:var(--muted);max-width:500px;
+      line-height:1.75;margin-bottom:32px;animation:fadeUp .6s ease .14s both;
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:nowrap;justify-content:center;align-items:center;animation:fadeUp .6s ease .2s both}
+    .btn-primary{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--gold);color:#000;
+      padding:14px 28px;border-radius:100px;
+      font-size:.92rem;font-weight:700;
+      transition:transform .2s,box-shadow .2s,background .2s;
+    }
+    .btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 10px 32px rgba(201,168,76,.4)}
+    .btn-secondary{
+      display:inline-flex;align-items:center;gap:7px;
+      background:var(--gold-bg);color:var(--gold-light);
+      padding:10px 18px;border-radius:100px;
+      font-size:.84rem;font-weight:600;
+      border:1.5px solid var(--gold-border);
+      transition:border-color .2s,color .2s,background .2s;
+    }
+    .btn-secondary:hover{background:var(--gold);color:#000;border-color:var(--gold)}
+    .hero-trust{
+      display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:22px;
+      animation:fadeUp .6s ease .26s both;
+    }
+    .trust-pill{display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--muted);font-weight:500}
+    .trust-check{color:var(--gold);font-weight:700;font-size:.85rem}
+
+    /* ── HERO VISUAL ───────────────────────────────────── */
+    .hero-visual-wrap{
+      position:relative;
+      width:100%;max-width:860px;
+      margin:52px auto 0;
+      display:grid;
+      grid-template-columns:96px 1fr 96px;
+      align-items:center;
+      animation:fadeUp .7s ease .3s both;
+    }
+    .hero-glow{
+      position:absolute;
+      width:560px;height:560px;border-radius:50%;
+      background:radial-gradient(circle,var(--gold-glow) 0%,transparent 65%);
+      pointer-events:none;z-index:0;
+      top:50%;left:50%;transform:translate(-50%,-50%);
+    }
+    .hero-phone-col{
+      display:flex;justify-content:center;align-items:center;
+      position:relative;z-index:2;
+    }
+    .phone-mockup{
+      width:220px;
+      background:#0e0f15;
+      border-radius:36px;
+      border:2.5px solid rgba(201,168,76,.4);
+      box-shadow:0 24px 80px rgba(0,0,0,.7),0 0 0 1px rgba(201,168,76,.12),inset 0 0 0 1px rgba(255,255,255,.04);
+      overflow:hidden;
+      animation:float 7s ease-in-out infinite;
+      position:relative;
+    }
+    .phone-status{height:28px;background:#0a0b0f;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:.58rem;color:var(--muted)}
+    .phone-screen{padding:12px;display:flex;flex-direction:column;gap:8px;min-height:380px}
+    .phone-header{background:linear-gradient(135deg,#1a1d28,#20232f);border-radius:14px;padding:14px;border:1px solid rgba(201,168,76,.12)}
+    .phone-hdr-label{font-size:.55rem;color:var(--gold);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+    .phone-hdr-val{font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:800;color:var(--fg);letter-spacing:-.02em}
+    .phone-hdr-sub{font-size:.6rem;color:var(--muted);margin-top:2px}
+    .phone-hdr-row{display:flex;gap:6px;margin-top:10px}
+    .phone-pill{background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 8px;font-size:.5rem;color:var(--gold-light);font-weight:600;white-space:nowrap}
+    .phone-item{background:#1a1d28;border-radius:12px;padding:10px;display:flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.05)}
+    .phone-item-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .phone-item-icon.gold{background:rgba(201,168,76,.15)}
+    .phone-item-icon.silver{background:rgba(160,160,180,.12)}
+    .phone-item-info{flex:1;min-width:0}
+    .phone-item-name{font-size:.62rem;font-weight:600;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .phone-item-meta{font-size:.52rem;color:var(--muted);margin-top:1px}
+    .phone-item-val{font-size:.65rem;font-weight:700;color:var(--gold-light);flex-shrink:0}
+    .phone-live{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between}
+    .phone-live-label{font-size:.52rem;color:var(--muted);font-weight:500}
+    .phone-live-val{font-size:.62rem;font-weight:700;color:var(--gold)}
+    .phone-live-chg{font-size:.48rem;color:#4ade80;background:rgba(74,222,128,.1);padding:2px 5px;border-radius:6px}
+
+    /* Feature chips */
+    .hero-feat-col{
+      display:flex;flex-direction:column;gap:14px;
+      position:relative;z-index:3;
+    }
+    .hero-feat-col.left{align-items:flex-end;padding-right:6px}
+    .hero-feat-col.right{align-items:flex-start;padding-left:6px}
+    .feat-chip{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      background:var(--surface);
+      border-radius:18px;
+      padding:10px;
+      border:1px solid var(--border-gold);
+      box-shadow:0 8px 24px rgba(0,0,0,.4),0 0 0 1px rgba(201,168,76,.06);
+      width:78px;height:78px;
+      gap:5px;
+    }
+    .feat-chip-icon{font-size:1.5rem;line-height:1}
+    .feat-chip-label{font-size:.44rem;font-weight:600;color:var(--gold);letter-spacing:.04em;text-transform:uppercase;text-align:center;line-height:1.3}
+    .fc1{animation:floatA 5.2s ease-in-out infinite}
+    .fc2{animation:floatB 5.8s ease-in-out infinite;animation-delay:.6s}
+    .fc3{animation:floatA 6.2s ease-in-out infinite;animation-delay:1.2s}
+    .fc4{animation:floatB 5.4s ease-in-out infinite;animation-delay:.3s}
+    .fc5{animation:floatA 6s ease-in-out infinite;animation-delay:.9s}
+    .fc6{animation:floatB 5.6s ease-in-out infinite;animation-delay:1.5s}
+
+    /* ── MARQUEE ────────────────────────────────────────── */
+    .marquee-section{
+      padding:14px 0;
+      border-top:1px solid var(--border-gold);
+      border-bottom:1px solid var(--border-gold);
+      overflow:hidden;background:var(--surface);
+    }
+    .marquee-track{display:flex;white-space:nowrap;animation:marquee 18s linear infinite}
+    .marquee-item{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:0 32px;font-size:.78rem;font-weight:600;color:var(--gold);
+      border-right:1px solid var(--border-gold);
+      letter-spacing:.04em;
+    }
+    .marquee-item span{color:var(--muted);font-weight:400;font-size:.72rem}
+
+    /* ── COMMON SECTION ────────────────────────────────── */
+    .section{padding:88px 6%}
+    .section-inner{max-width:1080px;margin:0 auto}
+    .section-label{
+      display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--gold);
+      background:var(--gold-bg);border:1px solid var(--gold-border);
+      padding:5px 14px;border-radius:100px;margin-bottom:14px;
+    }
+    .section-title{
+      font-family:'Outfit',sans-serif;
+      font-size:clamp(1.8rem,3.5vw,2.7rem);
+      font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px;color:var(--fg);
+    }
+    .section-desc{font-size:.98rem;color:var(--muted);max-width:540px;line-height:1.78}
+    .gold-text{
+      background:linear-gradient(135deg,var(--gold-dark) 0%,var(--gold) 40%,var(--gold-light) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .text-center{text-align:center}
+
+    /* ── STATS BAND ─────────────────────────────────────── */
+    .stats-band{
+      background:linear-gradient(135deg,#1a140a 0%,#2a1f08 40%,#1f1808 70%,#0e0c06 100%);
+      border-top:1px solid var(--gold-border);
+      border-bottom:1px solid var(--gold-border);
+      padding:56px 5%;
+      position:relative;overflow:hidden;
+    }
+    .stats-band::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at center,rgba(201,168,76,.08) 0%,transparent 70%);
+      pointer-events:none;
+    }
+    .stats-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;position:relative;z-index:1}
+    .stat-item{color:var(--fg)}
+    .stat-num{
+      font-family:'Outfit',sans-serif;
+      font-size:2.8rem;font-weight:900;letter-spacing:-.04em;line-height:1;
+      background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .stat-label{font-size:.8rem;margin-top:6px;color:var(--muted);font-weight:500}
+
+    /* ── FEATURES GRID ──────────────────────────────────── */
+    .features-bg{background:var(--bg)}
+    .features-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;margin-top:44px;
+    }
+    .feat-card{
+      background:var(--surface);
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      padding:28px 24px;
+      position:relative;overflow:hidden;
+      transition:transform .25s cubic-bezier(.22,1,.36,1),border-color .25s,box-shadow .25s;
+    }
+    .feat-card:hover{
+      transform:translateY(-5px);
+      border-color:var(--gold-border);
+      box-shadow:var(--shadow-gold);
+    }
+    .feat-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light));
+      opacity:0;transition:opacity .25s;
+    }
+    .feat-card:hover::before{opacity:1}
+    .feat-icon{
+      width:52px;height:52px;border-radius:14px;
+      background:var(--gold-bg);border:1px solid var(--gold-border);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.5rem;margin-bottom:16px;
+    }
+    .feat-card h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;margin-bottom:8px;color:var(--fg);letter-spacing:-.01em}
+    .feat-card p{font-size:.86rem;color:var(--muted);line-height:1.68}
+    .feat-tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+    .feat-tag{font-size:.64rem;font-weight:600;padding:3px 9px;border-radius:20px;background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-border)}
+
+    /* ── HOW IT WORKS ──────────────────────────────────── */
+    .how-bg{background:var(--surface)}
+    .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+    .how-connector{
+      display:none;
+      position:absolute;top:50%;left:100%;
+      width:40px;height:2px;
+      background:linear-gradient(90deg,var(--gold),transparent);
+      transform:translateY(-50%);
+    }
+    .how-card{
+      background:var(--surface-2);
+      border-radius:var(--radius);padding:30px 24px;
+      border:1px solid var(--border-gold);
+      position:relative;overflow:hidden;
+      transition:transform .25s,box-shadow .25s;
+    }
+    .how-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-gold)}
+    .how-num{
+      font-family:'Outfit',sans-serif;
+      font-size:3rem;font-weight:900;
+      background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      letter-spacing:-.06em;line-height:1;margin-bottom:14px;
+    }
+    .how-card h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;margin-bottom:8px;color:var(--fg)}
+    .how-card p{font-size:.86rem;color:var(--muted);line-height:1.7}
+
+    /* ── SHOWCASE — SPLIT SECTION ───────────────────────── */
+    .split-section{background:var(--bg)}
+    .split-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:16px}
+    .split-grid.reverse{direction:rtl}
+    .split-grid.reverse > *{direction:ltr}
+    .split-visual{
+      border-radius:24px;
+      background:var(--surface);
+      border:1px solid var(--border-gold);
+      overflow:hidden;
+      box-shadow:var(--shadow-lg);
+      min-height:320px;
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+    }
+    .split-visual-inner{
+      padding:32px;width:100%;
+    }
+    .split-content{padding:16px 0}
+    .split-content h3{font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-.03em;margin-bottom:12px;line-height:1.2;color:var(--fg)}
+    .split-content p{color:var(--muted);line-height:1.78;margin-bottom:20px;font-size:.96rem}
+    .check-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+    .check-list li{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;line-height:1.5;color:var(--fg)}
+    .cl-icon{width:22px;height:22px;border-radius:50%;background:rgba(201,168,76,.12);color:var(--gold);font-size:.68rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-weight:700}
+
+    /* UI Mockups inside split visuals */
+    .ui-family{display:flex;flex-direction:column;gap:8px;width:100%}
+    .ui-member{display:flex;align-items:center;gap:12px;background:var(--surface-2);border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,.05)}
+    .ui-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .ui-member-info{flex:1}
+    .ui-member-name{font-size:.78rem;font-weight:600;color:var(--fg)}
+    .ui-member-meta{font-size:.66rem;color:var(--muted);margin-top:1px}
+    .ui-member-val{font-size:.72rem;font-weight:700;color:var(--gold-light)}
+
+    .ui-locations{display:flex;flex-direction:column;gap:8px}
+    .ui-loc{display:flex;align-items:center;gap:10px;background:var(--surface-2);border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,.05)}
+    .ui-loc-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+    .ui-loc-info{flex:1}
+    .ui-loc-name{font-size:.78rem;font-weight:600;color:var(--fg)}
+    .ui-loc-count{font-size:.65rem;color:var(--muted);margin-top:1px}
+    .ui-loc-bar{height:4px;border-radius:2px;background:var(--surface-3);overflow:hidden;margin-top:8px}
+    .ui-loc-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+
+    .ui-goal{background:var(--surface-2);border-radius:16px;padding:16px;border:1px solid rgba(201,168,76,.15)}
+    .ui-goal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .ui-goal-title{font-size:.78rem;font-weight:700;color:var(--fg)}
+    .ui-goal-pct{font-size:.72rem;font-weight:700;color:var(--gold)}
+    .ui-goal-track{height:8px;background:var(--surface-3);border-radius:4px;overflow:hidden;margin-bottom:8px}
+    .ui-goal-prog{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light));animation:none}
+    .ui-goal-detail{font-size:.62rem;color:var(--muted)}
+
+    /* ── SECURITY SECTION ───────────────────────────────── */
+    .security-bg{
+      background:linear-gradient(160deg,#0e0f15 0%,#111218 100%);
+      border-top:1px solid var(--border-gold);
+      border-bottom:1px solid var(--border-gold);
+    }
+    .security-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .security-badges{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+    .sec-badge{
+      background:var(--surface);border-radius:16px;padding:18px;
+      border:1px solid var(--border-gold);
+      transition:transform .2s,box-shadow .2s;
+    }
+    .sec-badge:hover{transform:translateY(-3px);box-shadow:var(--shadow-gold)}
+    .sec-badge .sb-icon{font-size:1.6rem;margin-bottom:8px}
+    .sec-badge h4{font-size:.88rem;font-weight:700;color:var(--fg);margin-bottom:4px}
+    .sec-badge p{font-size:.78rem;color:var(--muted);line-height:1.55}
+    .security-visual{
+      background:var(--surface);
+      border-radius:24px;
+      border:1px solid var(--border-gold);
+      padding:36px;
+      box-shadow:var(--shadow-lg);
+      display:flex;flex-direction:column;gap:16px;
+    }
+    .sec-vis-header{
+      font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;
+      color:var(--fg);display:flex;align-items:center;gap:10px;margin-bottom:4px;
+    }
+    .sec-lock-icon{
+      width:40px;height:40px;border-radius:50%;
+      background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.1rem;
+      box-shadow:0 4px 16px rgba(201,168,76,.3);
+      animation:glow 3s ease-in-out infinite;
+    }
+    .sec-row{display:flex;align-items:center;gap:12px;padding:12px;background:var(--surface-2);border-radius:12px;border:1px solid rgba(255,255,255,.05)}
+    .sec-row-icon{font-size:1.2rem;width:36px;text-align:center}
+    .sec-row-label{flex:1;font-size:.82rem;font-weight:600;color:var(--fg)}
+    .sec-row-status{font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:20px}
+    .status-on{background:rgba(74,222,128,.12);color:#4ade80}
+    .status-enc{background:rgba(201,168,76,.12);color:var(--gold)}
+
+    /* ── METAL PRICE TICKER ─────────────────────────────── */
+    .ticker-section{background:var(--surface);border-top:1px solid var(--border-gold)}
+    .ticker-inner{max-width:1080px;margin:0 auto;padding:40px 6%}
+    .ticker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+    .ticker-card{
+      background:var(--surface-2);border-radius:var(--radius);
+      border:1px solid var(--border-gold);padding:22px;
+      display:flex;flex-direction:column;gap:6px;
+      position:relative;overflow:hidden;
+      transition:transform .2s,box-shadow .2s;
+    }
+    .ticker-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-gold)}
+    .ticker-card::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,var(--gold-dark),var(--gold),transparent);
+    }
+    .ticker-metal{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .ticker-price{font-family:'Outfit',sans-serif;font-size:1.9rem;font-weight:800;color:var(--fg);letter-spacing:-.03em;line-height:1}
+    .ticker-sub{font-size:.72rem;color:var(--muted)}
+    .ticker-change{font-size:.74rem;font-weight:700;display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px}
+    .change-up{color:#4ade80;background:rgba(74,222,128,.1)}
+    .change-dn{color:#f87171;background:rgba(248,113,113,.1)}
+    .ticker-note{text-align:center;font-size:.73rem;color:var(--muted);margin-top:16px}
+
+    /* ── FAQ ────────────────────────────────────────────── */
+    .faq-bg{background:var(--bg)}
+    .faq-list{max-width:720px;margin:44px auto 0}
+    .faq-item{border-bottom:1px solid var(--border-gold)}
+    .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-size:.94rem;font-weight:600;cursor:pointer;text-align:left;gap:16px;background:none;color:var(--fg)}
+    .faq-q-text{flex:1;color:var(--fg)}
+    .faq-arr{
+      width:26px;height:26px;border-radius:50%;
+      background:var(--gold-bg);color:var(--gold);
+      display:flex;align-items:center;justify-content:center;
+      font-size:.72rem;transition:transform .25s,background .2s;flex-shrink:0;
+    }
+    .faq-item.open .faq-arr{transform:rotate(180deg);background:var(--gold);color:#000}
+    .faq-a{font-size:.89rem;color:var(--muted);line-height:1.78;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s ease}
+    .faq-item.open .faq-a{max-height:400px;padding-bottom:20px}
+
+    /* ── CTA BAND ───────────────────────────────────────── */
+    .cta-band{
+      background:linear-gradient(145deg,#1a140a 0%,#2a1e08 30%,#3a2908 60%,#1a1408 100%);
+      padding:96px 6%;text-align:center;color:var(--fg);
+      position:relative;overflow:hidden;
+      border-top:1px solid var(--gold-border);
+    }
+    .cta-band::before{
+      content:'';position:absolute;
+      top:-100px;left:50%;transform:translateX(-50%);
+      width:700px;height:700px;
+      background:radial-gradient(circle,rgba(201,168,76,.12) 0%,transparent 65%);
+      pointer-events:none;
+    }
+    .cta-band h2{
+      font-family:'Outfit',sans-serif;
+      font-size:clamp(1.9rem,4.5vw,3rem);font-weight:900;letter-spacing:-.03em;margin-bottom:14px;
+      position:relative;z-index:1;
+    }
+    .cta-band p{font-size:.98rem;color:var(--muted);margin-bottom:36px;max-width:440px;margin-left:auto;margin-right:auto;position:relative;z-index:1}
+    .cta-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;position:relative;z-index:1}
+    .btn-gold{
+      display:inline-flex;align-items:center;gap:10px;
+      background:var(--gold);color:#000;
+      padding:15px 32px;border-radius:100px;
+      font-size:.92rem;font-weight:700;
+      transition:transform .2s,box-shadow .2s,background .2s;
+    }
+    .btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 36px rgba(201,168,76,.45)}
+    .btn-outline-gold{
+      display:inline-flex;align-items:center;gap:10px;
+      border:2px solid rgba(201,168,76,.5);color:var(--gold-light);
+      padding:15px 32px;border-radius:100px;
+      font-size:.92rem;font-weight:700;
+      transition:background .2s,border-color .2s;
+    }
+    .btn-outline-gold:hover{background:var(--gold-bg);border-color:var(--gold)}
+
+    /* Google Play button */
+    .btn-gplay{
+      display:inline-flex;align-items:center;gap:10px;
+      background:#111;color:#fff;
+      padding:10px 22px;border-radius:100px;
+      border:1px solid rgba(255,255,255,.1);
+      transition:transform .2s,box-shadow .2s;line-height:1;
+    }
+    .btn-gplay:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+    .btn-gplay-text{display:flex;flex-direction:column;gap:2px}
+    .btn-gplay-sub{font-size:.58rem;font-weight:500;opacity:.7;text-transform:uppercase;letter-spacing:.06em}
+    .btn-gplay-main{font-size:.9rem;font-weight:700}
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer{background:#080a0e;color:rgba(240,237,232,.45);padding:52px 6% 36px;border-top:1px solid var(--border-gold)}
+    .footer-inner{max-width:1100px;margin:0 auto}
+    .footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:48px;margin-bottom:44px}
+    .footer-brand-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+    .footer-brand-row img{width:30px;height:30px;border-radius:20%;box-shadow:0 2px 8px rgba(201,168,76,.3)}
+    .footer-brand-row span{font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:800;color:var(--fg)}
+    .footer-brand p{font-size:.82rem;line-height:1.7;max-width:240px}
+    .footer-col h4{font-size:.74rem;font-weight:700;color:rgba(240,237,232,.7);margin-bottom:14px;letter-spacing:.1em;text-transform:uppercase}
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+    .footer-col a{font-size:.83rem;transition:color .18s}
+    .footer-col a:hover{color:var(--gold-light)}
+    .footer-bottom{border-top:1px solid rgba(201,168,76,.12);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:.76rem;flex-wrap:wrap;gap:8px}
+    .footer-bottom a{color:rgba(240,237,232,.4)}
+    .footer-bottom a:hover{color:var(--gold)}
+    .footer-gold-bar{
+      height:3px;
+      background:linear-gradient(90deg,transparent,var(--gold-dark),var(--gold),var(--gold-light),var(--gold),var(--gold-dark),transparent);
+      margin-bottom:40px;border-radius:2px;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media(max-width:960px){
+      .nav-desktop{display:none}
+      .hamburger{display:flex}
+    }
+    @media(max-width:880px){
+      .hero-visual-wrap{
+        max-width:100%;display:flex;flex-direction:column;align-items:center;
+        gap:20px;margin-top:40px;padding-bottom:48px;
+      }
+      .hero-phone-col{order:1;width:100%}
+      .phone-mockup{width:190px;margin:0 auto}
+      .hero-feat-col{
+        order:2;flex-direction:row;flex-wrap:wrap;justify-content:center;gap:12px;width:100%;
+      }
+      .hero-feat-col.left,.hero-feat-col.right{align-items:center;padding:0}
+      .features-grid{grid-template-columns:repeat(2,1fr)}
+      .how-grid{grid-template-columns:1fr}
+      .split-grid{grid-template-columns:1fr;gap:40px}
+      .split-grid.reverse{direction:ltr}
+      .security-grid{grid-template-columns:1fr;gap:40px}
+      .ticker-grid{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+      .section{padding:72px 5%}
+    }
+    @media(max-width:600px){
+      .section{padding:56px 5%}
+      .features-grid{grid-template-columns:1fr}
+      .security-badges{grid-template-columns:1fr}
+      .footer-top{grid-template-columns:1fr;gap:28px}
+      .hero h1{font-size:clamp(2rem,8.5vw,3rem)}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ════════════════════════════════════════════ -->
+<nav class="nav" id="mainNav">
+  <a class="nav-logo" href="/gramwise">
+    <img src="/gramwise/images/app_icon_playstore.png" alt="GramWise" />
+    <div>
+      <div class="nav-logo-text">GramWise</div>
+      <span class="nav-logo-sub">by WiselyRise</span>
+    </div>
+  </a>
+  <div class="nav-desktop">
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="/">WiselyRise</a></li>
+    </ul>
+    <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.wiselyrise.gramwise" target="_blank" rel="noopener">
+      ▶ Get the App
+    </a>
+  </div>
+  <div class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features" onclick="closeMM()">Features</a>
+  <a href="#how" onclick="closeMM()">How it works</a>
+  <a href="#faq" onclick="closeMM()">FAQ</a>
+  <a href="/" onclick="closeMM()">WiselyRise ↗</a>
+  <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.wiselyrise.gramwise" target="_blank" rel="noopener" onclick="closeMM()">▶ Get the App</a>
+</div>
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<div class="hero-wrap">
+  <div class="hero">
+    <div class="hero-badge reveal">
+      <span class="hero-badge-dot"></span>
+      Now on Google Play Store
+    </div>
+    <h1 class="reveal d1">Track Every Gram,<br><span class="gold-text">Treasure Every Moment</span></h1>
+    <p class="hero-sub reveal d2">The private gold &amp; jewellery portfolio tracker built for Indian families. Know what you own, what it's worth, and exactly where it is.</p>
+    <div class="hero-actions reveal d3">
+      <a class="btn-primary" href="https://play.google.com/store/apps/details?id=com.wiselyrise.gramwise" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.32a2 2 0 0 0 2.1-.22l11.43-6.6-2.9-2.9L3.18 23.32zM21.4 10.6l-2.83-1.64-3.3 3.3 3.3 3.3 2.83-1.64A2 2 0 0 0 21.4 10.6zM1.75.68A2 2 0 0 0 1 2.32v19.36l10.72-10.72L1.75.68zm12.85 7.93L3.28.69 13.6 9.5l1-1z"/></svg>
+        Download Free
+      </a>
+      <a class="btn-secondary" href="#features">See features ↓</a>
+    </div>
+    <div class="hero-trust reveal">
+      <span class="trust-pill"><span class="trust-check">✓</span> 100% Offline</span>
+      <span class="trust-pill"><span class="trust-check">✓</span> No signup required</span>
+      <span class="trust-pill"><span class="trust-check">✓</span> Encrypted vault</span>
+      <span class="trust-pill"><span class="trust-check">✓</span> Free to use</span>
+    </div>
+
+    <!-- Hero visual — phone + floating chips -->
+    <div class="hero-visual-wrap">
+      <div class="hero-glow"></div>
+
+      <!-- Left chips -->
+      <div class="hero-feat-col left">
+        <div class="feat-chip fc1">
+          <div class="feat-chip-icon">📊</div>
+          <div class="feat-chip-label">Live Prices</div>
+        </div>
+        <div class="feat-chip fc2">
+          <div class="feat-chip-icon">🔐</div>
+          <div class="feat-chip-label">Secure Vault</div>
+        </div>
+        <div class="feat-chip fc3">
+          <div class="feat-chip-icon">🎯</div>
+          <div class="feat-chip-label">Goals</div>
+        </div>
+      </div>
+
+      <!-- Phone mockup -->
+      <div class="hero-phone-col">
+        <div class="phone-mockup">
+          <div class="phone-status">
+            <span>9:41</span>
+            <span>● ▲ 📶</span>
+          </div>
+          <div class="phone-screen">
+            <!-- Portfolio summary -->
+            <div class="phone-header">
+              <div class="phone-hdr-label">My Portfolio</div>
+              <div class="phone-hdr-val">₹4,82,500</div>
+              <div class="phone-hdr-sub">312.5g · 6 items</div>
+              <div class="phone-hdr-row">
+                <span class="phone-pill">Gold 24K ↑ 1.2%</span>
+                <span class="phone-pill">+₹5,820</span>
+              </div>
+            </div>
+            <!-- Items -->
+            <div class="phone-item">
+              <div class="phone-item-icon gold">💍</div>
+              <div class="phone-item-info">
+                <div class="phone-item-name">Diamond Ring</div>
+                <div class="phone-item-meta">22K · 8.5g · Priya</div>
+              </div>
+              <div class="phone-item-val">₹54,400</div>
+            </div>
+            <div class="phone-item">
+              <div class="phone-item-icon gold">🔗</div>
+              <div class="phone-item-info">
+                <div class="phone-item-name">Gold Chain</div>
+                <div class="phone-item-meta">18K · 12g · Ravi</div>
+              </div>
+              <div class="phone-item-val">₹61,200</div>
+            </div>
+            <div class="phone-item">
+              <div class="phone-item-icon silver">🥈</div>
+              <div class="phone-item-info">
+                <div class="phone-item-name">Silver Coins</div>
+                <div class="phone-item-meta">999 · 100g · Safe</div>
+              </div>
+              <div class="phone-item-val">₹9,800</div>
+            </div>
+            <!-- Live rate -->
+            <div class="phone-live">
+              <div>
+                <div class="phone-live-label">Gold 24K / 10g</div>
+                <div class="phone-live-val">₹9,340 today</div>
+              </div>
+              <span class="phone-live-chg">▲ 1.2%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right chips -->
+      <div class="hero-feat-col right">
+        <div class="feat-chip fc4">
+          <div class="feat-chip-icon">👨‍👩‍👧</div>
+          <div class="feat-chip-label">Family</div>
+        </div>
+        <div class="feat-chip fc5">
+          <div class="feat-chip-icon">📍</div>
+          <div class="feat-chip-label">Storage</div>
+        </div>
+        <div class="feat-chip fc6">
+          <div class="feat-chip-icon">💎</div>
+          <div class="feat-chip-label">All Metals</div>
+        </div>
+      </div>
+    </div><!-- /hero-visual-wrap -->
+  </div><!-- /hero -->
+</div><!-- /hero-wrap -->
+
+<!-- ═══ MARQUEE ═══════════════════════════════════════════ -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">💛 Gold Tracking <span>22K · 24K · 18K</span></span>
+    <span class="marquee-item">🥈 Silver Portfolio <span>All purities</span></span>
+    <span class="marquee-item">💎 Platinum Support <span>950 · 850</span></span>
+    <span class="marquee-item">👨‍👩‍👧 Family Members <span>Assign ownership</span></span>
+    <span class="marquee-item">📍 Storage Locations <span>Safe · Locker · Home</span></span>
+    <span class="marquee-item">📊 Live Metal Prices <span>Auto-updated</span></span>
+    <span class="marquee-item">🔐 Biometric Lock <span>Fingerprint · PIN</span></span>
+    <span class="marquee-item">🎯 Savings Goals <span>Track progress</span></span>
+    <span class="marquee-item">🧾 Item Wizard <span>Step-by-step</span></span>
+    <span class="marquee-item">🖼️ Item Icons <span>Beautiful SVG avatars</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">💛 Gold Tracking <span>22K · 24K · 18K</span></span>
+    <span class="marquee-item">🥈 Silver Portfolio <span>All purities</span></span>
+    <span class="marquee-item">💎 Platinum Support <span>950 · 850</span></span>
+    <span class="marquee-item">👨‍👩‍👧 Family Members <span>Assign ownership</span></span>
+    <span class="marquee-item">📍 Storage Locations <span>Safe · Locker · Home</span></span>
+    <span class="marquee-item">📊 Live Metal Prices <span>Auto-updated</span></span>
+    <span class="marquee-item">🔐 Biometric Lock <span>Fingerprint · PIN</span></span>
+    <span class="marquee-item">🎯 Savings Goals <span>Track progress</span></span>
+    <span class="marquee-item">🧾 Item Wizard <span>Step-by-step</span></span>
+    <span class="marquee-item">🖼️ Item Icons <span>Beautiful SVG avatars</span></span>
+  </div>
+</div>
+
+<!-- ═══ STATS ══════════════════════════════════════════════ -->
+<div class="stats-band">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Metals Supported<br><small style="font-size:.72rem;opacity:.7">Gold · Silver · Platinum · Palladium</small></div>
+    </div>
+    <div class="stat-item reveal d1">
+      <div class="stat-num">22+</div>
+      <div class="stat-label">Item Categories<br><small style="font-size:.72rem;opacity:.7">Jewellery · Coins · Bars · More</small></div>
+    </div>
+    <div class="stat-item reveal d2">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Items to track<br><small style="font-size:.72rem;opacity:.7">No limits, ever</small></div>
+    </div>
+    <div class="stat-item reveal d3">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Data sent to us<br><small style="font-size:.72rem;opacity:.7">Truly offline-first</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FEATURES GRID ═════════════════════════════════════ -->
+<section class="section features-bg" id="features">
+  <div class="section-inner">
+    <div class="text-center reveal">
+      <div class="section-label">Core Features</div>
+      <h2 class="section-title">Everything your family's gold needs</h2>
+      <p class="section-desc" style="margin:0 auto">Built for Indian families who take their jewellery seriously. Every feature designed around how you actually manage your gold.</p>
+    </div>
+    <div class="features-grid">
+
+      <div class="feat-card reveal d1">
+        <div class="feat-icon">📋</div>
+        <h3>Smart Item Wizard</h3>
+        <p>Add any piece in seconds with a guided step-by-step wizard. Log metal, form, weight, purity, purchase price, store, and even stone details.</p>
+        <div class="feat-tag-row">
+          <span class="feat-tag">Ring · Chain · Coin · Bar</span>
+          <span class="feat-tag">Karat &amp; purity</span>
+        </div>
+      </div>
+
+      <div class="feat-card reveal d2">
+        <div class="feat-icon">👨‍👩‍👧</div>
+        <h3>Family Vault</h3>
+        <p>Assign each jewellery piece to a family member. See a per-person portfolio breakdown — ideal for tracking bridal gold, inheritance, and gifted pieces.</p>
+        <div class="feat-tag-row">
+          <span class="feat-tag">Per-member view</span>
+          <span class="feat-tag">Shared household</span>
+        </div>
+      </div>
+
+      <div class="feat-card reveal d3">
+        <div class="feat-icon">⚡</div>
+        <h3>Live Metal Prices</h3>
+        <p>Real-time gold, silver, platinum, and palladium rates auto-update your portfolio value. See exactly what your collection is worth today.</p>
+        <div class="feat-tag-row">
+          <span class="feat-tag">Gold &amp; Silver</span>
+          <span class="feat-tag">Auto-refresh</span>
+        </div>
+      </div>
+
+      <div class="feat-card reveal">
+        <div class="feat-icon">📍</div>
+        <h3>Storage Locations</h3>
+        <p>Tag every item to a location — home safe, bank locker, trusted relative. Know exactly where each piece is stored at a glance.</p>
+        <div class="feat-tag-row">
+          <span class="feat-tag">Safe · Locker · Home</span>
+          <span class="feat-tag">Custom locations</span>
+        </div>
+      </div>
+
+      <div class="feat-card reveal d1">
+        <div class="feat-icon">🎯</div>
+        <h3>Goals Tracker</h3>
+        <p>Set gold savings goals — "Save ₹2 lakhs for Diwali gold" — and track your progress. Visual progress bars keep you motivated.</p>
+        <div class="feat-tag-row">
+          <span class="feat-tag">Savings goals</span>
+          <span class="feat-tag">Progress tracking</span>
+        </div>
+      </div>
+
+      <div class="feat-card reveal d2">
+        <div class="feat-icon">🖼️</div>
+        <h3>Beautiful Item Icons</h3>
+        <p>Pick from 36+ hand-crafted SVG icons for each jewellery type — rings, chains, earrings, bangles, coins, bars, and more. Or use your own photo.</p>
+        <div class="feat-tag-row">
+          <span class="feat-tag">36+ SVG icons</span>
+          <span class="feat-tag">Custom photos</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SPLIT — FAMILY MEMBERS ═══════════════════════════ -->
+<section class="section split-section">
+  <div class="section-inner">
+    <div class="split-grid">
+      <div class="split-visual reveal">
+        <div class="split-visual-inner">
+          <div class="ui-family">
+            <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">Family Portfolio</div>
+            <div class="ui-member">
+              <div class="ui-avatar" style="background:rgba(201,168,76,.15)">👩</div>
+              <div class="ui-member-info">
+                <div class="ui-member-name">Priya (Wife)</div>
+                <div class="ui-member-meta">8 items · 142.5g</div>
+              </div>
+              <div class="ui-member-val">₹2,04,300</div>
+            </div>
+            <div class="ui-member">
+              <div class="ui-avatar" style="background:rgba(201,168,76,.1)">👨</div>
+              <div class="ui-member-info">
+                <div class="ui-member-name">Ravi (Self)</div>
+                <div class="ui-member-meta">3 items · 45g</div>
+              </div>
+              <div class="ui-member-val">₹81,000</div>
+            </div>
+            <div class="ui-member">
+              <div class="ui-avatar" style="background:rgba(160,160,255,.1)">👧</div>
+              <div class="ui-member-info">
+                <div class="ui-member-name">Aarohi (Daughter)</div>
+                <div class="ui-member-meta">4 items · 38g · Bridal</div>
+              </div>
+              <div class="ui-member-val">₹1,10,400</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;background:var(--surface-2);border-radius:10px;padding:10px 12px;margin-top:4px;border:1px solid var(--gold-border)">
+              <span style="font-size:.7rem;color:var(--muted)">Total household</span>
+              <span style="font-family:'Outfit',sans-serif;font-size:1rem;font-weight:800;color:var(--gold)">₹4,82,500</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="split-content reveal d1">
+        <div class="section-label">Family Vault</div>
+        <h3>Know who owns what, always</h3>
+        <p>Gold in Indian families is rarely just one person's. Assign each piece to a family member — wife, daughter, mother — and see a complete per-person breakdown. Perfect for bridal gold, inheritance tracking, and gifted jewellery.</p>
+        <ul class="check-list">
+          <li><span class="cl-icon">✓</span>Add unlimited family members with custom avatars</li>
+          <li><span class="cl-icon">✓</span>Per-member portfolio with total weight and value</li>
+          <li><span class="cl-icon">✓</span>Assign or re-assign items at any time</li>
+          <li><span class="cl-icon">✓</span>Household total always at a glance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SPLIT — STORAGE LOCATIONS ════════════════════════ -->
+<section class="section split-section" style="background:var(--surface);padding-top:0">
+  <div class="section-inner">
+    <div class="split-grid reverse">
+      <div class="split-content reveal">
+        <div class="section-label">Storage Locations</div>
+        <h3>Find any piece, instantly</h3>
+        <p>Stop wondering where that gold chain is. Tag every item to a specific storage location — home safe, bank locker, trusted relative. GramWise shows you exactly where to look.</p>
+        <ul class="check-list">
+          <li><span class="cl-icon">✓</span>Create custom storage locations</li>
+          <li><span class="cl-icon">✓</span>See count and value per location</li>
+          <li><span class="cl-icon">✓</span>Filter items by where they're stored</li>
+          <li><span class="cl-icon">✓</span>Great for insurance documentation</li>
+        </ul>
+      </div>
+      <div class="split-visual reveal d1">
+        <div class="split-visual-inner">
+          <div class="ui-locations">
+            <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">Storage Overview</div>
+            <div class="ui-loc">
+              <div class="ui-loc-dot" style="background:#4ade80"></div>
+              <div class="ui-loc-info">
+                <div class="ui-loc-name">🏦 Bank Locker</div>
+                <div class="ui-loc-count">6 items · 198.5g · ₹2,85,000</div>
+                <div class="ui-loc-bar"><div class="ui-loc-fill" style="width:59%"></div></div>
+              </div>
+            </div>
+            <div class="ui-loc">
+              <div class="ui-loc-dot" style="background:var(--gold)"></div>
+              <div class="ui-loc-info">
+                <div class="ui-loc-name">🔒 Home Safe</div>
+                <div class="ui-loc-count">4 items · 82g · ₹1,24,800</div>
+                <div class="ui-loc-bar"><div class="ui-loc-fill" style="width:26%"></div></div>
+              </div>
+            </div>
+            <div class="ui-loc">
+              <div class="ui-loc-dot" style="background:#818cf8"></div>
+              <div class="ui-loc-info">
+                <div class="ui-loc-name">🏠 With Parents</div>
+                <div class="ui-loc-count">2 items · 32g · ₹46,200</div>
+                <div class="ui-loc-bar"><div class="ui-loc-fill" style="width:15%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SPLIT — GOALS TRACKER ════════════════════════════ -->
+<section class="section split-section">
+  <div class="section-inner">
+    <div class="split-grid">
+      <div class="split-visual reveal">
+        <div class="split-visual-inner">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">Savings Goals</div>
+            <div class="ui-goal">
+              <div class="ui-goal-head">
+                <span class="ui-goal-title">🪙 Diwali Gold Coins</span>
+                <span class="ui-goal-pct">68%</span>
+              </div>
+              <div class="ui-goal-track"><div class="ui-goal-prog" style="width:68%"></div></div>
+              <div class="ui-goal-detail">₹68,000 saved of ₹1,00,000 target</div>
+            </div>
+            <div class="ui-goal">
+              <div class="ui-goal-head">
+                <span class="ui-goal-title">💍 Aarohi's Wedding Set</span>
+                <span class="ui-goal-pct">34%</span>
+              </div>
+              <div class="ui-goal-track"><div class="ui-goal-prog" style="width:34%"></div></div>
+              <div class="ui-goal-detail">₹1,70,000 saved of ₹5,00,000 target</div>
+            </div>
+            <div class="ui-goal">
+              <div class="ui-goal-head">
+                <span class="ui-goal-title">📦 Silver Bar Collection</span>
+                <span class="ui-goal-pct">90%</span>
+              </div>
+              <div class="ui-goal-track"><div class="ui-goal-prog" style="width:90%"></div></div>
+              <div class="ui-goal-detail">₹45,000 saved of ₹50,000 target</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="split-content reveal d1">
+        <div class="section-label">Goals Tracker</div>
+        <h3>Save towards your gold dreams</h3>
+        <p>Set meaningful savings goals — Diwali gold, a wedding set, a coin collection. GramWise tracks your progress and keeps your goals visible so you stay motivated.</p>
+        <ul class="check-list">
+          <li><span class="cl-icon">✓</span>Create named goals with target amounts</li>
+          <li><span class="cl-icon">✓</span>Track saved amount vs. target</li>
+          <li><span class="cl-icon">✓</span>Visual progress bars</li>
+          <li><span class="cl-icon">✓</span>Multiple active goals at once</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECURITY SECTION ══════════════════════════════════ -->
+<section class="section security-bg" id="security">
+  <div class="section-inner">
+    <div class="security-grid">
+      <div class="reveal">
+        <div class="section-label">Privacy &amp; Security</div>
+        <h2 class="section-title">Your wealth is<br><span class="gold-text">your secret</span></h2>
+        <p class="section-desc">GramWise never sends your jewellery data anywhere. Everything is encrypted on your device. Even if your phone is stolen, your data is safe.</p>
+        <div class="security-badges">
+          <div class="sec-badge">
+            <div class="sb-icon">🔐</div>
+            <h4>SQLCipher Encryption</h4>
+            <p>Your database is AES-256 encrypted. No key = no access.</p>
+          </div>
+          <div class="sec-badge">
+            <div class="sb-icon">👆</div>
+            <h4>Biometric Lock</h4>
+            <p>Fingerprint or face unlock. Opens only for you.</p>
+          </div>
+          <div class="sec-badge">
+            <div class="sb-icon">🎭</div>
+            <h4>Decoy Mode</h4>
+            <p>Enter a different PIN to show a convincing empty vault.</p>
+          </div>
+          <div class="sec-badge">
+            <div class="sb-icon">📵</div>
+            <h4>100% Offline</h4>
+            <p>Your jewellery data never leaves your device.</p>
+          </div>
+        </div>
+      </div>
+      <div class="security-visual reveal d2">
+        <div class="sec-vis-header">
+          <div class="sec-lock-icon">🔒</div>
+          <span>Security Status</span>
+        </div>
+        <div class="sec-row">
+          <div class="sec-row-icon">🔑</div>
+          <span class="sec-row-label">Database Encryption</span>
+          <span class="sec-row-status status-enc">AES-256</span>
+        </div>
+        <div class="sec-row">
+          <div class="sec-row-icon">👆</div>
+          <span class="sec-row-label">Biometric Lock</span>
+          <span class="sec-row-status status-on">Active</span>
+        </div>
+        <div class="sec-row">
+          <div class="sec-row-icon">🎭</div>
+          <span class="sec-row-label">Decoy PIN</span>
+          <span class="sec-row-status status-on">Configured</span>
+        </div>
+        <div class="sec-row">
+          <div class="sec-row-icon">☁️</div>
+          <span class="sec-row-label">Cloud Sync / Upload</span>
+          <span class="sec-row-status" style="background:rgba(248,113,113,.1);color:#f87171">Off</span>
+        </div>
+        <div class="sec-row">
+          <div class="sec-row-icon">📡</div>
+          <span class="sec-row-label">Data Sent to WiselyRise</span>
+          <span class="sec-row-status" style="background:rgba(248,113,113,.1);color:#f87171">Never</span>
+        </div>
+        <div style="font-size:.76rem;color:var(--muted);margin-top:4px;line-height:1.6;">
+          ✦ Only the live metal price API (metals.dev) is contacted — no personal data is shared in that request.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LIVE PRICES SECTION ═══════════════════════════════ -->
+<div class="ticker-section">
+  <div class="ticker-inner">
+    <div class="text-center reveal">
+      <div class="section-label">Live Metal Prices</div>
+      <h2 class="section-title" style="font-size:clamp(1.5rem,3vw,2.2rem)">Always know what your gold is worth</h2>
+      <p class="section-desc" style="margin:8px auto 0;font-size:.9rem">Live rates are fetched automatically. Your portfolio value updates every time you open the app.</p>
+    </div>
+    <div class="ticker-grid">
+      <div class="ticker-card reveal d1">
+        <div class="ticker-metal">Gold (24K) / 10g</div>
+        <div class="ticker-price">₹9,340</div>
+        <div class="ticker-sub">Per 10 grams — MCX spot rate</div>
+        <span class="ticker-change change-up">▲ 1.2% today</span>
+      </div>
+      <div class="ticker-card reveal d2">
+        <div class="ticker-metal">Silver / 1kg</div>
+        <div class="ticker-price">₹98,200</div>
+        <div class="ticker-sub">Per kilogram — MCX spot rate</div>
+        <span class="ticker-change change-dn">▼ 0.3% today</span>
+      </div>
+      <div class="ticker-card reveal d3">
+        <div class="ticker-metal">Platinum / 1g</div>
+        <div class="ticker-price">₹2,680</div>
+        <div class="ticker-sub">Per gram — International rate</div>
+        <span class="ticker-change change-up">▲ 0.6% today</span>
+      </div>
+    </div>
+    <p class="ticker-note">✦ Prices shown are illustrative. The app fetches live rates directly — accuracy subject to market availability.</p>
+  </div>
+</div>
+
+<!-- ═══ HOW IT WORKS ══════════════════════════════════════ -->
+<section class="section how-bg" id="how">
+  <div class="section-inner">
+    <div class="text-center reveal">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Up and running in minutes</h2>
+      <p class="section-desc" style="margin:0 auto">No account. No setup wizard. Just download and start logging your gold.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-card reveal d1">
+        <div class="how-num">01</div>
+        <h3>Download &amp; Open</h3>
+        <p>Install GramWise from the Play Store. No signup, no email, no permissions required beyond biometric lock. Just open and go.</p>
+      </div>
+      <div class="how-card reveal d2">
+        <div class="how-num">02</div>
+        <h3>Add Your Items</h3>
+        <p>Tap the + button and use the step-by-step wizard to log your first piece. Select metal, form, weight, purity, purchase details, and assign to a family member.</p>
+      </div>
+      <div class="how-card reveal d3">
+        <div class="how-num">03</div>
+        <h3>Watch It Update</h3>
+        <p>Live metal prices auto-update your entire portfolio value. Check what your gold is worth today, track your savings goals, and always know where each piece is stored.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ════════════════════════════════════════════════ -->
+<section class="section faq-bg" id="faq">
+  <div class="section-inner">
+    <div class="text-center reveal">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Common questions</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Is GramWise completely free?</span>
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">Yes, GramWise is free to download and use. All core features — item tracking, family members, storage locations, live prices, and goals — are included at no cost.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Does it work without an internet connection?</span>
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">Yes. All your jewellery data is stored locally on your device. The only feature that requires internet is the live metal price refresh — if you're offline, the app continues to work with the last fetched rates.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Is my data sent to WiselyRise?</span>
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">No. Your jewellery data — item details, family members, locations, values — is stored only on your device in an encrypted database. We never receive, store, or process any of your personal gold tracking data.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">What metals does GramWise support?</span>
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">GramWise supports Gold (all karats: 24K, 22K, 18K, 14K, etc.), Silver (999, 925, 800), Platinum (950, 850), and Palladium. You can also log items in custom units.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">How does the Decoy Mode work?</span>
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">Decoy Mode lets you set a secondary PIN that opens GramWise to a convincingly empty state — no items, no family members. This is designed for situations where you're under coercion to unlock the app. Your real data is never shown when the decoy PIN is used.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">Can I track which family member owns which jewellery?</span>
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">Absolutely. Add family members (spouse, children, parents) and assign any item to a specific person. The Family screen shows each member's total portfolio, weight, and item count. You can re-assign items at any time.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">What if I buy or sell a piece?</span>
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">You can delete sold items or mark them as transferred. Each item records the purchase price, date, and source — useful for capital gains calculations if needed. Future updates will add a sell/transfer log.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BAND ════════════════════════════════════════════ -->
+<section class="cta-band">
+  <h2 class="reveal">Start tracking your gold<br><span class="gold-text">for free, today</span></h2>
+  <p class="reveal d1">Download GramWise and know exactly what your family's gold is worth — right now.</p>
+  <div class="cta-btns reveal d2">
+    <a class="btn-gold" href="https://play.google.com/store/apps/details?id=com.wiselyrise.gramwise" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.32a2 2 0 0 0 2.1-.22l11.43-6.6-2.9-2.9L3.18 23.32zM21.4 10.6l-2.83-1.64-3.3 3.3 3.3 3.3 2.83-1.64A2 2 0 0 0 21.4 10.6zM1.75.68A2 2 0 0 0 1 2.32v19.36l10.72-10.72L1.75.68zm12.85 7.93L3.28.69 13.6 9.5l1-1z"/></svg>
+      Download on Google Play
+    </a>
+    <a class="btn-outline-gold" href="/gramwise/privacy">Privacy Policy</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-gold-bar"></div>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-row">
+          <img src="/gramwise/images/app_icon_playstore.png" alt="GramWise" />
+          <span>GramWise</span>
+        </div>
+        <p>The private gold &amp; jewellery portfolio tracker for Indian families. Offline-first, encrypted, and free to use.</p>
+      </div>
+      <div class="footer-col">
+        <h4>App</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/gramwise/privacy">Privacy Policy</a></li>
+          <li><a href="/gramwise/terms">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>WiselyRise</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/datewise">DateWise</a></li>
+          <li><a href="/pixwise">PixWise</a></li>
+          <li><a href="mailto:contact@wiselyrise.in">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 WiselyRise Solutions. Made with ❤️ in India.</span>
+      <div style="display:flex;gap:16px">
+        <a href="/gramwise/privacy">Privacy</a>
+        <a href="/gramwise/terms">Terms</a>
+        <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, {passive: true});
+
+  // Reveal observer
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('vis'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // Hamburger
+  const hb = document.getElementById('hamburger');
+  const mm = document.getElementById('mobileMenu');
+  hb.addEventListener('click', () => {
+    hb.classList.toggle('open');
+    mm.classList.toggle('open');
+    document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMM() {
+    hb.classList.remove('open');
+    mm.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
