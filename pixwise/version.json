@@ -1,7 +1,7 @@
 {
-  "latest_build": 38,
-  "latest_version": "2.6.6",
-  "min_build": 5,
-  "changelog": "GIF images are now supported! You can view GIFs in PixWise. We also fixed some bugs and improved performance.",
+  "latest_build": 54,
+  "latest_version": "2.8.4",
+  "min_build": 54,
+  "changelog": "You can use PixWise in 29 languages, edit images and much more.",
   "store_url": "https://play.google.com/store/apps/details?id=com.pixwise.app"
 }
