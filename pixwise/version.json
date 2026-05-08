@@ -1,7 +1,7 @@
 {
-  "latest_build": 54,
-  "latest_version": "2.8.4",
+  "latest_build": 55,
+  "latest_version": "2.8.5",
   "min_build": 54,
-  "changelog": "You can use PixWise in 29 languages, edit images and much more.",
+  "changelog": "UX improvements and locale bugfixes.",
   "store_url": "https://play.google.com/store/apps/details?id=com.pixwise.app"
 }
