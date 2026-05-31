@@ -1289,7 +1289,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/datewise">DateWise</a></li>
           <li><a href="/pixwise">PixWise</a></li>
-          <li><a href="mailto:contact@wiselyrise.in">Contact Us</a></li>
+          <li><a href="#" onclick="openContactModal('gramwise');return false;">Contact Us</a></li>
         </ul>
       </div>
     </div>
@@ -1298,13 +1298,18 @@
       <div style="display:flex;gap:16px">
         <a href="/gramwise/privacy">Privacy</a>
         <a href="/gramwise/terms">Terms</a>
-        <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>
+        <a href="#" onclick="openContactModal('gramwise');return false;">contact@wiselyrise.in</a>
       </div>
     </div>
   </div>
 </footer>
 
+<script src="/shared/contact-modal.js"></script>
 <script>
+  if (new URLSearchParams(window.location.search).get('contact') === '1') {
+    setTimeout(function () { openContactModal('gramwise'); }, 0);
+  }
+
   // Nav scroll effect
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
