@@ -1,7 +1,7 @@
 {
-  "latest_build": 56,
-  "latest_version": "2.8.6",
+  "latest_build": 57,
+  "latest_version": "2.8.7",
   "min_build": 54,
-  "changelog": "Photo editor bugfix",
+  "changelog": "Bugfixes and stability improvements.",
   "store_url": "https://play.google.com/store/apps/details?id=com.pixwise.app"
 }

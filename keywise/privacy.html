@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Privacy Policy for KeyWise — the zero-knowledge credential manager for families and professionals by WiselyRise Solutions."/>
+<title>Privacy Policy — KeyWise</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy:    #0D1F3C;
+  --navyM:   #122444;
+  --navyL:   #1A3357;
+  --teal:    #00BFA5;
+  --tealL:   #26D7C0;
+  --tealD:   #009688;
+  --gold:    #FFD166;
+  --coral:   #FF6B6B;
+  --green:   #4CAF50;
+  --slate:   #8EAAC8;
+  --white:   #F4F8FC;
+  --off:     #D0DDE8;
+  --dim:     #7A96B0;
+  --bg:      #060F1E;
+  --card:    rgba(255,255,255,.04);
+  --card2:   rgba(255,255,255,.06);
+  --border:  rgba(255,255,255,.08);
+  --teal-bg: rgba(0,191,165,.06);
+  --teal-bd: rgba(0,191,165,.18);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* Noise texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .022;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── HEADER ─── */
+header {
+  background: rgba(6,15,30,.96);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 14px 0;
+  margin-right: auto;
+}
+.logo-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--navy), var(--teal));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0,191,165,.2);
+}
+.logo-wordmark { display: flex; flex-direction: column; line-height: 1.2; }
+.logo-app { font-size: .95rem; font-weight: 700; color: var(--white); }
+.logo-by  { font-size: .58rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
+nav.header-nav { display: flex; align-items: center; gap: 2px; }
+nav.header-nav a {
+  display: inline-block;
+  padding: 10px 13px;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--dim);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: color .18s, background .18s;
+  white-space: nowrap;
+}
+nav.header-nav a:hover { color: var(--tealL); background: var(--teal-bg); }
+nav.header-nav .home-link { color: var(--teal); }
+
+/* ─── HERO BAND ─── */
+.hero {
+  background: linear-gradient(135deg, #0D1F3C 0%, #060F1E 60%, #1A3357 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 52px 28px 44px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 120%, rgba(0,0,0,.5) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(0,191,165,.1);
+  border: 1px solid rgba(0,191,165,.22);
+  border-radius: 100px;
+  padding: 5px 16px;
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 18px;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -.01em;
+  margin-bottom: 10px;
+}
+.hero-sub {
+  font-size: .9rem;
+  color: var(--dim);
+  margin-bottom: 14px;
+}
+.hero-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .72rem;
+  color: var(--dim);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 4px 14px;
+}
+
+/* ─── MAIN LAYOUT ─── */
+main {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 28px 80px;
+}
+
+/* ─── TL;DR ─── */
+.tldr {
+  background: linear-gradient(135deg, rgba(0,191,165,.07), rgba(0,191,165,.03));
+  border: 1px solid var(--teal-bd);
+  border-radius: 16px;
+  padding: 26px 28px;
+  margin: 36px 0 44px;
+}
+.tldr-head {
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--tealL);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.tldr ul { list-style: none; }
+.tldr li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: .87rem;
+  color: var(--off);
+  padding: 5px 0;
+  line-height: 1.6;
+}
+.tldr li::before {
+  content: '✓';
+  color: var(--teal);
+  font-weight: 700;
+  font-size: .82rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ─── SECTIONS ─── */
+.section { margin-bottom: 52px; }
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .62rem;
+  font-weight: 500;
+  color: var(--teal);
+  letter-spacing: .1em;
+  margin-bottom: 6px;
+}
+.section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  margin-bottom: 18px;
+  color: var(--white);
+}
+.section h2 em {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--teal), var(--tealL));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section h3 {
+  font-size: .96rem;
+  font-weight: 700;
+  color: var(--white);
+  margin: 28px 0 10px;
+  padding-left: 14px;
+  border-left: 3px solid var(--teal);
+}
+.section p {
+  font-size: .88rem;
+  color: var(--off);
+  line-height: 1.82;
+  margin-bottom: 12px;
+}
+.section a {
+  color: var(--tealL);
+  text-decoration: underline;
+  text-decoration-color: rgba(0,191,165,.35);
+  text-underline-offset: 3px;
+  transition: color .15s;
+}
+.section a:hover { color: var(--teal); }
+
+/* ─── CARDS ─── */
+.info-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin: 14px 0;
+}
+.info-card h4 {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 7px;
+}
+.info-card p {
+  font-size: .82rem;
+  color: var(--dim);
+  margin: 0;
+  line-height: 1.65;
+}
+
+.callout {
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  font-size: .84rem;
+  line-height: 1.65;
+}
+.callout-teal {
+  background: rgba(0,191,165,.07);
+  border: 1px solid rgba(0,191,165,.2);
+  color: var(--tealL);
+}
+.callout-gold {
+  background: rgba(255,209,102,.06);
+  border: 1px solid rgba(255,209,102,.2);
+  color: var(--gold);
+}
+.callout-coral {
+  background: rgba(255,107,107,.06);
+  border: 1px solid rgba(255,107,107,.2);
+  color: var(--coral);
+}
+.callout-icon { flex-shrink: 0; font-size: .95rem; margin-top: 1px; }
+.callout strong { font-weight: 700; }
+
+/* ─── NEGATIVE LIST ─── */
+ul.neg-list { list-style: none; margin: 12px 0; }
+ul.neg-list li {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  font-size: .86rem;
+  color: var(--off);
+  padding: 4px 0;
+  line-height: 1.6;
+}
+ul.neg-list li::before {
+  content: '✗';
+  color: var(--coral);
+  font-weight: 700;
+  font-size: .78rem;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* ─── THIRD-PARTY TABLE ─── */
+.tp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: .8rem;
+}
+.tp-table th {
+  background: rgba(0,191,165,.08);
+  padding: 9px 13px;
+  text-align: left;
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  border-bottom: 1px solid var(--border);
+}
+.tp-table td {
+  padding: 9px 13px;
+  border-bottom: 1px solid var(--border);
+  color: var(--off);
+  vertical-align: top;
+  line-height: 1.55;
+}
+.tp-table tr:hover td { background: rgba(255,255,255,.015); }
+.tier-badge {
+  display: inline-block;
+  font-size: .59rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 2px 7px;
+  vertical-align: middle;
+}
+.badge-free { background: rgba(0,191,165,.14); color: var(--teal); }
+.badge-prem { background: rgba(255,209,102,.12); color: var(--gold); }
+
+/* ─── CRYPTO BLOCK ─── */
+.crypto-block {
+  background: rgba(0,0,0,.25);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin: 14px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .76rem;
+  color: var(--tealL);
+  line-height: 1.9;
+}
+.crypto-block .label {
+  font-family: 'Outfit', sans-serif;
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* ─── DIVIDER ─── */
+hr.div {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 44px 0;
+}
+
+/* ─── RIGHTS GRID ─── */
+.rights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+@media (max-width: 520px) { .rights-grid { grid-template-columns: 1fr; } }
+.right-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.right-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.right-item h4 { font-size: .82rem; font-weight: 700; margin-bottom: 3px; }
+.right-item p  { font-size: .77rem; color: var(--dim); margin: 0; line-height: 1.5; }
+
+/* ─── CONTACT ─── */
+.contact-box {
+  background: linear-gradient(135deg, rgba(0,191,165,.08), rgba(13,31,60,.8));
+  border: 1px solid var(--teal-bd);
+  border-radius: 16px;
+  padding: 26px 28px;
+  margin-top: 16px;
+}
+.contact-box h4 { font-size: 1.02rem; font-weight: 700; margin-bottom: 6px; }
+.contact-box p  { font-size: .87rem; color: var(--off); margin-bottom: 4px; }
+.contact-box a  {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  background: var(--teal);
+  color: #060F1E;
+  font-weight: 700;
+  font-size: .82rem;
+  letter-spacing: .04em;
+  border-radius: 100px;
+  padding: 9px 20px;
+  text-decoration: none;
+  transition: background .18s;
+}
+.contact-box a:hover { background: var(--tealL); color: #060F1E; }
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 36px 28px 48px;
+  font-size: .76rem;
+  color: var(--dim);
+  position: relative;
+}
+footer .footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  opacity: .55;
+}
+footer p { margin: 4px 0; }
+footer a { color: var(--teal); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+  .header-inner { padding: 0 18px; }
+  nav.header-nav a { padding: 10px 9px; }
+  main { padding: 0 18px 60px; }
+  .tldr, .contact-box { padding: 20px 18px; }
+  .hero { padding: 38px 18px 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="header-inner">
+    <a class="logo-link" href="https://wiselyrise.in/keywise">
+      <div class="logo-icon">
+        <!-- KeyWise icon: key silhouette in teal -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="9" cy="10" r="4.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <path d="M13 13l7 7" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <path d="M17 17l2-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <path d="M15 19l2-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-wordmark">
+        <span class="logo-app">KeyWise</span>
+        <span class="logo-by">WiselyRise Solutions</span>
+      </div>
+    </a>
+    <nav class="header-nav" aria-label="Page navigation">
+      <a href="https://wiselyrise.in/keywise" class="home-link">← App Home</a>
+      <a href="https://wiselyrise.in/keywise/terms">Terms of Service</a>
+      <a href="https://wiselyrise.in/">WiselyRise 🏠</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ─── HERO ─── -->
+<div class="hero" role="banner">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2.2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      Legal Document
+    </div>
+    <h1>Privacy Policy</h1>
+    <p class="hero-sub">How KeyWise handles your data — in plain English.</p>
+    <span class="hero-date">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      Last updated: 7 June 2026
+    </span>
+  </div>
+</div>
+
+<!-- ─── MAIN ─── -->
+<main>
+
+  <!-- TL;DR -->
+  <div class="tldr" role="note" aria-label="Summary">
+    <div class="tldr-head">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      TL;DR — The short version
+    </div>
+    <ul>
+      <li>Your credentials are encrypted <strong>on your device</strong> before anything happens — we never see your vault contents.</li>
+      <li>The <strong>Free tier</strong> requires no account, no email, no cloud — zero data leaves your phone.</li>
+      <li>The HIBP breach check uses <strong>k-anonymity</strong> — only a 5-character hash prefix is sent, never your actual password.</li>
+      <li><strong>Premium cloud sync</strong> only ever receives unintelligible encrypted blobs — not credentials, not usernames, not URLs.</li>
+      <li>Voice passphrase and Memory Mosaic photo data are processed entirely <strong>on-device</strong> — never uploaded.</li>
+      <li>We do <strong>not</strong> sell, share, or monetise any user data. Ever.</li>
+    </ul>
+  </div>
+
+  <!-- 1. INTRODUCTION -->
+  <div class="section" id="section-1">
+    <div class="section-num">01</div>
+    <h2>Introduction</h2>
+    <p>KeyWise ("the App", "we", "our") is developed and maintained by <strong>WiselyRise Solutions</strong> ("WiselyRise", "us"). This Privacy Policy explains how KeyWise collects, uses, stores, and protects your information when you use the KeyWise mobile application on Android (and iOS).</p>
+    <p>KeyWise is built on a <strong>zero-knowledge, offline-first architecture</strong>. Your vault data is encrypted on your device using keys derived from your personal lock credential before it is ever processed, synced, or backed up. WiselyRise is cryptographically unable to read your credentials — not by policy alone, but by design.</p>
+    <p>By using KeyWise, you agree to the practices described in this Privacy Policy. If you do not agree, please discontinue use of the App.</p>
+  </div>
+
+  <hr class="div"/>
+
+  <!-- 2. INFORMATION WE COLLECT -->
+  <div class="section" id="section-2">
+    <div class="section-num">02</div>
+    <h2>Information <em>We Collect</em></h2>
+
+    <h3>2.1 Vault &amp; Credential Data</h3>
+    <p>All data you enter in KeyWise — including login credentials, usernames, passwords, PINs, URLs, portal templates, notes, TOTP secrets, login method tags, and credential history — is stored exclusively in an <strong>AES-256 encrypted local database</strong> (SQLCipher) on your device.</p>
+    <div class="callout callout-teal">
+      <span class="callout-icon">🔒</span>
+      <span><strong>Free tier users:</strong> Your vault data is never transmitted to WiselyRise or any third party. It never leaves your device. We have no visibility into what credentials you store, which portals you use, or any personal details.</span>
+    </div>
+    <div class="callout callout-gold">
+      <span class="callout-icon">☁️</span>
+      <span><strong>Premium tier users:</strong> If you enable cloud sync, your encrypted vault blob is transmitted to Firebase Cloud Firestore. The blob is encrypted client-side before transmission — Firebase (and WiselyRise) receive ciphertext only. See §4.4 and §5.2 for details.</span>
+    </div>
+
+    <h3>2.2 Creative Lock &amp; Biometric Data</h3>
+    <p>KeyWise's five creative lock methods — Constellation Draw, Memory Mosaic (personal photos), Story Sequence, Gesture Chord, and Voice Passphrase — all process authentication data exclusively on your device.</p>
+    <div class="info-card">
+      <h4>🖼️ Memory Mosaic — Personal Photos</h4>
+      <p>During setup, you select up to 12 photos from your device gallery as your lock sequence. These photos are stored locally in the App's encrypted container. They are <strong>never uploaded, transmitted, or analysed by WiselyRise</strong>. The App accesses your photo library only at the moment you explicitly choose photos during lock setup.</p>
+    </div>
+    <div class="info-card">
+      <h4>🎙️ Voice Passphrase</h4>
+      <p>During enrolment, three voice recordings are used to compute a local voice embedding (a mathematical representation of your voice). The recording is processed entirely on-device; only the derived embedding is stored locally. <strong>No audio recordings and no voice embeddings are ever uploaded or shared.</strong></p>
+    </div>
+    <p>Standard biometric authentication (fingerprint, face unlock) is handled entirely by the Android Biometric API — your device's operating system. <strong>KeyWise never accesses, stores, or transmits raw biometric data.</strong></p>
+
+    <h3>2.3 Have I Been Pwned — Breach Check</h3>
+    <p>KeyWise's credential health score includes a breach check that queries <a href="https://haveibeenpwned.com/API/v3#PwnedPasswords" target="_blank" rel="noopener noreferrer">Have I Been Pwned (HIBP)</a> using the <strong>k-anonymity model</strong>:</p>
+    <div class="crypto-block">
+      <span class="label">K-anonymity protocol — what is sent</span>
+      SHA-1(your_password)  →  e.g.  "5BAA61..."
+      Only the first 5 hex chars  →  "5BAA6"  are sent to HIBP.
+      HIBP returns ~500 matching hash suffixes.
+      KeyWise checks locally whether your full hash is in the list.
+      Your actual password is never sent — not even partially.
+    </div>
+    <p>This request contains <strong>no personal data, no account identifiers, and no IP attribution</strong>. It is governed by <a href="https://haveibeenpwned.com/Privacy" target="_blank" rel="noopener noreferrer">HIBP's Privacy Policy</a>. If your device is offline, the breach check is skipped and the health score reflects only locally assessable criteria.</p>
+
+    <h3>2.4 Cloud Sync &amp; Backup — Premium Only</h3>
+    <p>Premium tier users may optionally enable:</p>
+    <div class="info-card">
+      <h4>Firebase Cloud Firestore — Device Sync</h4>
+      <p>Allows your vault to stay in sync across up to 5 devices. Firestore receives only <strong>encrypted binary blobs</strong>. The encryption key is derived from your personal lock credential using Argon2id on your device — Firestore (and WiselyRise) have no access to the key and cannot decrypt the data.</p>
+    </div>
+    <div class="info-card">
+      <h4>Google Drive — Automatic Backup</h4>
+      <p>Stores up to 5 timestamped encrypted vault backups in your personal Google Drive (App Data folder, not visible in your Drive files). Google Drive receives the same client-side encrypted blob as Firestore. Your Google credentials are handled by your device's Google Sign-In — KeyWise never sees your Google password.</p>
+    </div>
+    <div class="callout callout-teal">
+      <span class="callout-icon">💡</span>
+      <span>Both cloud features are <strong>opt-in</strong>. They can be disabled at any time from App Settings → Cloud & Backup. Disabling sync does not delete existing cloud data; you must manually clear it from the App Settings if desired.</span>
+    </div>
+
+    <h3>2.5 Purchase Verification — Premium Only</h3>
+    <p>When you purchase the KeyWise Premium one-time unlock, purchase verification is handled via <strong>RevenueCat</strong>, a third-party purchase management platform. RevenueCat processes your purchase receipt from Google Play to verify your entitlement. RevenueCat may receive:</p>
+    <ul class="neg-list" style="margin: 10px 0;">
+      <!-- repurposed as a positive list here -->
+    </ul>
+    <div class="info-card">
+      <h4>What RevenueCat receives</h4>
+      <p>A pseudonymous installation identifier, your Google Play purchase receipt (managed by Google), and an entitlement status. RevenueCat does <strong>not</strong> receive your vault data, your credentials, or your lock method. See <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">RevenueCat's Privacy Policy</a>.</p>
+    </div>
+
+    <h3>2.6 Crash Reports &amp; Analytics</h3>
+    <p>KeyWise does not currently integrate any analytics, telemetry, or crash-reporting SDK (such as Firebase Crashlytics, Sentry, or Mixpanel). <strong>No usage data or crash logs are transmitted to WiselyRise.</strong></p>
+    <p>If this changes in a future version, this policy will be updated and users will be informed via an in-app notice and Play Store update notes before the change takes effect.</p>
+
+    <h3>2.7 Information We Do NOT Collect</h3>
+    <ul class="neg-list">
+      <li>Your name, email address, phone number, or any contact information (Free tier)</li>
+      <li>Location data — GPS or IP-based</li>
+      <li>Advertising identifiers (GAID/IDFA)</li>
+      <li>Browsing history, app usage patterns, or behavioural data</li>
+      <li>Contacts, SMS, or call logs</li>
+      <li>The content of your vault — credentials, passwords, PINs, notes</li>
+      <li>Voice recordings or photo data from your creative lock</li>
+      <li>Any data from users on the Free tier beyond what the App needs to function locally</li>
+    </ul>
+  </div>
+
+  <hr class="div"/>
+
+  <!-- 3. HOW WE USE -->
+  <div class="section" id="section-3">
+    <div class="section-num">03</div>
+    <h2>How We Use <em>Your Information</em></h2>
+    <p>Because WiselyRise does not receive your vault data, we have no use for it. All credential processing happens on your device.</p>
+    <p>The limited data we do receive (for Premium users) is used solely for the following purposes:</p>
+    <div class="info-card">
+      <h4>Firebase Firestore — Encrypted Vault Sync</h4>
+      <p>Used exclusively to synchronise your encrypted vault across your authorised devices. The data is never read, analysed, or shared.</p>
+    </div>
+    <div class="info-card">
+      <h4>Google Drive — Encrypted Backup</h4>
+      <p>Used exclusively to store versioned encrypted backups in your personal Google Drive App Data folder for recovery purposes.</p>
+    </div>
+    <div class="info-card">
+      <h4>RevenueCat — Purchase Receipt</h4>
+      <p>Used exclusively to verify your one-time Premium purchase and restore your entitlement on a new device. Not used for any marketing or profiling.</p>
+    </div>
+    <div class="info-card">
+      <h4>HIBP Breach Check — Hash Prefix</h4>
+      <p>Used exclusively to check whether any of your stored passwords appear in known breach databases, and to compute your credential health score. Not stored, not logged, not linked to your identity.</p>
+    </div>
+  </div>
+
+  <hr class="div"/>
+
+  <!-- 4. SECURITY -->
+  <div class="section" id="section-4">
+    <div class="section-num">04</div>
+    <h2>Data Storage <em>&amp; Security</em></h2>
+
+    <h3>4.1 Zero-Knowledge Encryption Architecture</h3>
+    <p>KeyWise implements a verifiable zero-knowledge architecture. Your vault encryption key is derived exclusively from your personal lock credential — it never touches WiselyRise servers. The cryptographic specification is public and auditable:</p>
+    <div class="crypto-block">
+      <span class="label">Encryption stack</span>
+      Lock credential (constellation / photo / gesture / voice / story)
+        ↓  Argon2id KDF  (memory: 64 MB, iterations: 3, parallelism: 4)
+      Vault Encryption Key (VEK) — 256-bit, derived on-device
+        ↓  XChaCha20-Poly1305 AEAD cipher
+      Encrypted vault blob — stored locally (SQLCipher AES-256)
+        ↓  For Premium sync only
+      Uploaded to Firestore / Google Drive as opaque ciphertext
+    </div>
+    <p>Uninstalling the App destroys the local database and all associated keys. Your vault is irrecoverable by WiselyRise — not as a policy choice, but because the keys never exist anywhere other than your device.</p>
+
+    <h3>4.2 Creative Lock Security</h3>
+    <p>All five creative lock methods (Constellation Draw, Memory Mosaic, Story Sequence, Gesture Chord, Voice Passphrase) derive a deterministic passphrase that is fed into Argon2id. The lock method is the input layer — the cryptographic pipeline is identical regardless of which method you choose. None of the lock inputs are stored in plaintext.</p>
+
+    <h3>4.3 App Lock &amp; Recovery</h3>
+    <p>The App enforces a progressive cooldown after failed unlock attempts — no sudden lockouts. A 30-day soft-delete window applies to deleted credentials, after which they are permanently purged from the local database.</p>
+    <p>The <strong>Recovery Code</strong> (24 BIP-39 mnemonic words, generated at setup) is the only key recovery mechanism. It is displayed once and never transmitted or stored by WiselyRise. If both the lock credential and Recovery Code are lost, the vault is irrecoverable by design — zero-knowledge is maintained absolutely.</p>
+    <p>The <strong>Trusted Contact</strong> emergency access feature (Premium) allows a designated family member to request access to your vault after a 72-hour notification window. This process uses the same encrypted channel as cloud sync — WiselyRise cannot intercept or read the vault during emergency access.</p>
+
+    <h3>4.4 Cloud Sync Security — Premium</h3>
+    <p>Your Firebase and Google Drive sync data consists entirely of encrypted vault blobs produced on your device. Firebase rules are configured so that only an authenticated device associated with your purchase can read or write your encrypted data. WiselyRise engineers cannot read your synced vault.</p>
+  </div>
+
+  <hr class="div"/>
+
+  <!-- 5. THIRD PARTIES -->
+  <div class="section" id="section-5">
+    <div class="section-num">05</div>
+    <h2>Third-Party <em>Services</em></h2>
+    <p>KeyWise interacts with the following third-party services. In each case, the scope of data shared is strictly limited to what is necessary for the specific function.</p>
+
+    <table class="tp-table" aria-label="Third-party service data sharing summary">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Tier</th>
+          <th>Data Shared</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Have I Been Pwned</strong></td>
+          <td><span class="tier-badge badge-free">Free &amp; Premium</span></td>
+          <td>5-char SHA-1 hash prefix — no password, no identity</td>
+          <td>Credential breach detection (k-anonymity)</td>
+        </tr>
+        <tr>
+          <td><strong>Firebase Cloud Firestore</strong> (Google)</td>
+          <td><span class="tier-badge badge-prem">Premium</span></td>
+          <td>Encrypted vault blob (ciphertext only)</td>
+          <td>Multi-device vault synchronisation</td>
+        </tr>
+        <tr>
+          <td><strong>Google Drive</strong> (App Data)</td>
+          <td><span class="tier-badge badge-prem">Premium</span></td>
+          <td>Encrypted vault blob (ciphertext only)</td>
+          <td>Automatic versioned backup</td>
+        </tr>
+        <tr>
+          <td><strong>RevenueCat</strong></td>
+          <td><span class="tier-badge badge-prem">Premium</span></td>
+          <td>Pseudonymous install ID, Google Play receipt</td>
+          <td>Purchase verification &amp; entitlement restore</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>We do not sell, rent, trade, or otherwise share your personal data with any third party, advertiser, or data broker. We do not use your data for advertising or profiling purposes.</p>
+    <p>Each third-party service has its own privacy policy: <a href="https://haveibeenpwned.com/Privacy" target="_blank" rel="noopener noreferrer">HIBP</a> · <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase</a> · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Drive</a> · <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">RevenueCat</a></p>
+  </div>
+
+  <hr class="div"/>
+
+  <!-- 6. CHILDREN -->
+  <div class="section" id="section-6">
+    <div class="section-num">06</div>
+    <h2>Children's <em>Privacy</em></h2>
+    <p>KeyWise is not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. The Family Vault feature is intended for use by a parent or guardian who manages credentials on behalf of a minor — the minor's own data is stored locally under the parent's vault and subject to this same policy.</p>
+    <p>If you believe a child under 13 has provided personal information through the App, please contact us at <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a> and we will take immediate steps to address it.</p>
+  </div>
+
+  <hr class="div"/>
+
+  <!-- 7. DATA RETENTION -->
+  <div class="section" id="section-7">
+    <div class="section-num">07</div>
+    <h2>Data <em>Retention</em></h2>
+    <p><strong>Free tier:</strong> All data is stored locally on your device. Retention is entirely in your control. Uninstalling the App permanently removes all associated data from your device.</p>
+    <p><strong>Premium tier — Cloud Sync:</strong> Encrypted vault data stored in Firebase Firestore is retained for as long as you maintain an active Premium entitlement. You may delete your cloud data at any time from App Settings → Cloud &amp; Backup → Delete Cloud Data. Upon deletion, the encrypted blob is removed from Firestore within 30 days in accordance with Firebase's data deletion policies.</p>
+    <p><strong>Premium tier — Google Drive Backup:</strong> Encrypted backup files are stored in your personal Google Drive App Data folder. You can view and delete these files via Google Drive settings (Storage → App Data → KeyWise).</p>
+    <p><strong>Deleted credentials:</strong> A soft-deleted credential remains in the local recycle bin for 30 days before permanent purge. Cloud sync reflects the purge on the next sync cycle.</p>
+    <p><strong>RevenueCat:</strong> Purchase receipts are retained by RevenueCat for the duration required to support entitlement restore on new devices, in accordance with their data retention policy.</p>
+  </div>
+
+  <hr class="div"/>
+
+  <!-- 8. YOUR RIGHTS -->
+  <div class="section" id="section-8">
+    <div class="section-num">08</div>
+    <h2>Your <em>Rights</em></h2>
+    <p>Because WiselyRise does not store your vault data, there is nothing for us to provide, correct, or delete on our servers for Free tier users. The following rights apply to all users:</p>
+    <div class="rights-grid">
+      <div class="right-item">
+        <span class="right-icon">🗑️</span>
+        <div>
+          <h4>Delete All Your Data</h4>
+          <p>Uninstall the App to remove all local data. Use App Settings → Cloud &amp; Backup → Delete Cloud Data to remove Premium sync data.</p>
+        </div>
+      </div>
+      <div class="right-item">
+        <span class="right-icon">📤</span>
+        <div>
+          <h4>Export Your Data</h4>
+          <p>Export your vault as an encrypted .keywise file or decrypted CSV at any time from App Settings → Backup &amp; Export.</p>
+        </div>
+      </div>
+      <div class="right-item">
+        <span class="right-icon">🔍</span>
+        <div>
+          <h4>Access Your Data</h4>
+          <p>Your credentials are accessible within the App at all times. No data is held by WiselyRise that you cannot see and export yourself.</p>
+        </div>
+      </div>
+      <div class="right-item">
+        <span class="right-icon">✉️</span>
+        <div>
+          <h4>Contact &amp; Questions</h4>
+          <p>For any privacy concern, right request, or complaint, contact us at <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>. We respond within 5 business days.</p>
+        </div>
+      </div>
+    </div>
+    <div class="callout callout-teal" style="margin-top: 18px;">
+      <span class="callout-icon">🇮🇳</span>
+      <span>If you are located in India, you may have additional rights under the <strong>Digital Personal Data Protection Act, 2023 (DPDP Act)</strong>. Please contact us if you wish to exercise rights under applicable data protection legislation.</span>
+    </div>
+  </div>
+
+  <hr class="div"/>
+
+  <!-- 9. CHANGES -->
+  <div class="section" id="section-9">
+    <div class="section-num">09</div>
+    <h2>Changes to <em>This Policy</em></h2>
+    <p>We may update this Privacy Policy from time to time — for example, when we add new features that interact with external services. When we do, the "Last updated" date at the top of this page will be revised.</p>
+    <p>If changes are <strong>material</strong> — particularly if they involve a new external data transfer — we will notify users via an in-app notice or Play Store update notes <em>before</em> the change takes effect. Continued use of KeyWise after any changes constitutes acceptance of the updated policy.</p>
+  </div>
+
+  <hr class="div"/>
+
+  <!-- 10. CONTACT -->
+  <div class="section" id="section-10">
+    <div class="section-num">10</div>
+    <h2>Contact <em>Us</em></h2>
+    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or KeyWise's data practices, please reach out:</p>
+    <div class="contact-box">
+      <h4>WiselyRise Solutions</h4>
+      <p>Developer of KeyWise</p>
+      <p style="margin-top:8px;font-size:.82rem;color:var(--dim);">Coimbatore, Tamil Nadu, India</p>
+      <p style="font-size:.82rem;color:var(--dim);">wiselyrise.in</p>
+      <a href="mailto:contact@wiselyrise.in">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        contact@wiselyrise.in
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">
+    <!-- WiselyRise logomark (W-shape from product bible) -->
+    <svg width="28" height="25" viewBox="0 0 124 108" fill="none" aria-hidden="true">
+      <polyline points="4,16 24,92 44,16 66,92 86,16 86,92" stroke="#00BFA5" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <polyline points="86,54 100,16 120,54" stroke="#00BFA5" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <line x1="92" y1="54" x2="116" y2="54" stroke="#00BFA5" stroke-width="9.5" stroke-linecap="round"/>
+      <line x1="100" y1="54" x2="120" y2="92" stroke="#00BFA5" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span style="font-size:.78rem;font-weight:600;color:var(--dim);">WiselyRise Solutions</span>
+  </div>
+  <p>KeyWise is a product of <a href="https://wiselyrise.in/">WiselyRise Solutions</a>.</p>
+  <p style="margin-top:4px;">View our <a href="https://wiselyrise.in/keywise/terms">Terms of Service</a>.</p>
+  <p style="margin-top:12px;opacity:.5;">© 2026 WiselyRise Solutions. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

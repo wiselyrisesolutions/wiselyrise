@@ -142,7 +142,7 @@
     <div class="doc-badge">🔒 Legal Document</div>
     <h1>Privacy Policy</h1>
     <p class="subtitle">How GramWise handles your data — in plain English.</p>
-    <div class="updated">📅 Last updated: 23 April 2026</div>
+    <div class="updated">📅 Last updated: 06 June 2026</div>
   </div>
 </div>
 
@@ -155,7 +155,7 @@
     <ul>
       <li>Your jewellery data stays on <strong>your device only</strong> — we never see it.</li>
       <li>No account, no login, no email address required.</li>
-      <li>The only external service contacted is a <strong>live metal price API</strong> — no personal data is included in that request.</li>
+      <li>External network calls are limited to rate refresh and platform services. Your item-level vault data is not transmitted to WiselyRise servers.</li>
       <li>Biometric data is handled entirely by your device's OS — we never access or store it.</li>
       <li>We do not sell, share, or monetize any user data.</li>
     </ul>
@@ -174,10 +174,11 @@
   </div>
 
   <h3>2.2 Live Metal Price Requests</h3>
-  <p>When GramWise refreshes live metal prices (Gold, Silver, Platinum, Palladium), the App makes an API request to <strong>metals.dev</strong>, a third-party metal price service. This request:</p>
+  <p>When GramWise refreshes live metal prices (Gold, Silver, Platinum), the App makes an API request to <strong>metals.dev</strong>, a third-party metal price service. This request:</p>
   <ul>
     <li>Contains <strong>no personal data</strong> — only a standard API key and the currency/metal identifiers (e.g., "XAU", "INR").</li>
-    <li>Does not include your device ID, IP address attribution, or any jewellery data.</li>
+    <li>Does not include your jewellery inventory records, family/location data, notes, or photos.</li>
+    <li>Uses standard internet transport, which may include network metadata (such as IP address) visible to infrastructure providers as part of normal routing.</li>
     <li>Is governed by <a href="https://metals.dev/privacy" target="_blank" rel="noopener">metals.dev's Privacy Policy</a>.</li>
   </ul>
   <p>If your device is offline, the App uses the last cached price and continues to function normally.</p>
@@ -186,7 +187,7 @@
   <p>GramWise supports fingerprint and face unlock as an optional app lock. Biometric data is processed entirely by your device's operating system (Android Biometric API). <strong>GramWise never accesses, stores, or transmits biometric data.</strong></p>
 
   <h3>2.4 Crash Reports &amp; Diagnostics</h3>
-  <p>GramWise does not currently integrate any analytics or crash reporting SDK (such as Firebase Crashlytics or Sentry). If this changes in a future version, this policy will be updated and users will be notified.</p>
+  <p>As of this policy date, GramWise does not intentionally process telemetry tied to your jewellery inventory on WiselyRise servers. If product diagnostics or analytics behavior changes in a future release, this policy will be updated accordingly.</p>
 
   <h3>2.5 Information We Do NOT Collect</h3>
   <ul>
@@ -210,15 +211,17 @@
   <h3>4.2 App Lock</h3>
   <p>GramWise offers an optional App Lock secured by biometrics (fingerprint/face) or a PIN. The Decoy Mode feature allows a secondary PIN that displays an empty vault, providing additional protection under coercion.</p>
 
-  <h3>4.3 No Cloud Backup</h3>
-  <p>GramWise does not offer cloud backup. Your data is not synced to any server. You are responsible for backing up your device data through standard Android backup mechanisms if desired.</p>
+  <h3>4.3 Backup and Sync Behavior</h3>
+  <p>GramWise does not perform automatic cloud sync of your vault data. Backup actions are user-initiated. Depending on app build/configuration, backup options may include encrypted local export and optional cloud backup flows that require your explicit action and authentication.</p>
 
   <h2>5. Data Sharing &amp; Third Parties</h2>
   <p>We do not sell, rent, trade, or otherwise share your personal data with third parties.</p>
-  <p>The only third-party service the App communicates with is:</p>
+  <p>Third-party services used by GramWise may include:</p>
   <ul>
-    <li><strong>metals.dev</strong> — Live precious metal price API. Only currency and metal identifier parameters are sent. No personal information is included. See <a href="https://metals.dev/privacy" target="_blank" rel="noopener">metals.dev Privacy Policy</a>.</li>
+    <li><strong>metals.dev</strong> — Live precious metal price API. Currency/metal identifiers are sent for rates refresh. See <a href="https://metals.dev/privacy" target="_blank" rel="noopener">metals.dev Privacy Policy</a>.</li>
+    <li><strong>Platform services</strong> (for example, app distribution, purchase processing, authentication, or storage) — operated under their own terms and privacy policies.</li>
   </ul>
+  <p>WiselyRise does not sell your vault data and does not run an advertising data brokerage model.</p>
 
   <h2>6. Children's Privacy</h2>
   <p>GramWise is not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided personal information through our App, please contact us at <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a> and we will take steps to remove such information.</p>
@@ -239,7 +242,10 @@
   <p>We may update this Privacy Policy from time to time. When we do, the updated date at the top of this page will be revised. If changes are material, we will notify users via an in-app notice or Play Store update notes.</p>
   <p>Continued use of GramWise after any changes constitutes acceptance of the updated policy.</p>
 
-  <h2>10. Contact Us</h2>
+  <h2>10. Security Notice</h2>
+  <p>We apply commercially reasonable safeguards for the application design. However, no software or networked environment can be guaranteed 100% secure. You are responsible for protecting your device, lock credentials, and exported backup files.</p>
+
+  <h2>11. Contact Us</h2>
   <p>If you have any questions, concerns, or requests regarding this Privacy Policy or GramWise's data practices, please contact us:</p>
 
   <div class="contact-box">
