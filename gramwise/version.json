@@ -1,7 +1,7 @@
 {
-  "latest_build": 71,
-  "latest_version": "3.5.1",
+  "latest_build": 78,
+  "latest_version": "3.5.8",
   "min_build": 52,
-  "changelog": "You can switch between intent modes",
+  "changelog": "UX improvements and bug fixes.",
   "store_url": "https://play.google.com/store/apps/details?id=com.gramwise.app"
 }
