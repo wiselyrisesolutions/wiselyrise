@@ -6,6 +6,13 @@
   "hosting": {
     "public": ".",
     "cleanUrls": true,
+    "redirects": [
+      {
+        "source": "/blog-landing",
+        "destination": "/",
+        "type": 301
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
