@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WiselyRise — Software That Respects You</title>
+  <meta name="description" content="WiselyRise builds thoughtful, privacy-first software for everyday people. Our products work for you — offline, simple, no data harvested." />
+  <meta property="og:title" content="WiselyRise — Software That Respects You" />
+  <meta property="og:description" content="Thoughtful, privacy-first software for everyday people." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wiselyrise.in" />
+  <link rel="canonical" href="https://wiselyrise.in" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',system-ui,-apple-system,sans-serif;background:#ffffff;color:#0f0f0f;line-height:1.6;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+
+    :root{
+      --accent:#5b21b6;--accent-mid:#7c3aed;--accent-light:#a78bfa;--accent-dark:#3b0764;--accent-bg:#f5f3ff;
+      --muted:#6b7280;--border:#e8e8ea;--surface:#fff;
+      --shadow-sm:0 1px 3px rgba(0,0,0,.06);
+      --shadow-md:0 4px 20px rgba(0,0,0,.08);
+      --shadow-lg:0 12px 48px rgba(0,0,0,.1);
+    }
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+    .reveal.vis{opacity:1;transform:none}
+    .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+    /* ── NAV ──────────────────────────── */
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      height:60px;display:flex;align-items:center;justify-content:space-between;
+      padding:0 5%;
+      background:rgba(250,250,250,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo{font-size:1.15rem;font-weight:800;letter-spacing:-.02em}
+    .nav-logo span{background:linear-gradient(135deg,var(--accent),var(--accent-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-links{display:flex;gap:8px;list-style:none}
+    .nav-links a{font-size:.85rem;font-weight:500;color:var(--muted);padding:6px 14px;border-radius:8px;transition:background .18s,color .18s}
+    .nav-links a:hover{background:var(--accent-bg);color:var(--accent)}
+    .nav-contact{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;padding:8px 20px;border-radius:100px;font-size:.84rem;font-weight:700;transition:transform .2s,box-shadow .2s}
+    .nav-contact:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(91,33,182,.35)}
+
+    /* hamburger */
+    .hamburger{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer}
+    .hamburger span{width:20px;height:2px;background:#111;border-radius:2px;transition:transform .25s,opacity .25s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(250,250,250,.98);backdrop-filter:blur(16px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{font-size:1.05rem;font-weight:600;padding:12px 24px;border-radius:10px}
+    .mobile-menu a:hover{background:var(--accent-bg)}
+
+    /* ── HERO ─────────────────────────── */
+    .hero{
+      position:relative;text-align:center;
+      padding:120px 24px 72px;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:'';position:absolute;top:-220px;left:50%;transform:translateX(-50%);
+      width:700px;height:700px;
+      background:radial-gradient(circle,rgba(124,58,237,.1) 0%,transparent 70%);
+      pointer-events:none;
+    }
+    .hero-label{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--accent-bg);border:1px solid rgba(91,33,182,.18);border-radius:100px;
+      padding:6px 16px 6px 10px;font-size:.76rem;font-weight:600;color:var(--accent);
+      margin-bottom:24px;animation:fadeUp .6s ease both;
+    }
+    .hero-dot{width:8px;height:8px;border-radius:50%;background:var(--accent-light)}
+    h1{
+      font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:800;
+      line-height:1.1;max-width:600px;margin:0 auto 18px;
+      letter-spacing:-.04em;animation:fadeUp .6s ease .08s both;
+    }
+    h1 span{background:linear-gradient(135deg,var(--accent),var(--accent-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .tagline{font-size:1.1rem;color:var(--muted);max-width:480px;margin:0 auto 12px;animation:fadeUp .6s ease .14s both}
+    .sub{font-size:.9rem;color:var(--muted);max-width:420px;margin:0 auto 0;animation:fadeUp .6s ease .2s both}
+
+    /* ── SHOWCASE ──────────────────────── */
+    .showcase{padding:32px 24px 80px}
+    .showcase-inner{max-width:1000px;margin:0 auto}
+    .showcase-heading{text-align:center;margin-bottom:36px}
+    .showcase-heading small{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px}
+    .showcase-heading h2{font-size:clamp(1.3rem,2.5vw,1.7rem);font-weight:700;letter-spacing:-.03em;color:var(--muted)}
+    .sc-card{
+      border-radius:24px;border:1.5px solid var(--border);
+      overflow:hidden;box-shadow:var(--shadow-md);
+      margin-bottom:20px;
+      background:var(--surface);
+      display:grid;grid-template-columns:1fr 340px;
+      transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s;
+      text-decoration:none;color:inherit;
+    }
+    a.sc-card:hover{transform:translateY(-5px);box-shadow:0 20px 60px rgba(91,33,182,.14)}
+    .sc-body{padding:44px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+    .sc-status{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;background:#dcfce7;color:#15803d;width:fit-content}
+    .sc-status-soon{background:#fef9c3;color:#854d0e}
+    .sc-title-row{display:flex;align-items:center;gap:14px}
+    .sc-icon{width:48px;height:48px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.12);flex-shrink:0;object-fit:contain}
+    .sc-title{font-size:2rem;font-weight:800;letter-spacing:-.05em}
+    .sc-desc{font-size:.9rem;color:var(--muted);line-height:1.7;max-width:460px}
+    .sc-tags{display:flex;gap:7px;flex-wrap:wrap}
+    .sc-tag{font-size:.72rem;color:var(--muted);background:#fafafa;border:1px solid var(--border);border-radius:20px;padding:3px 10px}
+    .sc-action{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:11px 24px;border-radius:100px;font-size:.86rem;font-weight:700;width:fit-content;transition:background .2s}
+    a.sc-card:hover .sc-action{background:var(--accent-mid)}
+    .sc-visual{
+      background:linear-gradient(150deg,#ede9fd 0%,#c7d2fe 100%);
+      display:flex;align-items:flex-end;justify-content:center;
+      overflow:hidden;padding:28px 28px 0;
+    }
+    .sc-mockup{width:240px;display:block;filter:drop-shadow(0 12px 28px rgba(91,33,182,.22))}
+    .sc-visual-soon{align-items:center;padding:28px;background:linear-gradient(150deg,#f5f3ff 0%,#ede9fe 100%)}
+    .sc-soon-text{font-size:2.8rem;font-weight:900;letter-spacing:-.06em;color:rgba(91,33,182,.15);text-align:center;line-height:1.15}
+
+    /* ── MANIFESTO ────────────────────── */
+    .manifesto{padding:64px 24px;text-align:center;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .manifesto-inner{max-width:560px;margin:0 auto}
+    .manifesto h2{font-size:clamp(1.4rem,3vw,1.8rem);font-weight:800;letter-spacing:-.03em;margin-bottom:16px;line-height:1.2}
+    .manifesto h2 span{color:var(--accent-light)}
+    .manifesto p{font-size:.92rem;color:var(--muted);line-height:1.75;margin-bottom:12px}
+    .manifesto-values{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+    .mv{font-size:.78rem;font-weight:600;padding:6px 16px;border-radius:100px;border:1px solid var(--border);color:var(--muted)}
+
+    /* ── FOOTER ───────────────────────── */
+    footer{text-align:center;padding:40px 24px;font-size:.82rem;color:var(--muted)}
+    footer a{color:var(--muted);transition:color .18s}
+    footer a:hover{color:var(--accent)}
+    .footer-links{display:flex;gap:20px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+
+    /* ── RESPONSIVE ───────────────────── */
+    @media(max-width:768px){
+      .nav-links,.nav-contact{display:none}
+      .hamburger{display:flex}
+      .sc-card{grid-template-columns:1fr}
+      .sc-visual{height:200px;padding:20px 20px 0}
+      .sc-mockup{width:130px}
+      .sc-body{padding:28px}
+    }
+    @media(max-width:480px){
+      h1{font-size:2rem}
+      .sc-body{padding:22px}
+      .sc-title{font-size:1.6rem}
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ══════════════════════════════════ -->
+<nav class="nav">
+  <a class="nav-logo" href="/">Wisely<span>Rise</span></a>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#" onclick="openContactModal();return false;">Contact</a></li>
+  </ul>
+  <a class="nav-contact" href="#" onclick="openContactModal();return false;">Get in Touch</a>
+  <div class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#products" onclick="closeMM()">Products</a>
+  <a href="#about" onclick="closeMM()">About</a>
+  <a href="#" onclick="closeMM();openContactModal();return false;">Contact</a>
+</div>
+
+<!-- ═══ HERO ═════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-label reveal">
+    <span class="hero-dot"></span>
+    Privacy-first · Offline-capable · Made in India
+  </div>
+  <h1 class="reveal d1">Software that <span>respects you</span></h1>
+  <p class="tagline reveal d2">We build thoughtful apps for everyday people.</p>
+  <p class="sub reveal d3">No data harvested. No dark patterns. No subscriptions traps. Just honest software that works for you.</p>
+</div>
+
+<!-- ═══ SHOWCASE ════════════════════════════════ -->
+<section class="showcase" id="products">
+  <div class="showcase-inner">
+    <div class="showcase-heading reveal">
+      <small>Our Products</small>
+      <h2>Tap a product to explore</h2>
+    </div>
+
+    <!-- DateWise -->
+    <a href="/datewise" class="sc-card reveal d1">
+      <div class="sc-body">
+        <span class="sc-status">Available on Play Store</span>
+        <div class="sc-title-row">
+          <img src="/datewise/images/app_icon_playstore.png" class="sc-icon" alt="DateWise" />
+          <span class="sc-title">DateWise</span>
+        </div>
+        <p class="sc-desc">The personal reminder engine for dates you can't afford to forget. Birthdays, anniversaries, bills — offline-first, no signup, free forever.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">Android</span>
+          <span class="sc-tag">Privacy-first</span>
+          <span class="sc-tag">Free forever</span>
+        </div>
+        <span class="sc-action">Explore DateWise →</span>
+      </div>
+      <div class="sc-visual">
+        <img src="/datewise/images/web_hero_reduced.png" class="sc-mockup" alt="DateWise app" />
+      </div>
+    </a>
+
+    <!-- GramWise -->
+    <a href="/gramwise" class="sc-card reveal d2">
+      <div class="sc-body">
+        <span class="sc-status">Available on Play Store</span>
+        <div class="sc-title-row">
+          <img src="/gramwise/images/app_icon_playstore.png" class="sc-icon" alt="GramWise" onerror="this.style.background='#1a1408'" />
+          <span class="sc-title">GramWise</span>
+        </div>
+        <p class="sc-desc">The private gold, silver &amp; platinum items tracker for families and individuals. Log items, assign to family members, track latest metal prices, and secure your wealth — 100% offline.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">Android</span>
+          <span class="sc-tag">Gold &amp; Silver</span>
+          <span class="sc-tag">Family Vault</span>
+          <span class="sc-tag">Privacy-first</span>
+        </div>
+        <span class="sc-action">Explore GramWise →</span>
+      </div>
+      <div class="sc-visual" style="background:linear-gradient(150deg,#1a140a 0%,#2e2208 100%);align-items:center;justify-content:center;padding:28px;flex-direction:column;gap:14px">
+        <img src="/gramwise/images/app_icon_playstore.png" style="width:80px;height:80px;border-radius:22px;box-shadow:0 8px 28px rgba(201,168,76,.4)" alt="GramWise icon" />
+        <div style="text-align:center">
+          <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C9A84C;margin-bottom:3px">Track Every Gram</div>
+          <div style="font-size:.64rem;color:rgba(255,255,255,.5)">Gold · Silver · Platinum</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- PixWise -->
+    <a href="/pixwise" class="sc-card reveal d3">
+      <div class="sc-body">
+        <span class="sc-status">Available on Play Store</span>
+        <div class="sc-title-row">
+          <img src="/pixwise/images/app_icon_playstore.png" class="sc-icon" alt="PixWise" onerror="this.style.background='#f5f3ff'" />
+          <span class="sc-title">PixWise</span>
+        </div>
+        <p class="sc-desc">Your gallery, your rules. Lite Mode hides private albums in one tap. Secure Space vaults your most sensitive photos. 100% offline — no account, no cloud.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">Android</span>
+          <span class="sc-tag">Lite Mode</span>
+          <span class="sc-tag">Secure Space</span>
+          <span class="sc-tag">Privacy-first</span>
+        </div>
+        <span class="sc-action">Explore PixWise →</span>
+      </div>
+      <div class="sc-visual" style="background:linear-gradient(150deg,#0d1b1e 0%,#172a2e 100%);align-items:center;justify-content:center;padding:28px">
+        <img src="/pixwise/images/hero_feature.png" class="sc-mockup" alt="PixWise gallery app" />
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ MANIFESTO ════════════════════════════ -->
+<section class="manifesto" id="about">
+  <div class="manifesto-inner">
+    <h2 class="reveal">We believe software should <span>work for people</span>, not against them</h2>
+    <p class="reveal d1">Every app we build follows the same principles: your data stays yours, everything works offline, and there are no hidden agendas. We don't track you, we don't sell your data, and we don't lock essential features behind subscriptions.</p>
+    <p class="reveal d2">Built with care in India, for people everywhere.</p>
+    <div class="manifesto-values reveal d3">
+      <span class="mv">No tracking</span>
+      <span class="mv">No ads</span>
+      <span class="mv">No data harvesting</span>
+      <span class="mv">No dark patterns</span>
+      <span class="mv">Offline-first</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══════════════════════════════ -->
+<footer>
+  <div class="footer-links">
+    <a href="/datewise">DateWise</a>
+    <a href="/gramwise">GramWise</a>
+    <a href="/pixwise">PixWise</a>
+    <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>
+  </div>
+  <p>© 2026 WiselyRise Solutions. Made with ❤️ in India.</p>
+</footer>
+<!-- ═══ SCRIPTS ══════════════════════════════ -->
+<script>
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('vis'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  const hb = document.getElementById('hamburger');
+  const mm = document.getElementById('mobileMenu');
+  hb.addEventListener('click', () => {
+    hb.classList.toggle('open');
+    mm.classList.toggle('open');
+    document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMM() {
+    hb.classList.remove('open');
+    mm.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
+<script src="/shared/contact-modal.js"></script>
+</body>
+</html>
