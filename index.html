@@ -120,7 +120,7 @@
       background: radial-gradient(circle, rgba(0,204,168,0.1), transparent 70%);
       pointer-events: none;
     }
-    .hero-content { position: relative; z-index: 2; max-width: 780px; }
+    .hero-content { position: relative; z-index: 2; max-width: 900px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(0,153,238,0.12); border: 1px solid rgba(0,153,238,0.28);
@@ -133,7 +133,7 @@
       width: 5px; height: 5px; border-radius: 50%;
       background: var(--teal); animation: pulse 2.4s ease infinite;
     }
-    .hero-logo-wrap { margin-bottom: 36px; }
+    .hero-logo-wrap { margin-bottom: 36px; display: flex; justify-content: center; }
     .hero-sub {
       font-size: 13px; font-weight: 300; letter-spacing: 4px; text-transform: uppercase;
       color: var(--muted); margin-bottom: 20px;
@@ -150,10 +150,11 @@
     }
     .hero-tagline {
       font-size: 15px; font-weight: 300;
-      color: rgba(255,255,255,0.5); max-width: 560px; margin: 0 auto 24px; line-height: 1.7;
+      color: rgba(255,255,255,0.5); max-width: 860px; margin: 0 auto 24px; line-height: 1.7;
       animation: fadeUp 0.7s ease 0.45s both;
     }
     .hero-tagline strong { color: var(--white); font-weight: 500; }
+    .hero-tagline .highlight { color: var(--teal); font-weight: 600; }
     .hero-actions {
       display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
       margin-top: 40px; animation: fadeUp 0.7s ease 0.6s both;
@@ -174,8 +175,10 @@
     }
     .btn-ghost:hover { border-color: rgba(255,255,255,0.28); color: var(--white); background: rgba(255,255,255,0.04); }
     .hero-scroll {
-      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      position: absolute; left: 0; right: 0; bottom: 36px;
+      margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+      width: max-content; text-align: center;
       animation: fadeUp 0.8s 0.6s ease both;
     }
     .hero-scroll span { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.2); }
@@ -289,15 +292,16 @@
     .app-hero {
       border-radius: 24px; overflow: hidden;
       background: var(--navy-mid); border: 1px solid var(--border);
-      min-height: 400px; display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 300; color: var(--muted); text-align: center; padding: 0;
+      min-height: 360px; height: 360px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 300; color: var(--muted); text-align: center; padding: 16px;
       background-size: cover; background-position: center; background-repeat: no-repeat;
     }
     .app-hero img { width: 100%; height: 100%; object-fit: contain; background: transparent; }
     @media (max-width: 900px) {
       .app-feature { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; }
       .app-feature.reverse { direction: ltr; }
-      .app-hero { min-height: 320px; }
+      .app-hero { min-height: 320px; height: 320px; }
     }
     .about-strip { background: var(--navy); position: relative; overflow: hidden; }
     .about-strip::before {
@@ -415,7 +419,7 @@
     @media (max-width: 600px) {
       .app-feature { grid-template-columns: 1fr; gap: 24px; padding: 48px 0; }
       .app-feature.reverse { direction: ltr; }
-      .app-hero { min-height: 280px; }
+      .app-hero { min-height: 280px; height: 280px; }
       .values-grid { grid-template-columns: 1fr; }
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
@@ -427,15 +431,7 @@
 <nav>
   <div class="nav-inner">
     <a href="/" class="nav-logo">
-      <svg viewBox="0 0 124 108" width="28" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="nav-gr" x1="62" y1="16" x2="114" y2="96" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#0099EE"/><stop offset="100%" stop-color="#00CCA8"/>
-        </linearGradient></defs>
-        <polyline points="10,16 28,92 47,52 66,92" fill="none" stroke="#fff" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <polyline points="66,92 86,16 86,92" fill="none" stroke="url(#nav-gr)" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M 86,16 C 122,16 122,60 86,60" fill="none" stroke="url(#nav-gr)" stroke-width="9.5" stroke-linecap="round"/>
-        <line x1="86" y1="60" x2="114" y2="92" stroke="url(#nav-gr)" stroke-width="9.5" stroke-linecap="round"/>
-      </svg>
+      <img src="/images/logo_dark_trans.png" alt="WiselyRise" style="width:28px; height:auto;">
       <div class="nav-divider"></div>
       <div class="nav-wordmark">
         <div class="nav-name">WiselyRise</div>
@@ -470,15 +466,15 @@
       <img src="/images/logo_dark_trans.png" alt="WiselyRise Logo" style="width:88px; height:auto;">
     </div>
     <div class="hero-sub">WiselyRise Solutions</div>
-    <h1 class="hero-headline">Software that <span class="grad">respects you</span></h1>
-    <p class="hero-tagline">We build <strong>thoughtful apps for everyday people</strong>. No data harvested. No dark patterns. No subscription traps. Just honest software that works for you.</p>
+    <h1 class="hero-headline">Build Smart.<br><span class="grad">Rise Higher.</span></h1>
+    <p class="hero-tagline">We build mobile apps and software that are <span class="highlight">smarter, safer, and more human</span> - for users in India and everywhere who deserve products built with genuine care, not engineered for addiction or data extraction.</p>
     <div class="hero-actions">
       <a href="#apps" class="btn-primary">Explore Our Apps</a>
       <a href="about.html" class="btn-ghost">Our Story →</a>
     </div>
   </div>
   <div class="hero-scroll">
-    <span>scroll</span>
+    <span>SCROLL</span>
     <div class="scroll-line"></div>
   </div>
 </section>
@@ -507,7 +503,7 @@
     <div class="section-eyebrow reveal">Portfolio</div>
     <h2 class="section-title reveal reveal-delay-1">The Wise Family of Apps</h2>
     <div class="section-rule reveal reveal-delay-2"></div>
-    <p class="section-lead reveal reveal-delay-3">Four apps live on the Play Store. One clear philosophy — software built with purpose.</p>
+    <p class="section-lead reveal reveal-delay-3">One clear philosophy — software built with purpose.</p>
     
     <div class="apps-list">
       <!-- DateWise -->
@@ -518,8 +514,8 @@
               <img src="/datewise/images/app_icon_playstore.png" alt="DateWise Icon">
             </div>
             <div class="app-header-info">
-              <div class="app-status-badge">On Play Store</div>
               <div class="app-feature-name"><span class="wise purple">Date</span><span class="wise">Wise</span></div>
+              <div class="app-status-badge">On Play Store</div>
             </div>
           </div>
           <p class="app-feature-desc">The personal reminder engine for dates you can't afford to forget. Birthdays, anniversaries, bills — offline-first, no signup, free forever.</p>
@@ -543,8 +539,8 @@
               <img src="/gramwise/images/app_icon_playstore.png" alt="GramWise Icon">
             </div>
             <div class="app-header-info">
-              <div class="app-status-badge">On Play Store</div>
               <div class="app-feature-name"><span class="wise gold">Gram</span><span class="wise">Wise</span></div>
+              <div class="app-status-badge">On Play Store</div>
             </div>
           </div>
           <p class="app-feature-desc">The private gold, silver &amp; platinum items tracker for families and individuals. Log items, assign to family members, track latest metal prices, and secure your wealth — 100% offline.</p>
@@ -568,8 +564,8 @@
               <img src="/pixwise/images/app_icon_playstore.png" alt="PixWise Icon">
             </div>
             <div class="app-header-info">
-              <div class="app-status-badge">On Play Store</div>
               <div class="app-feature-name"><span class="wise green">Pix</span><span class="wise">Wise</span></div>
+              <div class="app-status-badge">On Play Store</div>
             </div>
           </div>
           <p class="app-feature-desc">Your gallery, your rules. Lite Mode hides private albums in one tap. Secure Space vaults your most sensitive photos. 100% offline — no account, no cloud.</p>
@@ -593,8 +589,8 @@
               <img src="/keywise/images/app_icon_playstore.png" alt="KeyWise Icon">
             </div>
             <div class="app-header-info">
-              <div class="app-status-badge">Coming Soon</div>
               <div class="app-feature-name"><span class="wise teal">Key</span><span class="wise">Wise</span></div>
+              <div class="app-status-badge">Coming Soon</div>
             </div>
           </div>
           <p class="app-feature-desc">A privacy-first password manager with military-grade encryption. Your passwords, PINs, and secrets stay on your device — zero cloud by default, zero compromise on security.</p>
@@ -606,6 +602,7 @@
           <a href="/keywise" class="app-feature-cta">Explore KeyWise →</a>
         </div>
         <div class="app-hero">
+          <img src="/keywise/images/app_icon_playstore.png" alt="KeyWise Hero">
         </div>
       </div>
     </div>
@@ -654,8 +651,8 @@
 <section class="cta-section">
   <div class="cta-inner">
     <div class="section-eyebrow" style="margin-bottom:16px;">Get in Touch</div>
-    <h2 class="reveal">Let''s make something<br><span>Wise together.</span></h2>
-    <p class="reveal reveal-delay-1">Whether you have feedback on an app, a collaboration in mind, a project you''d like us to build, or you''re just curious about what''s next — we''d love to hear from you.</p>
+    <h2 class="reveal">Let's make something<br><span>Wise together.</span></h2>
+    <p class="reveal reveal-delay-1">Whether you have feedback on an app, a collaboration in mind, a project you would like us to build, or you are just curious about what's next — we would love to hear from you.</p>
     <div class="hero-actions reveal reveal-delay-2">
       <button class="btn-primary" onclick="openContactModal()">Get in Touch</button>
     </div>
@@ -682,7 +679,6 @@
       <h4>Company</h4>
       <a href="about.html">About Us</a>
       <a href="about.html#contact">Contact</a>
-      <a href="branding.html">Brand Identity</a>
     </div>
     <div class="footer-links-group">
       <h4>Connect</h4>
@@ -692,7 +688,7 @@
   </div>
   <div class="footer-bottom">
     <p>&copy; 2026 WiselyRise Solutions. All rights reserved. Erode, Tamil Nadu, India.</p>
-    <p>Built with intent. <a href="branding.html">Brand Guidelines ↗</a></p>
+    <p>Built with intent.</p>
   </div>
 </footer>
 <script>
