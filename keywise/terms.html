@@ -450,7 +450,7 @@ footer a:hover { text-decoration: underline; }
 <!-- ─── HEADER ─── -->
 <header>
   <div class="header-inner">
-    <a class="logo-link" href="https://wiselyrise.in/keywise">
+    <a class="logo-link" href="index.html">
       <div class="logo-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <circle cx="9" cy="10" r="4.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -465,8 +465,8 @@ footer a:hover { text-decoration: underline; }
       </div>
     </a>
     <nav class="header-nav" aria-label="Page navigation">
-      <a href="https://wiselyrise.in/keywise" class="home-link">← App Home</a>
-      <a href="https://wiselyrise.in/keywise/privacy">Privacy Policy</a>
+      <a href="index.html" class="home-link">← App Home</a>
+      <a href="privacy.html">Privacy Policy</a>
       <a href="https://wiselyrise.in/">WiselyRise 🏠</a>
     </nav>
   </div>
@@ -498,7 +498,7 @@ footer a:hover { text-decoration: underline; }
       Key points at a glance
     </div>
     <ul>
-      <li>KeyWise Free is free forever. Premium is a <strong>one-time unlock</strong> (₹999 India / $4.99 global) — no subscriptions, no renewals.</li>
+      <li>KeyWise Free is free forever. Premium is a <strong>one-time unlock</strong> (₹99 India / $1.99 global) — no subscriptions, no renewals.</li>
       <li>Your vault is encrypted with keys <strong>only you hold</strong> — a lost lock credential plus a lost Recovery Code means an irrecoverable vault, by design.</li>
       <li><strong>Keep your 24-word Recovery Code safe</strong> — it is the only fallback if you forget your creative lock. WiselyRise cannot recover it for you.</li>
       <li>Breach check results are informational — do not treat them as a guarantee that a password is safe.</li>
@@ -578,8 +578,8 @@ footer a:hover { text-decoration: underline; }
       </div>
       <div class="price-card highlight">
         <div class="price-name">Premium — One-Time</div>
-        <div class="price-amt">₹999</div>
-        <div class="price-note">India · Lifetime · No renewal<br/>$4.99 global (PPP-adjusted per region)</div>
+        <div class="price-amt">₹99</div>
+        <div class="price-note">India · Lifetime · No renewal<br/>$1.99 global (PPP-adjusted per region)</div>
       </div>
     </div>
 
@@ -854,18 +854,38 @@ footer a:hover { text-decoration: underline; }
 
 <!-- ─── FOOTER ─── -->
 <footer>
-  <div class="footer-logo">
-    <svg width="28" height="25" viewBox="0 0 124 108" fill="none" aria-hidden="true">
-      <polyline points="4,16 24,92 44,16 66,92 86,16 86,92" stroke="#00BFA5" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <polyline points="86,54 100,16 120,54" stroke="#00BFA5" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <line x1="92" y1="54" x2="116" y2="54" stroke="#00BFA5" stroke-width="9.5" stroke-linecap="round"/>
-      <line x1="100" y1="54" x2="120" y2="92" stroke="#00BFA5" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span style="font-size:.78rem;font-weight:600;color:var(--dim);">WiselyRise Solutions</span>
-  </div>
-  <p>KeyWise is a product of <a href="https://wiselyrise.in/">WiselyRise Solutions</a>.</p>
-  <p style="margin-top:4px;">View our <a href="https://wiselyrise.in/keywise/privacy">Privacy Policy</a>.</p>
-  <p style="margin-top:12px;opacity:.5;">© 2026 WiselyRise Solutions. All rights reserved.</p>
+  <main style="max-width: 820px; margin: 0 auto; padding: 0 28px;">
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem; text-align: left; font-size: 0.9rem;">
+      <div>
+        <h4 style="color: var(--white); font-weight: 600; margin-bottom: 1rem;">Product</h4>
+        <ul style="list-style: none;">
+          <li style="margin-bottom: 0.5rem;"><a href="index.html#features" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Features</a></li>
+          <li style="margin-bottom: 0.5rem;"><a href="index.html#security" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Security</a></li>
+          <li style="margin-bottom: 0.5rem;"><a href="index.html#pricing" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Pricing</a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=com.keywise.app" target="_blank" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Download</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: var(--white); font-weight: 600; margin-bottom: 1rem;">Legal</h4>
+        <ul style="list-style: none;">
+          <li style="margin-bottom: 0.5rem;"><a href="privacy.html" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Privacy Policy</a></li>
+          <li><a href="index.html" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">KeyWise Home</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: var(--white); font-weight: 600; margin-bottom: 1rem;">Company</h4>
+        <ul style="list-style: none;">
+          <li style="margin-bottom: 0.5rem;"><a href="https://wiselyrise.in" target="_blank" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">WiselyRise</a></li>
+          <li><a href="mailto:contact@wiselyrise.in" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Support</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top: 1px solid var(--border); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div style="color: var(--dim); font-size: 0.85rem;">
+        © 2026 <a href="https://wiselyrise.in" target="_blank" style="color: var(--teal); text-decoration: none;">WiselyRise Solutions</a>. All rights reserved.
+      </div>
+    </div>
+  </main>
 </footer>
 
 </body>

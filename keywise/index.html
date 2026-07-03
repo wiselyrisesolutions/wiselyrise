@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KeyWise: Zero-knowledge password manager with offline-first architecture, encrypted backup, and family vaults. Privacy by design." />
+  <meta name="theme-color" content="#060F1E" />
+  <title>KeyWise - Zero-Knowledge Password Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0D1F3C;
+      --navyM: #122444;
+      --navyL: #1A3357;
+      --teal: #00BFA5;
+      --tealL: #26D7C0;
+      --tealD: #009688;
+      --gold: #FFD166;
+      --coral: #FF6B6B;
+      --green: #4CAF50;
+      --slate: #8EAAC8;
+      --white: #F4F8FC;
+      --off: #D0DDE8;
+      --dim: #7A96B0;
+      --bg: #060F1E;
+      --card: rgba(255, 255, 255, 0.04);
+      --card2: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
+      --teal-bg: rgba(0, 191, 165, 0.06);
+      --teal-bd: rgba(0, 191, 165, 0.18);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: "Outfit", sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+      position: relative;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.022;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ──── Header & Navigation ──── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6, 15, 30, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--off);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--tealL) 100%);
+      color: var(--bg);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 191, 165, 0.3);
+    }
+
+    /* ──── Main Content Container ──── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+      animation: fadeInUp 0.8s ease-out backwards;
+    }
+
+    /* ──── Hero Section ──── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      padding: 6rem 0;
+      animation: fadeInUp 0.8s ease-out 0.2s backwards;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      animation: slideInRight 0.8s ease-out 0.4s backwards;
+    }
+
+    .hero-content h1 .highlight {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--tealL) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-content p {
+      font-size: 1.125rem;
+      color: var(--off);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-buttons .cta-button {
+      padding: 1rem 2rem;
+      font-size: 1.125rem;
+    }
+
+    .hero-buttons .secondary {
+      background: var(--card2);
+      color: var(--teal);
+      border: 1px solid var(--teal-bd);
+    }
+
+    .hero-buttons .secondary:hover {
+      background: var(--teal-bg);
+    }
+
+    .hero-image {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+      animation: fadeInScale 0.8s ease-out 0.6s backwards;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      transition: transform 0.4s ease;
+    }
+
+    .hero-image img:hover {
+      transform: scale(1.02);
+      border: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--teal-bg);
+      border: 1px solid var(--teal-bd);
+      color: var(--tealL);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    /* ──── Features Section ──── */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .feature-card:nth-child(1) { animation-delay: 0.2s; }
+    .feature-card:nth-child(2) { animation-delay: 0.3s; }
+    .feature-card:nth-child(3) { animation-delay: 0.4s; }
+    .feature-card:nth-child(4) { animation-delay: 0.5s; }
+    .feature-card:nth-child(5) { animation-delay: 0.6s;   background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      background: var(--card);
+      border-color: var(--teal-bd);
+      transform: translateY(-4px);
+    }
+
+    .feature-card h3 {
+      font-size: 1.25rem;
+      margin: 1rem 0;
+      font-weight: 600;
+    }
+
+    .feature-card p {
+      color: var(--dim);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--teal-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    /* ──── Showcase Section ──── */
+    .showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .showcase-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .showcase-content p {
+      color: var(--off);
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    .showcase-list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .showcase-list li {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      color: var(--off);
+    }
+
+    .showcase-list li::before {
+      content: "✓";
+      color: var(--teal);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .showcase-image {
+      position: relative;
+      height: 600px;
+      overflow: hidden;
+    }
+
+    .showcase-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      transition: transform 0.4s ease;
+    }
+
+    .showcase-image img:hover {
+      transform: scale(1.03);
+    }
+
+    /* ──── Security Section ──── */
+    .security {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 4rem;
+      text-align: center;
+    }
+
+    .security h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .security-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .security-item h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      color: var(--tealL);
+    }
+
+    .security-item p {
+      color: var(--dim);
+      font-size: 0.95rem;
+    }
+
+    /* ──── Tiers Section ──── */
+    .tiers {
+      text-align: center;
+    }
+
+    .tiers h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .tiers-description {
+      color: var(--off);
+      font-size: 1.05rem;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tier-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .tier-card {
+      background: var(--card2);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: left;
+      transition: all 0.3s ease;
+      position: relative;
+      animation: fadeInScale 0.6s ease-out backwards;
+    }
+
+    .tier-card:nth-child(1) { animation-delay: 0.2s; }
+    .tier-card:nth-child(2) { animation-delay: 0.4s; }
+
+    .tier-card.premium {
+      border-color: var(--teal-bd);
+      background: linear-gradient(135deg, rgba(0, 191, 165, 0.08) 0%, rgba(38, 215, 192, 0.04) 100%);
+    }
+
+    .tier-card.premium::before {
+      content: "RECOMMENDED";
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--tealL) 100%);
+      color: var(--bg);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .tier-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--tealL);
+      margin-bottom: 2rem;
+    }
+
+    .tier-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .tier-features li {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      color: var(--off);
+      font-size: 0.95rem;
+    }
+
+    .tier-features li::before {
+      content: "✓";
+      color: var(--teal);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .tier-features li.unavailable {
+      color: var(--dim);
+      opacity: 0.6;
+    }
+
+    .tier-features li.unavailable::before {
+      content: "–";
+      color: var(--dim);
+    }
+
+    .tier-cta {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .tier-cta.primary {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--tealL) 100%);
+      color: var(--bg);
+    }
+
+    .tier-cta.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 191, 165, 0.3);
+    }
+
+    .tier-cta.secondary {
+      background: var(--border);
+      color: var(--teal);
+    }
+
+    .tier-cta.secondary:hover {
+      background: var(--teal-bg);
+    }
+
+    /* ──── Screenshots Section ──── */
+    .screenshots {
+      text-align: center;
+    }
+
+    .screenshots h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      font-weight: 700;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+      animation: fadeInScale 0.6s ease-out backwards;
+      transition: transform 0.3s ease;
+    }
+
+    .screenshot-item:nth-child(1) { animation-delay: 0.1s; }
+    .screenshot-item:nth-child(2) { animation-delay: 0.2s; }
+    .screenshot-item:nth-child(3) { animation-delay: 0.3s; }
+    .screenshot-item:nth-child(4) { animation-delay: 0.4s; }
+
+    .screenshot-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 28px rgba(0, 191, 165, 0.15);
+    .screenshot-item {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 9 / 16;
+    }
+
+    .screenshot-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ──── FAQ Section ──── */
+    .faq {
+      text-align: center;
+    }
+
+    .faq h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      font-weight: 700;
+    }
+
+    .faq-items {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .faq-item:nth-child(1) { animation-delay: 0.1s; }
+    .faq-item:nth-child(2) { animation-delay: 0.2s; }
+    .faq-item:nth-child(3) { animation-delay: 0.3s; }
+    .faq-item:nth-child(4) { animation-delay: 0.4s; }
+    .faq-item:nth-child(5) { animation-delay: 0.5s; }
+    .faq-item:nth-child(6) { animation-delay: 0.6s; }
+
+    .faq-item:hover {
+      background: var(--card);
+      border-color: var(--teal-bd);
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--white);
+    }
+
+    .faq-toggle {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: var(--dim);
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+    }
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+    
+    /* ──── CTA Section ──── */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(0, 191, 165, 0.1) 0%, rgba(38, 215, 192, 0.05) 100%);
+      border: 1px solid var(--teal-bd);
+      border-radius: 16px;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .cta-section p {
+      color: var(--off);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ──── Footer ──── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+      margin-top: 5rem;
+      color: var(--dim);
+      font-size: 0.9rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-column h4 {
+      color: var(--white);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column a {
+      color: var(--dim);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-column a:hover {
+      color: var(--teal);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copyright {
+      color: var(--dim);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-socials a {
+      color: var(--dim);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-socials a:hover {
+      color: var(--teal);
+    }
+
+    /* ──── Responsive ──── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 3rem 0;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase-image {
+        height: 400px;
+      }
+
+      .security-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tier-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .screenshots-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      section {
+        padding: 3rem 0;
+      }
+
+      .cta-section {
+        padding: 2rem 1rem;
+      }
+
+      .cta-section h2 {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ──── Header ──── -->
+  <header>
+    <nav>
+      <a href="#" class="logo">
+        <img src="images/app_icon_playstore.png" alt="KeyWise Logo" />
+        KeyWise
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="https://play.google.com/store/apps/details?id=com.keywise.app" target="_blank" class="cta-button">
+        Download
+      </a>
+    </nav>
+  </header>
+
+  <!-- ──── Main Content ──── -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Your <span class="highlight">Credentials</span> Deserve Better</h1>
+        <p>KeyWise is a privacy-first password manager that keeps your credentials encrypted on-device, offline-first, and always under your control.</p>
+        <div class="hero-buttons">
+          <a href="https://play.google.com/store/apps/details?id=com.keywise.app" target="_blank" class="cta-button">
+            Download on Google Play
+          </a>
+          <a href="#features" class="cta-button secondary">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="images/hero.jpg" alt="KeyWise App Hero" />
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+      <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center; font-weight: 700;">Core Features</h2>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🔐</div>
+          <h3>Zero-Knowledge Encryption</h3>
+          <p>Your credentials are encrypted on-device using XChaCha20-Poly1305 before any data leaves your phone. We never see plaintext.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Offline-First Design</h3>
+          <p>Access your vaults anytime, anywhere—even without internet. All your credentials are stored securely on your device.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Encrypted Backup & Restore</h3>
+          <p>Back up your entire vault in our secure .keywise format and restore it anytime, on any device. You control the encryption key.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3>Multiple Vaults</h3>
+          <p>Keep personal, family, and work credentials in separate vaults. Perfect for managing multiple identities and responsibilities.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏥</div>
+          <h3>Password Health Checks</h3>
+          <p>Identify weak, reused, and compromised passwords. Get security recommendations to strengthen your digital life.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Store More Than Passwords Section -->
+    <section class="showcase">
+      <div class="showcase-content">
+        <h2>Store More Than Passwords</h2>
+        <p>KeyWise is designed for your entire digital life—not just web logins. Organize any credential in custom vaults.</p>
+        <ul class="showcase-list">
+          <li>Web logins and app credentials</li>
+          <li>ATM and card PINs</li>
+          <li>Wi-Fi and router passwords</li>
+          <li>API keys and tokens</li>
+          <li>Recovery codes and security notes</li>
+          <li>Custom field types you define</li>
+        </ul>
+      </div>
+      <div class="showcase-image">
+        <img src="images/Credentials_Fields.jpg" alt="KeyWise Credential Storage" />
+      </div>
+    </section>
+
+    <!-- For Households & Teams -->
+    <section class="showcase" style="margin-top: 3rem; direction: rtl;">
+      <div class="showcase-image" style="direction: ltr;">
+        <img src="images/Credential_type.jpg" alt="KeyWise Credential Types" />
+      </div>
+      <div class="showcase-content" style="direction: ltr;">
+        <h2>Built for Households & Teams</h2>
+        <p>KeyWise supports complex family and team workflows with organized categories and assisted use cases.</p>
+        <ul class="showcase-list">
+          <li>Create separate vaults for different roles</li>
+          <li>Organize with rich category system</li>
+          <li>Support parents managing seniors' accounts</li>
+          <li>Share vaults with trusted family members</li>
+          <li>Keep sensitive categories organized</li>
+          <li>Track which credentials are most used</li>
+        </ul>
+
+    <!-- Security Section -->
+    <section id="security" class="security">
+      <h2>Security by Design</h2>
+      <p style="color: var(--dim); margin-bottom: 0;">KeyWise is built on military-grade encryption and privacy-first architecture.</p>
+      <div class="security-grid">
+        <div class="security-item">
+          <h4>Argon2id Key Derivation</h4>
+          <p>Your master password is stretched with Argon2id, making brute-force attacks computationally infeasible.</p>
+        </div>
+        <div class="security-item">
+          <h4>Zero-Knowledge Architecture</h4>
+          <p>Your encryption keys never leave your device. We cannot decrypt your data even if we wanted to.</p>
+        </div>
+        <div class="security-item">
+          <h4>No Dark Patterns</h4>
+          <p>Honest encryption, no hidden lock-in, and full transparency about what we do with your data.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots">
+      <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center; font-weight: 700;">See It In Action</h2>
+      <div class="screenshots-grid">
+        <div class="screenshot-item">
+          <img src="images/app_home.jpg" alt="KeyWise Home Screen" />
+        </div>
+        <div class="screenshot-item">
+          <img src="images/Credentials_Fields.jpg" alt="Add Credentials" />
+        </div>
+        <div class="screenshot-item">
+          <img src="images/Credential_type.jpg" alt="Credential Types" />
+        </div>
+        <div class="screenshot-item">
+          <img src="images/Settings.jpg" alt="Settings & Security" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="tiers">
+      <h2>Simple, Transparent Pricing</h2>
+      <p class="tiers-description">KeyWise offers both free and premium tiers. Choose what works for you—upgrade anytime.</p>
+      <div class="tier-cards">
+        <div class="tier-card">
+          <div class="tier-name">Free</div>
+          <div class="tier-price">$0</div>
+          <ul class="tier-features">
+            <li>2 vaults</li>
+            <li>20 total credentials</li>
+            <li>All categories</li>
+            <li>Password health checks</li>
+            <li>Android autofill</li>
+            <li class="unavailable">Cloud backup & sync</li>
+            <li class="unavailable">Unlimited vaults (Premium only)</li>
+            <li class="unavailable">Unlimited credentials (Premium only)rted</button>
+        </div>
+        <div class="tier-card premium">
+          <div class="tier-name">Premium</div>
+          <div class="tier-price">₹499</div>
+          <p style="color: var(--teal); font-size: 0.9rem; margin-bottom: 1rem;">One-time lifetime unlock</p>
+          <ul class="tier-features">
+            <li>Unlimited vaults</l99</div>
+          <p style="color: var(--teal); font-size: 0.9rem; margin-bottom: 1rem;">One-time lifetime unlock</p>
+          <ul class="tier-features">
+            <li>Unlimited vaults</li>
+            <li>Unlimited credentials</li>
+            <li>All categories</li>
+            <li>Password health checks
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-items">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What makes KeyWise different from other password managers?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>KeyWise is built on zero-knowledge architecture, meaning your credentials are encrypted on-device before sync and backup. We use Argon2id key derivation and XChaCha20-Poly1305 authenticated encryption. Unlike cloud-dependent solutions, KeyWise works offline-first, so you always have access to your vaults. We don't ask for payment upfront for basic features—the free tier is genuinely useful.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I access my vaults offline?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. KeyWise is offline-first by design. All your credentials are stored locally on your device, encrypted with your master password. You can access them anytime, anywhere—with or without internet. Cloud backup and sync are optional premium features for convenience.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How secure is my data?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Your data is protected by military-grade encryption. We use XChaCha20-Poly1305 for authenticated encryption and Argon2id for key derivation. Your encryption keys never leave your device—not even WiselyRise can decrypt your data. Every credential is encrypted before storage, and the only way to access it is with your master password, which only you know.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What if I forget my master password?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Your master password is the only key to decrypt your vault—we cannot recover it for you. This is a feature, not a bug: it ensures nobody (not even us) can access your data. However, we provide a recovery code during setup that lets you regain access if you forget your password. Keep it safe in a secure location.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I switch devices?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. You can export your vault to our encrypted .keywise format, which includes all credentials and is protected by your master password. Transfer this file to your new device and restore it. Your data is always portable and under your control.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Does KeyWise have a web app?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Currently, KeyWise is available as a native Android app. This design choice keeps your data on your device and avoids browser security risks. You can sync and back up your vault to cloud storage (premium feature), but viewing always happens on your device for maximum security.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="cta-section">
+      <h2>Ready to Secure Your Digital Life?</h2>
+      <p>Join thousands of users who trust KeyWise for their most important credentials. Download today—it's free to get started.</p>
+      <a href="https://play.google.com/store/apps/details?id=com.keywise.app" target="_blank" class="cta-button" style="display: inline-block;">
+        Download KeyWise on Google Play
+      </a>
+    </section>
+  </main>
+
+  <!-- ──── Footer ──── -->
+  <footer>
+    <main>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#security">Security</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.keywise.app" target="_blank">Download</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="https://wiselyrise.in" target="_blank">WiselyRise</a></li>
+            <li><a href="mailto:contact@wiselyrise.in">Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Security</h4>
+          <ul>
+            <li>Zero-Knowledge Encryption</li>
+            <li>Offline-First Architecture</li>
+            <li>Encrypted Backups</li>
+            <li>No Dark Patterns</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2026 <a href="https://wiselyrise.in" target="_blank" style="color: var(--teal); text-decoration: none;">WiselyRise Solutions</a>. All rights reserved. | Crafted with encryption.
+        </div>
+        <div class="footer-socials">
+          <a href="https://wiselyrise.in" target="_blank" title="Website">🌐</a>
+          <a href="https://play.google.com/store/apps/details?id=com.keywise.app" target="_blank" title="Google Play">📱</a>
+        </div>
+      </div>
+    </main>
+  </footer>
+
+  <!-- ──── Interactive FAQ Script ──── -->
+  <script>
+    document.querySelectorAll(".faq-item").forEach((item) => {
+      item.addEventListener("click", function () {
+        this.classList.toggle("active");
+      });
+    });
+  </script>
+</body>
+
+</html>
