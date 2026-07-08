@@ -78,12 +78,19 @@ header {
   width: 34px;
   height: 34px;
   border-radius: 9px;
-  background: linear-gradient(135deg, var(--navy), var(--teal));
+  background: rgba(255, 255, 255, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   box-shadow: 0 4px 14px rgba(0,191,165,.2);
+  overflow: hidden;
+}
+.logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .logo-wordmark { display: flex; flex-direction: column; line-height: 1.2; }
 .logo-app { font-size: .95rem; font-weight: 700; color: var(--white); }
@@ -452,12 +459,7 @@ footer a:hover { text-decoration: underline; }
   <div class="header-inner">
     <a class="logo-link" href="index.html">
       <div class="logo-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <circle cx="9" cy="10" r="4.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <path d="M13 13l7 7" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <path d="M17 17l2-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <path d="M15 19l2-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+        <img src="images/app_icon_playstore.png" alt="KeyWise app icon" />
       </div>
       <div class="logo-wordmark">
         <span class="logo-app">KeyWise</span>
@@ -781,7 +783,7 @@ footer a:hover { text-decoration: underline; }
       <li>Reliance on breach check results, portal templates, or reset predictions that prove inaccurate.</li>
       <li>Any interruption, suspension, or termination of Firebase, Google Drive, or other third-party services used by the App.</li>
     </ul>
-    <p>In no event shall WiselyRise's total aggregate liability to you exceed the amount you paid for the App — being <strong>₹999 / $4.99 for Premium users</strong>, and <strong>₹0 / $0 for Free tier users</strong>.</p>
+    <p>In no event shall WiselyRise's total aggregate liability to you exceed the amount you paid for the App — being <strong>₹99 / $1.99 for Premium users</strong>, and <strong>₹0 / $0 for Free tier users</strong>.</p>
   </div>
 
   <hr class="div"/>

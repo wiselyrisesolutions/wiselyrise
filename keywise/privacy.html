@@ -82,12 +82,19 @@ header {
   width: 34px;
   height: 34px;
   border-radius: 9px;
-  background: linear-gradient(135deg, var(--navy), var(--teal));
+  background: rgba(255, 255, 255, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   box-shadow: 0 4px 14px rgba(0,191,165,.2);
+  overflow: hidden;
+}
+.logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .logo-wordmark { display: flex; flex-direction: column; line-height: 1.2; }
 .logo-app { font-size: .95rem; font-weight: 700; color: var(--white); }
@@ -484,13 +491,7 @@ footer a:hover { text-decoration: underline; }
   <div class="header-inner">
     <a class="logo-link" href="index.html">
       <div class="logo-icon">
-        <!-- KeyWise icon: key silhouette in teal -->
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <circle cx="9" cy="10" r="4.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <path d="M13 13l7 7" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <path d="M17 17l2-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <path d="M15 19l2-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+        <img src="images/app_icon_playstore.png" alt="KeyWise app icon" />
       </div>
       <div class="logo-wordmark">
         <span class="logo-app">KeyWise</span>
@@ -854,6 +855,7 @@ footer a:hover { text-decoration: underline; }
       <div>
         <h4 style="color: var(--white); font-weight: 600; margin-bottom: 1rem;">Legal</h4>
         <ul style="list-style: none;">
+          <li style="margin-bottom: 0.5rem;"><a href="privacy.html" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Privacy Policy</a></li>
           <li style="margin-bottom: 0.5rem;"><a href="terms.html" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Terms of Service</a></li>
           <li><a href="index.html" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">KeyWise Home</a></li>
         </ul>
