@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DocuWise - A secure family document wallet powered by Google Drive. Organize, share, and manage important family documents with ease.">
+    <meta name="keywords" content="document management, family documents, Google Drive, secure sharing, document wallet">
+    <meta name="author" content="WiselyRise">
+    <title>DocuWise - Family Document Wallet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        section {
+            padding: 60px 20px;
+            background: white;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        section:nth-child(odd) {
+            background: #f8f9fa;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .spec-item {
+            padding: 20px;
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+        }
+
+        .spec-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            text-align: center;
+            color: #999;
+        }
+
+        .highlight {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">📄 DocuWise</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#privacy">Privacy</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Your Family Documents, Perfectly Organized</h1>
+            <p>DocuWise is a secure, fast family document wallet that keeps all your important documents organized and accessible when you need them.</p>
+            <div class="cta-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.wiselyrise.docuwise" class="btn btn-primary">Download on Google Play</a>
+                <a href="#learn-more" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="container">
+        <h2>Why Choose DocuWise?</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Experience blazing-fast document organization and access. Cold start in under 1 second, search through hundreds of documents in milliseconds.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                <h3>Family Sharing</h3>
+                <p>Seamlessly share documents with family members. Control who sees what with granular permission settings.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Enterprise Security</h3>
+                <p>Your documents are protected with military-grade encryption and secure in your Google Drive. Zero servers, zero backend.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Always Accessible</h3>
+                <p>Access your vault from any device. Works offline with automatic sync when you're back online.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏷️</div>
+                <h3>Smart Organization</h3>
+                <p>Automatically categorize documents and tag them for easy searching. Find what you need in seconds.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Zero Footprint</h3>
+                <p>Minimal storage usage. Documents stream on-demand, not downloaded all at once. No storage explosion.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="security">
+        <div class="container">
+            <h2>Security & Privacy First</h2>
+            <p style="text-align: center; font-size: 18px; margin-bottom: 30px;">DocuWise prioritizes your privacy and security above all else.</p>
+            <div class="specs">
+                <div class="spec-item">
+                    <strong>🔐 End-to-End Security</strong>
+                    Your documents live in your personal Google Drive. We never store, process, or access your documents on our servers.
+                </div>
+                <div class="spec-item">
+                    <strong>✅ Zero Backend Architecture</strong>
+                    No servers, no databases, no backend to compromise. Minimal attack surface, maximum privacy.
+                </div>
+                <div class="spec-item">
+                    <strong>🔑 Google Sign-In</strong>
+                    Secure authentication using official Google Sign-In. Your credentials never touch our systems.
+                </div>
+                <div class="spec-item">
+                    <strong>📲 Offline First</strong>
+                    Works completely offline. Sync happens securely in the background when online.
+                </div>
+                <div class="spec-item">
+                    <strong>🛡️ Biometric Lock</strong>
+                    Optional fingerprint/face unlock adds an extra security layer on top of your PIN.
+                </div>
+                <div class="spec-item">
+                    <strong>🔄 Automatic Updates</strong>
+                    Regular security updates keep your app protected against emerging threats.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="learn-more">
+        <div class="container">
+            <h2>Built for Your Family</h2>
+            <p style="text-align: center; font-size: 18px; margin-bottom: 30px;">DocuWise is designed with families in mind. Keep all your important documents organized and accessible to the right people.</p>
+            
+            <h3 style="margin: 30px 0 15px; color: #667eea;">Perfect For:</h3>
+            <ul style="list-style-position: inside; color: #666; line-height: 2;">
+                <li>✓ Identity documents (Aadhaar, Passport, Driver's License)</li>
+                <li>✓ Medical records and insurance documents</li>
+                <li>✓ Financial documents and tax returns</li>
+                <li>✓ Property and vehicle documents</li>
+                <li>✓ Legal documents and agreements</li>
+                <li>✓ Educational certificates</li>
+                <li>✓ Custody and family agreements</li>
+                <li>✓ Emergency contact documents</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="privacy">
+        <div class="container">
+            <h2>Your Privacy Matters</h2>
+            <p style="text-align: center; margin-bottom: 30px;">We're committed to transparent data practices. Read our <a href="privacy.html" class="highlight">full Privacy Policy</a> and <a href="terms.html" class="highlight">Terms of Service</a> for complete details.</p>
+            
+            <div class="specs">
+                <div class="spec-item">
+                    <strong>What We Store</strong>
+                    Only minimal app metadata (preferences, sync status). Never your documents.
+                </div>
+                <div class="spec-item">
+                    <strong>What We Access</strong>
+                    Only the Google Drive App Data folder and files you explicitly share. Nothing else.
+                </div>
+                <div class="spec-item">
+                    <strong>Third-Party Sharing</strong>
+                    We never sell, share, or trade your data with third parties. Period.
+                </div>
+                <div class="spec-item">
+                    <strong>Data Deletion</strong>
+                    Delete your account and all app data anytime. No questions asked.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>DocuWise</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#security">Security</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Download</h4>
+                    <ul>
+                        <li><a href="https://play.google.com/store/apps/details?id=com.wiselyrise.docuwise">Android App</a></li>
+                        <li><a href="#">iOS App (Coming Soon)</a></li>
+                        <li><a href="#">Web App (Coming Soon)</a></li>
+                        <li><a href="#">Release Notes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Report Bug</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 WiselyRise. All rights reserved. | <a href="privacy.html" style="color: #bbb;">Privacy</a> | <a href="terms.html" style="color: #bbb;">Terms</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
