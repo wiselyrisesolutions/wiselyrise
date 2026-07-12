@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support &amp; Sync Guide — DateWise</title>
+  <meta name="description" content="DateWise support: how to set up cross-device sync with Cloud Backup, troubleshooting tips, and how to reach us." />
+  <link rel="canonical" href="https://wiselyrise.in/datewise/support.html" />
+  <link rel="icon" href="/datewise/images/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/datewise/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/datewise/images/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/datewise/images/apple-touch-icon.png" />
+  <style>
+    :root{--bg:#fafafa;--fg:#0f0f0f;--muted:#6b7280;--border:#e5e7eb;--accent:#5b21b6;--accent-bg:#f5f3ff}
+    @media(prefers-color-scheme:dark){:root{--bg:#0f0f0f;--fg:#e8e8e8;--muted:#9ca3af;--border:#2d2d2d;--accent:#a78bfa;--accent-bg:#1e1730}}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',system-ui,-apple-system,sans-serif;
+      background:var(--bg);color:var(--fg);line-height:1.68;padding:28px 20px}
+    .container{max-width:700px;margin:0 auto}
+    h1{font-size:1.7rem;margin-bottom:6px;font-weight:800;letter-spacing:-.03em}
+    .subtitle{color:var(--muted);font-size:.83rem;margin-bottom:32px}
+    h2{font-size:1.1rem;margin:32px 0 10px;color:var(--accent);font-weight:700}
+    h3{font-size:.97rem;margin:22px 0 8px;font-weight:600}
+    p,li{font-size:.91rem;margin-bottom:8px;color:var(--fg);line-height:1.7}
+    ul,ol{padding-left:22px;margin-bottom:14px}
+    ol li{margin-bottom:10px}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .divider{border:none;border-top:1px solid var(--border);margin:32px 0}
+    .nav-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+    .nav-bar a{font-size:.83rem;font-weight:500;color:var(--muted)}
+    .nav-bar a:hover{color:var(--accent)}
+    .card{background:var(--accent-bg);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:14px}
+    .card strong{display:block;margin-bottom:4px;font-size:.93rem}
+    .contact-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .contact-btn{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;padding:9px 18px;border-radius:100px;font-size:.85rem;font-weight:700}
+    .contact-btn:hover{opacity:.9;text-decoration:none}
+    .contact-btn.ghost{background:transparent;border:1.5px solid var(--accent);color:var(--accent)}
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+
+  <div class="nav-bar">
+    <a href="/datewise/" style="display:inline-flex;align-items:center;gap:6px">
+      <img src="/datewise/images/app_icon_playstore.png" alt="DateWise" style="width:32px;height:32px;border-radius:20%;vertical-align:middle" />
+      <strong style="color:var(--fg)">DateWise</strong>
+    </a>
+    <div style="display:flex;gap:16px">
+      <a href="/datewise/">❮ Back to App</a>
+      <a href="/">WiselyRise 🏠︎</a>
+    </div>
+  </div>
+
+  <h1>Support &amp; Sync Guide</h1>
+  <p class="subtitle">Help with Cloud Backup, cross-device sync, and common questions.</p>
+
+  <h2>Sync DateWise Across Devices</h2>
+  <p>Cloud Backup (included with Pro) uses your own Google Drive to move your reminders between devices — nothing passes through WiselyRise servers. Here's the full walkthrough:</p>
+  <ol>
+    <li><strong>On your source device</strong> (the one with your existing reminders): open <strong>Settings → Cloud Backup</strong> and sign in with the Google account you want to use.</li>
+    <li>Turn on <strong>Cloud Backup</strong>, then tap <strong>Backup Now</strong>. This uploads an encrypted copy of your reminders to your personal Google Drive App Data folder.</li>
+    <li><strong>On your new or second device</strong>, install DateWise and go to <strong>Settings → Cloud Backup</strong>, then sign in with the <em>same</em> Google account.</li>
+    <li>Tap <strong>Restore</strong> if the device is new and has no reminders yet, or <strong>Merge</strong> if it already has reminders you want to keep alongside the incoming ones.</li>
+    <li>Repeat <strong>Backup Now</strong> after adding new reminders on any device to keep the others up to date — sync is on-demand, not automatic in the background.</li>
+  </ol>
+
+  <div class="card">
+    <strong>Restore vs. Merge — what's the difference?</strong>
+    <span><strong>Restore</strong> replaces everything on the device with the backup. <strong>Merge</strong> keeps what's already on the device and adds anything new from the backup, skipping duplicates. Use Merge if you have reminders on both devices you don't want to lose.</span>
+  </div>
+
+  <h2>Troubleshooting</h2>
+
+  <h3>Notifications aren't appearing</h3>
+  <p>Check that DateWise has notification permission in your phone's Android Settings, and that battery optimization isn't restricting the app in the background. On some devices (Xiaomi, Oppo, Vivo, OnePlus) you may also need to enable "Autostart" or set battery usage to "Unrestricted" for scheduled local notifications to fire reliably.</p>
+
+  <h3>Contacts aren't importing</h3>
+  <p>Contact import only reads birthday dates already saved on a contact — if a contact has no birthday field filled in on your phone, there's nothing to import. Double-check the Contacts permission is granted in Android Settings, then try the import again from <strong>Settings → Import from Contacts</strong>.</p>
+
+  <h3>I reinstalled the app and lost my Pro purchase</h3>
+  <p>Pro is tied to your Google Play account, not your device. Reinstall DateWise, open <strong>Settings → Restore Purchase</strong>, and sign in with the same Google Play account you originally purchased with.</p>
+
+  <h3>Backup or Restore isn't working</h3>
+  <p>Make sure you're signed into the same Google account on both devices, and that the account has enough free Google Drive storage. If Backup Now or Restore fails, try again with a stable internet connection — the backup file is small, so this is usually a momentary connectivity issue.</p>
+
+  <hr class="divider" />
+
+  <h2>Still Need Help?</h2>
+  <p>Reach out and we'll get back to you as soon as we can.</p>
+  <div class="contact-row">
+    <a class="contact-btn" href="mailto:contact@wiselyrise.in">Contact Support</a>
+    <a class="contact-btn ghost" href="mailto:bugs@wiselyrise.in">Report a Bug</a>
+  </div>
+
+  <hr class="divider" />
+  <p style="color:var(--muted);font-size:.8rem;text-align:center">© 2026 WiselyRise. All rights reserved.</p>
+  <p style="text-align:center;margin-top:16px;font-size:.84rem"><a href="/datewise/">❮ Back to DateWise</a> &nbsp;·&nbsp; <a href="/">WiselyRise 🏠︎</a></p>
+</div>
+</body>
+</html>

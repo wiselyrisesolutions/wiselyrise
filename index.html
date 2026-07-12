@@ -10,6 +10,12 @@
   <meta property='og:type' content='website'>
   <meta property='og:url' content='https://wiselyrise.in'>
   <link rel='canonical' href='https://wiselyrise.in'>
+  <link rel='icon' href='/favicon.ico' sizes='any'>
+  <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png'>
+  <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png'>
+  <link rel='apple-touch-icon' href='/apple-touch-icon.png'>
+  <link rel='manifest' href='/site.webmanifest'>
+  <meta name='theme-color' content='#070F1C'>
   <link rel='preconnect' href='https://fonts.googleapis.com'>
   <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
   <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap' rel='stylesheet'>
@@ -225,39 +231,60 @@
       font-size: 16px; font-weight: 300;
       color: rgba(255,255,255,0.48); max-width: 560px; line-height: 1.7;
     }
-    .apps-section { background: var(--navy); }
-    .apps-list { margin-top: 72px; }
-    .app-feature {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 48px; align-items: center; padding: 80px 0;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer; transition: opacity 0.3s ease;
+    .apps-section { background: var(--navy); position: relative; overflow: hidden; }
+    .apps-section::before {
+      content: ''; position: absolute; top: -260px; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 560px; pointer-events: none;
+      background: radial-gradient(circle, rgba(0,153,238,0.09) 0%, transparent 70%);
     }
-    .app-feature:hover { opacity: 0.92; }
-    .app-feature:hover .app-content { transform: translateY(-2px); }
-    .app-content { transition: transform 0.3s ease; }
-    .app-feature:last-child { border-bottom: none; }
-    .app-feature.reverse { direction: rtl; }
-    .app-feature.reverse > * { direction: ltr; }
-    .app-content { display: flex; flex-direction: column; }
-    .app-header-row {
-      display: flex; align-items: center; gap: 20px; margin-bottom: 24px;
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 28px; margin-top: 64px; position: relative; z-index: 1;
     }
-    .app-icon-large {
-      width: 80px; height: 80px; border-radius: 20px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; overflow: hidden; background: transparent;
+    .app-card {
+      --accent: var(--teal); --accent-soft: rgba(0,204,168,0.14);
+      display: flex; flex-direction: column;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-radius: 24px; overflow: hidden;
+      text-decoration: none; color: inherit;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
     }
-    .app-icon-large img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
-    .app-header-info { display: flex; flex-direction: column; gap: 8px; }
-    .app-status-badge {
+    .app-card:hover, .app-card:focus-visible {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 30px 60px -28px var(--accent);
+      background: rgba(255,255,255,0.04);
+      outline: none;
+    }
+    .app-card-media {
+      height: 228px; position: relative; overflow: hidden; flex-shrink: 0;
+      background: radial-gradient(120% 100% at 50% -10%, var(--accent-soft) 0%, var(--navy-mid) 65%);
+    }
+    .app-card-media img {
+      width: 100%; height: 100%; object-fit: contain;
+      padding: 22px 54px; box-sizing: border-box;
+      filter: drop-shadow(0 18px 20px rgba(0,0,0,0.35));
+    }
+    .app-card-status {
+      position: absolute; top: 16px; right: 16px; z-index: 2;
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
-      text-transform: uppercase; padding: 6px 12px; border-radius: 100px;
-      background: rgba(0,204,168,0.15); border: 1px solid rgba(0,204,168,0.3);
-      color: var(--teal); width: fit-content;
+      font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 12px; border-radius: 100px;
+      background: rgba(7,15,28,0.65); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(0,204,168,0.35); color: var(--teal);
     }
-    .app-feature-name {
+    .app-card-body { padding: 26px 26px 24px; display: flex; flex-direction: column; flex: 1; }
+    .app-card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .app-card-icon { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; flex-shrink: 0; border: 1px solid var(--border); }
+    .app-card .app-feature-tags { margin-top: auto; padding-top: 6px; }
+    .app-card-cta {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.3px; color: var(--accent);
+    }
+    .app-card-cta svg { width: 14px; height: 14px; transition: transform 0.25s ease; }
+    .app-card:hover .app-card-cta svg, .app-card:focus-visible .app-card-cta svg { transform: translateX(4px); }
       font-size: 28px; font-weight: 700; color: var(--white);
       line-height: 1.2;
     }
@@ -279,30 +306,6 @@
     .app-feature-tag-blue { background: rgba(0,153,238,0.12); border-color: rgba(0,153,238,0.25); color: var(--blue); }
     .app-feature-tag-teal { background: rgba(0,204,168,0.12); border-color: rgba(0,204,168,0.25); color: var(--teal); }
     .app-feature-tag-gold { background: rgba(201,168,76,0.14); border-color: rgba(201,168,76,0.32); color: #D4A56A; }
-    .app-feature-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 28px; border-radius: 100px;
-      background: linear-gradient(135deg, var(--blue), var(--teal));
-      color: var(--white); font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
-      border: none; cursor: pointer; font-family: inherit; text-decoration: none;
-      transition: all 0.2s; width: fit-content;
-    }
-    .app-feature-cta:hover { transform: translateY(-2px); opacity: 0.92; box-shadow: 0 8px 20px rgba(0,153,238,0.2); }
-    .app-feature:hover .app-feature-cta { transform: translateY(-2px); }
-    .app-hero {
-      border-radius: 24px; overflow: hidden;
-      background: var(--navy-mid); border: 1px solid var(--border);
-      min-height: 360px; height: 360px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 300; color: var(--muted); text-align: center; padding: 16px;
-      background-size: cover; background-position: center; background-repeat: no-repeat;
-    }
-    .app-hero img { width: 100%; height: 100%; object-fit: contain; background: transparent; }
-    @media (max-width: 900px) {
-      .app-feature { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; }
-      .app-feature.reverse { direction: ltr; }
-      .app-hero { min-height: 320px; height: 320px; }
-    }
     .about-strip { background: var(--navy); position: relative; overflow: hidden; }
     .about-strip::before {
       content: ''; position: absolute; right: -100px; top: 50%; transform: translateY(-50%);
@@ -411,15 +414,13 @@
     @keyframes pulse    { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.7);} }
     @keyframes scrollPulse { 0%{opacity:0;transform:scaleY(0);transform-origin:top;} 50%{opacity:1;} 100%{opacity:0;transform:scaleY(1);transform-origin:top;} }
     @media (max-width: 900px) {
-      .apps-grid { grid-template-columns: 1fr 1fr; }
       .values-grid { grid-template-columns: 1fr 1fr; }
       .about-inner { grid-template-columns: 1fr; gap: 40px; }
       .about-visual { text-align: center; }
     }
     @media (max-width: 600px) {
-      .app-feature { grid-template-columns: 1fr; gap: 24px; padding: 48px 0; }
-      .app-feature.reverse { direction: ltr; }
-      .app-hero { min-height: 280px; height: 280px; }
+      .apps-grid { grid-template-columns: 1fr; gap: 20px; margin-top: 44px; }
+      .app-card-media { height: 200px; }
       .values-grid { grid-template-columns: 1fr; }
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
@@ -503,20 +504,19 @@
     <div class="section-eyebrow reveal">Portfolio</div>
     <h2 class="section-title reveal reveal-delay-1">The Wise Family of Apps</h2>
     <div class="section-rule reveal reveal-delay-2"></div>
-    <p class="section-lead reveal reveal-delay-3">One clear philosophy — software built with purpose.</p>
-    
-    <div class="apps-list">
+    <p class="section-lead reveal reveal-delay-3">One clear philosophy, four apps — each with its own character.</p>
+
+    <div class="apps-grid">
       <!-- DateWise -->
-      <div class="app-feature datewise reveal">
-        <div class="app-content">
-          <div class="app-header-row">
-            <div class="app-icon-large">
-              <img src="/datewise/images/app_icon_playstore.png" alt="DateWise Icon">
-            </div>
-            <div class="app-header-info">
-              <div class="app-feature-name"><span class="wise purple">Date</span><span class="wise">Wise</span></div>
-              <div class="app-status-badge">On Play Store</div>
-            </div>
+      <a href="/datewise" class="app-card reveal" style="--accent:#9D4EDD; --accent-soft:rgba(157,78,221,0.14)">
+        <div class="app-card-media">
+          <span class="app-card-status">On Play Store</span>
+          <img src="/datewise/images/web_hero_reduced.png" alt="DateWise app preview" loading="lazy">
+        </div>
+        <div class="app-card-body">
+          <div class="app-card-header">
+            <img class="app-card-icon" src="/datewise/images/app_icon_playstore.png" alt="DateWise icon">
+            <div class="app-feature-name"><span class="wise purple">Date</span><span class="wise">Wise</span></div>
           </div>
           <p class="app-feature-desc">The personal reminder engine for dates you can't afford to forget. Birthdays, anniversaries, bills — offline-first, no signup, free forever.</p>
           <div class="app-feature-tags">
@@ -524,24 +524,20 @@
             <span class="app-feature-tag">Free forever</span>
             <span class="app-feature-tag">Offline</span>
           </div>
-          <a href="/datewise" class="app-feature-cta">Explore DateWise →</a>
+          <span class="app-card-cta">Explore DateWise <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
-        <div class="app-hero">
-          <img src="/datewise/images/web_hero_reduced.png" alt="DateWise Hero">
-        </div>
-      </div>
+      </a>
 
       <!-- GramWise -->
-      <div class="app-feature gramwise reverse reveal reveal-delay-1">
-        <div class="app-content">
-          <div class="app-header-row">
-            <div class="app-icon-large">
-              <img src="/gramwise/images/app_icon_playstore.png" alt="GramWise Icon">
-            </div>
-            <div class="app-header-info">
-              <div class="app-feature-name"><span class="wise gold">Gram</span><span class="wise">Wise</span></div>
-              <div class="app-status-badge">On Play Store</div>
-            </div>
+      <a href="/gramwise" class="app-card reveal reveal-delay-1" style="--accent:#D4A56A; --accent-soft:rgba(212,165,106,0.14)">
+        <div class="app-card-media">
+          <span class="app-card-status">On Play Store</span>
+          <img src="/gramwise/images/web_hero.png" alt="GramWise app preview" loading="lazy">
+        </div>
+        <div class="app-card-body">
+          <div class="app-card-header">
+            <img class="app-card-icon" src="/gramwise/images/app_icon_playstore.png" alt="GramWise icon">
+            <div class="app-feature-name"><span class="wise gold">Gram</span><span class="wise">Wise</span></div>
           </div>
           <p class="app-feature-desc">The private gold, silver &amp; platinum items tracker for families and individuals. Log items, assign to family members, track latest metal prices, and secure your wealth — 100% offline.</p>
           <div class="app-feature-tags">
@@ -549,24 +545,20 @@
             <span class="app-feature-tag">Family Vault</span>
             <span class="app-feature-tag">Privacy-first</span>
           </div>
-          <a href="/gramwise" class="app-feature-cta">Explore GramWise →</a>
+          <span class="app-card-cta">Explore GramWise <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
-        <div class="app-hero">
-          <img src="/gramwise/images/web_hero.png" alt="GramWise Hero">
-        </div>
-      </div>
+      </a>
 
       <!-- PixWise -->
-      <div class="app-feature pixwise reveal reveal-delay-2">
-        <div class="app-content">
-          <div class="app-header-row">
-            <div class="app-icon-large">
-              <img src="/pixwise/images/app_icon_playstore.png" alt="PixWise Icon">
-            </div>
-            <div class="app-header-info">
-              <div class="app-feature-name"><span class="wise green">Pix</span><span class="wise">Wise</span></div>
-              <div class="app-status-badge">On Play Store</div>
-            </div>
+      <a href="/pixwise" class="app-card reveal reveal-delay-2" style="--accent:#2D8659; --accent-soft:rgba(45,134,89,0.14)">
+        <div class="app-card-media">
+          <span class="app-card-status">On Play Store</span>
+          <img src="/pixwise/images/hero_feature.png" alt="PixWise app preview" loading="lazy">
+        </div>
+        <div class="app-card-body">
+          <div class="app-card-header">
+            <img class="app-card-icon" src="/pixwise/images/app_icon_playstore.png" alt="PixWise icon">
+            <div class="app-feature-name"><span class="wise green">Pix</span><span class="wise">Wise</span></div>
           </div>
           <p class="app-feature-desc">Your gallery, your rules. Lite Mode hides private albums in one tap. Secure Space vaults your most sensitive photos. 100% offline — no account, no cloud.</p>
           <div class="app-feature-tags">
@@ -574,24 +566,20 @@
             <span class="app-feature-tag">Secure Space</span>
             <span class="app-feature-tag">Privacy-first</span>
           </div>
-          <a href="/pixwise" class="app-feature-cta">Explore PixWise →</a>
+          <span class="app-card-cta">Explore PixWise <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
-        <div class="app-hero">
-          <img src="/pixwise/images/hero_feature.png" alt="PixWise Hero">
-        </div>
-      </div>
+      </a>
 
       <!-- KeyWise -->
-      <div class="app-feature keywise reverse reveal reveal-delay-3">
-        <div class="app-content">
-          <div class="app-header-row">
-            <div class="app-icon-large">
-              <img src="/keywise/images/app_icon_playstore.png" alt="KeyWise Icon">
-            </div>
-            <div class="app-header-info">
-              <div class="app-feature-name"><span class="wise teal">Key</span><span class="wise">Wise</span></div>
-              <div class="app-status-badge">Coming Soon</div>
-            </div>
+      <a href="/keywise" class="app-card reveal reveal-delay-3" style="--accent:#00CCA8; --accent-soft:rgba(0,204,168,0.14)">
+        <div class="app-card-media">
+          <span class="app-card-status">On Play Store</span>
+          <img src="/keywise/images/hero.jpg" alt="KeyWise app preview" loading="lazy">
+        </div>
+        <div class="app-card-body">
+          <div class="app-card-header">
+            <img class="app-card-icon" src="/keywise/images/app_icon_playstore.png" alt="KeyWise icon">
+            <div class="app-feature-name"><span class="wise teal">Key</span><span class="wise">Wise</span></div>
           </div>
           <p class="app-feature-desc">A privacy-first password manager with military-grade encryption. Your passwords, PINs, and secrets stay on your device — zero cloud by default, zero compromise on security.</p>
           <div class="app-feature-tags">
@@ -599,12 +587,9 @@
             <span class="app-feature-tag">Encrypted</span>
             <span class="app-feature-tag">Privacy-first</span>
           </div>
-          <a href="/keywise" class="app-feature-cta">Explore KeyWise →</a>
+          <span class="app-card-cta">Explore KeyWise <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
-        <div class="app-hero">
-          <img src="/keywise/images/app_icon_playstore.png" alt="KeyWise Hero">
-        </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
