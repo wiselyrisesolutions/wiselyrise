@@ -1,609 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Support & Contact — KeyWise password manager by WiselyRise Solutions. Get help with your account, security questions, or feature requests."/>
-<title>Support & Contact — KeyWise</title>
-<link rel="canonical" href="https://wiselyrise.in/keywise/support.html"/>
-<link rel="icon" href="/keywise/images/favicon.ico" sizes="any"/>
-<link rel="icon" type="image/png" sizes="32x32" href="/keywise/images/favicon-32x32.png"/>
-<link rel="icon" type="image/png" sizes="16x16" href="/keywise/images/favicon-16x16.png"/>
-<link rel="apple-touch-icon" href="/keywise/images/apple-touch-icon.png"/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="KeyWise support and help center by WiselyRise Solutions." />
+<title>KeyWise Support</title>
+<link rel="canonical" href="https://wiselyrise.in/keywise/support.html" />
+<link rel="icon" href="/keywise/images/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/keywise/images/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/keywise/images/favicon-16x16.png" />
+<link rel="apple-touch-icon" href="/keywise/images/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
 :root {
-  --navy:    #0D1F3C;
-  --navyM:   #122444;
-  --navyL:   #1A3357;
-  --teal:    #00BFA5;
-  --tealL:   #26D7C0;
-  --tealD:   #009688;
-  --gold:    #FFD166;
-  --coral:   #FF6B6B;
-  --green:   #4CAF50;
-  --slate:   #8EAAC8;
-  --white:   #F4F8FC;
-  --off:     #D0DDE8;
-  --dim:     #7A96B0;
-  --bg:      #060F1E;
-  --card:    rgba(255,255,255,.04);
-  --card2:   rgba(255,255,255,.06);
-  --border:  rgba(255,255,255,.08);
-  --teal-bg: rgba(0,191,165,.06);
-  --teal-bd: rgba(0,191,165,.18);
+  --ink-950: #071320;
+  --ink-900: #0a1b31;
+  --ink-800: #132c4e;
+  --mint-500: #19cab2;
+  --mint-400: #3ce3cb;
+  --fog-200: #dce7f2;
+  --fog-400: #9fb4c8;
+  --line: rgba(173, 206, 232, 0.22);
+  --card: rgba(10, 31, 54, 0.72);
+  --ok: #85e8a4;
 }
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  background: var(--bg);
-  color: var(--white);
-  font-family: 'Outfit', sans-serif;
-  font-weight: 300;
-  line-height: 1.75;
+  background:
+    radial-gradient(circle at 82% -10%, rgba(25, 202, 178, 0.19) 0%, transparent 46%),
+    radial-gradient(circle at -8% 64%, rgba(255, 209, 141, 0.12) 0%, transparent 34%),
+    linear-gradient(180deg, var(--ink-900), var(--ink-950));
+  color: var(--fog-200);
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.68;
   overflow-x: hidden;
-  animation: fadeInUp 0.6s ease-out;
-}
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  opacity: .022;
-  pointer-events: none;
-  z-index: 0;
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+a { color: inherit; text-decoration: none; }
 
-/* ─── HEADER ─── */
 header {
-  background: rgba(6,15,30,.96);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(20px);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 40;
+  backdrop-filter: blur(14px);
+  background: rgba(7, 19, 32, 0.84);
+  border-bottom: 1px solid var(--line);
 }
-.header-inner {
-  max-width: 820px;
+
+.nav {
+  max-width: 980px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 12px 18px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   flex-wrap: wrap;
 }
-.logo-link {
-  display: flex;
+
+.brand {
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
-  padding: 14px 0;
-  margin-right: auto;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
-.logo-icon {
+
+.brand img {
   width: 34px;
   height: 34px;
-  border-radius: 9px;
-  background: linear-gradient(135deg, var(--navy), var(--teal));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 4px 14px rgba(0,191,165,.2);
+  border-radius: 10px;
 }
-.logo-wordmark { display: flex; flex-direction: column; line-height: 1.2; }
-.logo-app { font-size: .95rem; font-weight: 700; color: var(--white); }
-.logo-by  { font-size: .58rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
-nav.header-nav { display: flex; align-items: center; gap: 2px; }
-nav.header-nav a {
-  display: inline-block;
-  padding: 10px 13px;
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .04em;
-  color: var(--dim);
-  text-decoration: none;
-  border-radius: 8px;
-  transition: color .18s, background .18s;
-  white-space: nowrap;
-}
-nav.header-nav a:hover { color: var(--tealL); background: var(--teal-bg); }
-nav.header-nav .home-link { color: var(--teal); }
 
-/* ─── HERO ─── */
+.nav-links {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  font-size: 0.83rem;
+  color: var(--fog-400);
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.nav-links a:hover {
+  color: var(--fog-200);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 26px 18px 56px;
+}
+
 .hero {
-  background: linear-gradient(135deg, #0D1F3C 0%, #060F1E 60%, #1A3357 100%);
-  border-bottom: 1px solid var(--border);
-  padding: 52px 28px 44px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  animation: fadeInUp 0.8s ease-out 0.1s backwards;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+  padding: 22px;
+  margin-bottom: 16px;
 }
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 50% 120%, rgba(0,0,0,.5) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
-.hero-badge {
+
+.eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: rgba(0,191,165,.1);
-  border: 1px solid rgba(0,191,165,.22);
-  border-radius: 100px;
-  padding: 5px 16px;
-  font-size: .66rem;
-  font-weight: 700;
-  letter-spacing: .12em;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 18px;
-}
-.hero h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -.01em;
+  color: var(--mint-400);
+  border: 1px solid rgba(60, 227, 203, 0.33);
+  border-radius: 999px;
+  padding: 4px 10px;
   margin-bottom: 10px;
 }
-.hero-sub {
-  font-size: .9rem;
-  color: var(--dim);
-  margin-bottom: 14px;
-}
 
-/* ─── MAIN ─── */
-main {
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 0 28px 80px;
-}
-
-/* ─── SECTION ─── */
-.section { margin-bottom: 52px; animation: fadeInUp 0.8s ease-out backwards; }
-.section-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .62rem;
-  font-weight: 500;
-  color: var(--teal);
-  letter-spacing: .1em;
-  margin-bottom: 6px;
-}
-.section h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(1.4rem, 3vw, 1.85rem);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -.01em;
-  margin-bottom: 18px;
-  color: var(--white);
-}
-.section h2 em {
-  font-style: italic;
-  background: linear-gradient(135deg, var(--teal), var(--tealL));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.section h3 {
-  font-size: .96rem;
-  font-weight: 700;
-  color: var(--white);
-  margin: 28px 0 10px;
-  padding-left: 14px;
-  border-left: 3px solid var(--teal);
-}
-.section p {
-  font-size: .88rem;
-  color: var(--off);
-  line-height: 1.82;
-  margin-bottom: 12px;
-}
-.section a {
-  color: var(--tealL);
-  text-decoration: underline;
-  text-decoration-color: rgba(0,191,165,.35);
-  text-underline-offset: 3px;
-  transition: color .15s;
-}
-.section a:hover { color: var(--teal); }
-
-/* ─── CONTACT CHANNELS ─── */
-.contact-channels {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin: 28px 0;
-}
-.channel {
-  background: var(--card2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  animation: fadeInUp 0.6s ease-out backwards;
-  transition: all 0.3s ease;
-}
-.channel:nth-child(1) { animation-delay: 0.1s; }
-.channel:nth-child(2) { animation-delay: 0.2s; }
-.channel:nth-child(3) { animation-delay: 0.3s; }
-
-.channel:hover {
-  background: var(--card);
-  border-color: var(--teal-bd);
-  transform: translateY(-4px);
-}
-.channel-icon {
-  font-size: 2rem;
+h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.06;
   margin-bottom: 8px;
 }
-.channel-title {
-  font-size: .9rem;
-  font-weight: 600;
-  color: var(--white);
-  margin-bottom: 4px;
-}
-.channel-desc {
-  font-size: .8rem;
-  color: var(--dim);
-  margin-bottom: 12px;
-  line-height: 1.5;
-}
-.channel-link {
-  display: inline-block;
-  padding: 8px 16px;
-  background: var(--teal);
-  color: var(--bg);
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: .8rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-.channel-link:hover {
-  background: var(--tealL);
-  transform: scale(1.05);
+
+.hero p {
+  color: var(--fog-400);
+  max-width: 720px;
 }
 
-/* ─── FAQ CATEGORIES ─── */
-.faq-categories {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
-  margin: 28px 0;
-}
-.faq-category {
-  background: var(--card2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  animation: fadeInUp 0.6s ease-out backwards;
-}
-.faq-category:nth-child(1) { animation-delay: 0.1s; }
-.faq-category:nth-child(2) { animation-delay: 0.2s; }
-.faq-category:nth-child(3) { animation-delay: 0.3s; }
-.faq-category:nth-child(4) { animation-delay: 0.4s; }
-
-.faq-category:hover {
-  background: var(--card);
-  border-color: var(--teal-bd);
-  transform: translateY(-2px);
-}
-.faq-category-icon {
-  font-size: 1.4rem;
-  margin-bottom: 6px;
-}
-.faq-category-title {
-  font-size: .85rem;
-  font-weight: 600;
-  color: var(--white);
-}
-
-/* ─── INFO CARDS ─── */
-.info-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px 20px;
-  margin: 12px 0;
-}
-.info-card h4 { font-size: .85rem; font-weight: 700; color: var(--white); margin-bottom: 7px; }
-.info-card p  { font-size: .82rem; color: var(--dim); margin: 0; line-height: 1.65; }
-
-/* ─── CALLOUT ─── */
-.callout {
-  border-radius: 12px;
-  padding: 14px 18px;
-  margin: 16px 0;
-  display: flex;
-  gap: 11px;
-  align-items: flex-start;
-  font-size: .85rem;
-  line-height: 1.65;
-  background: rgba(0,191,165,.07);
-  border: 1px solid rgba(0,191,165,.2);
-  color: var(--tealL);
-}
-.callout-icon  { flex-shrink: 0; font-size: .95rem; margin-top: 1px; }
-.callout strong { font-weight: 700; }
-
-/* ─── RESPONSE TIME BADGE ─── */
-.response-badge {
+.badge {
+  margin-top: 10px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(76,175,80,.12);
-  border: 1px solid rgba(76,175,80,.22);
-  border-radius: 100px;
-  padding: 4px 12px;
-  font-size: .75rem;
-  font-weight: 600;
-  color: var(--green);
-  margin: 8px 0;
+  background: rgba(133, 232, 164, 0.12);
+  border: 1px solid rgba(133, 232, 164, 0.28);
+  color: var(--ok);
+  border-radius: 999px;
+  padding: 4px 11px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.74rem;
 }
 
-/* ─── FOOTER ─── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 12px 0 18px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  padding: 16px;
+}
+
+.card h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin: 14px 0 6px;
+}
+
+.card p,
+.card li {
+  color: var(--fog-400);
+  font-size: 0.92rem;
+}
+
+.card ul {
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+}
+
+.action {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 9px 14px;
+  border: 1px solid rgba(60, 227, 203, 0.34);
+  background: rgba(60, 227, 203, 0.11);
+  color: var(--mint-400);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.action:hover {
+  background: rgba(60, 227, 203, 0.18);
+}
+
+.section {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(10, 31, 54, 0.66);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.section h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.34rem;
+  margin-bottom: 8px;
+}
+
+.faq {
+  display: grid;
+  gap: 10px;
+}
+
+details {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 12px 14px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+details p {
+  margin-top: 8px;
+  color: var(--fog-400);
+  font-size: 0.92rem;
+}
+
+.callout {
+  border: 1px solid rgba(60, 227, 203, 0.32);
+  border-radius: 12px;
+  background: rgba(60, 227, 203, 0.1);
+  padding: 12px;
+  margin-top: 10px;
+  color: var(--fog-200);
+  font-size: 0.9rem;
+}
+
 footer {
-  border-top: 1px solid var(--border);
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: var(--fog-400);
+  font-size: 0.84rem;
   text-align: center;
-  padding: 36px 28px 48px;
-  font-size: .76rem;
-  color: var(--dim);
 }
-footer p { margin: 4px 0; }
-footer a { color: var(--teal); text-decoration: none; }
-footer a:hover { text-decoration: underline; }
 
-/* ─── RESPONSIVE ─── */
-@media (max-width: 600px) {
-  .header-inner { padding: 0 18px; }
-  nav.header-nav a { padding: 10px 9px; }
-  main { padding: 0 18px 60px; }
-  .contact-channels { grid-template-columns: 1fr; }
-  .faq-categories { grid-template-columns: repeat(2, 1fr); }
-  .hero { padding: 38px 18px 32px; }
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
-
-<!-- ─── HEADER ─── -->
 <header>
-  <div class="header-inner">
-    <a class="logo-link" href="index.html">
-      <div class="logo-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <circle cx="9" cy="10" r="4.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <path d="M13 13l7 7" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <path d="M17 17l2-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <path d="M15 19l2-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="logo-wordmark">
-        <span class="logo-app">KeyWise</span>
-        <span class="logo-by">WiselyRise Solutions</span>
-      </div>
+  <div class="nav">
+    <a class="brand" href="index.html">
+      <img src="images/app_icon_playstore.png" alt="KeyWise app icon" />
+      KeyWise
     </a>
-    <nav class="header-nav" aria-label="Page navigation">
-      <a href="index.html">← Back to Home</a>
-      <a href="https://wiselyrise.in/">WiselyRise 🏠</a>
-    </nav>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="https://wiselyrise.in" target="_blank" rel="noopener noreferrer">WiselyRise</a>
+    </div>
   </div>
 </header>
 
-<!-- ─── HERO ─── -->
-<div class="hero" role="banner">
-  <div class="hero-inner">
-    <div class="hero-badge">
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Get Help
-    </div>
-    <h1>We're Here to <em>Help</em></h1>
-    <p class="hero-sub">Fast, friendly support for all your KeyWise questions.</p>
-  </div>
-</div>
-
-<!-- ─── MAIN ─── -->
 <main>
+  <section class="hero">
+    <div class="eyebrow">Support Center</div>
+    <h1>Help for KeyWise users</h1>
+    <p>Need help with setup, lock access, backup, or Premium purchase? Reach us directly and include your device details for faster support.</p>
+    <div class="badge">Target response: within 24 hours</div>
+  </section>
 
-  <!-- 1. CONTACT CHANNELS -->
-  <div class="section">
-    <div class="section-num">01</div>
-    <h2>Reach <em>Us</em></h2>
-    <p>Choose the best way to contact us. We aim to respond within 24 hours for most inquiries, and prioritize security-related issues.</p>
-    
-    <div class="contact-channels">
-      <div class="channel">
-        <div class="channel-icon">✉️</div>
-        <div class="channel-title">Email Support</div>
-        <div class="channel-desc">For general questions and detailed issues.</div>
-        <a href="mailto:contact@wiselyrise.in" class="channel-link">Send Email</a>
-        <div class="response-badge">⏱ 24h response</div>
-      </div>
-      
-      <div class="channel">
-        <div class="channel-icon">🐛</div>
-        <div class="channel-title">Bug Report</div>
-        <div class="channel-desc">Found something broken? Let us know.</div>
-        <a href="mailto:bugs@wiselyrise.in" class="channel-link">Report Bug</a>
-        <div class="response-badge">⏱ Priority</div>
-      </div>
-      
-      <div class="channel">
-        <div class="channel-icon">🏠</div>
-        <div class="channel-title">Website</div>
-        <div class="channel-desc">Visit WiselyRise for more info.</div>
-        <a href="https://wiselyrise.in" target="_blank" class="channel-link">Go to Website</a>
-      </div>
-    </div>
-  </div>
+  <section class="grid">
+    <article class="card">
+      <h2>General Support</h2>
+      <p>Questions about usage, settings, or product behavior.</p>
+      <a class="action" href="mailto:contact@wiselyrise.in">Email contact@wiselyrise.in</a>
+    </article>
+    <article class="card">
+      <h2>Bug Reports</h2>
+      <p>For crashes, lock issues, and unexpected app behavior.</p>
+      <a class="action" href="mailto:bugs@wiselyrise.in">Email bugs@wiselyrise.in</a>
+    </article>
+    <article class="card">
+      <h2>Store and Billing</h2>
+      <p>Purchase and restore questions for Google Play billing.</p>
+      <a class="action" href="https://play.google.com/store/apps/details?id=com.keywise.app" target="_blank" rel="noopener noreferrer">Open Play Store Page</a>
+    </article>
+  </section>
 
-  <!-- 2. COMMON QUESTIONS -->
-  <div class="section">
-    <div class="section-num">02</div>
-    <h2>Common <em>Questions</em></h2>
-    <p>Quick answers to frequently asked questions. If you don't find what you need, email us!</p>
-    
-    <div class="faq-categories">
-      <a href="#account" class="faq-category">
-        <div class="faq-category-icon">👤</div>
-        <div class="faq-category-title">Account & Login</div>
-      </a>
-      <a href="#security" class="faq-category">
-        <div class="faq-category-icon">🔐</div>
-        <div class="faq-category-title">Security & Encryption</div>
-      </a>
-      <a href="#features" class="faq-category">
-        <div class="faq-category-icon">✨</div>
-        <div class="faq-category-title">Features & Usage</div>
-      </a>
-      <a href="#premium" class="faq-category">
-        <div class="faq-category-icon">💎</div>
-        <div class="faq-category-title">Premium & Billing</div>
-      </a>
-    </div>
+  <section class="section">
+    <h2>Before contacting support</h2>
+    <ul>
+      <li>Share app version, Android version, and phone model.</li>
+      <li>Describe exact steps to reproduce the issue.</li>
+      <li>Add screenshot or screen recording when possible.</li>
+      <li>For lock problems, mention whether you use PIN and whether recovery code is available.</li>
+    </ul>
+  </section>
 
-    <h3 id="account">Account & Login</h3>
-    <div class="info-card">
-      <h4>How do I reset my master password?</h4>
-      <p>Your master password is the only key to decrypt your vault. If you forget it, use your Recovery Code (saved during setup) to regain access. If you've lost both, your vault cannot be recovered—this is a security feature that ensures nobody but you can access your data.</p>
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details>
+        <summary>Can I use KeyWise on multiple devices?</summary>
+        <p>KeyWise does not provide cloud sync in current production builds. You can move data manually by creating an encrypted local backup file and importing it on another device.</p>
+      </details>
+      <details>
+        <summary>Does KeyWise work offline?</summary>
+        <p>Yes. Vault operations are local-first and available offline. Some optional checks, such as update checks or breach checks, may use network access when enabled.</p>
+      </details>
+      <details>
+        <summary>Is Premium a subscription?</summary>
+        <p>No. Premium is a one-time purchase that increases vault and credential limits. It is not a monthly or yearly subscription.</p>
+      </details>
+      <details>
+        <summary>What if I forget my lock credential?</summary>
+        <p>Use your recovery path if configured. If both lock credential and recovery options are unavailable, vault recovery may not be possible by design.</p>
+      </details>
+      <details>
+        <summary>How do refunds work?</summary>
+        <p>In-app purchase refunds follow Google Play policies and your Google account purchase terms.</p>
+      </details>
     </div>
-    <div class="info-card">
-      <h4>Can I use KeyWise on multiple devices?</h4>
-      <p>Yes! Your Premium tier includes cloud backup and sync. Export your vault from one device and import it on another using the encrypted .keywise backup file. Your data stays encrypted throughout the process.</p>
-    </div>
+    <div class="callout">Security note: never share full credential values by email. If needed, share only redacted screenshots and steps.</div>
+  </section>
 
-    <h3 id="security">Security & Encryption</h3>
-    <div class="info-card">
-      <h4>Is my data really encrypted?</h4>
-      <p>Yes, 100%. All credentials are encrypted on your device using XChaCha20-Poly1305 (military-grade authenticated encryption). Your master password is derived using Argon2id. We use zero-knowledge architecture—your encryption keys never leave your device, so even WiselyRise cannot decrypt your data.</p>
-    </div>
-    <div class="info-card">
-      <h4>How does password health checking work?</h4>
-      <p>We check your passwords against a database of known breaches using k-anonymity (a privacy technique). Your actual password is never sent to our servers—only a partial hash is sent, and we return only breach matches for your review.</p>
-    </div>
+  <section class="section">
+    <h2>Current product scope reminder</h2>
+    <p>KeyWise current production builds are local-first. They do not include cloud sync, Google Drive sync, family sharing, or member invite features.</p>
+  </section>
 
-    <h3 id="features">Features & Usage</h3>
-    <div class="info-card">
-      <h4>Can I organize my credentials into categories?</h4>
-      <p>Yes! KeyWise supports rich organization. Create vaults for different aspects of your life (personal, work, family), and use categories within each vault to organize credentials by type (logins, financial, documents, etc.).</p>
-    </div>
-    <div class="info-card">
-      <h4>Does KeyWise work offline?</h4>
-      <p>Yes. All your credentials are stored locally on your device. You can access them anytime—online or offline. The only features requiring internet are cloud backup and password breach checks.</p>
-    </div>
-
-    <h3 id="premium">Premium & Billing</h3>
-    <div class="info-card">
-      <h4>What does Premium include?</h4>
-      <p>Premium is a one-time ₹99 (or $1.99 USD) lifetime unlock. It includes unlimited vaults, unlimited credentials, and all core features. Premium is a lifetime purchase—no subscriptions, no renewals.</p>
-    </div>
-    <div class="info-card">
-      <h4>Can I get a refund?</h4>
-      <p>Refunds for Google Play purchases follow Google's standard refund policy (usually 48 hours from purchase). Contact us if you have questions—we're happy to help!</p>
-    </div>
-  </div>
-
-  <!-- 3. SUPPORT DETAILS -->
-  <div class="section">
-    <div class="section-num">03</div>
-    <h2>Support <em>Details</em></h2>
-    
-    <div class="callout">
-      <div class="callout-icon">⏱</div>
-      <div>
-        <strong>Response Time</strong>
-        <p style="margin: 4px 0;">We aim to respond to all support inquiries within 24 hours. Security-related issues are prioritized and handled within 12 hours.</p>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <h4>Primary Email</h4>
-      <p><a href="mailto:contact@wiselyrise.in" style="color: var(--teal); text-decoration: none;">contact@wiselyrise.in</a> — For general questions, feature requests, account issues, and feedback.</p>
-    </div>
-
-    <div class="info-card">
-      <h4>Bug Reports</h4>
-      <p><a href="mailto:bugs@wiselyrise.in" style="color: var(--teal); text-decoration: none;">bugs@wiselyrise.in</a> — For security issues, crash reports, and critical bugs. These receive priority handling.</p>
-    </div>
-
-    <div class="info-card">
-      <h4>Location</h4>
-      <p><strong>WiselyRise Solutions</strong><br/>Coimbatore, Tamil Nadu, India<br/><a href="https://wiselyrise.in" target="_blank" style="color: var(--teal); text-decoration: none;">wiselyrise.in</a></p>
-    </div>
-  </div>
-
-  <!-- 4. BEFORE YOU CONTACT US -->
-  <div class="section">
-    <div class="section-num">04</div>
-    <h2>Helpful <em>Tips</em></h2>
-    <p>To help us serve you better, please include the following when contacting support:</p>
-    
-    <div class="info-card">
-      <h4>🤔 General Questions</h4>
-      <p>Include your question, what you've already tried, and your device model (Android version, phone make/model).</p>
-    </div>
-
-    <div class="info-card">
-      <h4>🐛 Bug Reports</h4>
-      <p>Include steps to reproduce, expected behavior vs. actual behavior, device details, and any error messages. Screenshots are helpful!</p>
-    </div>
-
-    <div class="info-card">
-      <h4>🔐 Security Issues</h4>
-      <p>Do not describe the issue publicly. Email us directly at bugs@wiselyrise.in with details. We'll acknowledge receipt within 6 hours.</p>
-    </div>
-
-    <div class="info-card">
-      <h4>📚 Documentation</h4>
-      <p>Check our <a href="index.html#faq" style="color: var(--teal); text-decoration: none;">FAQ section</a> on the home page for quick answers. Read our <a href="privacy.html" style="color: var(--teal); text-decoration: none;">Privacy Policy</a> and <a href="terms.html" style="color: var(--teal); text-decoration: none;">Terms of Service</a> for detailed information.</p>
-    </div>
-  </div>
-
+  <footer>
+    (c) 2026 WiselyRise Solutions. All rights reserved.
+  </footer>
 </main>
-
-<!-- ─── FOOTER ─── -->
-<footer>
-  <div style="max-width: 820px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem; text-align: left; font-size: 0.9rem;">
-    <div>
-      <h4 style="color: var(--white); font-weight: 600; margin-bottom: 1rem;">Product</h4>
-      <ul style="list-style: none;">
-        <li style="margin-bottom: 0.5rem;"><a href="index.html#features" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Features</a></li>
-        <li style="margin-bottom: 0.5rem;"><a href="index.html#security" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Security</a></li>
-        <li style="margin-bottom: 0.5rem;"><a href="index.html#pricing" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Pricing</a></li>
-        <li><a href="https://play.google.com/store/apps/details?id=com.keywise.app" target="_blank" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Download</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 style="color: var(--white); font-weight: 600; margin-bottom: 1rem;">Legal</h4>
-      <ul style="list-style: none;">
-        <li style="margin-bottom: 0.5rem;"><a href="privacy.html" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Privacy Policy</a></li>
-        <li><a href="terms.html" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Terms of Service</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 style="color: var(--white); font-weight: 600; margin-bottom: 1rem;">Company</h4>
-      <ul style="list-style: none;">
-        <li style="margin-bottom: 0.5rem;"><a href="https://wiselyrise.in" target="_blank" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">WiselyRise</a></li>
-        <li><a href="mailto:contact@wiselyrise.in" style="color: var(--dim); text-decoration: none; transition: color 0.3s;">Support</a></li>
-      </ul>
-    </div>
-  </div>
-  <div style="border-top: 1px solid var(--border); padding-top: 2rem; text-align: center;">
-    <p>© 2026 <a href="https://wiselyrise.in" target="_blank" style="color: var(--teal); text-decoration: none;">WiselyRise Solutions</a>. All rights reserved.</p>
-  </div>
-</footer>
-
 </body>
 </html>

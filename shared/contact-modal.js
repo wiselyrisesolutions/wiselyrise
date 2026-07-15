@@ -96,6 +96,7 @@
               <option value="datewise">DateWise</option>
               <option value="pixwise">PixWise</option>
               <option value="gramwise">GramWise</option>
+              <option value="keywise">KeyWise</option>
               <option value="docuwise">DocuWise</option>
               <option value="clinicwise">ClinicWise</option>
               <option value="chitwise">ChitWise</option>
