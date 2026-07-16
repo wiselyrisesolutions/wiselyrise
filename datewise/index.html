@@ -249,6 +249,7 @@
     .feat-panel{display:none;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
     .feat-panel.active{display:grid;animation:fadeUp .4s ease both}
     .feat-panel-img img{width:100%;max-width:280px;margin:0 auto;border-radius:26px;box-shadow:var(--shadow-lg)}
+    .feat-panel-img svg{width:100%;max-width:280px;margin:0 auto;border-radius:26px;box-shadow:var(--shadow-lg);display:block;background:#fff}
     .feat-panel-content h3{font-family:'Inter Tight',sans-serif;font-size:1.55rem;font-weight:800;letter-spacing:-.03em;margin-bottom:12px;line-height:1.2}
     .feat-panel-content p{color:var(--muted);line-height:1.75;margin-bottom:20px;font-size:.95rem}
     .feat-bullets{list-style:none;display:flex;flex-direction:column;gap:9px}
@@ -268,6 +269,7 @@
     .facc-inner{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
     .facc-img{text-align:center}
     .facc-img img{width:150px;border-radius:18px;box-shadow:var(--shadow-md);margin:0 auto;display:block}
+    .facc-img svg{width:150px;border-radius:18px;box-shadow:var(--shadow-md);margin:0 auto;display:block;background:#fff}
     .facc-inner h4{font-size:.9rem;font-weight:700;margin-bottom:4px}
     .facc-inner p{font-size:.84rem;color:var(--muted);line-height:1.65;margin-bottom:10px}
 
@@ -646,6 +648,8 @@
     <span class="marquee-item">📚 Deadlines</span>
     <span class="marquee-item">🕯️ Remembrance</span>
     <span class="marquee-item">⭐ Custom Types</span>
+    <span class="marquee-item">🏠 Home Widget</span>
+    <span class="marquee-item">☁️ Sync-lite</span>
     <span class="marquee-item">🔒 Fully Private</span>
     <span class="marquee-item">🔔 Smart Notifications</span>
     <span class="marquee-item">🎂 Birthdays</span>
@@ -658,6 +662,8 @@
     <span class="marquee-item">📚 Deadlines</span>
     <span class="marquee-item">🕯️ Remembrance</span>
     <span class="marquee-item">⭐ Custom Types</span>
+    <span class="marquee-item">🏠 Home Widget</span>
+    <span class="marquee-item">☁️ Sync-lite</span>
     <span class="marquee-item">🔒 Fully Private</span>
     <span class="marquee-item">🔔 Smart Notifications</span>
   </div>
@@ -721,6 +727,7 @@
       <div class="feat-tabs reveal d2">
         <button class="feat-tab active" data-tab="timeline">☰ Smart Timeline</button>
         <button class="feat-tab" data-tab="contacts">👥 Contact Import</button>
+        <button class="feat-tab" data-tab="widget">🏠 Home Widget</button>
         <button class="feat-tab" data-tab="privacy">🔒 Privacy &amp; Security</button>
         <button class="feat-tab" data-tab="pro">💎 Pro Features</button>
       </div>
@@ -758,6 +765,34 @@
         </div>
       </div>
 
+      <div class="feat-panel" id="tab-widget">
+        <div class="feat-panel-img reveal">
+          <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home screen widget showing a birthday reminder due today">
+            <rect x="2" y="2" width="276" height="276" rx="34" fill="#ffffff" stroke="#e4e4e8" stroke-width="2"/>
+            <text x="24" y="42" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0d0d12">DateWise</text>
+            <circle cx="246" cy="35" r="14" fill="#f5f3ff"/>
+            <text x="246" y="40" font-family="Inter, sans-serif" font-size="13" text-anchor="middle" fill="#5b21b6">⟳</text>
+            <line x1="24" y1="56" x2="256" y2="56" stroke="#e4e4e8" stroke-width="1.5"/>
+            <circle cx="140" cy="142" r="56" fill="#f5f3ff"/>
+            <text x="140" y="158" font-family="Inter, sans-serif" font-size="44" text-anchor="middle">🎂</text>
+            <text x="140" y="220" font-family="Inter, sans-serif" font-size="17" font-weight="800" text-anchor="middle" fill="#0d0d12">Appa's Birthday</text>
+            <rect x="106" y="230" width="68" height="25" rx="12.5" fill="#fee2e2"/>
+            <text x="140" y="247" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#dc2626">Today</text>
+          </svg>
+        </div>
+        <div class="feat-panel-content reveal d1">
+          <h3>Glance and Go —<br /><span class="text-accent">No Need to Open the App</span></h3>
+          <p>One resizable home screen widget shows what's coming up without unlocking your phone. Drag it from a compact single-line strip up to a full grouped view of your next few reminders.</p>
+          <ul class="feat-bullets">
+            <li><span class="fbi">✓</span> One widget, eight sizes — resize by dragging the corners</li>
+            <li><span class="fbi">✓</span> Larger sizes group reminders into Today, Tomorrow, This Week</li>
+            <li><span class="fbi">✓</span> Color-coded by urgency: red for today, amber for this week</li>
+            <li><span class="fbi">✓</span> Tap any reminder to jump straight to it</li>
+            <li><span class="fbi">✓</span> Free on every plan — no Pro required</li>
+          </ul>
+        </div>
+      </div>
+
       <div class="feat-panel" id="tab-privacy">
         <div class="feat-panel-img reveal">
           <img src="/datewise/images/Screen-5.png" alt="Private and Secure" />
@@ -782,7 +817,7 @@
           <h3>Unlock More<br /><span class="text-accent">with DateWise Pro</span></h3>
           <p>Pro is a one-time purchase — not a subscription. Pay once, keep it forever. Designed for power users who want the full experience.</p>
           <ul class="feat-bullets">
-            <li><span class="fbi">✓</span> Cloud backup &amp; restore via Google Drive</li>
+            <li><span class="fbi">✓</span> Cloud backup with automatic sync-lite across your devices, via your own Google Drive</li>
             <li><span class="fbi">✓</span> Custom reminder types with your own emoji</li>
             <li><span class="fbi">✓</span> Custom reminder intervals</li>
             <li><span class="fbi">✓</span> Custom relationship tags</li>
@@ -837,6 +872,40 @@
       </div>
       <div class="facc-item">
         <div class="facc-header">
+          <span class="facc-title">🏠 Home Widget</span>
+          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="facc-body">
+          <div class="facc-inner">
+            <div class="facc-img">
+              <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home screen widget showing a birthday reminder due today">
+                <rect x="2" y="2" width="276" height="276" rx="34" fill="#ffffff" stroke="#e4e4e8" stroke-width="2"/>
+                <text x="24" y="42" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0d0d12">DateWise</text>
+                <circle cx="246" cy="35" r="14" fill="#f5f3ff"/>
+                <text x="246" y="40" font-family="Inter, sans-serif" font-size="13" text-anchor="middle" fill="#5b21b6">⟳</text>
+                <line x1="24" y1="56" x2="256" y2="56" stroke="#e4e4e8" stroke-width="1.5"/>
+                <circle cx="140" cy="142" r="56" fill="#f5f3ff"/>
+                <text x="140" y="158" font-family="Inter, sans-serif" font-size="44" text-anchor="middle">🎂</text>
+                <text x="140" y="220" font-family="Inter, sans-serif" font-size="17" font-weight="800" text-anchor="middle" fill="#0d0d12">Appa's Birthday</text>
+                <rect x="106" y="230" width="68" height="25" rx="12.5" fill="#fee2e2"/>
+                <text x="140" y="247" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#dc2626">Today</text>
+              </svg>
+            </div>
+            <div>
+              <h4>Glance and Go — No Need to Open the App</h4>
+              <p>One resizable home screen widget shows what's coming up without unlocking your phone.</p>
+              <ul class="feat-bullets">
+                <li><span class="fbi">✓</span> One widget, eight sizes — resize by dragging the corners</li>
+                <li><span class="fbi">✓</span> Larger sizes group reminders into Today, Tomorrow, This Week</li>
+                <li><span class="fbi">✓</span> Color-coded by urgency: red for today, amber for this week</li>
+                <li><span class="fbi">✓</span> Free on every plan — no Pro required</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="facc-item">
+        <div class="facc-header">
           <span class="facc-title">🔒 Privacy &amp; Security</span>
           <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
@@ -867,7 +936,7 @@
               <h4>Unlock More with DateWise Pro</h4>
               <p>One-time purchase. Pay once, keep it forever.</p>
               <ul class="feat-bullets">
-                <li><span class="fbi">✓</span> Cloud backup via Google Drive</li>
+                <li><span class="fbi">✓</span> Cloud backup with automatic sync-lite, via your own Google Drive</li>
                 <li><span class="fbi">✓</span> Custom reminder types + emoji</li>
                 <li><span class="fbi">✓</span> Custom reminder intervals</li>
                 <li><span class="fbi">✓</span> Custom relationship tags</li>
@@ -974,7 +1043,7 @@
             <span class="pcc-pro-only-tag">PRO ONLY</span>
           </div>
           <ul class="pcc-feat-list">
-            <li><span class="pf-check">✓</span> Google Drive backup &amp; restore</li>
+            <li><span class="pf-check">✓</span> Cloud backup &amp; sync-lite across devices</li>
             <li><span class="pf-check">✓</span> Custom types + emoji</li>
             <li><span class="pf-check">✓</span> Custom reminder intervals</li>
             <li><span class="pf-check">✓</span> Custom relationship tags</li>
@@ -1028,7 +1097,7 @@
     </div>
     <div class="faq-item">
       <button class="faq-q"><span class="faq-q-text">Can I sync DateWise across multiple devices?</span><span class="faq-arr">▼</span></button>
-      <div class="faq-a">Yes. With Pro, turn on Cloud Backup in Settings on each device using the same Google account. Tap Backup Now on the device with your reminders, then Restore or Merge on the other to bring them across — see our <a href="https://wiselyrise.in/datewise/support.html" style="color:var(--accent);text-decoration:underline;font-weight:600">Sync Guide</a> for the full walkthrough.</div>
+      <div class="faq-a">Yes. With Pro, turn on Cloud Backup in Settings on each device using the same Google account. Once it's on, DateWise keeps your reminders in sync automatically in the background — no need to tap anything after the first setup. Manual Backup, Restore, and Merge are still there when you want to sync on demand. See our <a href="https://wiselyrise.in/datewise/support.html" style="color:var(--accent);text-decoration:underline;font-weight:600">Sync Guide</a> for the full walkthrough and troubleshooting tips.</div>
     </div>
   </div>
     </div>

@@ -58,18 +58,23 @@
   <p class="subtitle">Help with Cloud Backup, cross-device sync, and common questions.</p>
 
   <h2>Sync DateWise Across Devices</h2>
-  <p>Cloud Backup (included with Pro) uses your own Google Drive to move your reminders between devices — nothing passes through WiselyRise servers. Here's the full walkthrough:</p>
+  <p>Cloud Backup (included with Pro) uses your own Google Drive to keep your reminders in sync across devices — nothing passes through WiselyRise servers. Here's the full walkthrough:</p>
   <ol>
     <li><strong>On your source device</strong> (the one with your existing reminders): open <strong>Settings → Cloud Backup</strong> and sign in with the Google account you want to use.</li>
     <li>Turn on <strong>Cloud Backup</strong>, then tap <strong>Backup Now</strong>. This uploads an encrypted copy of your reminders to your personal Google Drive App Data folder.</li>
     <li><strong>On your new or second device</strong>, install DateWise and go to <strong>Settings → Cloud Backup</strong>, then sign in with the <em>same</em> Google account.</li>
     <li>Tap <strong>Restore</strong> if the device is new and has no reminders yet, or <strong>Merge</strong> if it already has reminders you want to keep alongside the incoming ones.</li>
-    <li>Repeat <strong>Backup Now</strong> after adding new reminders on any device to keep the others up to date — sync is on-demand, not automatic in the background.</li>
+    <li>That's the one-time setup. From here, DateWise syncs automatically in the background on both devices — add, edit, or delete a reminder on either one, and it makes its way to the other without you needing to open Cloud Backup again.</li>
   </ol>
 
   <div class="card">
     <strong>Restore vs. Merge — what's the difference?</strong>
-    <span><strong>Restore</strong> replaces everything on the device with the backup. <strong>Merge</strong> keeps what's already on the device and adds anything new from the backup, skipping duplicates. Use Merge if you have reminders on both devices you don't want to lose.</span>
+    <span><strong>Restore</strong> replaces everything on the device with the backup. <strong>Merge</strong> combines both — for any reminder that exists on both sides, it keeps whichever version was edited most recently, and brings over anything that only exists on one side. Use Merge if you have reminders on both devices you don't want to lose.</span>
+  </div>
+
+  <div class="card">
+    <strong>Sync-lite — what "automatic" actually means</strong>
+    <span>Once Cloud Backup is on, DateWise checks for changes when you reopen the app and periodically in the background, then syncs automatically. It's not instant like a messaging app — expect it to catch up within a few minutes of reopening the app on the other device, longer if your phone's battery settings restrict background apps (see Troubleshooting below). You can always open Cloud Backup and tap <strong>Sync Now</strong> for an on-demand check.</span>
   </div>
 
   <h2>Troubleshooting</h2>
