@@ -1,7 +1,7 @@
 {
-  "latest_build": 40,
-  "latest_version": "2.5.0",
+  "latest_build": 54,
+  "latest_version": "2.6.4",
   "min_build": 1,
-  "changelog": "New Feature: Get notified with contextual voice announcements.",
+  "changelog": "New Features: Voice announcements, Avatar photo hero, Share reminder.",
   "store_url": "https://play.google.com/store/apps/details?id=com.datewise.app"
 }
