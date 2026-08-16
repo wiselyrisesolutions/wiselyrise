@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClinicWise Secure Prescription Access</title>
+  <meta name="description" content="Secure prescription access page for ClinicWise patient links." />
+  <style>
+    :root { --bg:#eef8fa; --ink:#173347; --muted:#4b6675; --line:rgba(23,51,71,.16); --accent:#0f7fa8; --mint:#1dc8ad; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      min-height:100vh;
+      font-family: Segoe UI, Manrope, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(29,200,173,.18), transparent 44%),
+        radial-gradient(circle at 90% 82%, rgba(15,127,168,.16), transparent 50%),
+        var(--bg);
+      display:grid;
+      place-items:center;
+      padding:24px;
+    }
+    .card {
+      width:min(560px, 94vw);
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:24px;
+      box-shadow:0 20px 40px rgba(16,62,78,.12);
+    }
+    h1 { font-size:1.6rem; margin-bottom:10px; }
+    p { color:var(--muted); margin-bottom:12px; }
+    .token {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background:rgba(15,127,168,.08);
+      border:1px solid rgba(15,127,168,.28);
+      border-radius:12px;
+      padding:10px;
+      margin:12px 0;
+      word-break:break-all;
+    }
+    .alert {
+      margin-top:14px;
+      background:rgba(29,200,173,.12);
+      border:1px solid rgba(29,200,173,.35);
+      border-radius:12px;
+      padding:10px;
+      font-size:.92rem;
+      color:#0d5f51;
+    }
+    a { color:var(--accent); text-decoration:none; font-weight:700; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Secure Prescription Link</h1>
+    <p>This link is designed to be short-lived and scoped to a single prescription resource.</p>
+    <p id="status">Validating token...</p>
+    <div class="token" id="tokenBox">No token found</div>
+    <p class="alert">If this link has expired, request a fresh prescription link from your clinic reception.</p>
+    <p><a href="mailto:admin@wiselyrise.in">Need help?</a></p>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('t');
+    const tokenBox = document.getElementById('tokenBox');
+    const status = document.getElementById('status');
+
+    if (token) {
+      tokenBox.textContent = token;
+      status.textContent = 'Token received. Backend validation endpoint can be connected here.';
+    } else {
+      status.textContent = 'This link is missing a valid token parameter.';
+      tokenBox.textContent = 'Missing query parameter: t';
+    }
+  </script>
+</body>
+</html>

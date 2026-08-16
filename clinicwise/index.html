@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClinicWise - Receptionist-First Clinic Flow Platform</title>
+  <meta name="description" content="ClinicWise helps Indian clinics run faster front-desk operations with patient identity safety, real-time queue flow, and secure communication." />
+  <meta property="og:title" content="ClinicWise - Receptionist-First Clinic Flow Platform" />
+  <meta property="og:description" content="Patient identity, queue operations, consultation flow, and secure communication in one clinic platform." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wiselyrise.in/clinicwise" />
+  <meta property="og:image" content="https://wiselyrise.in/clinicwise/images/clinicwise-logo-mark.svg" />
+  <link rel="canonical" href="https://wiselyrise.in/clinicwise" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4fafb;
+      --ink: #163447;
+      --ink-soft: #37586a;
+      --card: #ffffff;
+      --line: rgba(14, 56, 70, 0.12);
+      --mint: #1dc8ad;
+      --ocean: #0f7fa8;
+      --teal-dark: #0b5a71;
+      --sun: #f3b63f;
+      --radius: 20px;
+      --shadow: 0 20px 50px rgba(16, 62, 78, 0.13);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Manrope, Segoe UI, sans-serif;
+      color: var(--ink);
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at 80% -10%, rgba(29, 200, 173, 0.2), transparent 46%),
+        radial-gradient(circle at -10% 70%, rgba(15, 127, 168, 0.16), transparent 45%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .container { width: min(1140px, 92vw); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: rgba(244, 250, 251, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: Sora, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand img { width: 38px; height: 38px; border-radius: 10px; }
+
+    .links { display: flex; gap: 8px; list-style: none; }
+    .links a {
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      border-radius: 10px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .links a:hover { background: rgba(15, 127, 168, 0.08); color: var(--ink); }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: #ffffff;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--mint), var(--ocean));
+      box-shadow: 0 8px 24px rgba(15, 127, 168, 0.28);
+    }
+
+    .hero {
+      padding: 56px 0 42px;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--teal-dark);
+      border: 1px solid rgba(29, 200, 173, 0.45);
+      border-radius: 999px;
+      padding: 6px 12px;
+      margin-bottom: 16px;
+      background: rgba(29, 200, 173, 0.12);
+      font-weight: 700;
+    }
+
+    h1 {
+      font-family: Sora, sans-serif;
+      font-size: clamp(2.1rem, 5vw, 4.2rem);
+      line-height: 1.07;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    h1 span {
+      background: linear-gradient(136deg, var(--teal-dark), var(--mint));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--ink-soft);
+      max-width: 60ch;
+      margin-bottom: 24px;
+      font-size: 1rem;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .btn-primary {
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--ocean), var(--teal-dark));
+      box-shadow: 0 10px 24px rgba(15, 127, 168, 0.27);
+    }
+
+    .btn-secondary {
+      color: var(--teal-dark);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(15, 127, 168, 0.35);
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #0f6448;
+      background: rgba(29, 200, 173, 0.16);
+      border: 1px solid rgba(29, 200, 173, 0.4);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .queue-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .queue-box {
+      background: #f7fcfd;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .queue-box strong {
+      display: block;
+      font-family: Sora, sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+
+    .queue-box span {
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+    }
+
+    .note {
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 0.84rem;
+      background: rgba(243, 182, 63, 0.13);
+      border: 1px solid rgba(243, 182, 63, 0.45);
+    }
+
+    section { padding: 34px 0; }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    h2 {
+      font-family: Sora, sans-serif;
+      font-size: clamp(1.5rem, 3.2vw, 2.35rem);
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+    }
+
+    .subtitle {
+      max-width: 62ch;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.9);
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(18, 58, 72, 0.08);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      font-family: Sora, sans-serif;
+      margin-bottom: 6px;
+    }
+
+    .card p { color: var(--ink-soft); font-size: 0.9rem; }
+
+    .timeline {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #ffffff, #f3fbfd);
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .dot {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--mint), var(--ocean));
+    }
+
+    .step strong { font-family: Sora, sans-serif; }
+    .step p { color: var(--ink-soft); font-size: 0.9rem; margin-top: 4px; }
+
+    .meta {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(15, 127, 168, 0.3);
+      background: rgba(15, 127, 168, 0.08);
+      font-size: 0.88rem;
+      color: var(--teal-dark);
+    }
+
+    footer {
+      margin-top: 28px;
+      border-top: 1px solid var(--line);
+      padding: 20px 0 36px;
+      color: var(--ink-soft);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .footer-links { display: flex; gap: 14px; }
+    .footer-links a { color: var(--teal-dark); font-weight: 700; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 680px) {
+      nav { height: auto; padding: 12px 0; flex-wrap: wrap; }
+      .links { width: 100%; justify-content: center; }
+      .cards { grid-template-columns: 1fr; }
+      .queue-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 34px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="/clinicwise/">
+          <img src="/clinicwise/images/clinicwise-logo-mark.svg" alt="ClinicWise logo" />
+          <span>ClinicWise</span>
+        </a>
+        <ul class="links">
+          <li><a href="#platform">Platform</a></li>
+          <li><a href="#flow">Clinic Flow</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="/clinicwise/privacy.html">Privacy</a></li>
+          <li><a href="/clinicwise/terms.html">Terms</a></li>
+        </ul>
+        <a class="cta" href="mailto:admin@wiselyrise.in">Request Pilot</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero reveal">
+      <div>
+        <div class="eyebrow">Built for Indian Clinics</div>
+        <h1>From front desk chaos to <span>predictable patient flow</span>.</h1>
+        <p>
+          ClinicWise is a receptionist-first clinic platform that connects identity-safe patient registration,
+          real-time token queue operations, and secure patient communication.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:admin@wiselyrise.in">Book Product Walkthrough</a>
+          <a class="btn btn-secondary" href="#flow">See Queue Journey</a>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Live queue sample">
+        <div class="hero-top">
+          <strong>Live Queue Snapshot</strong>
+          <span class="pill">Doctor Running On Time</span>
+        </div>
+        <div class="queue-grid">
+          <div class="queue-box">
+            <strong>17</strong>
+            <span>Now Serving</span>
+          </div>
+          <div class="queue-box">
+            <strong>21</strong>
+            <span>Your Token</span>
+          </div>
+          <div class="queue-box">
+            <strong>4</strong>
+            <span>Patients Ahead</span>
+          </div>
+          <div class="queue-box">
+            <strong>32m</strong>
+            <span>Estimated Wait</span>
+          </div>
+        </div>
+        <div class="note">
+          Queue updates and WhatsApp responses are event-driven to avoid unnecessary message volume after Oct 2026 pricing changes.
+        </div>
+      </aside>
+    </section>
+
+    <section id="platform" class="reveal">
+      <div class="section-head">
+        <h2>One platform. Three clinic-critical loops.</h2>
+        <p class="subtitle">Identity safety, operations speed, and trusted communication are designed as one connected system, not separate apps.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Patient Identity</h3>
+          <p>Clinic-scoped MRN, family-aware registration, and shared-number-safe resolution so front desk teams avoid duplicate/incorrect records.</p>
+        </article>
+        <article class="card">
+          <h3>Queue Operations</h3>
+          <p>Live token progression with multi-doctor and multi-location support, tuned for high-volume walk-in clinics.</p>
+        </article>
+        <article class="card">
+          <h3>Secure Communication</h3>
+          <p>WhatsApp integration through backend controls with auditable message events and expiring prescription links.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="flow" class="reveal">
+      <div class="section-head">
+        <h2>Reception-to-doctor flow that fits real clinics</h2>
+        <p class="subtitle">Built around how Indian clinics actually work: walk-ins, family visits, queue pressure, and changing contact numbers.</p>
+      </div>
+      <div class="timeline">
+        <div class="step">
+          <div class="dot">1</div>
+          <div>
+            <strong>Identify patient safely</strong>
+            <p>Search by MRN/phone with deterministic duplicate checks and family grouping without auto-merging clinical identity.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="dot">2</div>
+          <div>
+            <strong>Issue token and route</strong>
+            <p>Front desk assigns tokens by practitioner/domain/location with visible queue state for reception and doctor dashboards.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="dot">3</div>
+          <div>
+            <strong>Capture consultation essentials</strong>
+            <p>Doctor workflows store complaint, notes, and vitals, while domain payloads handle specialty details without polluting core models.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="dot">4</div>
+          <div>
+            <strong>Send secure follow-up</strong>
+            <p>Patients receive scoped, expiring prescription links and event-triggered updates instead of over-sharing full records in chat.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="security" class="reveal">
+      <div class="section-head">
+        <h2>Production posture: tenant, RBAC, audit</h2>
+        <p class="subtitle">ClinicWise architecture enforces clinic ownership boundaries and moves sensitive operations behind trusted backend functions.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Tenant Isolation</h3>
+          <p>Clinic-scoped collection paths and membership checks reduce accidental cross-clinic access patterns.</p>
+        </article>
+        <article class="card">
+          <h3>Privileged Operations</h3>
+          <p>MRN generation, role-sensitive actions, and WhatsApp sends run through backend authorization, not direct client writes.</p>
+        </article>
+        <article class="card">
+          <h3>Audit Coverage</h3>
+          <p>Identity and communication events are logged with actor/resource metadata for accountability and incident review.</p>
+        </article>
+      </div>
+      <div class="meta">
+        For Meta app publication: Privacy policy and Terms are available at the links below and in the footer.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>
+        <strong>ClinicWise</strong><br />
+        Receptionist-first clinic flow platform.
+      </div>
+      <div class="footer-links">
+        <a href="/clinicwise/privacy.html">Privacy Policy</a>
+        <a href="/clinicwise/terms.html">Terms of Service</a>
+        <a href="mailto:admin@wiselyrise.in">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>

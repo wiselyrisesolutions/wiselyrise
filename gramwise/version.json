@@ -1,6 +1,6 @@
 {
-  "latest_build": 94,
-  "latest_version": "3.7.4",
+  "latest_build": 98,
+  "latest_version": "3.7.8",
   "min_build": 52,
   "changelog": "Bug fixes and performance improvements.",
   "store_url": "https://play.google.com/store/apps/details?id=com.gramwise.app"
