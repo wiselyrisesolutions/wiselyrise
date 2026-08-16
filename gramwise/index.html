@@ -596,6 +596,57 @@
       .hero-bubbles-col.right .hero-bubble:nth-child(even){margin:0}
       .stats-grid{grid-template-columns:repeat(2,1fr)}
     }
+    /* ============================================================
+       WHATSAPP FLOATING BUTTON
+       ============================================================ */
+    .wa-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(0,0,0,.2);
+      text-decoration: none;
+      z-index: 999;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .wa-float:hover,
+    .wa-float:focus-visible {
+      transform: scale(1.07);
+      box-shadow: 0 8px 22px rgba(0,0,0,.28);
+      background: #1EBE5D;
+    }
+    .wa-float:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+    .wa-float svg { width: 30px; height: 30px; fill: white; }
+    .wa-float__ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid #25D366;
+      animation: wa-pulse 2.4s ease-out infinite;
+      pointer-events: none;
+    }
+    @keyframes wa-pulse {
+      0%   { transform: scale(1);   opacity: .55; }
+      100% { transform: scale(1.65); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wa-float__ring { animation: none; }
+      .wa-float { transition: none; }
+    }
+    @media (max-width: 480px) {
+      .wa-float { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+      .wa-float svg { width: 26px; height: 26px; }
+    }
+    /* ======================= end WhatsApp button block ======================= */
   </style>
 </head>
 <body>
@@ -1265,5 +1316,19 @@
     });
   });
 </script>
+<!-- ============================================================
+     WHATSAPP FLOATING BUTTON
+     ============================================================ -->
+<a class="wa-float"
+   href="https://wa.me/919080743973?text=Hi%20WiselyRise!%20I%20have%20a%20question%20about%20your%20apps."
+   target="_blank" rel="noopener noreferrer"
+   aria-label="Chat with WiselyRise on WhatsApp">
+  <span class="wa-float__ring" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12.004 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.464 3.484 1.345 5.001L2 22l5.126-1.334a9.958 9.958 0 0 0 4.878 1.243h.004c5.514 0 9.997-4.483 9.997-9.997s-4.483-9.909-9.997-9.909zm0 18.19h-.003a8.19 8.19 0 0 1-4.174-1.144l-.3-.178-3.104.808.828-3.027-.196-.31a8.176 8.176 0 0 1-1.253-4.372c0-4.513 3.673-8.186 8.194-8.186 2.19 0 4.248.853 5.795 2.401a8.14 8.14 0 0 1 2.399 5.792c0 4.513-3.674 8.216-8.186 8.216z"/>
+  </svg>
+</a>
+<!-- ======================= end WhatsApp button block ======================= -->
 </body>
 </html>
