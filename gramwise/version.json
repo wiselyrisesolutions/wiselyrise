@@ -1,7 +1,7 @@
 {
-  "latest_build": 98,
-  "latest_version": "3.7.8",
+  "latest_build": 100,
+  "latest_version": "3.8.0",
   "min_build": 52,
-  "changelog": "Bug fixes and performance improvements.",
+  "changelog": "New Feature: Trend Analysis",
   "store_url": "https://play.google.com/store/apps/details?id=com.gramwise.app"
 }
