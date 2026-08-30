@@ -3,140 +3,356 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms of Service — KuralWise</title>
+  <title>Terms of Service — KuralWise by WiselyRise</title>
   <meta name="description" content="Terms of Service and License Agreement for KuralWise by WiselyRise Solutions." />
   <link rel="canonical" href="https://wiselyrise.in/kuralwise/terms.html" />
-  <link rel="icon" href="/kuralwise/images/app_icon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/kuralwise/images/app_icon.png" />
+  <link rel="icon" href="images/app_icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="images/app_icon.png" />
+  <meta name="theme-color" content="#FBF9F4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #FBF9F4;
-      --fg: #171B34;
-      --muted: #6B7280;
-      --border: #E5E7EB;
-      --accent: #F5A623;
-      --accent-dark: #D97706;
-      --accent-bg: #FEF3C7;
-      --deep-indigo: #171B34;
+      --bg:#FBF9F4; --fg:#171B34; --muted:#6B7280; --border:#E5E7EB;
+      --gold:#D97706; --gold-bg:#FEF3C7; --gold-lt:#F5A623;
+      --emerald:#059669; --emerald-bg:#ECFDF5;
+      --purple:#7C3AED; --purple-bg:#EDE9FE;
+      --navy:#171B34;
     }
     @media(prefers-color-scheme:dark){
       :root{
-        --bg: #0C1222;
-        --fg: #F3F4F6;
-        --muted: #9CA3AF;
-        --border: #1F2937;
-        --accent: #F5A623;
-        --accent-bg: #291E0A;
-        --deep-indigo: #070F1C;
+        --bg:#0C1222; --fg:#F3F4F6; --muted:#9CA3AF; --border:#1F2937;
+        --gold:#F5A623; --gold-bg:#1C1407; --gold-lt:#FBBF24;
+        --emerald:#34D399; --emerald-bg:#064E3B;
+        --purple:#A78BFA; --purple-bg:#2E1065;
+        --navy:#070F1C;
       }
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      line-height: 1.7;
-      padding: 32px 20px;
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.75;}
+    a{color:var(--gold);font-weight:600;}
+    a:hover{text-decoration:underline;}
+    img{display:block;max-width:100%;}
+
+    /* NAV */
+    .topnav{
+      position:sticky; top:0; z-index:100;
+      background:rgba(251,249,244,.92); backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border); padding:0 24px;
     }
-    .container { max-width: 760px; margin: 0 auto; }
-    h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 2rem;
-      margin-bottom: 6px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--fg);
+    @media(prefers-color-scheme:dark){.topnav{background:rgba(12,18,34,.92);}}
+    .topnav-i{max-width:880px;margin:0 auto;height:60px;display:flex;align-items:center;justify-content:space-between;}
+    .topnav-logo{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.1rem;color:var(--fg);}
+    .topnav-logo img{width:32px;height:32px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+    .topnav-right{display:flex;gap:20px;align-items:center;}
+    .topnav-right a{font-size:.84rem;font-weight:500;color:var(--muted);}
+    .topnav-right a:hover{color:var(--gold);text-decoration:none;}
+    .topnav-right button{font-size:.84rem;font-weight:600;color:var(--gold);background:transparent;border:none;cursor:pointer;}
+    .topnav-right button:hover{color:var(--gold-lt);}
+    .topnav-dl{display:inline-flex;align-items:center;gap:6px;background:var(--gold-lt);color:#fff;padding:7px 16px;border-radius:100px;font-size:.8rem;font-weight:700;}
+    .topnav-dl:hover{opacity:.9;text-decoration:none;}
+
+    /* LAYOUT */
+    .page{max-width:780px;margin:0 auto;padding:48px 24px 80px;}
+
+    /* HEADER */
+    .doc-header{
+      background:linear-gradient(135deg,#2A1B40,#0F1E3A);
+      border-radius:20px;padding:36px 36px 32px;margin-bottom:40px;
+      color:#fff;border:1px solid rgba(255,255,255,.08);
     }
-    .subtitle {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: 32px;
+    .doc-badge{
+      display:inline-flex;align-items:center;gap:7px;
+      background:rgba(167,139,250,.2);border:1px solid rgba(167,139,250,.4);
+      color:#C4B5FD;padding:5px 14px;border-radius:100px;
+      font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;
     }
-    h2 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.2rem;
-      margin: 36px 0 12px;
-      color: var(--accent-dark);
-      font-weight: 700;
-    }
-    p, li {
-      font-size: 0.93rem;
-      margin-bottom: 12px;
-      color: var(--fg);
-      line-height: 1.75;
-    }
-    ul { padding-left: 24px; margin-bottom: 16px; }
-    a { color: var(--accent-dark); text-decoration: none; font-weight: 600; }
-    a:hover { text-decoration: underline; }
-    .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
-    .nav-bar {
-      display: flex;
+    .doc-header h1{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:900;letter-spacing:-.02em;margin-bottom:8px;}
+    .doc-header .meta{font-size:.82rem;color:rgba(255,255,255,.55);}
+
+    /* CALLOUT */
+    .callout{display:flex;gap:14px;align-items:flex-start;background:var(--gold-bg);border:1px solid rgba(217,119,6,.25);border-radius:14px;padding:20px 22px;margin:28px 0;}
+    .callout .ci{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
+    .callout p{font-size:.92rem;color:var(--fg);line-height:1.7;margin:0;}
+    .callout strong{color:var(--gold);}
+
+    /* JUMP NAV */
+    .jump-nav{background:var(--purple-bg);border:1px solid rgba(124,58,237,.2);border-radius:14px;padding:20px 22px;margin-bottom:36px;}
+    .jump-nav .jn-title{font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:10px;}
+    .jump-nav ol{padding-left:18px;display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;}
+    .jump-nav li{font-size:.85rem;}
+    .jump-nav a{color:var(--purple);font-weight:500;}
+    @media(max-width:480px){.jump-nav ol{grid-template-columns:1fr;}}
+
+    /* SECTIONS */
+    .doc-section{margin-bottom:36px;}
+    .section-tag{display:inline-flex;align-items:center;gap:6px;background:var(--gold-bg);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:10px;}
+    h2{font-family:'Outfit',sans-serif;font-size:1.25rem;font-weight:700;color:var(--fg);margin-bottom:14px;}
+    h3{font-size:1rem;font-weight:600;color:var(--fg);margin:20px 0 8px;}
+    p{font-size:.92rem;color:var(--fg);line-height:1.75;margin-bottom:14px;}
+    ul{padding-left:22px;margin-bottom:16px;}
+    li{font-size:.92rem;color:var(--fg);line-height:1.75;margin-bottom:6px;}
+
+    /* IP TABLE */
+    .ip-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;}
+    .ip-card{border-radius:12px;padding:18px;border:1px solid var(--border);}
+    .ip-public{background:var(--emerald-bg);border-color:rgba(16,185,129,.3);}
+    .ip-prop{background:var(--gold-bg);border-color:rgba(217,119,6,.25);}
+    .ip-card h4{font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;}
+    .ip-public h4{color:var(--emerald);}
+    .ip-prop h4{color:var(--gold);}
+    .ip-card ul{padding-left:16px;margin:0;}
+    .ip-card li{font-size:.84rem;margin-bottom:5px;}
+    @media(max-width:520px){.ip-grid{grid-template-columns:1fr;}}
+
+    code{background:var(--gold-bg);color:var(--gold);padding:2px 7px;border-radius:6px;font-size:.82rem;font-family:monospace;}
+    .divider{border:none;border-top:1px solid var(--border);margin:36px 0;}
+    footer.doc-foot{text-align:center;font-size:.78rem;color:var(--muted);padding:32px 0 0;}
+    footer.doc-foot a{color:var(--gold);font-weight:500;}
+
+    /* WhatsApp floating button */
+    .wa-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 36px;
-      flex-wrap: wrap;
-      gap: 12px;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(37, 211, 102, 0.35), 0 8px 22px rgba(0,0,0,0.26);
+      z-index: 999;
+      transition: transform .18s ease, box-shadow .18s ease;
+      text-decoration: none;
     }
-    .nav-bar a {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--muted);
+    .wa-float:hover,
+    .wa-float:focus-visible {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 14px 32px rgba(37, 211, 102, 0.42), 0 10px 26px rgba(0,0,0,0.28);
+      outline: none;
     }
-    .nav-bar a:hover { color: var(--accent-dark); }
+    .wa-float svg { width: 30px; height: 30px; fill: white; }
+    .wa-float__ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid #25D366;
+      animation: wa-pulse 2.4s ease-out infinite;
+      pointer-events: none;
+    }
+    @keyframes wa-pulse {
+      0%   { transform: scale(1);   opacity: .55; }
+      100% { transform: scale(1.65); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wa-float__ring { animation: none; }
+      .wa-float { transition: none; }
+    }
+    @media (max-width: 480px) {
+      .wa-float { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+      .wa-float svg { width: 26px; height: 26px; }
+    }
   </style>
 </head>
 <body>
-<div class="container">
 
-  <div class="nav-bar">
-    <a href="/kuralwise/" style="display:inline-flex;align-items:center;gap:10px">
-      <img src="images/app_icon.png" alt="KuralWise" style="width:34px;height:34px;border-radius:22%;vertical-align:middle;box-shadow:0 2px 8px rgba(0,0,0,0.1)" />
-      <strong style="color:var(--fg);font-family:'Outfit',sans-serif;font-size:1.1rem">KuralWise</strong>
+<nav class="topnav">
+  <div class="topnav-i">
+    <a href="/kuralwise/" class="topnav-logo">
+      <img src="images/app_icon.png" alt="KuralWise" />
+      KuralWise
     </a>
-    <div style="display:flex;gap:18px">
-      <a href="/kuralwise/">❮ Back to App</a>
-      <a href="https://wiselyrise.in">WiselyRise 🏠︎</a>
+    <div class="topnav-right">
+      <a href="/kuralwise/">← Home</a>
+      <a href="privacy.html">Privacy</a>
+      <button onclick="openContactModal('kuralwise'); return false;">Get in Touch</button>
+      <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="topnav-dl">Get App ⚡</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-badge">📄 License Agreement &amp; Terms of Use</div>
+    <h1>Terms of Service</h1>
+    <p class="meta">Effective Date: 29 August 2026 · Last updated: 29 August 2026 · KuralWise by WiselyRise Solutions</p>
+  </div>
+
+  <p>Welcome to <strong>KuralWise</strong>. These Terms of Service ("Terms") govern your access to and use of the KuralWise mobile application provided by <strong>WiselyRise Solutions</strong> ("we", "our", or "us"). By downloading, installing, or using KuralWise, you agree to be bound by these Terms.</p>
+
+  <!-- JUMP NAV -->
+  <div class="jump-nav">
+    <div class="jn-title">Contents</div>
+    <ol>
+      <li><a href="#acceptance">Acceptance of Terms</a></li>
+      <li><a href="#license">License Grant</a></li>
+      <li><a href="#ip">Intellectual Property</a></li>
+      <li><a href="#content">Content Accuracy</a></li>
+      <li><a href="#conduct">User Conduct</a></li>
+      <li><a href="#warranty">Disclaimers</a></li>
+      <li><a href="#liability">Limitation of Liability</a></li>
+      <li><a href="#governing">Governing Law</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="doc-section" id="acceptance">
+    <div class="section-tag">01 · Acceptance</div>
+    <h2>Acceptance of Terms</h2>
+    <p>By downloading, installing, or using KuralWise ("the App"), you acknowledge that you have read, understood, and agree to be bound by these Terms. If you are agreeing on behalf of a minor child, you represent that you are the parent or legal guardian and accept these Terms on the child's behalf.</p>
+    <p>If you do not agree with any part of these Terms, you may not use the application.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="doc-section" id="license">
+    <div class="section-tag">02 · License</div>
+    <h2>Permitted Use &amp; License Grant</h2>
+    <p>WiselyRise Solutions grants you a personal, revocable, non-exclusive, non-transferable, and royalty-free license to use KuralWise on your personal mobile devices solely for:</p>
+    <ul>
+      <li>Personal educational enrichment and cultural learning</li>
+      <li>Preparation for school recitation competitions and academic examinations</li>
+      <li>Daily mindfulness and wisdom practice</li>
+      <li>Non-commercial family and classroom use</li>
+    </ul>
+    <p>This license does not include the right to sublicense, distribute, publicly display, or commercially exploit the App or its content.</p>
+
+    <div class="callout">
+      <div class="ci">🏫</div>
+      <p><strong>School &amp; Classroom Use:</strong> Teachers and Tamil educators are welcome and encouraged to recommend KuralWise to students for personal device use in contest preparation and classroom enrichment — free of charge. School Pack rollout is currently in work. Contact <a href="mailto:contact@wiselywise.in">contact@wiselywise.in</a> for institutional enquiries and early-access updates.</p>
     </div>
   </div>
 
-  <h1>Terms of Service</h1>
-  <p class="subtitle">Effective Date: August 29, 2026 • Last updated: August 29, 2026</p>
+  <!-- 3 -->
+  <div class="doc-section" id="ip">
+    <div class="section-tag">03 · Intellectual Property</div>
+    <h2>Intellectual Property Rights</h2>
 
-  <p>Welcome to <strong>KuralWise</strong>. These Terms of Service ("Terms") govern your access to and use of the KuralWise mobile application and related web services provided by <strong>WiselyRise Solutions</strong> ("we", "our", or "us").</p>
+    <div class="ip-grid">
+      <div class="ip-card ip-public">
+        <h4>📜 Public Domain</h4>
+        <ul>
+          <li>The original Tamil couplets of <em>Thirukkural</em> by Sage Thiruvalluvar are ancient classical literature in the public domain.</li>
+          <li>Traditional commentaries (பரிமேலழகர், etc.) predating copyright are similarly public domain.</li>
+        </ul>
+      </div>
+      <div class="ip-card ip-prop">
+        <h4>🏛️ Proprietary to WiselyRise</h4>
+        <ul>
+          <li>KuralWise app UI/UX designs, graphic assets, and illustrations</li>
+          <li>The 8-stage SM-2 mastery architecture and coach engine</li>
+          <li>Story narratives (வள்ளுவர் பார்வை) &amp; Life Pearls (வாழ்க்கை நல்முத்து)</li>
+          <li>Pre-rendered studio audio capsules and voice sequences</li>
+          <li>3-tier multi-audience meaning system (Kids · Standard · Scholarly)</li>
+          <li>Recitation Sprint, Cue-Card, and Teleprompter training mechanics</li>
+          <li>Situational life-tag taxonomy and emotion-search system</li>
+        </ul>
+      </div>
+    </div>
 
-  <h2>1. Acceptance of Terms</h2>
-  <p>By downloading, installing, or using KuralWise, you agree to be bound by these Terms. If you do not agree with any part of these Terms, you may not use the application.</p>
+    <h3>Restrictions</h3>
+    <p>You agree not to:</p>
+    <ul>
+      <li>Reverse engineer, decompile, disassemble, or extract the App's compiled assets</li>
+      <li>Copy, redistribute, or commercially resell KuralWise's proprietary audio files, illustrations, or pedagogical content</li>
+      <li>Remove or alter any copyright, trademark, or attribution notices within the App</li>
+      <li>Use the App or its content to train or fine-tune any artificial intelligence or machine learning model without prior written consent</li>
+    </ul>
+  </div>
 
-  <h2>2. Permitted Use & License</h2>
-  <p>WiselyRise Solutions grants you a personal, revocable, non-exclusive, non-transferable, and royalty-free license to use KuralWise on your personal mobile devices solely for educational, personal, and non-commercial purposes.</p>
+  <!-- 4 -->
+  <div class="doc-section" id="content">
+    <div class="section-tag">04 · Content Accuracy</div>
+    <h2>Educational Nature &amp; Content Accuracy</h2>
+    <p>KuralWise is designed as an educational and cultural self-improvement companion. While we take immense care in curating authentic interpretations — drawing on classical commentators including <strong>பரிமேலழகர்</strong>, <strong>Dr. மு. வரதராசனார்</strong>, and <strong>சாலமன் பாப்பையா</strong> — and in aligning TNPSC Unit 8 content with official syllabuses, the application is provided for personal enrichment and study support.</p>
+    <p>We make no warranty that the content satisfies the specific marking criteria of any particular examination board, competition judge, or educational institution. Users preparing for official examinations or competitions should cross-reference with their official syllabus documents and institution guidelines.</p>
+    <p>Recitation Championship Suite metrics (sprint timings, pace benchmarks) are designed for personal training and motivation. World record claims are based on publicly reported competition data and are for reference purposes.</p>
+  </div>
 
-  <h2>3. Intellectual Property Rights</h2>
-  <ul>
-    <li><strong>Public Domain Literature:</strong> The original Tamil couplets of <em>Thirukkural</em> authored by Sage Thiruvalluvar are ancient classical literature in the public domain.</li>
-    <li><strong>Proprietary Content:</strong> The unique pedagogical architecture, the Spaced Repetition algorithms, UI/UX designs, custom illustrations, graphic cards, synthesized audio capsules, narrative stories (*வள்ளுவர் பார்வை*), and modern life pearls (*வாழ்க்கை நல்முத்து*) are the proprietary intellectual property of WiselyRise Solutions.</li>
-    <li>You agree not to reverse engineer, decompile, extract, or redistribute the application's compiled assets for commercial exploitation without prior written consent.</li>
-  </ul>
+  <!-- 5 -->
+  <div class="doc-section" id="conduct">
+    <div class="section-tag">05 · User Conduct</div>
+    <h2>Acceptable Use</h2>
+    <p>You agree to use KuralWise only for lawful purposes and in accordance with these Terms. You must not:</p>
+    <ul>
+      <li>Use the App in any way that violates applicable local, national, or international law or regulation</li>
+      <li>Attempt to gain unauthorized access to, interfere with, damage, or disrupt any part of the App</li>
+      <li>Use the App to transmit or distribute malicious code, spam, or unsolicited communications</li>
+    </ul>
+    <p>As KuralWise is 100% offline with no user accounts or social features, most conduct concerns applicable to connected apps do not apply here.</p>
+  </div>
 
-  <h2>4. Educational Nature & Disclaimer of Warranties</h2>
-  <p>KuralWise is designed as an educational and cultural self-improvement companion. While we take immense care in curating authentic commentaries (including Dr. M. Varadarajan and Solomon Pappaiah) and TNPSC exam syllabus alignments, the application is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind.</p>
+  <!-- 6 -->
+  <div class="doc-section" id="warranty">
+    <div class="section-tag">06 · Disclaimers</div>
+    <h2>Disclaimer of Warranties</h2>
+    <p>The application is provided on an <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> basis without warranties of any kind, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+    <p>WiselyRise Solutions does not warrant that:</p>
+    <ul>
+      <li>The App will be uninterrupted, error-free, or free of viruses or other harmful components</li>
+      <li>The results obtained from using the App will meet your specific requirements or expectations</li>
+      <li>Audio content will be compatible with all device hardware configurations</li>
+    </ul>
+  </div>
 
-  <h2>5. Limitation of Liability</h2>
-  <p>To the maximum extent permitted by applicable law, WiselyRise Solutions shall not be liable for any indirect, incidental, special, or consequential damages arising out of your use or inability to use the application.</p>
+  <!-- 7 -->
+  <div class="doc-section" id="liability">
+    <div class="section-tag">07 · Liability</div>
+    <h2>Limitation of Liability</h2>
+    <p>To the maximum extent permitted by applicable law, WiselyRise Solutions and its officers, directors, employees, and contractors shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to:</p>
+    <ul>
+      <li>Your use of or inability to use the application</li>
+      <li>Loss of local data due to device failure, uninstallation, or OS updates</li>
+      <li>Examination results or competition outcomes</li>
+    </ul>
+    <p>In jurisdictions that do not allow the exclusion or limitation of incidental or consequential damages, our liability shall be limited to the fullest extent permitted by law.</p>
+  </div>
 
-  <h2>6. Governing Law & Jurisdiction</h2>
-  <p>These Terms shall be governed by and construed in accordance with the laws of India. Any legal disputes arising out of or related to these Terms shall be subject to the exclusive jurisdiction of the competent courts in Tamil Nadu, India.</p>
+  <!-- 8 -->
+  <div class="doc-section" id="governing">
+    <div class="section-tag">08 · Governing Law</div>
+    <h2>Governing Law &amp; Jurisdiction</h2>
+    <p>These Terms shall be governed by and construed in accordance with the laws of the <strong>Republic of India</strong>, without regard to conflict of law principles. Any legal disputes arising out of or related to these Terms or the use of KuralWise shall be subject to the exclusive jurisdiction of the competent courts in <strong>Tamil Nadu, India</strong>.</p>
+    <p>If any provision of these Terms is found to be unenforceable or invalid by a court of competent jurisdiction, the remaining provisions shall remain in full force and effect.</p>
+  </div>
 
-  <h2>7. Contact Information</h2>
-  <p>For questions or legal inquiries regarding these Terms, please contact:</p>
-  <p><strong>WiselyRise Solutions</strong><br />
-  Email: <a href="mailto:support@wiselyrise.in">support@wiselyrise.in</a><br />
-  Website: <a href="https://wiselyrise.in">https://wiselyrise.in</a></p>
+  <!-- 9 -->
+  <div class="doc-section" id="contact">
+    <div class="section-tag">09 · Contact</div>
+    <h2>Contact Information</h2>
+    <p>For questions, legal enquiries, or feedback regarding these Terms of Service:</p>
+    <p>
+      <strong>WiselyRise Solutions</strong><br/>
+      Email: <a href="mailto:contact@wiselywise.in">contact@wiselywise.in</a><br/>
+      Schools &amp; Licensing: <a href="mailto:contact@wiselywise.in">contact@wiselywise.in</a><br/>
+      Website: <a href="https://wiselyrise.in" target="_blank" rel="noopener">https://wiselyrise.in</a>
+    </p>
+  </div>
 
   <hr class="divider" />
-  <p style="text-align:center;font-size:0.8rem;color:var(--muted)">© 2026 WiselyRise Solutions. All rights reserved. Made with ❤️ in Tamil Nadu.</p>
+
+  <footer class="doc-foot">
+    <p>© 2026 WiselyRise Solutions. Made with ❤️ in Tamil Nadu, India. · <a href="/kuralwise/">← Back to KuralWise</a> · <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
+
 </div>
+<a class="wa-float"
+   href="https://wa.me/919080743973?text=Hi%20WiselyRise!%20I%20have%20a%20question%20about%20KuralWise."
+   target="_blank" rel="noopener noreferrer"
+   aria-label="Chat with WiselyRise on WhatsApp">
+  <span class="wa-float__ring" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12.004 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.464 3.484 1.345 5.001L2 22l5.126-1.334a9.958 9.958 0 0 0 4.878 1.243h.004c5.514 0 9.997-4.483 9.997-9.997s-4.483-9.909-9.997-9.909zm0 18.19h-.003a8.19 8.19 0 0 1-4.174-1.144l-.3-.178-3.104.808.828-3.027-.196-.31a8.176 8.176 0 0 1-1.253-4.372c0-4.513 3.673-8.186 8.194-8.186 2.19 0 4.248.853 5.795 2.401a8.14 8.14 0 0 1 2.399 5.792c0 4.513-3.674 8.216-8.186 8.216z"/>
+  </svg>
+</a>
+<script src="/shared/contact-modal.js"></script>
 </body>
 </html>

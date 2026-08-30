@@ -3,202 +3,384 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — KuralWise</title>
-  <meta name="description" content="Privacy Policy for KuralWise: 100% offline, zero-data collection, family-friendly, and COPPA compliant." />
+  <title>Privacy Policy — KuralWise by WiselyRise</title>
+  <meta name="description" content="KuralWise Privacy Policy: 100% offline, zero data collection, COPPA compliant, family safe. Your learning data never leaves your device." />
   <link rel="canonical" href="https://wiselyrise.in/kuralwise/privacy.html" />
-  <link rel="icon" href="/kuralwise/images/app_icon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/kuralwise/images/app_icon.png" />
+  <link rel="icon" href="images/app_icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="images/app_icon.png" />
+  <meta name="theme-color" content="#FBF9F4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&family=Outfit:wght@400;600;700;800&family=Anek+Tamil:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #FBF9F4;
-      --fg: #171B34;
-      --muted: #6B7280;
-      --border: #E5E7EB;
-      --accent: #F5A623;
-      --accent-dark: #D97706;
-      --accent-bg: #FEF3C7;
-      --deep-indigo: #171B34;
-      --emerald: #10B981;
-      --emerald-bg: #ECFDF5;
+      --bg:#FBF9F4; --fg:#171B34; --muted:#6B7280; --border:#E5E7EB;
+      --gold:#D97706; --gold-bg:#FEF3C7; --gold-lt:#F5A623;
+      --emerald:#059669; --emerald-bg:#ECFDF5; --emerald-lt:#10B981;
+      --navy:#171B34; --red:#DC2626;
     }
     @media(prefers-color-scheme:dark){
       :root{
-        --bg: #0C1222;
-        --fg: #F3F4F6;
-        --muted: #9CA3AF;
-        --border: #1F2937;
-        --accent: #F5A623;
-        --accent-bg: #291E0A;
-        --deep-indigo: #070F1C;
-        --emerald: #34D399;
-        --emerald-bg: #064E3B;
+        --bg:#0C1222; --fg:#F3F4F6; --muted:#9CA3AF; --border:#1F2937;
+        --gold:#F5A623; --gold-bg:#1C1407; --gold-lt:#FBBF24;
+        --emerald:#34D399; --emerald-bg:#064E3B;
+        --navy:#070F1C;
       }
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      line-height: 1.7;
-      padding: 32px 20px;
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.75;}
+    a{color:var(--gold);font-weight:600;}
+    a:hover{text-decoration:underline;}
+    img{display:block;max-width:100%;}
+
+    /* NAV */
+    .topnav {
+      position:sticky; top:0; z-index:100;
+      background:rgba(251,249,244,.92); backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border); padding:0 24px;
     }
-    .container { max-width: 760px; margin: 0 auto; }
-    h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 2rem;
-      margin-bottom: 6px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--fg);
+    @media(prefers-color-scheme:dark){
+      .topnav{background:rgba(12,18,34,.92);}
     }
-    .subtitle {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: 32px;
+    .topnav-i {
+      max-width:880px; margin:0 auto; height:60px;
+      display:flex; align-items:center; justify-content:space-between;
     }
-    .badge {
+    .topnav-logo{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.1rem;color:var(--fg);}
+    .topnav-logo img{width:32px;height:32px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+    .topnav-right{display:flex;gap:20px;align-items:center;}
+    .topnav-right a{font-size:.84rem;font-weight:500;color:var(--muted);}
+    .topnav-right a:hover{color:var(--gold);text-decoration:none;}
+    .topnav-right button{font-size:.84rem;font-weight:600;color:var(--gold);background:transparent;border:none;cursor:pointer;}
+    .topnav-right button:hover{color:var(--gold-lt);}
+    .topnav-dl{
+      display:inline-flex;align-items:center;gap:6px;
+      background:var(--gold-lt);color:#fff;padding:7px 16px;border-radius:100px;
+      font-size:.8rem;font-weight:700;
+    }
+    .topnav-dl:hover{opacity:.9;text-decoration:none;}
+
+    /* LAYOUT */
+    .page{max-width:780px;margin:0 auto;padding:48px 24px 80px;}
+
+    /* HERO HEADER */
+    .doc-header{
+      background:linear-gradient(135deg,#0F1E3A,#1A1040);
+      border-radius:20px; padding:36px 36px 32px; margin-bottom:40px;
+      color:#fff; border:1px solid rgba(255,255,255,.08);
+    }
+    .doc-badge{
+      display:inline-flex;align-items:center;gap:7px;
+      background:rgba(52,211,153,.18);border:1px solid rgba(52,211,153,.3);
+      color:#34D399;padding:5px 14px;border-radius:100px;
+      font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;
+    }
+    .doc-header h1{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:900;letter-spacing:-.02em;margin-bottom:8px;}
+    .doc-header .meta{font-size:.82rem;color:rgba(255,255,255,.55);}
+
+    /* CALLOUT */
+    .callout{
+      display:flex;gap:14px;align-items:flex-start;
+      background:var(--emerald-bg);border:1px solid var(--emerald-lt);
+      border-radius:14px;padding:20px 22px;margin:28px 0;
+    }
+    .callout .ci{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
+    .callout p{font-size:.93rem;color:var(--fg);line-height:1.7;margin:0;}
+    .callout strong{color:var(--emerald);}
+
+    .callout-gold{background:var(--gold-bg);border-color:var(--gold-lt);}
+    .callout-gold strong{color:var(--gold);}
+
+    /* SECTIONS */
+    .doc-section{margin-bottom:36px;}
+    .section-tag{
+      display:inline-flex;align-items:center;gap:6px;
+      background:var(--gold-bg);color:var(--gold);
+      font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+      padding:4px 12px;border-radius:100px;margin-bottom:10px;
+    }
+    h2{font-family:'Outfit',sans-serif;font-size:1.25rem;font-weight:700;color:var(--fg);margin-bottom:14px;}
+    h3{font-size:1rem;font-weight:600;color:var(--fg);margin:20px 0 8px;}
+    p{font-size:.93rem;color:var(--fg);line-height:1.75;margin-bottom:14px;}
+    ul{padding-left:22px;margin-bottom:16px;}
+    li{font-size:.92rem;color:var(--fg);line-height:1.75;margin-bottom:6px;}
+
+    /* PERMISSIONS TABLE */
+    .perm-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.88rem;}
+    .perm-table th{background:var(--gold-bg);color:var(--gold);padding:10px 14px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px;}
+    .perm-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6;}
+    .perm-table tr:last-child td{border-bottom:none;}
+    .perm-table tr:nth-child(even) td{background:rgba(0,0,0,.02);}
+    @media(prefers-color-scheme:dark){.perm-table tr:nth-child(even) td{background:rgba(255,255,255,.02);}}
+
+    code{background:var(--gold-bg);color:var(--gold);padding:2px 7px;border-radius:6px;font-size:.82rem;font-family:monospace;}
+
+    /* DIVIDER */
+    .divider{border:none;border-top:1px solid var(--border);margin:36px 0;}
+
+    /* JUMP NAV */
+    .jump-nav{
+      background:var(--gold-bg);border:1px solid rgba(217,119,6,.2);
+      border-radius:14px;padding:20px 22px;margin-bottom:36px;
+    }
+    .jump-nav .jn-title{font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+    .jump-nav ol{padding-left:18px;display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;}
+    .jump-nav li{font-size:.85rem;}
+    .jump-nav a{color:var(--gold);font-weight:500;}
+    @media(max-width:480px){.jump-nav ol{grid-template-columns:1fr;}}
+
+    footer.doc-foot{text-align:center;font-size:.78rem;color:var(--muted);padding:32px 0 0;}
+    footer.doc-foot a{color:var(--gold);font-weight:500;}
+
+    /* WhatsApp floating button */
+    .wa-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: var(--emerald-bg);
-      color: var(--emerald);
-      padding: 4px 12px;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      margin-bottom: 16px;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(37, 211, 102, 0.35), 0 8px 22px rgba(0,0,0,0.26);
+      z-index: 999;
+      transition: transform .18s ease, box-shadow .18s ease;
+      text-decoration: none;
     }
-    h2 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.2rem;
-      margin: 36px 0 12px;
-      color: var(--accent-dark);
-      font-weight: 700;
+    .wa-float:hover,
+    .wa-float:focus-visible {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 14px 32px rgba(37, 211, 102, 0.42), 0 10px 26px rgba(0,0,0,0.28);
+      outline: none;
     }
-    h3 {
-      font-size: 1rem;
-      margin: 22px 0 8px;
-      font-weight: 600;
-      color: var(--fg);
+    .wa-float svg { width: 30px; height: 30px; fill: white; }
+    .wa-float__ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid #25D366;
+      animation: wa-pulse 2.4s ease-out infinite;
+      pointer-events: none;
     }
-    p, li {
-      font-size: 0.93rem;
-      margin-bottom: 12px;
-      color: var(--fg);
-      line-height: 1.75;
+    @keyframes wa-pulse {
+      0%   { transform: scale(1);   opacity: .55; }
+      100% { transform: scale(1.65); opacity: 0; }
     }
-    ul { padding-left: 24px; margin-bottom: 16px; }
-    a { color: var(--accent-dark); text-decoration: none; font-weight: 600; }
-    a:hover { text-decoration: underline; }
-    .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
-    .nav-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 36px;
-      flex-wrap: wrap;
-      gap: 12px;
+    @media (prefers-reduced-motion: reduce) {
+      .wa-float__ring { animation: none; }
+      .wa-float { transition: none; }
     }
-    .nav-bar a {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--muted);
+    @media (max-width: 480px) {
+      .wa-float { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+      .wa-float svg { width: 26px; height: 26px; }
     }
-    .nav-bar a:hover { color: var(--accent-dark); }
-    .callout {
-      background: var(--accent-bg);
-      border-left: 4px solid var(--accent);
-      padding: 16px 20px;
-      border-radius: 8px;
-      margin: 20px 0;
-    }
-    .callout p { margin: 0; color: var(--fg); font-weight: 500; }
   </style>
 </head>
 <body>
-<div class="container">
 
-  <div class="nav-bar">
-    <a href="/kuralwise/" style="display:inline-flex;align-items:center;gap:10px">
-      <img src="images/app_icon.png" alt="KuralWise" style="width:34px;height:34px;border-radius:22%;vertical-align:middle;box-shadow:0 2px 8px rgba(0,0,0,0.1)" />
-      <strong style="color:var(--fg);font-family:'Outfit',sans-serif;font-size:1.1rem">KuralWise</strong>
+<nav class="topnav">
+  <div class="topnav-i">
+    <a href="/kuralwise/" class="topnav-logo">
+      <img src="images/app_icon.png" alt="KuralWise" />
+      KuralWise
     </a>
-    <div style="display:flex;gap:18px">
-      <a href="/kuralwise/">❮ Back to App</a>
-      <a href="https://wiselyrise.in">WiselyRise 🏠︎</a>
+    <div class="topnav-right">
+      <a href="/kuralwise/">← Home</a>
+      <a href="terms.html">Terms</a>
+      <button onclick="openContactModal('kuralwise'); return false;">Get in Touch</button>
+      <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="topnav-dl">Get App ⚡</a>
     </div>
   </div>
+</nav>
 
-  <div class="badge">🛡️ 100% Offline • Zero Trackers • Family Safe</div>
-  <h1>Privacy Policy</h1>
-  <p class="subtitle">Effective Date: August 29, 2026 • Last updated: August 29, 2026</p>
+<div class="page">
 
-  <div class="callout">
-    <p><strong>The Short Version:</strong> KuralWise is built with an uncompromising commitment to user privacy. We do not collect, transmit, sell, or monetize your personal data. The app works 100% offline. All learning progress, bookmarks, custom schedules, and test history remain exclusively on your physical device.</p>
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-badge">🛡️ 100% Offline · Zero Trackers · Family Safe · COPPA Compliant</div>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Effective Date: 29 August 2026 · Last updated: 29 August 2026 · KuralWise by WiselyRise Solutions</p>
   </div>
 
-  <h2>1. Who We Are</h2>
-  <p><strong>KuralWise</strong> is developed and maintained by <strong>WiselyRise Solutions</strong> ("we", "our", or "us"), based in Tamil Nadu, India. Our mission is to build purposeful, privacy-first software that elevates human potential without data surveillance.</p>
-  <p>Website: <a href="https://wiselyrise.in" target="_blank" rel="noopener">https://wiselyrise.in</a><br />
-  Contact Email: <a href="mailto:privacy@wiselyrise.in">privacy@wiselyrise.in</a></p>
+  <!-- TLDR CALLOUT -->
+  <div class="callout">
+    <div class="ci">🔒</div>
+    <p><strong>The Short Version:</strong> KuralWise is built with an uncompromising commitment to privacy. We do not collect, transmit, sell, or monetize your personal data in any form. The app works 100% offline. All learning progress, SM-2 mastery data, streaks, custom schedules, and audio preferences remain exclusively on your physical device and are never uploaded to any server.</p>
+  </div>
 
-  <h2>2. What Information We Collect</h2>
-  <p><strong>We collect ZERO Personal Identifiable Information (PII).</strong></p>
-  <ul>
-    <li><strong>No Account Required:</strong> You do not need to provide an email address, phone number, name, or password to use KuralWise.</li>
-    <li><strong>No Location Tracking:</strong> We do not access or collect your GPS, IP geolocation, or cell tower data.</li>
-    <li><strong>No Audio or Camera Recording:</strong> All audio playback occurs locally on your device. The app never accesses your microphone or camera.</li>
-    <li><strong>No Advertising SDKs:</strong> KuralWise contains zero ads, zero banner trackers, and zero behavioral profiling scripts.</li>
-  </ul>
+  <!-- JUMP NAV -->
+  <div class="jump-nav">
+    <div class="jn-title">Contents</div>
+    <ol>
+      <li><a href="#who">Who We Are</a></li>
+      <li><a href="#collect">What We Collect</a></li>
+      <li><a href="#local">Local Data Storage</a></li>
+      <li><a href="#children">Children's Privacy</a></li>
+      <li><a href="#permissions">Device Permissions</a></li>
+      <li><a href="#third-party">Third-Party Services</a></li>
+      <li><a href="#retention">Data Retention</a></li>
+      <li><a href="#changes">Policy Changes</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ol>
+  </div>
 
-  <h2>3. Local On-Device Data Storage</h2>
-  <p>KuralWise stores information locally in an encrypted SQLite database on your device to power your learning experience:</p>
-  <ul>
-    <li><strong>User Profiles & Track Preferences:</strong> Avatar selection, chosen track (Little Sprouts, School Track, Exam Track, Wisdom Track), and font theme.</li>
-    <li><strong>Mastery & Spaced Repetition (SM-2):</strong> Review intervals, recall scores, correct/incorrect counters, and streak records.</li>
-    <li><strong>Kural Radio Alarm Settings:</strong> Your preferred notification time and voice speed.</li>
-  </ul>
-  <p><em>This data is stored purely in your device's sandbox. It is never uploaded to any remote server or third-party cloud.</em></p>
+  <!-- 1 -->
+  <div class="doc-section" id="who">
+    <div class="section-tag">01 · Who We Are</div>
+    <h2>About WiselyRise Solutions</h2>
+    <p><strong>KuralWise</strong> is developed and maintained by <strong>WiselyRise Solutions</strong> ("we", "our", or "us"), based in Tamil Nadu, India. Our mission is to build purposeful, privacy-first software that elevates human potential — without data surveillance.</p>
+    <p>Website: <a href="https://wiselyrise.in" target="_blank" rel="noopener">https://wiselyrise.in</a><br/>
+    Privacy enquiries: <a href="mailto:contact@wiselywise.in">contact@wiselywise.in</a><br/>
+    General support: <a href="mailto:contact@wiselywise.in">contact@wiselywise.in</a></p>
+  </div>
 
-  <h2>4. Children’s Privacy & COPPA Compliance</h2>
-  <p>KuralWise features a dedicated <strong>"Little Sprouts"</strong> track specifically tailored for young children (ages 3–7) and is fully compliant with the <strong>Children’s Online Privacy Protection Act (COPPA)</strong>, <strong>GDPR-K</strong>, and <strong>Google Play’s Families Policy</strong>:</p>
-  <ul>
-    <li>We do not collect any personal information from children under the age of 13.</li>
-    <li>There are no chat rooms, social sharing feeds, or external web links in the child learning interface.</li>
-    <li>No behavioral advertisements or user profiling exist anywhere in the app.</li>
-  </ul>
+  <!-- 2 -->
+  <div class="doc-section" id="collect">
+    <div class="section-tag">02 · Data Collection</div>
+    <h2>What Information We Collect</h2>
+    <div class="callout callout-gold">
+      <div class="ci">✅</div>
+      <p><strong>We collect ZERO Personal Identifiable Information (PII).</strong> No name, no email, no phone number, no account, no password — nothing.</p>
+    </div>
+    <ul>
+      <li><strong>No Account Required:</strong> KuralWise works out of the box with no registration of any kind.</li>
+      <li><strong>No Location Tracking:</strong> We do not access GPS, IP geolocation, or cell tower data.</li>
+      <li><strong>No Audio or Camera Recording:</strong> All audio playback occurs locally. The app never accesses your microphone or camera in the current release.</li>
+      <li><strong>No Advertising SDKs:</strong> KuralWise contains zero ad networks, zero banner trackers, and zero behavioral profiling scripts or libraries.</li>
+      <li><strong>No Analytics Platform:</strong> We do not integrate Google Analytics for Firebase, Mixpanel, Amplitude, Facebook SDK, or any equivalent analytics service.</li>
+    </ul>
+  </div>
 
-  <h2>5. Device Permissions</h2>
-  <p>KuralWise requests only the minimal system permissions strictly required for core functionality:</p>
-  <ul>
-    <li><code>POST_NOTIFICATIONS</code> / <code>SCHEDULE_EXACT_ALARM</code>: Used solely to trigger your local daily morning Kural Radio alarm at your chosen time. These alarms run entirely on your local operating system without connecting to an external notification server.</li>
-    <li><code>WAKE_LOCK</code>: Allows smooth background audio playback of the 28-second Kural Radio capsules when your screen is locked.</li>
-  </ul>
+  <!-- 3 -->
+  <div class="doc-section" id="local">
+    <div class="section-tag">03 · Local Storage</div>
+    <h2>On-Device Data Storage</h2>
+    <p>KuralWise stores information locally in a sandboxed SQLite database on your device to power your learning experience. This data is private to the app and your device — it is never transmitted or uploaded anywhere.</p>
+    <ul>
+      <li><strong>User Profiles &amp; Preferences:</strong> Avatar selection, chosen track (Little Sprouts / School / Exam / Wisdom), font theme, and language mode.</li>
+      <li><strong>Mastery &amp; Spaced Repetition (SM-2):</strong> Per-kural review intervals, ease factors, recall scores, correct/incorrect counters, and 8-stage mastery state.</li>
+      <li><strong>Recitation Sprint Records:</strong> Personal-best sprint times, average pace per Kural session, and completion counts — stored locally for personal progress tracking only.</li>
+      <li><strong>Daily Streak Records:</strong> Current streak and longest streak counts for motivation — no server sync, no leaderboard.</li>
+      <li><strong>Kural Radio Settings:</strong> Your preferred daily alarm time and playback speed — stored in local device preferences only.</li>
+    </ul>
+  </div>
 
-  <h2>6. Third-Party Services</h2>
-  <p>KuralWise does not integrate any third-party analytics (like Google Analytics for Firebase, Mixpanel, or Facebook Pixel) or advertising networks. When you share a verse via the system share sheet, the data is handled directly by your chosen third-party application (e.g. WhatsApp, Messages) under that application's own privacy policy.</p>
+  <!-- 4 -->
+  <div class="doc-section" id="children">
+    <div class="section-tag">04 · Children's Privacy</div>
+    <h2>Children's Privacy &amp; COPPA Compliance</h2>
+    <p>KuralWise features a dedicated <strong>Little Sprouts</strong> track for young children (ages 3–7) and is designed to be fully compliant with:</p>
+    <ul>
+      <li><strong>COPPA</strong> — Children's Online Privacy Protection Act (United States)</li>
+      <li><strong>GDPR-K</strong> — European General Data Protection Regulation (Children)</li>
+      <li><strong>Google Play Families Policy</strong> — Designed for Family programs</li>
+    </ul>
+    <p>Specifically, within the children's experience:</p>
+    <ul>
+      <li>We do not collect any personal information from children under the age of 13.</li>
+      <li>There are no chat rooms, social sharing feeds, or in-app external web links.</li>
+      <li>No behavioral advertisements or user profiling exist anywhere in the app.</li>
+      <li>No push-to-purchase prompts or in-app purchase flows appear in the children's interface.</li>
+    </ul>
+  </div>
 
-  <h2>7. Data Retention & Deletion</h2>
-  <p>Because all data resides strictly on your device, you maintain complete sovereignty over your data:</p>
-  <ul>
-    <li>You can reset your learning progress at any time within the app settings.</li>
-    <li>Uninstalling KuralWise permanently deletes all local databases, streaks, and preferences from your device.</li>
-  </ul>
+  <!-- 5 -->
+  <div class="doc-section" id="permissions">
+    <div class="section-tag">05 · Device Permissions</div>
+    <h2>App Permissions Explained</h2>
+    <p>KuralWise requests only the minimal permissions strictly required for core functionality:</p>
+    <table class="perm-table">
+      <thead><tr><th>Permission</th><th>Why It's Needed</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>POST_NOTIFICATIONS</code></td>
+          <td>To show your local daily Kural Radio alarm notification at your chosen time. The alarm runs entirely on your device's local operating system — no push notification server is involved.</td>
+        </tr>
+        <tr>
+          <td><code>SCHEDULE_EXACT_ALARM</code></td>
+          <td>To deliver your Kural Radio alarm at the exact time you configured (e.g. 7:30 AM). Required on Android 12+ for precise local alarms.</td>
+        </tr>
+        <tr>
+          <td><code>WAKE_LOCK</code></td>
+          <td>To allow smooth background audio playback of the 28-second Kural Radio capsule when your screen is locked — so the morning ritual completes uninterrupted.</td>
+        </tr>
+        <tr>
+          <td><code>RECEIVE_BOOT_COMPLETED</code></td>
+          <td>To re-register your daily alarm after a device restart, ensuring your Kural Radio schedule survives a reboot.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>No camera, microphone, location, contacts, storage, or Bluetooth permissions are requested or used.</p>
+  </div>
 
-  <h2>8. Changes to This Privacy Policy</h2>
-  <p>We may periodically update our Privacy Policy to reflect app improvements or legal adjustments. Any changes will be posted on this page with an updated Effective Date.</p>
+  <!-- 6 -->
+  <div class="doc-section" id="third-party">
+    <div class="section-tag">06 · Third Parties</div>
+    <h2>Third-Party Services</h2>
+    <p>KuralWise does not integrate any third-party analytics, advertising networks, or crash reporting SDKs within the app itself.</p>
+    <p>The only external network interaction is an optional, one-time audio pack download from a static file host (GitHub Releases or Firebase Storage free tier) for users who choose to download additional audio chapter packs. This download is:</p>
+    <ul>
+      <li>Entirely optional — the app functions fully offline with the bundled audio corpus.</li>
+      <li>A simple HTTPS file download with no user identification or tracking parameters.</li>
+      <li>Governed by GitHub's or Firebase's own privacy policies for static file serving.</li>
+    </ul>
+    <p>When you share a verse using the system share sheet (e.g. WhatsApp, Messages, Instagram), the content is handled directly by your chosen third-party application under that application's own privacy policy. KuralWise has no visibility into what you share or with whom.</p>
+  </div>
 
-  <h2>9. Contact Us</h2>
-  <p>If you have any questions or feedback regarding this Privacy Policy, please reach out to us:</p>
-  <p><strong>WiselyRise Solutions</strong><br />
-  Email: <a href="mailto:support@wiselyrise.in">support@wiselyrise.in</a> / <a href="mailto:privacy@wiselyrise.in">privacy@wiselyrise.in</a><br />
-  Website: <a href="https://wiselyrise.in">https://wiselyrise.in</a></p>
+  <!-- 7 -->
+  <div class="doc-section" id="retention">
+    <div class="section-tag">07 · Retention &amp; Deletion</div>
+    <h2>Data Retention &amp; Deletion</h2>
+    <p>Because all data resides strictly on your device, you maintain complete sovereignty over it:</p>
+    <ul>
+      <li>You can reset your learning progress, streak, and SM-2 data at any time from the app's Settings screen.</li>
+      <li>Uninstalling KuralWise from your device permanently and irreversibly deletes all local databases, streaks, and preferences.</li>
+      <li>There is no "cloud account" to delete — because we never created one.</li>
+    </ul>
+  </div>
+
+  <!-- 8 -->
+  <div class="doc-section" id="changes">
+    <div class="section-tag">08 · Policy Updates</div>
+    <h2>Changes to This Privacy Policy</h2>
+    <p>We may periodically update this Privacy Policy to reflect app improvements or legal adjustments. Any changes will be posted on this page with an updated Effective Date. Continued use of the app after such changes constitutes your acceptance of the updated policy. We will not introduce data collection without prominent notice.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="doc-section" id="contact">
+    <div class="section-tag">09 · Contact</div>
+    <h2>Contact Us</h2>
+    <p>If you have any questions, concerns, or feedback regarding this Privacy Policy or KuralWise's data practices, please reach out:</p>
+    <p>
+      <strong>WiselyRise Solutions</strong><br/>
+      Privacy: <a href="mailto:contact@wiselywise.in">contact@wiselywise.in</a><br/>
+      Support: <a href="mailto:contact@wiselywise.in">contact@wiselywise.in</a><br/>
+      Website: <a href="https://wiselyrise.in" target="_blank" rel="noopener">https://wiselyrise.in</a>
+    </p>
+    <p>We aim to respond to all privacy enquiries within 72 hours.</p>
+  </div>
 
   <hr class="divider" />
-  <p style="text-align:center;font-size:0.8rem;color:var(--muted)">© 2026 WiselyRise Solutions. All rights reserved. Made with ❤️ in Tamil Nadu.</p>
+
+  <footer class="doc-foot">
+    <p>© 2026 WiselyRise Solutions. Made with ❤️ in Tamil Nadu, India. · <a href="/kuralwise/">← Back to KuralWise</a> · <a href="terms.html">Terms of Service</a></p>
+  </footer>
+
 </div>
+<a class="wa-float"
+   href="https://wa.me/919080743973?text=Hi%20WiselyRise!%20I%20have%20a%20question%20about%20KuralWise."
+   target="_blank" rel="noopener noreferrer"
+   aria-label="Chat with WiselyRise on WhatsApp">
+  <span class="wa-float__ring" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12.004 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.464 3.484 1.345 5.001L2 22l5.126-1.334a9.958 9.958 0 0 0 4.878 1.243h.004c5.514 0 9.997-4.483 9.997-9.997s-4.483-9.909-9.997-9.909zm0 18.19h-.003a8.19 8.19 0 0 1-4.174-1.144l-.3-.178-3.104.808.828-3.027-.196-.31a8.176 8.176 0 0 1-1.253-4.372c0-4.513 3.673-8.186 8.194-8.186 2.19 0 4.248.853 5.795 2.401a8.14 8.14 0 0 1 2.399 5.792c0 4.513-3.674 8.216-8.186 8.216z"/>
+  </svg>
+</a>
+<script src="/shared/contact-modal.js"></script>
 </body>
 </html>

@@ -97,6 +97,7 @@
               <option value="pixwise">PixWise</option>
               <option value="gramwise">GramWise</option>
               <option value="keywise">KeyWise</option>
+              <option value="kuralwise">KuralWise</option>
               <option value="docuwise">DocuWise</option>
               <option value="clinicwise">ClinicWise</option>
               <option value="chitwise">ChitWise</option>
@@ -272,7 +273,7 @@
         document.getElementById('cmSuccess').style.display = 'flex';
       } catch (err) {
         btn.disabled = false; btn.textContent = 'Send Feedback';
-        setStatus(err.message || 'Submission failed. Please email contact@wiselyrise.in directly.', 'error');
+        setStatus(err.message || 'Submission failed. Please email contact@wiselywise.in directly.', 'error');
       }
     });
   }

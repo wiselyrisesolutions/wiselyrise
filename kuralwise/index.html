@@ -3,778 +3,954 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KuralWise — Your Personal Thirukkural Coach | WiselyRise</title>
-  <meta name="description" content="KuralWise is an intelligent, offline-first Thirukkural learning companion powered by SM-2 spaced repetition, spoken audio capsules, and 4 dedicated learning tracks for kids, school contests, TNPSC exams, and daily wisdom." />
+  <title>KuralWise — Your Personal Thirukkural Coach</title>
+  <meta name="description" content="KuralWise: Thirukkural coaching for toddlers, school contest champions, TNPSC aspirants, and daily wisdom seekers. SM-2 spaced repetition, recitation sprint training, spoken audio capsules — 100% offline." />
   <meta property="og:title" content="KuralWise — Your Personal Thirukkural Coach" />
-  <meta property="og:description" content="Relearn 2,000-year-old timeless Tamil wisdom with interactive daily capsules, competition training, and picture-book reels." />
+  <meta property="og:description" content="4 tracks for kids, students, teachers & wisdom seekers. Recitation sprint training, daily audio capsules, SM-2 memory science — 100% offline and free." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://wiselyrise.in/kuralwise/" />
-  <meta property="og:image" content="https://wiselyrise.in/kuralwise/images/feature_graphic.jpg" />
+  <meta property="og:image" content="https://wiselyrise.in/kuralwise/images/app_icon.png" />
   <link rel="canonical" href="https://wiselyrise.in/kuralwise/" />
   <link rel="icon" href="images/app_icon.png" type="image/png" />
   <link rel="apple-touch-icon" href="images/app_icon.png" />
   <meta name="theme-color" content="#070F1C" />
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
   <style>
-    /* ── RESET & VARIABLES ────────────────────────── */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body {
-      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #070F1C;
-      color: #FFFFFF;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-    a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
-    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; font-size:16px; }
+    body { font-family:'Outfit',system-ui,sans-serif; background:#070F1C; color:#fff; line-height:1.7; overflow-x:hidden; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; }
+    button { cursor:pointer; border:none; background:none; font-family:inherit; }
 
     :root {
-      --navy: #070F1C;
-      --navy-mid: #0C1D38;
-      --navy-soft: #132444;
-      --gold: #F5A623;
-      --gold-light: #FBBF24;
-      --emerald: #10B981;
-      --emerald-light: #34D399;
-      --terracotta: #E76F51;
-      --cream: #FBF9F4;
-      --white: #FFFFFF;
-      --muted: #7A90A8;
-      --border: rgba(216,228,239,0.12);
-      --card-bg: rgba(12, 29, 56, 0.65);
-      --glow: rgba(245, 166, 35, 0.18);
+      --navy:#070F1C; --navy-mid:#0C1D38; --navy-soft:#132444;
+      --gold:#F5A623; --gold-lt:#FBBF24;
+      --emerald:#10B981; --emerald-lt:#34D399;
+      --terra:#E76F51; --cream:#FBF9F4;
+      --blue:#3B82F6; --purple:#8B5CF6;
+      --muted:#7A90A8; --border:rgba(216,228,239,0.12);
+      --card:rgba(12,29,56,0.65); --glow:rgba(245,166,35,0.18);
     }
 
-    /* ── ANIMATIONS ──────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes floatSlow {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 0.8; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.05); }
-    }
+    @keyframes fadeUp   { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:none} }
+    @keyframes pulse    { 0%,100%{opacity:.8;transform:scale(1)} 50%{opacity:1;transform:scale(1.06)} }
+    @keyframes floatY   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .reveal.visible { opacity: 1; transform: none; }
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .65s ease,transform .65s ease; }
+    .reveal.vis { opacity:1; transform:none; }
 
-    /* ── NAVIGATION ──────────────────────────────── */
+    /* NAV */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      background: rgba(7,15,28,0.85);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.3s;
+      position:fixed; top:0; left:0; right:0; z-index:300;
+      background:rgba(7,15,28,.9); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
     }
-    .nav-inner {
-      max-width: 1180px; margin: 0 auto;
-      padding: 0 28px; height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
+    .nav-i { max-width:1200px; margin:0 auto; padding:0 24px; height:68px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo { display:flex; align-items:center; gap:10px; }
+    .nav-logo img { width:36px; height:36px; border-radius:10px; box-shadow:0 3px 10px rgba(245,166,35,.3); }
+    .nav-wm { display:flex; flex-direction:column; line-height:1.1; }
+    .nav-name { font-size:1.18rem; font-weight:800; letter-spacing:-.02em; }
+    .nav-sub  { font-size:.6rem;  font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); }
+    .nav-links { display:flex; align-items:center; gap:2px; }
+    .nav-links a { font-size:.84rem; font-weight:500; color:var(--muted); padding:7px 12px; border-radius:8px; transition:all .2s; }
+    .nav-links a:hover { color:#fff; background:rgba(255,255,255,.06); }
+    .nav-links button {
+      font-size:.84rem; font-weight:600; color:var(--gold-lt); padding:7px 12px;
+      border-radius:8px; transition:all .2s; background:transparent; border:none;
     }
-    .nav-logo { display: flex; align-items: center; gap: 12px; }
-    .nav-logo img { width: 38px; height: 38px; border-radius: 10px; box-shadow: 0 4px 12px rgba(245,166,35,0.25); }
-    .nav-wordmark { display: flex; flex-direction: column; line-height: 1.1; }
-    .nav-name { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
-    .nav-sub { font-size: 0.65rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
-    
-    .nav-links { display: flex; align-items: center; gap: 6px; }
-    .nav-links a {
-      font-size: 0.88rem; font-weight: 500; color: var(--muted);
-      padding: 8px 14px; border-radius: 8px; transition: color 0.2s, background 0.2s;
-    }
-    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
-    
+    .nav-links button:hover { color:#fff; background:rgba(255,255,255,.06); }
     .nav-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(135deg, var(--gold), var(--terracotta));
-      color: #fff; padding: 9px 22px; border-radius: 100px;
-      font-size: 0.85rem; font-weight: 700; transition: transform 0.2s, box-shadow 0.2s;
+      display:inline-flex; align-items:center; gap:8px;
+      background:linear-gradient(135deg,var(--gold),var(--terra));
+      color:#fff; padding:9px 22px; border-radius:100px; font-size:.85rem; font-weight:700; transition:all .2s;
     }
-    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,166,35,0.35); }
+    .nav-cta:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(245,166,35,.4); }
+    .hamburger { display:none; flex-direction:column; gap:5px; padding:8px; }
+    .hamburger span { width:22px; height:2px; background:#fff; border-radius:2px; transition:all .3s; display:block; }
+    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+    .mob-menu {
+      display:none; position:fixed; top:68px; left:0; right:0; z-index:299;
+      background:rgba(7,15,28,.97); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border); padding:20px 24px 28px;
+      flex-direction:column; gap:4px;
+    }
+    .mob-menu.open { display:flex; }
+    .mob-menu a { font-size:.98rem; font-weight:600; color:rgba(255,255,255,.8); padding:12px 16px; border-radius:10px; transition:all .2s; }
+    .mob-menu a:hover { background:rgba(255,255,255,.06); color:#fff; }
+    .mob-menu button {
+      font-size:.98rem; font-weight:600; color:rgba(255,255,255,.8); padding:12px 16px;
+      border-radius:10px; transition:all .2s; background:transparent; border:none; text-align:left;
+    }
+    .mob-menu button:hover { background:rgba(255,255,255,.06); color:#fff; }
+    .mob-cta { margin-top:8px; text-align:center; background:linear-gradient(135deg,var(--gold),var(--terra)); color:#fff!important; padding:13px!important; border-radius:14px!important; font-weight:700!important; }
 
-    /* ── HERO SECTION ────────────────────────────── */
+    /* UTIL */
+    .sec { padding:100px 24px; }
+    .sec-i { max-width:1160px; margin:0 auto; }
+    .sec-hd { text-align:center; margin-bottom:60px; }
+    .lp {
+      display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:2px;
+      text-transform:uppercase; color:var(--gold); background:rgba(245,166,35,.12);
+      padding:6px 16px; border-radius:100px; margin-bottom:14px;
+    }
+    .sec-title { font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-.02em; line-height:1.2; margin-bottom:16px; }
+    .sec-desc  { font-size:1.05rem; color:var(--muted); max-width:660px; margin:0 auto; line-height:1.7; }
+
+    .btn-p {
+      display:inline-flex; align-items:center; gap:10px;
+      background:linear-gradient(135deg,var(--gold),var(--terra));
+      color:#fff; padding:14px 32px; border-radius:100px; font-size:.95rem; font-weight:700; transition:all .2s;
+    }
+    .btn-p:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(245,166,35,.4); }
+    .btn-g {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18);
+      color:#fff; padding:14px 28px; border-radius:100px; font-size:.92rem; font-weight:600; transition:all .2s;
+    }
+    .btn-g:hover { background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.35); transform:translateY(-2px); }
+    .btn-e {
+      display:inline-flex; align-items:center; gap:8px;
+      background:linear-gradient(135deg,var(--emerald),#059669);
+      color:#fff; padding:13px 28px; border-radius:100px; font-size:.9rem; font-weight:700; transition:all .2s;
+    }
+    .btn-e:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(16,185,129,.4); }
+
+    /* HERO */
     .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 130px 24px 80px; text-align: center;
-      position: relative; overflow: hidden;
+      min-height:100vh; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      padding:130px 24px 80px; text-align:center; position:relative; overflow:hidden;
     }
     .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: radial-gradient(circle, rgba(245,166,35,0.12) 1px, transparent 1px);
-      background-size: 32px 32px; pointer-events: none;
+      content:''; position:absolute; inset:0;
+      background-image:radial-gradient(circle,rgba(245,166,35,.09) 1px,transparent 1px);
+      background-size:32px 32px; pointer-events:none;
     }
-    .hero-orb-1 {
-      position: absolute; top: -160px; right: -120px;
-      width: 550px; height: 550px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(245,166,35,0.15), transparent 70%);
-      pointer-events: none;
+    .orb { position:absolute; border-radius:50%; pointer-events:none; }
+    .orb-g { width:580px; height:580px; top:-180px; right:-130px; background:radial-gradient(circle,rgba(245,166,35,.15),transparent 70%); }
+    .orb-e { width:500px; height:500px; bottom:-150px; left:-110px; background:radial-gradient(circle,rgba(16,185,129,.11),transparent 70%); }
+
+    .ptabs { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:26px; animation:fadeUp .6s ease both; }
+    .ptab {
+      display:inline-flex; align-items:center; gap:7px;
+      background:rgba(255,255,255,.06); border:1.5px solid rgba(255,255,255,.14);
+      color:rgba(255,255,255,.7); padding:9px 18px; border-radius:100px;
+      font-size:.83rem; font-weight:600; cursor:pointer; transition:all .22s;
     }
-    .hero-orb-2 {
-      position: absolute; bottom: -140px; left: -100px;
-      width: 500px; height: 500px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(16,185,129,0.12), transparent 70%);
-      pointer-events: none;
-    }
+    .ptab:hover  { border-color:rgba(245,166,35,.5); color:#fff; }
+    .ptab.active { background:rgba(245,166,35,.18); border-color:var(--gold); color:var(--gold-lt); }
 
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(245,166,35,0.12); border: 1px solid rgba(245,166,35,0.3);
-      border-radius: 100px; padding: 6px 18px;
-      font-size: 0.76rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-      color: var(--gold-light); margin-bottom: 24px;
-      animation: fadeUp 0.6s ease both;
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(245,166,35,.12); border:1px solid rgba(245,166,35,.3);
+      border-radius:100px; padding:6px 18px;
+      font-size:.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+      color:var(--gold-lt); margin-bottom:24px; animation:fadeUp .6s ease both;
     }
-    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulseGlow 2s infinite; }
+    .bdot { width:7px; height:7px; border-radius:50%; background:var(--gold); animation:pulse 2s infinite; }
 
-    .hero-headline {
-      font-size: clamp(2.5rem, 6vw, 4.4rem);
-      font-weight: 900; line-height: 1.12; letter-spacing: -0.03em;
-      margin-bottom: 20px; max-width: 880px;
-      animation: fadeUp 0.7s ease 0.1s both;
+    .hero-h1 {
+      font-size:clamp(2.6rem,6vw,4.6rem); font-weight:900;
+      line-height:1.1; letter-spacing:-.03em; margin-bottom:20px; max-width:920px;
+      animation:fadeUp .7s ease .1s both;
     }
-    .hero-headline .grad {
-      background: linear-gradient(90deg, #F5A623 0%, #FBBF24 50%, #10B981 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
+    .grad { background:linear-gradient(90deg,#F5A623 0%,#FBBF24 45%,#10B981 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
-    .hero-tagline {
-      font-size: 1.15rem; color: rgba(255,255,255,0.7);
-      max-width: 720px; margin: 0 auto 36px; line-height: 1.7; font-weight: 300;
-      animation: fadeUp 0.7s ease 0.2s both;
+    .hero-sub {
+      font-size:1.1rem; color:rgba(255,255,255,.7); max-width:740px; margin:0 auto 12px;
+      line-height:1.75; font-weight:300; animation:fadeUp .7s ease .2s both;
     }
-    .hero-tagline strong { color: #fff; font-weight: 600; }
+    .hero-sub strong { color:#fff; font-weight:600; }
+    .hero-pline { font-size:.98rem; color:rgba(255,255,255,.5); margin-bottom:30px; min-height:26px; animation:fadeUp .7s ease .25s both; }
 
-    .hero-actions {
-      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
-      margin-bottom: 36px; animation: fadeUp 0.7s ease 0.3s both;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: linear-gradient(135deg, var(--gold), var(--terracotta));
-      color: #fff; padding: 14px 32px; border-radius: 100px;
-      font-size: 0.95rem; font-weight: 700; letter-spacing: 0.3px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(245,166,35,0.4); }
+    .hero-acts { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:40px; animation:fadeUp .7s ease .3s both; }
 
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18);
-      color: #fff; padding: 14px 28px; border-radius: 100px;
-      font-size: 0.92rem; font-weight: 600; transition: all 0.2s;
-    }
-    .btn-ghost:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); transform: translateY(-2px); }
+    .stats-row { display:flex; gap:32px; justify-content:center; flex-wrap:wrap; margin-bottom:50px; animation:fadeUp .7s ease .4s both; }
+    .stat { display:flex; flex-direction:column; align-items:center; gap:3px; }
+    .stat-n { font-size:1.6rem; font-weight:800; color:var(--gold); line-height:1; }
+    .stat-l { font-size:.7rem; color:var(--muted); font-weight:500; letter-spacing:.5px; text-transform:uppercase; }
 
-    .trust-strip {
-      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
-      animation: fadeUp 0.7s ease 0.4s both;
+    .mockup-wrap { max-width:860px; width:100%; animation:fadeUp .8s ease .5s both; }
+    .mockup {
+      background:linear-gradient(165deg,#171B34,#0C1D38);
+      border:1.5px solid rgba(245,166,35,.25); border-radius:28px; padding:36px 32px;
+      box-shadow:0 24px 64px rgba(0,0,0,.5),0 0 50px var(--glow); text-align:left;
     }
-    .trust-pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.8rem; color: var(--muted); font-weight: 500;
-    }
-    .trust-pill span { color: var(--emerald-light); font-weight: bold; }
+    .mockup-lbl { font-size:.74rem; font-weight:700; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:18px; }
+    .mockup-ta  { font-family:'Anek Tamil',sans-serif; font-size:1.65rem; font-weight:700; line-height:1.55; color:#fff; margin-bottom:14px; }
+    .mockup-en  { font-size:.94rem; color:rgba(255,255,255,.72); line-height:1.65; margin-bottom:24px; }
+    .chips      { display:flex; gap:10px; flex-wrap:wrap; }
+    .chip       { padding:7px 15px; border-radius:100px; font-size:.78rem; font-weight:600; border:1px solid; }
+    .cg { background:rgba(245,166,35,.12); border-color:rgba(245,166,35,.3); color:var(--gold); }
+    .ce { background:rgba(16,185,129,.12); border-color:rgba(16,185,129,.3); color:var(--emerald-lt); }
+    .cb { background:rgba(59,130,246,.12); border-color:rgba(59,130,246,.3); color:#60A5FA; }
 
-    /* ── HERO VISUAL / PHONE MOCKUP ──────────────── */
-    .hero-mockup-wrap {
-      margin-top: 54px; max-width: 860px; width: 100%;
-      position: relative; animation: fadeUp 0.8s ease 0.5s both;
-    }
-    .mockup-card {
-      background: linear-gradient(170deg, #171B34 0%, #0C1D38 100%);
-      border: 1.5px solid rgba(245,166,35,0.25);
-      border-radius: 28px; padding: 36px 32px;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 40px var(--glow);
-      text-align: left;
-    }
-    .mockup-header {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px;
-    }
-    .mockup-title { font-size: 0.8rem; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
-    .mockup-kural-ta {
-      font-family: 'Anek Tamil', sans-serif;
-      font-size: 1.6rem; font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 16px;
-    }
-    .mockup-kural-en {
-      font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 24px;
-    }
+    .trust-row { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-top:22px; }
+    .ti { display:inline-flex; align-items:center; gap:6px; font-size:.8rem; color:var(--muted); font-weight:500; }
+    .ti span { color:var(--emerald-lt); font-weight:700; }
 
-    /* ── 4 LEARNING TRACKS SECTION ───────────────── */
-    .section { padding: 100px 24px; position: relative; }
-    .section-inner { max-width: 1140px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 60px; }
-    .section-label {
-      display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--gold); background: rgba(245,166,35,0.12);
-      padding: 6px 16px; border-radius: 100px; margin-bottom: 14px;
+    /* TRACKS */
+    .tracks-g { display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:24px; }
+    .track-c {
+      background:var(--card); border:1px solid var(--border); border-radius:24px;
+      padding:32px 26px; backdrop-filter:blur(12px); transition:transform .25s,border-color .25s,box-shadow .25s;
     }
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
-      letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 16px;
-    }
-    .section-desc { font-size: 1.05rem; color: var(--muted); max-width: 620px; margin: 0 auto; line-height: 1.7; }
+    .track-c:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(0,0,0,.3); }
+    .tc-s:hover { border-color:rgba(52,211,153,.4); }
+    .tc-k:hover { border-color:rgba(96,165,250,.4); }
+    .tc-e:hover { border-color:rgba(167,139,250,.4); }
+    .tc-w:hover { border-color:rgba(245,166,35,.4); }
+    .tbadge { display:inline-flex; align-items:center; gap:6px; font-size:.7rem; font-weight:700; padding:4px 12px; border-radius:100px; margin-bottom:18px; text-transform:uppercase; letter-spacing:1px; }
+    .tc-s .tbadge { background:rgba(52,211,153,.15); color:#34D399; }
+    .tc-k .tbadge { background:rgba(96,165,250,.15);  color:#60A5FA; }
+    .tc-e .tbadge { background:rgba(167,139,250,.15); color:#A78BFA; }
+    .tc-w .tbadge { background:rgba(245,166,35,.15);  color:#FBBF24; }
+    .ticon { font-size:2.3rem; margin-bottom:16px; display:block; }
+    .track-c h3 { font-size:1.28rem; font-weight:700; margin-bottom:10px; }
+    .track-c p  { font-size:.88rem; color:var(--muted); line-height:1.65; margin-bottom:20px; }
+    .tbullets { list-style:none; display:flex; flex-direction:column; gap:8px; }
+    .tbullets li { display:flex; align-items:flex-start; gap:8px; font-size:.84rem; color:rgba(255,255,255,.85); }
+    .tbullets li::before { content:'✓'; color:var(--emerald-lt); font-weight:bold; flex-shrink:0; }
 
-    .tracks-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;
+    /* RECITATION */
+    .rec-sec { background:linear-gradient(180deg,var(--navy) 0%,#0A1428 50%,var(--navy) 100%); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .rec-strip {
+      background:linear-gradient(135deg,#0F1E3A,#1A1040,#0C2233);
+      border:1.5px solid rgba(245,166,35,.25); border-radius:28px;
+      padding:44px 40px; margin-bottom:48px; text-align:center;
+      box-shadow:0 20px 60px rgba(0,0,0,.4);
     }
-    .track-card {
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: 24px; padding: 32px 26px; backdrop-filter: blur(12px);
-      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-      position: relative; overflow: hidden;
+    .sprint-clock {
+      font-family:'Outfit',monospace; font-size:clamp(3.5rem,8vw,6rem); font-weight:900;
+      letter-spacing:.04em; color:#fff; text-shadow:0 0 30px rgba(245,166,35,.35); margin:16px 0;
     }
-    .track-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(245,166,35,0.4);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
-    }
-    .track-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 100px;
-      margin-bottom: 18px; text-transform: uppercase; letter-spacing: 1px;
-    }
-    .track-sprouts .track-badge { background: rgba(52,211,153,0.15); color: #34D399; }
-    .track-school .track-badge { background: rgba(59,130,246,0.15); color: #60A5FA; }
-    .track-exam .track-badge { background: rgba(139,92,246,0.15); color: #A78BFA; }
-    .track-wisdom .track-badge { background: rgba(245,166,35,0.15); color: #FBBF24; }
+    .pace-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin:16px 0 28px; }
+    .pp { padding:8px 20px; border-radius:100px; font-size:.83rem; font-weight:700; border:1.5px solid; display:inline-flex; align-items:center; gap:7px; }
+    .pp-wr { background:rgba(16,185,129,.15); border-color:var(--emerald); color:var(--emerald-lt); }
+    .pp-ch { background:rgba(245,166,35,.15); border-color:var(--gold); color:var(--gold-lt); }
+    .pp-fl { background:rgba(231,111,81,.15); border-color:var(--terra); color:#FB8B6E; }
 
-    .track-icon { font-size: 2.2rem; margin-bottom: 16px; }
-    .track-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
-    .track-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
-    .track-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .track-bullets li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.85rem; color: rgba(255,255,255,0.85); }
-    .track-bullets li::before { content: '✓'; color: var(--emerald-light); font-weight: bold; }
+    .rec-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:24px; }
+    .rec-c {
+      background:var(--card); border:1px solid var(--border); border-radius:22px;
+      padding:30px 26px; transition:all .25s;
+    }
+    .rec-c:hover { transform:translateY(-5px); border-color:rgba(245,166,35,.35); box-shadow:0 14px 36px rgba(0,0,0,.3); }
+    .rec-top { display:flex; align-items:center; gap:14px; margin-bottom:18px; }
+    .rec-ico { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
+    .rig { background:rgba(245,166,35,.18); } .rib { background:rgba(96,165,250,.18); } .rie { background:rgba(52,211,153,.18); }
+    .rec-c h4 { font-size:1.1rem; font-weight:700; }
+    .rec-badge-s { font-size:.67rem; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--gold); margin-top:3px; }
+    .rec-c p  { font-size:.88rem; color:var(--muted); line-height:1.65; margin-bottom:16px; }
+    .rec-dl   { background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:12px; padding:14px 16px; }
+    .rec-dr   { display:flex; align-items:flex-start; gap:10px; font-size:.82rem; color:rgba(255,255,255,.75); padding:5px 0; }
+    .rec-dr:not(:last-child) { border-bottom:1px solid var(--border); padding-bottom:10px; margin-bottom:5px; }
+    .rec-dr::before { content:'▸'; color:var(--gold); flex-shrink:0; }
 
-    /* ── 4-STEP MODULAR AUDIO SHOWCASE ───────────── */
-    .audio-showcase {
-      background: linear-gradient(180deg, #070F1C 0%, #0C1D38 50%, #070F1C 100%);
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    }
-    .audio-player-box {
-      background: #171B34; border: 1.5px solid rgba(245,166,35,0.3);
-      border-radius: 28px; padding: 40px 36px; max-width: 820px; margin: 0 auto;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-    }
-    .audio-steps-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 28px 0;
-    }
-    .audio-step-card {
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px; padding: 16px 12px; text-align: center; cursor: pointer;
-      transition: all 0.2s;
-    }
-    .audio-step-card.active {
-      background: var(--gold); border-color: var(--gold); color: #171B34;
-      transform: scale(1.04); box-shadow: 0 8px 20px rgba(245,166,35,0.3);
-    }
-    .audio-step-card.active .step-num { background: #171B34; color: var(--gold); }
-    .step-num {
-      width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.15);
-      font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
-      margin-bottom: 8px;
-    }
-    .step-name { font-size: 0.85rem; font-weight: 700; }
-    .step-desc { font-size: 0.72rem; opacity: 0.8; margin-top: 4px; }
+    /* SCHOOLS */
+    .school-g { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+    .school-t h2 { font-size:clamp(2rem,3.5vw,2.8rem); font-weight:800; letter-spacing:-.02em; line-height:1.2; margin-bottom:20px; }
+    .school-t p  { font-size:.97rem; color:var(--muted); line-height:1.75; margin-bottom:28px; }
+    .school-bl { list-style:none; display:flex; flex-direction:column; gap:16px; margin-bottom:32px; }
+    .school-bl li { display:flex; align-items:flex-start; gap:14px; font-size:.92rem; color:rgba(255,255,255,.85); line-height:1.6; }
+    .sbi { width:36px; height:36px; border-radius:10px; background:rgba(16,185,129,.18); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; margin-top:2px; }
+    .school-ctas { display:flex; gap:12px; flex-wrap:wrap; }
 
-    /* ── SUPERPOWERS / FEATURES ─────────────────── */
-    .features-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;
+    .school-v {
+      background:linear-gradient(160deg,#0F2035,#1A1040,#0C1A2E);
+      border:1.5px solid rgba(52,211,153,.25); border-radius:28px;
+      padding:36px; box-shadow:0 20px 50px rgba(0,0,0,.4);
     }
-    .feat-box {
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: 20px; padding: 30px; transition: transform 0.2s;
-    }
-    .feat-box:hover { transform: translateY(-4px); border-color: rgba(245,166,35,0.3); }
-    .feat-icon {
-      width: 48px; height: 48px; border-radius: 14px; background: rgba(245,166,35,0.15);
-      color: var(--gold); display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; margin-bottom: 20px;
-    }
-    .feat-box h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
-    .feat-box p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+    .sv-hd { display:flex; align-items:center; gap:10px; margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid var(--border); }
+    .sv-title { font-size:.78rem; font-weight:700; color:var(--emerald-lt); letter-spacing:1.5px; text-transform:uppercase; }
+    .stu-c { background:rgba(255,255,255,.05); border:1px solid rgba(52,211,153,.18); border-radius:14px; padding:14px 18px; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .stu-l { display:flex; align-items:center; gap:12px; }
+    .av { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; font-weight:700; }
+    .avo { background:rgba(245,166,35,.3); color:var(--gold); }
+    .avb { background:rgba(96,165,250,.3); color:#60A5FA; }
+    .avp { background:rgba(236,72,153,.3); color:#F472B6; }
+    .avg { background:rgba(52,211,153,.3); color:var(--emerald-lt); }
+    .stu-n  { font-size:.87rem; font-weight:600; }
+    .stu-pr { font-size:.73rem; color:var(--muted); }
+    .mring  { width:44px; height:44px; position:relative; flex-shrink:0; }
+    .mring svg { width:44px; height:44px; transform:rotate(-90deg); }
+    .rb { fill:none; stroke:rgba(255,255,255,.1); stroke-width:4; }
+    .rf { fill:none; stroke:var(--emerald); stroke-width:4; stroke-linecap:round; stroke-dasharray:113; }
+    .rpct { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:.64rem; font-weight:700; }
 
-    /* ── FAQ ACCORDION ───────────────────────────── */
-    .faq-wrap { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
-    .faq-item {
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: 16px; padding: 22px 26px; cursor: pointer; transition: background 0.2s;
-    }
-    .faq-item:hover { background: rgba(255,255,255,0.04); }
-    .faq-q { font-size: 1.05rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
-    .faq-a { font-size: 0.92rem; color: var(--muted); margin-top: 12px; line-height: 1.7; display: none; }
-    .faq-item.open .faq-a { display: block; }
-    .faq-item.open .faq-toggle { transform: rotate(45deg); color: var(--gold); }
-    .faq-toggle { font-size: 1.4rem; transition: transform 0.2s; color: var(--muted); }
+    /* MASTERY */
+    .mastery-sec { background:var(--navy-mid); }
+    .ml-wrap { display:flex; gap:0; justify-content:center; flex-wrap:nowrap; overflow-x:auto; padding-bottom:16px; scrollbar-width:thin; }
+    .ms-step { display:flex; flex-direction:column; align-items:center; gap:10px; min-width:115px; padding:0 6px; position:relative; }
+    .ms-step:not(:last-child)::after { content:''; position:absolute; top:27px; right:-18px; width:36px; height:2px; background:linear-gradient(90deg,rgba(245,166,35,.5),rgba(245,166,35,.1)); }
+    .ms-bub { width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.3rem; border:2px solid; transition:all .3s; }
+    .ms-done    { background:rgba(16,185,129,.2); border-color:var(--emerald); }
+    .ms-cur     { background:rgba(245,166,35,.2); border-color:var(--gold); animation:pulse 2s infinite; }
+    .ms-fut     { background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.14); }
+    .ms-lbl     { font-size:.7rem; font-weight:700; text-align:center; color:rgba(255,255,255,.7); line-height:1.3; }
+    .ms-num     { font-size:.63rem; color:var(--muted); }
 
-    /* ── CTA BANNER ──────────────────────────────── */
-    .cta-banner {
-      background: linear-gradient(135deg, #171B34 0%, #2A1B40 50%, #0C1D38 100%);
-      border: 1.5px solid rgba(245,166,35,0.3); border-radius: 32px;
-      padding: 60px 40px; text-align: center; max-width: 960px; margin: 60px auto 0;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 50px var(--glow);
-    }
-    .cta-banner h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900; margin-bottom: 16px; }
-    .cta-banner p { font-size: 1.05rem; color: rgba(255,255,255,0.8); max-width: 580px; margin: 0 auto 32px; }
+    /* AUDIO */
+    .audio-sec { background:linear-gradient(180deg,var(--navy) 0%,var(--navy-mid) 50%,var(--navy) 100%); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .audio-box { background:#171B34; border:1.5px solid rgba(245,166,35,.3); border-radius:28px; padding:40px; max-width:820px; margin:0 auto; box-shadow:0 20px 50px rgba(0,0,0,.4); }
+    .asteps-g  { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:28px 0; }
+    .astep     { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:16px 12px; text-align:center; cursor:pointer; transition:all .2s; }
+    .astep.ac  { background:var(--gold); border-color:var(--gold); color:#171B34; transform:scale(1.04); box-shadow:0 8px 20px rgba(245,166,35,.3); }
+    .astep.ac .snum { background:#171B34; color:var(--gold); }
+    .snum      { width:24px; height:24px; border-radius:50%; background:rgba(255,255,255,.15); font-size:.73rem; font-weight:700; display:inline-flex; align-items:center; justify-content:center; margin-bottom:8px; }
+    .sname     { font-size:.84rem; font-weight:700; }
+    .sdesc     { font-size:.7rem; opacity:.8; margin-top:4px; }
+    .sprv      { background:rgba(0,0,0,.3); border-radius:16px; padding:22px; margin-bottom:24px; border:1px solid var(--border); min-height:86px; }
+    .sprvlbl   { font-size:.7rem; color:var(--gold); text-transform:uppercase; letter-spacing:1.5px; font-weight:700; margin-bottom:8px; }
+    .sprvtxt   { font-size:1.05rem; font-weight:600; }
 
-    /* ── FOOTER ──────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border); padding: 60px 24px 40px;
-      background: #040810; text-align: center;
-    }
-    .footer-inner {
-      max-width: 1140px; margin: 0 auto;
-      display: flex; flex-direction: column; align-items: center; gap: 24px;
-    }
-    .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; }
-    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-    .footer-links a { font-size: 0.88rem; color: var(--muted); transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+    /* FEATURES */
+    .feats-g { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:26px; }
+    .feat-b { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:30px; transition:all .22s; }
+    .feat-b:hover { transform:translateY(-4px); border-color:rgba(245,166,35,.3); }
+    .feat-ico { width:48px; height:48px; border-radius:14px; background:rgba(245,166,35,.15); color:var(--gold); display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:20px; }
+    .feat-b h4 { font-size:1.1rem; font-weight:700; margin-bottom:10px; }
+    .feat-b p  { font-size:.88rem; color:var(--muted); line-height:1.65; }
 
-    /* ── WHATSAPP FLOATING BUTTON ────────────────── */
+    /* FAQ */
+    .faq-w { max-width:820px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+    .faq-item { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px 26px; cursor:pointer; transition:all .2s; }
+    .faq-item:hover { background:rgba(255,255,255,.04); }
+    .faq-item.open  { border-color:rgba(245,166,35,.3); }
+    .faq-q { font-size:1rem; font-weight:700; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+    .faq-tog { font-size:1.3rem; color:var(--muted); transition:transform .2s; flex-shrink:0; }
+    .faq-item.open .faq-tog { transform:rotate(45deg); color:var(--gold); }
+    .faq-a { font-size:.9rem; color:var(--muted); margin-top:14px; line-height:1.75; display:none; }
+    .faq-item.open .faq-a { display:block; }
+
+    /* CTA */
+    .cta-b {
+      background:linear-gradient(135deg,#171B34,#2A1B40,#0C1D38);
+      border:1.5px solid rgba(245,166,35,.3); border-radius:32px;
+      padding:70px 40px; text-align:center; max-width:980px; margin:0 auto;
+      box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 60px var(--glow);
+    }
+    .cta-b h2 { font-size:clamp(2rem,4vw,3rem); font-weight:900; margin-bottom:16px; }
+    .cta-b p  { font-size:1.05rem; color:rgba(255,255,255,.78); max-width:580px; margin:0 auto 36px; line-height:1.7; }
+    .cta-acts { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .cta-note { font-size:.78rem; color:rgba(255,255,255,.35); margin-top:18px; }
+
+    /* FOOTER */
+    footer { border-top:1px solid var(--border); padding:60px 24px 40px; background:#040810; }
+    .foot-i { max-width:1160px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:24px; }
+    .foot-logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.15rem; }
+    .foot-logo img { width:28px; height:28px; border-radius:6px; }
+    .foot-links { display:flex; gap:22px; flex-wrap:wrap; justify-content:center; }
+    .foot-links a { font-size:.87rem; color:var(--muted); transition:color .2s; }
+    .foot-links a:hover { color:var(--gold); }
+    .foot-copy { font-size:.77rem; color:rgba(255,255,255,.22); text-align:center; }
+
+    /* WhatsApp floating button */
     .wa-float {
-      position: fixed; right: 24px; bottom: 24px;
-      width: 56px; height: 56px; border-radius: 50%;
-      background: #25D366; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3); z-index: 999;
-      transition: transform 0.2s, box-shadow 0.2s;
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(37, 211, 102, 0.35), 0 8px 22px rgba(0,0,0,0.26);
+      z-index: 999;
+      transition: transform .18s ease, box-shadow .18s ease;
+      text-decoration: none;
     }
-    .wa-float:hover { transform: scale(1.08); box-shadow: 0 12px 30px rgba(37,211,102,0.4); }
+    .wa-float:hover,
+    .wa-float:focus-visible {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 14px 32px rgba(37, 211, 102, 0.42), 0 10px 26px rgba(0,0,0,0.28);
+      outline: none;
+    }
     .wa-float svg { width: 30px; height: 30px; fill: white; }
+    .wa-float__ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid #25D366;
+      animation: wa-pulse 2.4s ease-out infinite;
+      pointer-events: none;
+    }
+    @keyframes wa-pulse {
+      0%   { transform: scale(1);   opacity: .55; }
+      100% { transform: scale(1.65); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wa-float__ring { animation: none; }
+      .wa-float { transition: none; }
+    }
 
-    @media (max-width: 768px) {
-      .audio-steps-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; }
-      .hero { padding-top: 100px; }
-      .cta-banner { padding: 40px 20px; }
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      .school-g { grid-template-columns:1fr; gap:40px; }
+      .school-v { order:-1; }
+    }
+    @media(max-width:768px) {
+      .nav-links,.nav-cta { display:none; }
+      .hamburger { display:flex; }
+      .hero { padding-top:100px; }
+      .sec { padding:72px 20px; }
+      .asteps-g { grid-template-columns:1fr 1fr; }
+      .cta-b { padding:44px 22px; }
+      .rec-strip { padding:32px 24px; }
+      .audio-box { padding:28px 20px; }
+      .ml-wrap { justify-content:flex-start; }
+    }
+    @media(max-width:480px) {
+      .stats-row { gap:18px; }
+      .stat-n { font-size:1.4rem; }
+      .ptab { font-size:.78rem; padding:8px 14px; }
+      .ms-step { min-width:95px; }
+      .wa-float { width: 52px; height: 52px; right: 14px; bottom: 14px; }
+      .wa-float svg { width: 26px; height: 26px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <div class="nav-inner">
-      <a href="/kuralwise/" class="nav-logo">
-        <img src="images/app_icon.png" alt="KuralWise Logo" />
-        <div class="nav-wordmark">
-          <span class="nav-name">KuralWise</span>
-          <span class="nav-sub">Thirukkural Coach</span>
-        </div>
-      </a>
-      <div class="nav-links">
-        <a href="#tracks">4 Learning Tracks</a>
-        <a href="#audio-capsule">Kural Radio</a>
-        <a href="#features">Superpowers</a>
-        <a href="#faq">FAQ</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-      </div>
-      <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="nav-cta">
-        Get App ⚡
-      </a>
+<!-- NAV -->
+<nav>
+  <div class="nav-i">
+    <a href="/kuralwise/" class="nav-logo">
+      <img src="images/app_icon.png" alt="KuralWise" />
+      <div class="nav-wm"><span class="nav-name">KuralWise</span><span class="nav-sub">Thirukkural Coach</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#tracks">4 Tracks</a>
+      <a href="#recitation">Recitation Suite</a>
+      <a href="#schools">For Schools</a>
+      <a href="#audio">Kural Radio</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+      <button onclick="openContactModal('kuralwise'); return false;">Get in Touch</button>
     </div>
-  </nav>
+    <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="nav-cta">Get Free ⚡</a>
+    <div class="hamburger" id="hbg" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-orb-1"></div>
-    <div class="hero-orb-2"></div>
+<div class="mob-menu" id="mob-menu">
+  <a href="#tracks"     onclick="toggleMenu()">🎯 4 Learning Tracks</a>
+  <a href="#recitation" onclick="toggleMenu()">⏱️ Recitation Championship</a>
+  <a href="#schools"    onclick="toggleMenu()">🏫 For Schools &amp; Teachers</a>
+  <a href="#audio"      onclick="toggleMenu()">🎙️ Kural Radio Demo</a>
+  <a href="#features"   onclick="toggleMenu()">✨ Features</a>
+  <a href="#faq"        onclick="toggleMenu()">FAQ</a>
+  <button onclick="closeMM(); openContactModal('kuralwise');">Get in Touch</button>
+  <a href="privacy.html" onclick="toggleMenu()">Privacy Policy</a>
+  <a href="terms.html"   onclick="toggleMenu()">Terms of Service</a>
+  <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="mob-cta">Download Free · Google Play ⚡</a>
+</div>
 
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      Ancient Tamil Wisdom • Modern Spaced Repetition
-    </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb-g"></div>
+  <div class="orb orb-e"></div>
 
-    <h1 class="hero-headline">
-      Your Personal <span class="grad">Thirukkural Coach.</span>
-    </h1>
+  <div class="ptabs">
+    <button class="ptab active" onclick="switchP(0)">🌱 I'm a Parent</button>
+    <button class="ptab"        onclick="switchP(1)">🏆 I'm a Student</button>
+    <button class="ptab"        onclick="switchP(2)">📚 I'm a Teacher</button>
+    <button class="ptab"        onclick="switchP(3)">🧘 Daily Wisdom</button>
+  </div>
 
-    <p class="hero-tagline">
-      Relearn 2,000-year-old timeless Tamil wisdom through <strong>4 personalized learning tracks</strong>, scientifically proven <strong>SM-2 memory scheduling</strong>, and <strong>28-second spoken audio capsules</strong>.
-    </p>
+  <div class="hero-badge"><span class="bdot"></span>2,000-Year-Old Wisdom · Science-Backed Memory</div>
 
-    <div class="hero-actions">
-      <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="btn-primary">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.793 12 3.61 22.186a1.59 1.59 0 0 1-.61-.914V2.728c0-.36.19-.687.61-.914zm11.246 11.248l2.58 2.58-12.02 6.87 9.44-9.45zm0-2.124L5.415 1.498l12.02 6.87-2.58 2.57zm1.488 1.488l3.18-1.817a1.18 1.18 0 0 0 0-2.046l-3.18-1.817-1.77 1.77 1.77 1.91z"/></svg>
-        Download on Google Play
-      </a>
-      <a href="#audio-capsule" class="btn-ghost">
-        ▶ Experience 4-Step Capsule Demo
-      </a>
-    </div>
+  <h1 class="hero-h1">Your Personal <span class="grad">Thirukkural Coach.</span></h1>
 
-    <div class="trust-strip">
-      <div class="trust-pill"><span>✓</span> 100% Offline-First</div>
-      <div class="trust-pill"><span>✓</span> Zero Ads & Zero Trackers</div>
-      <div class="trust-pill"><span>✓</span> Family & Kid-Safe (COPPA)</div>
-      <div class="trust-pill"><span>✓</span> SM-2 Spaced Repetition</div>
-    </div>
+  <p class="hero-sub">From <strong>toddler picture-book reels</strong> to <strong>world-record recitation sprint training</strong>, one offline app coaches every Tamil family — at every stage.</p>
 
-    <!-- HERO MOCKUP CARD -->
-    <div class="hero-mockup-wrap">
-      <div class="mockup-card">
-        <div class="mockup-header">
-          <span class="mockup-title">🌟 TODAY'S GUIDING KURAL • குறள் 1</span>
-          <span style="font-size:0.8rem;color:var(--emerald-light);font-weight:700">● 4/3 Metric Meter</span>
-        </div>
-        <div class="mockup-kural-ta">
-          அகர முதல எழுத்தெல்லாம் ஆதி<br />
-          பகவன் முதற்றே உலகு.
-        </div>
-        <div class="mockup-kural-en">
-          "As the letter 'A' is the first of all letters, so the eternal Supreme God is the first of the universe."
-        </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <div style="background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.3);padding:8px 16px;border-radius:100px;font-size:0.8rem;color:var(--gold)">
-            📜 வள்ளுவர் பார்வை (Sage Context)
-          </div>
-          <div style="background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);padding:8px 16px;border-radius:100px;font-size:0.8rem;color:var(--emerald-light)">
-            💎 வாழ்க்கை நல்முத்து (Life Pearl)
-          </div>
-          <div style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);padding:8px 16px;border-radius:100px;font-size:0.8rem;color:#60A5FA">
-            🎯 இன்றைய செயல் வடிவம் (Action Step)
-          </div>
-        </div>
+  <p class="hero-pline" id="pline">🌱 <em>Introduce Tamil wisdom to your child with 30-second audio stories, star rewards, and shareable milestone cards.</em></p>
+
+  <div class="hero-acts">
+    <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="btn-p">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.793 12 3.61 22.186a1.59 1.59 0 0 1-.61-.914V2.728c0-.36.19-.687.61-.914zm11.246 11.248l2.58 2.58-12.02 6.87 9.44-9.45zm0-2.124L5.415 1.498l12.02 6.87-2.58 2.57zm1.488 1.488l3.18-1.817a1.18 1.18 0 0 0 0-2.046l-3.18-1.817-1.77 1.77 1.77 1.91z"/></svg>
+      Free Download · Google Play
+    </a>
+    <a href="#audio" class="btn-g">▶ Hear a Live Kural Capsule</a>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><span class="stat-n">1,330</span><span class="stat-l">Kurals in Corpus</span></div>
+    <div class="stat"><span class="stat-n">4</span><span class="stat-l">Learning Tracks</span></div>
+    <div class="stat"><span class="stat-n">8</span><span class="stat-l">Mastery Stages</span></div>
+    <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Offline · No Ads</span></div>
+  </div>
+
+  <div class="mockup-wrap">
+    <div class="mockup">
+      <div class="mockup-lbl">🌟 TODAY'S GUIDING KURAL · குறள் 423 · Wisdom Track</div>
+      <div class="mockup-ta">எப்பொருள் யார்யார்வாய்க் கேட்பினும் அப்பொருள்<br/>மெய்ப்பொருள் காண்ப தறிவு.</div>
+      <div class="mockup-en">"Whatever is said by whoever — the wisdom is to see the truth within it." — Kural 423 · அறிவுடைமை (Possession of Wisdom)</div>
+      <div class="chips">
+        <span class="chip cg">📜 வள்ளுவர் பார்வை</span>
+        <span class="chip ce">💎 வாழ்க்கை நல்முத்து</span>
+        <span class="chip cb">🎯 இன்றைய செயல்</span>
       </div>
     </div>
-  </section>
+    <div class="trust-row">
+      <div class="ti"><span>✓</span> 100% Offline-First</div>
+      <div class="ti"><span>✓</span> Zero Ads · Zero Trackers</div>
+      <div class="ti"><span>✓</span> Family Safe · COPPA Compliant</div>
+      <div class="ti"><span>✓</span> SM-2 Spaced Repetition Science</div>
+    </div>
+  </div>
+</section>
 
-  <!-- 4 LEARNING TRACKS -->
-  <section id="tracks" class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-label">Tailored For Every Stage</span>
-        <h2 class="section-title">4 Dedicated Learning Tracks</h2>
-        <p class="section-desc">From 3-year-old toddlers discovering Tamil sounds to competitive recitation champions and TNPSC aspirants.</p>
+<!-- 4 TRACKS -->
+<section id="tracks" class="sec">
+  <div class="sec-i">
+    <div class="sec-hd reveal">
+      <span class="lp">One App · Every Stage</span>
+      <h2 class="sec-title">4 Dedicated Learning Tracks</h2>
+      <p class="sec-desc">From a 3-year-old's first Tamil syllable to a competitive recitation champion and a TNPSC aspirant — KuralWise adapts completely to your purpose.</p>
+    </div>
+    <div class="tracks-g">
+      <div class="track-c tc-s reveal">
+        <span class="tbadge">🌱 Ages 3–7</span>
+        <span class="ticon">🎨</span>
+        <h3>Little Sprouts</h3>
+        <p>Delightful full-screen picture-book storybook reels with cheerful kid-voice recitals. Zero-guilt screen time your child genuinely learns from.</p>
+        <ul class="tbullets">
+          <li>Illustrated moral-story picture cards</li>
+          <li>Sing-along children's voice capsules</li>
+          <li>Star rewards &amp; interactive moral choices</li>
+          <li>Rapid Blitz recap reel for young minds</li>
+          <li>Shareable "Look what I know!" milestone cards</li>
+        </ul>
       </div>
-
-      <div class="tracks-grid">
-        <!-- Track 1 -->
-        <div class="track-card track-sprouts">
-          <div class="track-badge">Ages 3–7</div>
-          <div class="track-icon">🌱</div>
-          <h3>Little Sprouts</h3>
-          <p>Delightful picture-book storytelling reels with cheerful kid-voice recitals, sing-alongs, and toddler moral choice cards.</p>
-          <ul class="track-bullets">
-            <li>Vivid animal picture-book art</li>
-            <li>Sing-along children's voice capsules</li>
-            <li>Star rewards & moral choices</li>
-          </ul>
-        </div>
-
-        <!-- Track 2 -->
-        <div class="track-card track-school">
-          <div class="track-badge">School & Recitation</div>
-          <div class="track-icon">🏆</div>
-          <h3>School Track</h3>
-          <p>Targeted training for Kural Theni 2026, Shriram Ilakkiya Kazhagam, and inter-school stage elocution contests.</p>
-          <ul class="track-bullets">
-            <li>Live contest countdown clock</li>
-            <li>Weak Kural Radar analysis</li>
-            <li>30-Second Rapid Blitz Sprint</li>
-          </ul>
-        </div>
-
-        <!-- Track 3 -->
-        <div class="track-card track-exam">
-          <div class="track-badge">TNPSC & Academics</div>
-          <div class="track-icon">📚</div>
-          <h3>Exam Track</h3>
-          <p>Comprehensive Unit 8 syllabus coverage with classical commentaries (மு.வ & சாலமன் பாப்பையா) and rubric keyword grading.</p>
-          <ul class="track-bullets">
-            <li>Scholarly multi-tier meanings</li>
-            <li>"Explain in your words" grader</li>
-            <li>Couplet fill-in-the-blank drills</li>
-          </ul>
-        </div>
-
-        <!-- Track 4 -->
-        <div class="track-card track-wisdom">
-          <div class="track-badge">Daily Mindfulness</div>
-          <div class="track-icon">🧘</div>
-          <h3>Wisdom Track</h3>
-          <p>Find clarity for modern life situations with emotion-based search (*"There's a kural for that"*) and morning 28s voice rituals.</p>
-          <ul class="track-bullets">
-            <li>Situational emotional lookup</li>
-            <li>28-second morning Kural Radio</li>
-            <li>Today's practical action step</li>
-          </ul>
-        </div>
+      <div class="track-c tc-k reveal">
+        <span class="tbadge">🏆 School &amp; Contest</span>
+        <span class="ticon">🎤</span>
+        <h3>School Track</h3>
+        <p>Built for Kural Theni 2026, Shriram Ilakkiya Kazhagam, and inter-school elocution. Train smarter — not just harder — with the full Recitation Championship Suite.</p>
+        <ul class="tbullets">
+          <li>Live competition countdown clock</li>
+          <li>Weak Kural Radar — error-cluster diagnosis</li>
+          <li>Recitation Sprint speed-training ⏱️</li>
+          <li>Cue-Card Reflex Drill for judge triggers</li>
+          <li>Paced Teleprompter for chaining adhigarams</li>
+        </ul>
+      </div>
+      <div class="track-c tc-e reveal">
+        <span class="tbadge">📚 TNPSC &amp; Academics</span>
+        <span class="ticon">📝</span>
+        <h3>Exam Track</h3>
+        <p>Unit 8 coverage for TNPSC Group I–IV. Classical commentaries, rubric grading, and timed mock drills — at zero cost, 100% offline.</p>
+        <ul class="tbullets">
+          <li>Scholarly meanings (மு.வ &amp; சாலமன் பாப்பையா)</li>
+          <li>"Explain It" keyword rubric grader</li>
+          <li>Chapter-weakness diagnosis</li>
+          <li>Couplet fill-in-the-blank timed drills</li>
+          <li>SM-2 scheduling for exam chapters</li>
+        </ul>
+      </div>
+      <div class="track-c tc-w reveal">
+        <span class="tbadge">🧘 Daily Wisdom</span>
+        <span class="ticon">🕊️</span>
+        <h3>Wisdom Track</h3>
+        <p>Ancient clarity for modern life. Search any emotion or dilemma and hear Thiruvalluvar's answer in 28 seconds — every morning, offline.</p>
+        <ul class="tbullets">
+          <li>"There's a Kural for That" — emotion search</li>
+          <li>28-second morning Kural Radio ritual</li>
+          <li>Today's practical life action step</li>
+          <li>Pure Tamil &amp; Tanglish bilingual mode</li>
+          <li>Shareable verse typography cards</li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 4-STEP MODULAR AUDIO SHOWCASE -->
-  <section id="audio-capsule" class="section audio-showcase">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-label">The Morning Ritual</span>
-        <h2 class="section-title">Modular 4-Step Audio Pipeline</h2>
-        <p class="section-desc">Experience our signature 28-second Kural Radio audio capsule, built in a sequential 4-step pedagogical ratio.</p>
-      </div>
-
-      <div class="audio-player-box">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-          <div style="display:flex;align-items:center;gap:10px">
-            <span style="font-size:1.3rem">🎙️</span>
-            <strong>Kural Radio Sequence Simulation</strong>
-          </div>
-          <div style="background:rgba(245,166,35,0.15);padding:6px 14px;border-radius:100px;font-size:0.8rem;color:var(--gold);font-weight:700">
-            Persona: வள்ளுவர் (Sage)
-          </div>
-        </div>
-
-        <!-- 4 Step Cards -->
-        <div class="audio-steps-grid">
-          <div class="audio-step-card active" onclick="setStep(0)">
-            <div class="step-num">1</div>
-            <div class="step-name">🔔 இசை (Chime)</div>
-            <div class="step-desc">Ancient Bell</div>
-          </div>
-          <div class="audio-step-card" onclick="setStep(1)">
-            <div class="step-num">2</div>
-            <div class="step-name">👋 அறிமுகம் (Intro)</div>
-            <div class="step-desc">"வணக்கம்! எண் 1"</div>
-          </div>
-          <div class="audio-step-card" onclick="setStep(2)">
-            <div class="step-num">3</div>
-            <div class="step-name">📜 குறள் (Verse)</div>
-            <div class="step-desc">4/3 Couplet</div>
-          </div>
-          <div class="audio-step-card" onclick="setStep(3)">
-            <div class="step-num">4</div>
-            <div class="step-name">💡 பொருள் (Meaning)</div>
-            <div class="step-desc">Porul Narration</div>
-          </div>
-        </div>
-
-        <!-- Live Step Box -->
-        <div id="step-preview" style="background:rgba(0,0,0,0.3);border-radius:16px;padding:20px;margin-bottom:24px;border:1px solid var(--border)">
-          <div style="font-size:0.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:6px">
-            ACTIVE STEP 1: CULTURAL CHIME
-          </div>
-          <div style="font-size:1.1rem;font-weight:600;color:#fff">
-            🔔 Ancient temple bell & tambura chord chime plays to center your morning mindset.
-          </div>
-        </div>
-
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-          <button class="btn-primary" style="padding:10px 24px;font-size:0.88rem" onclick="playNextStep()">
-            ▶ Play Next Step in Sequence
-          </button>
-          <div style="font-size:0.82rem;color:var(--muted)">
-            Speed: <strong>1.0x Normal</strong> • 100% Offline Synthesized Audio
-          </div>
-        </div>
-      </div>
+<!-- RECITATION CHAMPIONSHIP -->
+<section id="recitation" class="sec rec-sec">
+  <div class="sec-i">
+    <div class="sec-hd reveal">
+      <span class="lp">🏅 Pro Recitation Suite — School Track</span>
+      <h2 class="sec-title">Train for Stage. Train for Records.</h2>
+      <p class="sec-desc">The world recitation record is <strong style="color:#fff">30 Kurals in 60 seconds</strong> — 2.0 seconds per couplet. KuralWise is the only coaching app built to train you toward it.</p>
     </div>
-  </section>
 
-  <!-- FEATURES / SUPERPOWERS -->
-  <section id="features" class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-label">Built Different</span>
-        <h2 class="section-title">Engineered for Lifelong Mastery</h2>
-        <p class="section-desc">Every detail designed with pedagogical precision, authentic Tamil typography, and strict privacy.</p>
+    <div class="rec-strip reveal">
+      <div style="font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px">⏱️ LIVE SPRINT SIMULATION — 30 KURAL RUN</div>
+      <div class="sprint-clock" id="sclock">00:00.00</div>
+      <div style="font-size:.88rem;color:rgba(255,255,255,.6);margin-bottom:16px">Tap anywhere on screen to mark each Kural done — no looking down mid-recitation.</div>
+      <div class="pace-row">
+        <div class="pp pp-wr">🟢 World Record Pace ≤ 2.0s / Kural</div>
+        <div class="pp pp-ch">🟡 Championship Ready 2.0–3.0s</div>
+        <div class="pp pp-fl">🔴 Steady Flow &gt; 3.0s</div>
       </div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn-p" id="sbtn" onclick="demoSprint()" style="padding:11px 28px;font-size:.9rem">▶ Start Sprint Demo</button>
+        <button class="btn-g" onclick="resetSprint()" style="padding:11px 24px;font-size:.88rem">⟳ Reset</button>
+      </div>
+      <div style="margin-top:14px;font-size:.81rem;color:var(--muted)" id="sinfo">Tap Start — then tap the button each time you complete a Kural.</div>
+    </div>
 
-      <div class="features-grid">
-        <div class="feat-box">
-          <div class="feat-icon">🧠</div>
-          <h4>SM-2 Spaced Repetition</h4>
-          <p>Never forget a verse. Our mathematically optimized algorithm schedules reviews exactly when memory decay begins.</p>
+    <div class="rec-grid">
+      <div class="rec-c reveal">
+        <div class="rec-top">
+          <div class="rec-ico rig">⏱️</div>
+          <div><h4>Recitation Sprint</h4><div class="rec-badge-s">TIME TRIAL MODE</div></div>
         </div>
-
-        <div class="feat-box">
-          <div class="feat-icon">📜</div>
-          <h4>Strict 4/3 Couplet Meter</h4>
-          <p>Every verse precisely split into 4 words on Line 1 and 3 words on Line 2 (*குறள் வெண்பா*) for effortless rhythmic memory.</p>
+        <p>Precision time-trial runs for 10, 30 (60s World Record Sprint), 50, and 100-Kural sessions. Your personal-best pace evolves with every attempt.</p>
+        <div class="rec-dl">
+          <div class="rec-dr">Hundredths-precision stopwatch (00:58.42 format)</div>
+          <div class="rec-dr">Live pace gauge — real-time seconds/Kural telemetry</div>
+          <div class="rec-dr">Full-screen tap target — no fumbling mid-recitation</div>
+          <div class="rec-dr">Completion analytics: pace, rating, daily streak log</div>
         </div>
-
-        <div class="feat-box">
-          <div class="feat-icon">🔤</div>
-          <h4>Multi-Font Typography</h4>
-          <p>Read comfortably with 4 authentic typefaces: Anek Tamil (Modern default), Mukta Malar, Noto Serif, and Noto Sans.</p>
+      </div>
+      <div class="rec-c reveal">
+        <div class="rec-top">
+          <div class="rec-ico rib">🎴</div>
+          <div><h4>Cue-Card Reflex Drill</h4><div class="rec-badge-s">JUDGE TRIGGER PRACTICE</div></div>
         </div>
-
-        <div class="feat-box">
-          <div class="feat-icon">⚡</div>
-          <h4>30-Second Kural Blitz</h4>
-          <p>Test your rapid recall under pressure in a fast-paced sprint designed for competitive recitation contestants.</p>
+        <p>Trains subconscious recall triggered by a judge's opening cue — first word or Kural number. Flip the card. Beat the clock. SM-2 remembers your score.</p>
+        <div class="rec-dl">
+          <div class="rec-dr">First-word or Kural-number flashcard triggers</div>
+          <div class="rec-dr">Tap-to-flip reveals full couplet + transliteration</div>
+          <div class="rec-dr">🚀 &lt;2s → SM-2 Quality 5 (ease factor bonus)</div>
+          <div class="rec-dr">❌ &gt;5s → SM-2 reset, flagged for Weak Kural Radar</div>
         </div>
-
-        <div class="feat-box">
-          <div class="feat-icon">💎</div>
-          <h4>Life Pearls & Action Steps</h4>
-          <p>Go beyond theory. Every couplet includes a contemporary philosophical takeaway and a tangible mindfulness habit.</p>
+      </div>
+      <div class="rec-c reveal">
+        <div class="rec-top">
+          <div class="rec-ico rie">📜</div>
+          <div><h4>Paced Teleprompter Flow</h4><div class="rec-badge-s">CHAIN TRAINING</div></div>
         </div>
-
-        <div class="feat-box">
-          <div class="feat-icon">🛡️</div>
-          <h4>100% Offline & Private</h4>
-          <p>Zero accounts, zero ads, and zero cloud uploads. Your learning journey stays completely on your personal device.</p>
+        <p>Eliminates the cognitive pause between couplets. Auto-scrolls a full 10-Kural Adhigaram at your chosen pace while audio loops for vocal shadowing.</p>
+        <div class="rec-dl">
+          <div class="rec-dr">Auto-scroll at 1.5s–6.0s per Kural (adjustable)</div>
+          <div class="rec-dr">Active verse spotlight in Mango Gold typography</div>
+          <div class="rec-dr">Audio loop for simultaneous voice shadowing</div>
+          <div class="rec-dr">2.0x speed option for high-tempo training sessions</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CTA BANNER -->
-  <section class="section" style="padding-top:0">
-    <div class="section-inner">
-      <div class="cta-banner">
-        <h2>Start Your Thirukkural Journey Today</h2>
-        <p>Join thousands of students, kids, and lifelong learners mastering Tamil wisdom with their personal offline coach.</p>
-        <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="btn-primary" style="font-size:1.05rem;padding:16px 36px">
-          Get KuralWise Free on Google Play ⚡
+<!-- FOR SCHOOLS -->
+<section id="schools" class="sec" style="background:linear-gradient(180deg,var(--navy) 0%,#051828 100%)">
+  <div class="sec-i">
+    <div class="sec-hd reveal">
+      <span class="lp">🏫 For Tamil Educators</span>
+      <h2 class="sec-title">Bring Thirukkural to Your Classroom</h2>
+    </div>
+    <div class="school-g">
+      <div class="school-t reveal">
+        <p>KuralWise is designed around how Tamil schools and Tamil Sangam competitions already operate. Give every student a personal coach they carry in their pocket — free, private, and offline.</p>
+        <ul class="school-bl">
+          <li><div class="sbi">🏆</div><div><strong>Contest-Ready Students</strong><br/>Kural Theni, Shriram Ilakkiya Kazhagam, and inter-school syllabuses pre-mapped. Each student's readiness ring visible at a glance.</div></li>
+          <li><div class="sbi">📊</div><div><strong>Weak Kural Radar per Student</strong><br/>Automatically identifies which kurals each child consistently stumbles on — so coaching time targets the real gaps, not random chapters.</div></li>
+          <li><div class="sbi">🎓</div><div><strong>Milestone Cards to Parents</strong><br/>Students generate shareable achievement cards when they master kural sets — parents stay engaged without a separate app or login.</div></li>
+          <li><div class="sbi">📱</div><div><strong>Zero Infrastructure, Zero Cost</strong><br/>No school server. No subscription. No login required. Students install the free app on any Android device and start immediately.</div></li>
+          <li><div class="sbi">🚧</div><div><strong>School Pack (In Work)</strong><br/>Teacher roll-up packs and deployment templates are currently in progress. Use Get in Touch to join the early-access list.</div></li>
+          <li><div class="sbi">🔒</div><div><strong>Completely Private &amp; Child-Safe</strong><br/>100% offline. Zero ads. Zero behavioral profiling. COPPA and Google Play Families Policy compliant for all ages.</div></li>
+        </ul>
+        <div class="school-ctas">
+          <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="btn-e">🏫 Get KuralWise for Your Class</a>
+          <button class="btn-g" style="padding:13px 24px;font-size:.9rem" onclick="openContactModal('kuralwise'); return false;">🚧 School Pack In Work · Join Waitlist</button>
+        </div>
+      </div>
+
+      <div class="school-v reveal">
+        <div class="sv-hd">
+          <span style="font-size:1.2rem">🏫</span>
+          <div>
+            <div class="sv-title">Class 6B · Kural Theni Prep · Week 4</div>
+            <div style="font-size:.76rem;color:var(--muted)">4 students · Readiness snapshot</div>
+          </div>
+        </div>
+        <div class="stu-c">
+          <div class="stu-l"><div class="av avo">க</div><div><div class="stu-n">Karthik S.</div><div class="stu-pr">58 / 70 Kurals · 3 Weak</div></div></div>
+          <div class="mring"><svg viewBox="0 0 36 36"><circle class="rb" cx="18" cy="18" r="16"/><circle class="rf" cx="18" cy="18" r="16" style="stroke-dashoffset:20"/></svg><div class="rpct" style="color:var(--emerald-lt)">83%</div></div>
+        </div>
+        <div class="stu-c">
+          <div class="stu-l"><div class="av avp">ப</div><div><div class="stu-n">Priya R.</div><div class="stu-pr">47 / 70 Kurals · 1 Weak</div></div></div>
+          <div class="mring"><svg viewBox="0 0 36 36"><circle class="rb" cx="18" cy="18" r="16"/><circle class="rf" cx="18" cy="18" r="16" style="stroke-dashoffset:38"/></svg><div class="rpct" style="color:var(--gold)">67%</div></div>
+        </div>
+        <div class="stu-c">
+          <div class="stu-l"><div class="av avb">அ</div><div><div class="stu-n">Arun M.</div><div class="stu-pr">70 / 70 Kurals · 0 Weak</div></div></div>
+          <div class="mring"><svg viewBox="0 0 36 36"><circle class="rb" cx="18" cy="18" r="16"/><circle class="rf" cx="18" cy="18" r="16" style="stroke-dashoffset:0"/></svg><div class="rpct" style="color:var(--emerald-lt)">100%</div></div>
+        </div>
+        <div class="stu-c">
+          <div class="stu-l"><div class="av avg">ம</div><div><div class="stu-n">Meena L.</div><div class="stu-pr">31 / 70 Kurals · 5 Weak</div></div></div>
+          <div class="mring"><svg viewBox="0 0 36 36"><circle class="rb" cx="18" cy="18" r="16"/><circle class="rf" cx="18" cy="18" r="16" style="stroke:var(--terra);stroke-dashoffset:68"/></svg><div class="rpct" style="color:#FB8B6E">44%</div></div>
+        </div>
+        <div style="text-align:center;margin-top:18px;font-size:.78rem;color:var(--muted)">📣 Kural Theni 2026 · <strong style="color:var(--gold)">24 days remaining</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MASTERY LADDER -->
+<section class="sec mastery-sec">
+  <div class="sec-i">
+    <div class="sec-hd reveal">
+      <span class="lp">📈 Not Just Reading. Mastery.</span>
+      <h2 class="sec-title">The 8-Stage Mastery Ladder</h2>
+      <p class="sec-desc">Every other Thirukkural app shows a binary "Read / Unread" tick. KuralWise tracks true cognitive depth — from first impression to lifetime recall.</p>
+    </div>
+    <div class="ml-wrap reveal">
+      <div class="ms-step"><div class="ms-bub ms-done">👁️</div><div class="ms-lbl">SEE<br/>Seen</div><div class="ms-num">Stage 1</div></div>
+      <div class="ms-step"><div class="ms-bub ms-done">🔊</div><div class="ms-lbl">HEAR<br/>Heard</div><div class="ms-num">Stage 2</div></div>
+      <div class="ms-step"><div class="ms-bub ms-done">💡</div><div class="ms-lbl">UNDERSTAND<br/>Meaning</div><div class="ms-num">Stage 3</div></div>
+      <div class="ms-step"><div class="ms-bub ms-cur">✅</div><div class="ms-lbl">RECOGNIZE<br/>MCQ</div><div class="ms-num">Stage 4</div></div>
+      <div class="ms-step"><div class="ms-bub ms-fut">✍️</div><div class="ms-lbl">RECALL<br/>Fill-in</div><div class="ms-num">Stage 5</div></div>
+      <div class="ms-step"><div class="ms-bub ms-fut">🎤</div><div class="ms-lbl">RECITE<br/>Spoken</div><div class="ms-num">Stage 6</div></div>
+      <div class="ms-step"><div class="ms-bub ms-fut">📖</div><div class="ms-lbl">EXPLAIN<br/>Analytical</div><div class="ms-num">Stage 7</div></div>
+      <div class="ms-step"><div class="ms-bub ms-fut">🌟</div><div class="ms-lbl">MASTER<br/>Long-term</div><div class="ms-num">Stage 8</div></div>
+    </div>
+    <p style="text-align:center;margin-top:28px;font-size:.87rem;color:var(--muted)">SM-2 spaced repetition automatically schedules each verse's next review at exactly the right moment before memory decay begins.</p>
+  </div>
+</section>
+
+<!-- AUDIO CAPSULE -->
+<section id="audio" class="sec audio-sec">
+  <div class="sec-i">
+    <div class="sec-hd reveal">
+      <span class="lp">🎙️ The Morning Ritual</span>
+      <h2 class="sec-title">28-Second Kural Radio</h2>
+      <p class="sec-desc">A beautifully sequenced 4-step spoken audio capsule at your chosen time each morning — like a personal wisdom podcast, offline, every day.</p>
+    </div>
+    <div class="audio-box reveal">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.4rem">🎙️</span>
+          <strong style="font-size:1rem">Live Sequence Demo · Kural 1 · Sage Voice</strong>
+        </div>
+        <div style="background:rgba(245,166,35,.15);padding:6px 14px;border-radius:100px;font-size:.78rem;color:var(--gold);font-weight:700">
+          Persona: வள்ளுவர் (Sage Valluvar)
+        </div>
+      </div>
+      <div class="asteps-g">
+        <div class="astep ac" onclick="setStep(0)">
+          <div class="snum">1</div><div class="sname">🔔 இசை</div><div class="sdesc">Temple Chime</div>
+        </div>
+        <div class="astep" onclick="setStep(1)">
+          <div class="snum">2</div><div class="sname">👋 அறிமுகம்</div><div class="sdesc">"வணக்கம்! எண் 1"</div>
+        </div>
+        <div class="astep" onclick="setStep(2)">
+          <div class="snum">3</div><div class="sname">📜 குறள்</div><div class="sdesc">4/3 Couplet</div>
+        </div>
+        <div class="astep" onclick="setStep(3)">
+          <div class="snum">4</div><div class="sname">💡 பொருள்</div><div class="sdesc">Meaning Narration</div>
+        </div>
+      </div>
+      <div class="sprv" id="sprv">
+        <div class="sprvlbl">ACTIVE STEP 1 — CULTURAL CHIME</div>
+        <div class="sprvtxt">🔔 Ancient temple bell and tambura chord — centers your morning mindset before the verse arrives.</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <button class="btn-p" style="padding:10px 24px;font-size:.88rem" onclick="playNext()">▶ Next Step in Sequence</button>
+        <div style="font-size:.79rem;color:var(--muted)">Speed: <strong>1.0x Normal</strong> · 100% Offline · Pre-rendered Studio Audio</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="sec">
+  <div class="sec-i">
+    <div class="sec-hd reveal">
+      <span class="lp">Built Different</span>
+      <h2 class="sec-title">Engineered for Lifelong Mastery</h2>
+      <p class="sec-desc">Every detail designed with pedagogical science, authentic Tamil typography, and uncompromising privacy.</p>
+    </div>
+    <div class="feats-g">
+      <div class="feat-b reveal"><div class="feat-ico">🧠</div><h4>SM-2 Spaced Repetition</h4><p>The gold-standard memory algorithm schedules reviews at exactly the right moment before forgetting. Your kural memory compounds every day.</p></div>
+      <div class="feat-b reveal"><div class="feat-ico">⏱️</div><h4>World-Record Sprint Training</h4><p>Hundredths-precise stopwatch, live pace telemetry, and a full-screen tap target — train toward the 2.0s/kural world-record pace without distraction.</p></div>
+      <div class="feat-b reveal"><div class="feat-ico">📜</div><h4>Strict 4/3 Couplet Meter</h4><p>Every verse precisely split into 4 words on Line 1 (முதலடி) and 3 on Line 2 (இரண்டாமடி) — classical குறள் வெண்பா structure for rhythmic memory.</p></div>
+      <div class="feat-b reveal"><div class="feat-ico">🔤</div><h4>4 Authentic Tamil Typefaces</h4><p>Anek Tamil (modern default), Mukta Malar (humanist), Noto Serif Tamil (literary classical), Noto Sans Tamil — switchable instantly from settings.</p></div>
+      <div class="feat-b reveal"><div class="feat-ico">⚡</div><h4>30-Second Kural Blitz</h4><p>Rapid-fire 10-question sprint with auto-pause safety on back navigation. Share your score as an achievement card the moment you finish.</p></div>
+      <div class="feat-b reveal"><div class="feat-ico">🕊️</div><h4>"There's a Kural for That"</h4><p>Search any emotion or life dilemma in plain language. Instant offline keyword matching surfaces the right verse — no internet, no AI hallucination.</p></div>
+      <div class="feat-b reveal"><div class="feat-ico">✍️</div><h4>Explain It — Rubric Grader</h4><p>Type your own analytical explanation and get instant keyword rubric feedback — which concepts you captured and which you missed. Zero server needed.</p></div>
+      <div class="feat-b reveal"><div class="feat-ico">🛡️</div><h4>100% Offline · Zero Ads</h4><p>No account. No internet. No behavioral ads. No cloud uploads. Your child's learning journey stays completely on your personal device — always.</p></div>
+      <div class="feat-b reveal"><div class="feat-ico">👥</div><h4>Multiple Family Profiles</h4><p>One phone, the whole family. Separate profiles for each child and parent — each with their own track, mastery ladder, and daily Kural Radio time.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec" style="padding-top:0;padding-bottom:40px">
+  <div class="sec-i">
+    <div class="cta-b reveal">
+      <span class="lp" style="margin-bottom:18px">Free. Always.</span>
+      <h2>Start Your Thirukkural Journey Today</h2>
+      <p>No account. No credit card. No ads. Just 2,000 years of timeless Tamil wisdom — in your pocket, offline, forever.</p>
+      <div class="cta-acts">
+        <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="btn-p" style="font-size:1rem;padding:16px 38px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.793 12 3.61 22.186a1.59 1.59 0 0 1-.61-.914V2.728c0-.36.19-.687.61-.914zm11.246 11.248l2.58 2.58-12.02 6.87 9.44-9.45zm0-2.124L5.415 1.498l12.02 6.87-2.58 2.57zm1.488 1.488l3.18-1.817a1.18 1.18 0 0 0 0-2.046l-3.18-1.817-1.77 1.77 1.77 1.91z"/></svg>
+          Download Free · Google Play
         </a>
+        <button class="btn-g" style="padding:16px 30px;font-size:.95rem" onclick="openContactModal('kuralwise'); return false;">🏫 Enquire for Schools</button>
+      </div>
+      <p class="cta-note">Available on Android · Tamil Nadu · India · Global Tamil Diaspora</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec" style="padding-top:40px">
+  <div class="sec-i">
+    <div class="sec-hd reveal">
+      <span class="lp">Got Questions?</span>
+      <h2 class="sec-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-w">
+      <div class="faq-item" onclick="faqToggle(this)">
+        <div class="faq-q"><span>Is KuralWise completely free and ad-free?</span><span class="faq-tog">+</span></div>
+        <div class="faq-a">Yes — KuralWise is 100% free with zero advertisements, zero in-app purchase prompts, and zero behavioral trackers. The full corpus of 1,330 Kurals, all 4 learning tracks, the full Recitation Championship Suite, and SM-2 memory engine are all included at no cost.</div>
+      </div>
+      <div class="faq-item" onclick="faqToggle(this)">
+        <div class="faq-q"><span>How does SM-2 spaced repetition work for Kurals?</span><span class="faq-tog">+</span></div>
+        <div class="faq-a">SM-2 tracks how quickly and accurately you recall each couplet and automatically schedules your next review at the optimal moment before memory decay — 1 day, then 6 days, then progressively longer. Kurals you find easy are reviewed less often; stumble-points are revisited sooner. This is the same algorithm used by Anki and Duolingo.</div>
+      </div>
+      <div class="faq-item" onclick="faqToggle(this)">
+        <div class="faq-q"><span>Can I use KuralWise without an internet connection?</span><span class="faq-tog">+</span></div>
+        <div class="faq-a">Absolutely. All 1,330 Kurals, multi-tier meanings, pre-rendered audio capsules, spaced repetition engine, recitation sprint timer, cue-card drills, paced teleprompter, and the situational emotion search all run 100% offline after a single install. No Wi-Fi required — ever.</div>
+      </div>
+      <div class="faq-item" onclick="faqToggle(this)">
+        <div class="faq-q"><span>Is KuralWise suitable for Kural Theni and school competitions?</span><span class="faq-tog">+</span></div>
+        <div class="faq-a">Yes — the School Track and Recitation Championship Suite are specifically built for competitions like Kural Theni 2026, Shriram Ilakkiya Kazhagam, and inter-school elocution. Features include a live countdown clock to your target event, Weak Kural Radar for automatic error-cluster diagnosis, a hundredths-precise sprint timer for speed training, and Cue-Card Reflex Drill for judge-trigger practice.</div>
+      </div>
+      <div class="faq-item" onclick="faqToggle(this)">
+        <div class="faq-q"><span>How can teachers or schools use KuralWise?</span><span class="faq-tog">+</span></div>
+        <div class="faq-a">KuralWise requires no school server, no login, and no subscription. Teachers direct students to install the free app and select the School Track. Students' readiness rings, Weak Kural Radar reports, and shareable milestone cards give teachers visibility. School Pack is currently in work. Use <strong>Get in Touch</strong> to join the early-access waitlist and get rollout guidance.</div>
+      </div>
+      <div class="faq-item" onclick="faqToggle(this)">
+        <div class="faq-q"><span>Is the app safe for young children (COPPA compliant)?</span><span class="faq-tog">+</span></div>
+        <div class="faq-a">Yes. The Little Sprouts track is designed for ages 3–7 and the app is fully compliant with COPPA, GDPR-K, and Google Play Families Policy. We collect zero personal information from children. There are no chat rooms, no social feeds, no external web links, and no behavioral advertising anywhere in the app.</div>
+      </div>
+      <div class="faq-item" onclick="faqToggle(this)">
+        <div class="faq-q"><span>What languages does the app support?</span><span class="faq-tog">+</span></div>
+        <div class="faq-a">All Thirukkural verses are in classical Tamil with transliteration. Meanings and the app interface are available in both Pure Tamil (நேர்த்தியான தமிழ்) and Tanglish/Bilingual mode, selectable from the language settings or during the initial onboarding setup.</div>
+      </div>
+      <div class="faq-item" onclick="faqToggle(this)">
+        <div class="faq-q"><span>How does the Recitation Sprint timer work?</span><span class="faq-tog">+</span></div>
+        <div class="faq-a">The Sprint timer runs a full-screen stopwatch in hundredths-of-a-second precision. Tap anywhere on the screen to mark each Kural complete — no need to look down. The live pace gauge shows your current seconds-per-Kural in real time, color-coded as World Record Pace (≤2.0s), Championship Ready (2.0–3.0s), or Steady Flow (&gt;3.0s). Your best pace and daily streak are logged automatically after each run.</div>
+      </div>
+      <div class="faq-item" onclick="faqToggle(this)">
+        <div class="faq-q"><span>Does KuralWise cover all 1,330 Kurals?</span><span class="faq-tog">+</span></div>
+        <div class="faq-a">Yes — the full corpus of all 1,330 Thirukkural couplets across all 3 Paals (Arathuppaal · Porutpaal · Kaamathuppaal) and 133 Adhigarams is included, each with three-tier meanings (kids, standard, scholarly), story context, short moral, thematic tags, and modern life situation keywords.</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FAQ SECTION -->
-  <section id="faq" class="section" style="padding-top:20px">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-label">Got Questions?</span>
-        <h2 class="section-title">Frequently Asked Questions</h2>
-      </div>
-
-      <div class="faq-wrap">
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-q">
-            <span>Is KuralWise completely free and ad-free?</span>
-            <span class="faq-toggle">+</span>
-          </div>
-          <div class="faq-a">
-            Yes! KuralWise is 100% free and contains zero advertisements, zero banner trackers, and zero in-app popups.
-          </div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-q">
-            <span>How does the SM-2 spaced repetition algorithm work?</span>
-            <span class="faq-toggle">+</span>
-          </div>
-          <div class="faq-a">
-            Based on the SuperMemo SM-2 algorithm, KuralWise tracks how quickly and accurately you recall a couplet. It then automatically schedules reviews at increasing intervals (1 day, 6 days, 15 days, etc.) to cement the verse into your long-term memory.
-          </div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-q">
-            <span>Can I use KuralWise without an internet connection?</span>
-            <span class="faq-toggle">+</span>
-          </div>
-          <div class="faq-a">
-            Absolutely. All 1,330 Kurals, multi-tier meanings, audio capsules, and spaced repetition engines run 100% offline on your device.
-          </div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-q">
-            <span>Is KuralWise suitable for school recitation competitions like Kural Theni?</span>
-            <span class="faq-toggle">+</span>
-          </div>
-          <div class="faq-a">
-            Yes, the School Track is specifically calibrated for Kural Theni, Shriram Ilakkiya Kazhagam, and inter-school contests, featuring Weak Kural Radar and competition countdown readiness rings.
-          </div>
-        </div>
-      </div>
+<!-- FOOTER -->
+<footer>
+  <div class="foot-i">
+    <div class="foot-logo"><img src="images/app_icon.png" alt="KuralWise" /><span>KuralWise</span></div>
+    <div class="foot-links">
+      <a href="#tracks">4 Tracks</a>
+      <a href="#recitation">Recitation Suite</a>
+      <a href="#schools">For Schools</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="mailto:contact@wiselywise.in">contact@wiselywise.in</a>
+      <a href="https://wiselyrise.in" target="_blank" rel="noopener">WiselyRise Solutions</a>
     </div>
-  </section>
+    <p class="foot-copy">© 2026 WiselyRise Solutions. Built with pride in Tamil Nadu, India 🇮🇳 · All rights reserved.</p>
+  </div>
+</footer>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo">
-        <img src="images/app_icon.png" alt="KuralWise" style="width:28px;height:28px;border-radius:6px" />
-        <span>KuralWise</span>
-      </div>
-      <div class="footer-links">
-        <a href="#tracks">Tracks</a>
-        <a href="#audio-capsule">Kural Radio</a>
-        <a href="#features">Features</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
-        <a href="https://wiselyrise.in" target="_blank" rel="noopener">WiselyRise Solutions</a>
-      </div>
-      <p class="footer-copy">© 2026 WiselyRise Solutions. Built with pride in Tamil Nadu, India. All rights reserved.</p>
-    </div>
-  </footer>
+<a class="wa-float"
+   href="https://wa.me/919080743973?text=Hi%20WiselyRise!%20I%20have%20a%20question%20about%20KuralWise."
+   target="_blank" rel="noopener noreferrer"
+   aria-label="Chat with WiselyRise on WhatsApp">
+  <span class="wa-float__ring" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12.004 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.464 3.484 1.345 5.001L2 22l5.126-1.334a9.958 9.958 0 0 0 4.878 1.243h.004c5.514 0 9.997-4.483 9.997-9.997s-4.483-9.909-9.997-9.909zm0 18.19h-.003a8.19 8.19 0 0 1-4.174-1.144l-.3-.178-3.104.808.828-3.027-.196-.31a8.176 8.176 0 0 1-1.253-4.372c0-4.513 3.673-8.186 8.194-8.186 2.19 0 4.248.853 5.795 2.401a8.14 8.14 0 0 1 2.399 5.792c0 4.513-3.674 8.216-8.186 8.216z"/>
+  </svg>
+</a>
 
-  <!-- WHATSAPP FLOATING BUTTON -->
-  <a href="https://wa.me/919999999999?text=Hello%20WiselyRise,%20I%20have%20a%20question%20about%20KuralWise" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-  </a>
+<script src="/shared/contact-modal.js"></script>
+<script>
+  /* MOBILE MENU */
+  function toggleMenu(){
+    document.getElementById('hbg').classList.toggle('open');
+    document.getElementById('mob-menu').classList.toggle('open');
+  }
+  function closeMM(){
+    document.getElementById('hbg').classList.remove('open');
+    document.getElementById('mob-menu').classList.remove('open');
+  }
 
-  <!-- INTERACTIVE DEMO SCRIPT -->
-  <script>
-    const stepsData = [
-      {
-        num: "ACTIVE STEP 1: CULTURAL CHIME",
-        text: "🔔 Ancient temple bell & tambura chord chime plays to center your morning mindset."
-      },
-      {
-        num: "ACTIVE STEP 2: GREETINGS & INTRO",
-        text: "👋 'வணக்கம்! திருக்குறள் எண் ஒன்று, அதிகாரம் கடவுள் வாழ்த்து.'"
-      },
-      {
-        num: "ACTIVE STEP 3: COUPLET RECITAL (4/3 METER)",
-        text: "📜 'அகர முதல எழுத்தெல்லாம் ஆதி / பகவன் முதற்றே உலகு.'"
-      },
-      {
-        num: "ACTIVE STEP 4: MEANING & LIFE PEARL",
-        text: "💡 'பொருள்: எழுத்துகளுக்கெல்லாம் அகரம் தொடக்கம் போல, உலகத்திற்கு ஆதிபகவனே தொடக்கம்.'"
-      }
-    ];
+  /* PERSONA TABS */
+  const plines=[
+    '🌱 <em>Introduce Tamil wisdom to your child with 30-second audio stories, star rewards, and shareable milestone cards.</em>',
+    '🏆 <em>Train for Kural Theni with sprint timing, cue-card reflex drills, and a real-time competition countdown clock.</em>',
+    '📚 <em>Give every student a free personal coach — no school server, no subscription, no login required.</em>',
+    '🧘 <em>Find ancient clarity for modern dilemmas — search any emotion and hear Thiruvalluvar\'s counsel in 28 seconds.</em>',
+  ];
+  function switchP(i){
+    document.querySelectorAll('.ptab').forEach((t,j)=>t.classList.toggle('active',j===i));
+    document.getElementById('pline').innerHTML=plines[i];
+  }
 
-    let currentStep = 0;
+  /* SCROLL REVEAL */
+  (() => {
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('vis');} });
+    },{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  })();
 
-    function setStep(idx) {
-      currentStep = idx;
-      const cards = document.querySelectorAll('.audio-step-card');
-      cards.forEach((c, i) => {
-        if (i === idx) c.classList.add('active');
-        else c.classList.remove('active');
-      });
-      const preview = document.getElementById('step-preview');
-      preview.innerHTML = `
-        <div style="font-size:0.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:6px">
-          ${stepsData[idx].num}
-        </div>
-        <div style="font-size:1.1rem;font-weight:600;color:#fff">
-          ${stepsData[idx].text}
-        </div>
-      `;
-    }
+  /* SPRINT DEMO */
+  let si=null,ms=0,cnt=0,running=false;
+  function fmt(ms){const s=Math.floor(ms/1000),h=Math.floor((ms%1000)/10),m=Math.floor(s/60),sc=s%60;return`${String(m).padStart(2,'0')}:${String(sc).padStart(2,'0')}.${String(h).padStart(2,'0')}`;}
+  function demoSprint(){
+    if(running){cnt++;if(cnt>=30){finSprint();return;}updInfo();return;}
+    running=true;ms=0;cnt=0;
+    document.getElementById('sbtn').textContent='👆 Tap — Kural Done!';
+    si=setInterval(()=>{ms+=10;document.getElementById('sclock').textContent=fmt(ms);if(ms>=60000&&cnt<30)finSprint();},10);
+  }
+  function updInfo(){
+    const spk=cnt>0?ms/1000/cnt:0;
+    const c=spk<=2?'#34D399':spk<=3?'#FBBF24':'#FB8B6E';
+    const r=spk<=2?'🟢 World Record Pace!':spk<=3?'🟡 Championship Ready':'🔴 Steady Flow';
+    document.getElementById('sinfo').innerHTML=`<span style="color:${c};font-weight:700">${r}</span> · Kural ${cnt}/30 · ${spk.toFixed(2)}s per Kural`;
+  }
+  function finSprint(){
+    clearInterval(si);running=false;
+    const spk=cnt>0?ms/1000/cnt:0;
+    const r=spk<=2?'🌟 World Record Pace!':spk<=3?'🏆 Championship Ready!':'✅ Steady Flow';
+    document.getElementById('sbtn').textContent='▶ Start Sprint Demo';
+    document.getElementById('sinfo').innerHTML=`Sprint complete! <strong>${r}</strong> — ${cnt} Kurals in ${(ms/1000).toFixed(2)}s · Avg ${spk.toFixed(2)}s/Kural`;
+  }
+  function resetSprint(){clearInterval(si);running=false;ms=0;cnt=0;document.getElementById('sclock').textContent='00:00.00';document.getElementById('sbtn').textContent='▶ Start Sprint Demo';document.getElementById('sinfo').textContent='Tap Start — then tap the button each time you complete a Kural.';}
 
-    function playNextStep() {
-      currentStep = (currentStep + 1) % stepsData.length;
-      setStep(currentStep);
-    }
+  /* AUDIO DEMO */
+  const steps=[
+    {l:'ACTIVE STEP 1 — CULTURAL CHIME',      t:'🔔 Ancient temple bell and tambura chord — centers your morning mindset before the verse arrives.'},
+    {l:'ACTIVE STEP 2 — GREETING & INTRO',    t:'👋 "வணக்கம்! திருக்குறள் எண் ஒன்று, அதிகாரம் கடவுள் வாழ்த்து." — Greeting + Kural number + chapter name.'},
+    {l:'ACTIVE STEP 3 — COUPLET RECITAL (4/3)',t:'📜 "அகர முதல எழுத்தெல்லாம் ஆதி / பகவன் முதற்றே உலகு." — Classical 4-word / 3-word metre recitation.'},
+    {l:'ACTIVE STEP 4 — MEANING & LIFE PEARL', t:'💡 "பொருள்: எழுத்துகளுக்கு அகரம் முதல் போல, உலகிற்கு ஆதிபகவன் முதன்மை. Today\'s action: Begin every task with pure intent."'},
+  ];
+  let cur=0;
+  function setStep(i){cur=i;document.querySelectorAll('.astep').forEach((c,j)=>c.classList.toggle('ac',j===i));document.getElementById('sprv').innerHTML=`<div class="sprvlbl">${steps[i].l}</div><div class="sprvtxt">${steps[i].t}</div>`;}
+  function playNext(){setStep((cur+1)%steps.length);}
 
-    function toggleFaq(elem) {
-      elem.classList.toggle('open');
-    }
-  </script>
+  /* FAQ */
+  function faqToggle(el){el.classList.toggle('open');}
+</script>
 </body>
 </html>
