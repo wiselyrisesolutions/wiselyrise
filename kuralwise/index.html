@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KuralWise — Your Personal Thirukkural Coach | WiselyRise</title>
+  <meta name="description" content="KuralWise is an intelligent, offline-first Thirukkural learning companion powered by SM-2 spaced repetition, spoken audio capsules, and 4 dedicated learning tracks for kids, school contests, TNPSC exams, and daily wisdom." />
+  <meta property="og:title" content="KuralWise — Your Personal Thirukkural Coach" />
+  <meta property="og:description" content="Relearn 2,000-year-old timeless Tamil wisdom with interactive daily capsules, competition training, and picture-book reels." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wiselyrise.in/kuralwise/" />
+  <meta property="og:image" content="https://wiselyrise.in/kuralwise/images/feature_graphic.jpg" />
+  <link rel="canonical" href="https://wiselyrise.in/kuralwise/" />
+  <link rel="icon" href="images/app_icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="images/app_icon.png" />
+  <meta name="theme-color" content="#070F1C" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── RESET & VARIABLES ────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #070F1C;
+      color: #FFFFFF;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    :root {
+      --navy: #070F1C;
+      --navy-mid: #0C1D38;
+      --navy-soft: #132444;
+      --gold: #F5A623;
+      --gold-light: #FBBF24;
+      --emerald: #10B981;
+      --emerald-light: #34D399;
+      --terracotta: #E76F51;
+      --cream: #FBF9F4;
+      --white: #FFFFFF;
+      --muted: #7A90A8;
+      --border: rgba(216,228,239,0.12);
+      --card-bg: rgba(12, 29, 56, 0.65);
+      --glow: rgba(245, 166, 35, 0.18);
+    }
+
+    /* ── ANIMATIONS ──────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── NAVIGATION ──────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(7,15,28,0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .nav-inner {
+      max-width: 1180px; margin: 0 auto;
+      padding: 0 28px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo img { width: 38px; height: 38px; border-radius: 10px; box-shadow: 0 4px 12px rgba(245,166,35,0.25); }
+    .nav-wordmark { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-name { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
+    .nav-sub { font-size: 0.65rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+    
+    .nav-links { display: flex; align-items: center; gap: 6px; }
+    .nav-links a {
+      font-size: 0.88rem; font-weight: 500; color: var(--muted);
+      padding: 8px 14px; border-radius: 8px; transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--terracotta));
+      color: #fff; padding: 9px 22px; border-radius: 100px;
+      font-size: 0.85rem; font-weight: 700; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,166,35,0.35); }
+
+    /* ── HERO SECTION ────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 130px 24px 80px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(245,166,35,0.12) 1px, transparent 1px);
+      background-size: 32px 32px; pointer-events: none;
+    }
+    .hero-orb-1 {
+      position: absolute; top: -160px; right: -120px;
+      width: 550px; height: 550px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,166,35,0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-orb-2 {
+      position: absolute; bottom: -140px; left: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(16,185,129,0.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(245,166,35,0.12); border: 1px solid rgba(245,166,35,0.3);
+      border-radius: 100px; padding: 6px 18px;
+      font-size: 0.76rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: 24px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulseGlow 2s infinite; }
+
+    .hero-headline {
+      font-size: clamp(2.5rem, 6vw, 4.4rem);
+      font-weight: 900; line-height: 1.12; letter-spacing: -0.03em;
+      margin-bottom: 20px; max-width: 880px;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+    .hero-headline .grad {
+      background: linear-gradient(90deg, #F5A623 0%, #FBBF24 50%, #10B981 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .hero-tagline {
+      font-size: 1.15rem; color: rgba(255,255,255,0.7);
+      max-width: 720px; margin: 0 auto 36px; line-height: 1.7; font-weight: 300;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+    .hero-tagline strong { color: #fff; font-weight: 600; }
+
+    .hero-actions {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 36px; animation: fadeUp 0.7s ease 0.3s both;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--gold), var(--terracotta));
+      color: #fff; padding: 14px 32px; border-radius: 100px;
+      font-size: 0.95rem; font-weight: 700; letter-spacing: 0.3px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(245,166,35,0.4); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18);
+      color: #fff; padding: 14px 28px; border-radius: 100px;
+      font-size: 0.92rem; font-weight: 600; transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); transform: translateY(-2px); }
+
+    .trust-strip {
+      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp 0.7s ease 0.4s both;
+    }
+    .trust-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.8rem; color: var(--muted); font-weight: 500;
+    }
+    .trust-pill span { color: var(--emerald-light); font-weight: bold; }
+
+    /* ── HERO VISUAL / PHONE MOCKUP ──────────────── */
+    .hero-mockup-wrap {
+      margin-top: 54px; max-width: 860px; width: 100%;
+      position: relative; animation: fadeUp 0.8s ease 0.5s both;
+    }
+    .mockup-card {
+      background: linear-gradient(170deg, #171B34 0%, #0C1D38 100%);
+      border: 1.5px solid rgba(245,166,35,0.25);
+      border-radius: 28px; padding: 36px 32px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 40px var(--glow);
+      text-align: left;
+    }
+    .mockup-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px;
+    }
+    .mockup-title { font-size: 0.8rem; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
+    .mockup-kural-ta {
+      font-family: 'Anek Tamil', sans-serif;
+      font-size: 1.6rem; font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 16px;
+    }
+    .mockup-kural-en {
+      font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 24px;
+    }
+
+    /* ── 4 LEARNING TRACKS SECTION ───────────────── */
+    .section { padding: 100px 24px; position: relative; }
+    .section-inner { max-width: 1140px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-label {
+      display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold); background: rgba(245,166,35,0.12);
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 16px;
+    }
+    .section-desc { font-size: 1.05rem; color: var(--muted); max-width: 620px; margin: 0 auto; line-height: 1.7; }
+
+    .tracks-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;
+    }
+    .track-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 24px; padding: 32px 26px; backdrop-filter: blur(12px);
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .track-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(245,166,35,0.4);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+    .track-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 100px;
+      margin-bottom: 18px; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .track-sprouts .track-badge { background: rgba(52,211,153,0.15); color: #34D399; }
+    .track-school .track-badge { background: rgba(59,130,246,0.15); color: #60A5FA; }
+    .track-exam .track-badge { background: rgba(139,92,246,0.15); color: #A78BFA; }
+    .track-wisdom .track-badge { background: rgba(245,166,35,0.15); color: #FBBF24; }
+
+    .track-icon { font-size: 2.2rem; margin-bottom: 16px; }
+    .track-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
+    .track-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
+    .track-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .track-bullets li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.85rem; color: rgba(255,255,255,0.85); }
+    .track-bullets li::before { content: '✓'; color: var(--emerald-light); font-weight: bold; }
+
+    /* ── 4-STEP MODULAR AUDIO SHOWCASE ───────────── */
+    .audio-showcase {
+      background: linear-gradient(180deg, #070F1C 0%, #0C1D38 50%, #070F1C 100%);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .audio-player-box {
+      background: #171B34; border: 1.5px solid rgba(245,166,35,0.3);
+      border-radius: 28px; padding: 40px 36px; max-width: 820px; margin: 0 auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+    .audio-steps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 28px 0;
+    }
+    .audio-step-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 16px 12px; text-align: center; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .audio-step-card.active {
+      background: var(--gold); border-color: var(--gold); color: #171B34;
+      transform: scale(1.04); box-shadow: 0 8px 20px rgba(245,166,35,0.3);
+    }
+    .audio-step-card.active .step-num { background: #171B34; color: var(--gold); }
+    .step-num {
+      width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.15);
+      font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 8px;
+    }
+    .step-name { font-size: 0.85rem; font-weight: 700; }
+    .step-desc { font-size: 0.72rem; opacity: 0.8; margin-top: 4px; }
+
+    /* ── SUPERPOWERS / FEATURES ─────────────────── */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;
+    }
+    .feat-box {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 20px; padding: 30px; transition: transform 0.2s;
+    }
+    .feat-box:hover { transform: translateY(-4px); border-color: rgba(245,166,35,0.3); }
+    .feat-icon {
+      width: 48px; height: 48px; border-radius: 14px; background: rgba(245,166,35,0.15);
+      color: var(--gold); display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 20px;
+    }
+    .feat-box h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
+    .feat-box p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── FAQ ACCORDION ───────────────────────────── */
+    .faq-wrap { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .faq-item {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px 26px; cursor: pointer; transition: background 0.2s;
+    }
+    .faq-item:hover { background: rgba(255,255,255,0.04); }
+    .faq-q { font-size: 1.05rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+    .faq-a { font-size: 0.92rem; color: var(--muted); margin-top: 12px; line-height: 1.7; display: none; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); color: var(--gold); }
+    .faq-toggle { font-size: 1.4rem; transition: transform 0.2s; color: var(--muted); }
+
+    /* ── CTA BANNER ──────────────────────────────── */
+    .cta-banner {
+      background: linear-gradient(135deg, #171B34 0%, #2A1B40 50%, #0C1D38 100%);
+      border: 1.5px solid rgba(245,166,35,0.3); border-radius: 32px;
+      padding: 60px 40px; text-align: center; max-width: 960px; margin: 60px auto 0;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 50px var(--glow);
+    }
+    .cta-banner h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900; margin-bottom: 16px; }
+    .cta-banner p { font-size: 1.05rem; color: rgba(255,255,255,0.8); max-width: 580px; margin: 0 auto 32px; }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border); padding: 60px 24px 40px;
+      background: #040810; text-align: center;
+    }
+    .footer-inner {
+      max-width: 1140px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 24px;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { font-size: 0.88rem; color: var(--muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+    /* ── WHATSAPP FLOATING BUTTON ────────────────── */
+    .wa-float {
+      position: fixed; right: 24px; bottom: 24px;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3); z-index: 999;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.08); box-shadow: 0 12px 30px rgba(37,211,102,0.4); }
+    .wa-float svg { width: 30px; height: 30px; fill: white; }
+
+    @media (max-width: 768px) {
+      .audio-steps-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .hero { padding-top: 100px; }
+      .cta-banner { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/kuralwise/" class="nav-logo">
+        <img src="images/app_icon.png" alt="KuralWise Logo" />
+        <div class="nav-wordmark">
+          <span class="nav-name">KuralWise</span>
+          <span class="nav-sub">Thirukkural Coach</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#tracks">4 Learning Tracks</a>
+        <a href="#audio-capsule">Kural Radio</a>
+        <a href="#features">Superpowers</a>
+        <a href="#faq">FAQ</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="nav-cta">
+        Get App ⚡
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-orb-1"></div>
+    <div class="hero-orb-2"></div>
+
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Ancient Tamil Wisdom • Modern Spaced Repetition
+    </div>
+
+    <h1 class="hero-headline">
+      Your Personal <span class="grad">Thirukkural Coach.</span>
+    </h1>
+
+    <p class="hero-tagline">
+      Relearn 2,000-year-old timeless Tamil wisdom through <strong>4 personalized learning tracks</strong>, scientifically proven <strong>SM-2 memory scheduling</strong>, and <strong>28-second spoken audio capsules</strong>.
+    </p>
+
+    <div class="hero-actions">
+      <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.793 12 3.61 22.186a1.59 1.59 0 0 1-.61-.914V2.728c0-.36.19-.687.61-.914zm11.246 11.248l2.58 2.58-12.02 6.87 9.44-9.45zm0-2.124L5.415 1.498l12.02 6.87-2.58 2.57zm1.488 1.488l3.18-1.817a1.18 1.18 0 0 0 0-2.046l-3.18-1.817-1.77 1.77 1.77 1.91z"/></svg>
+        Download on Google Play
+      </a>
+      <a href="#audio-capsule" class="btn-ghost">
+        ▶ Experience 4-Step Capsule Demo
+      </a>
+    </div>
+
+    <div class="trust-strip">
+      <div class="trust-pill"><span>✓</span> 100% Offline-First</div>
+      <div class="trust-pill"><span>✓</span> Zero Ads & Zero Trackers</div>
+      <div class="trust-pill"><span>✓</span> Family & Kid-Safe (COPPA)</div>
+      <div class="trust-pill"><span>✓</span> SM-2 Spaced Repetition</div>
+    </div>
+
+    <!-- HERO MOCKUP CARD -->
+    <div class="hero-mockup-wrap">
+      <div class="mockup-card">
+        <div class="mockup-header">
+          <span class="mockup-title">🌟 TODAY'S GUIDING KURAL • குறள் 1</span>
+          <span style="font-size:0.8rem;color:var(--emerald-light);font-weight:700">● 4/3 Metric Meter</span>
+        </div>
+        <div class="mockup-kural-ta">
+          அகர முதல எழுத்தெல்லாம் ஆதி<br />
+          பகவன் முதற்றே உலகு.
+        </div>
+        <div class="mockup-kural-en">
+          "As the letter 'A' is the first of all letters, so the eternal Supreme God is the first of the universe."
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div style="background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.3);padding:8px 16px;border-radius:100px;font-size:0.8rem;color:var(--gold)">
+            📜 வள்ளுவர் பார்வை (Sage Context)
+          </div>
+          <div style="background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);padding:8px 16px;border-radius:100px;font-size:0.8rem;color:var(--emerald-light)">
+            💎 வாழ்க்கை நல்முத்து (Life Pearl)
+          </div>
+          <div style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);padding:8px 16px;border-radius:100px;font-size:0.8rem;color:#60A5FA">
+            🎯 இன்றைய செயல் வடிவம் (Action Step)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 LEARNING TRACKS -->
+  <section id="tracks" class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Tailored For Every Stage</span>
+        <h2 class="section-title">4 Dedicated Learning Tracks</h2>
+        <p class="section-desc">From 3-year-old toddlers discovering Tamil sounds to competitive recitation champions and TNPSC aspirants.</p>
+      </div>
+
+      <div class="tracks-grid">
+        <!-- Track 1 -->
+        <div class="track-card track-sprouts">
+          <div class="track-badge">Ages 3–7</div>
+          <div class="track-icon">🌱</div>
+          <h3>Little Sprouts</h3>
+          <p>Delightful picture-book storytelling reels with cheerful kid-voice recitals, sing-alongs, and toddler moral choice cards.</p>
+          <ul class="track-bullets">
+            <li>Vivid animal picture-book art</li>
+            <li>Sing-along children's voice capsules</li>
+            <li>Star rewards & moral choices</li>
+          </ul>
+        </div>
+
+        <!-- Track 2 -->
+        <div class="track-card track-school">
+          <div class="track-badge">School & Recitation</div>
+          <div class="track-icon">🏆</div>
+          <h3>School Track</h3>
+          <p>Targeted training for Kural Theni 2026, Shriram Ilakkiya Kazhagam, and inter-school stage elocution contests.</p>
+          <ul class="track-bullets">
+            <li>Live contest countdown clock</li>
+            <li>Weak Kural Radar analysis</li>
+            <li>30-Second Rapid Blitz Sprint</li>
+          </ul>
+        </div>
+
+        <!-- Track 3 -->
+        <div class="track-card track-exam">
+          <div class="track-badge">TNPSC & Academics</div>
+          <div class="track-icon">📚</div>
+          <h3>Exam Track</h3>
+          <p>Comprehensive Unit 8 syllabus coverage with classical commentaries (மு.வ & சாலமன் பாப்பையா) and rubric keyword grading.</p>
+          <ul class="track-bullets">
+            <li>Scholarly multi-tier meanings</li>
+            <li>"Explain in your words" grader</li>
+            <li>Couplet fill-in-the-blank drills</li>
+          </ul>
+        </div>
+
+        <!-- Track 4 -->
+        <div class="track-card track-wisdom">
+          <div class="track-badge">Daily Mindfulness</div>
+          <div class="track-icon">🧘</div>
+          <h3>Wisdom Track</h3>
+          <p>Find clarity for modern life situations with emotion-based search (*"There's a kural for that"*) and morning 28s voice rituals.</p>
+          <ul class="track-bullets">
+            <li>Situational emotional lookup</li>
+            <li>28-second morning Kural Radio</li>
+            <li>Today's practical action step</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-STEP MODULAR AUDIO SHOWCASE -->
+  <section id="audio-capsule" class="section audio-showcase">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">The Morning Ritual</span>
+        <h2 class="section-title">Modular 4-Step Audio Pipeline</h2>
+        <p class="section-desc">Experience our signature 28-second Kural Radio audio capsule, built in a sequential 4-step pedagogical ratio.</p>
+      </div>
+
+      <div class="audio-player-box">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:1.3rem">🎙️</span>
+            <strong>Kural Radio Sequence Simulation</strong>
+          </div>
+          <div style="background:rgba(245,166,35,0.15);padding:6px 14px;border-radius:100px;font-size:0.8rem;color:var(--gold);font-weight:700">
+            Persona: வள்ளுவர் (Sage)
+          </div>
+        </div>
+
+        <!-- 4 Step Cards -->
+        <div class="audio-steps-grid">
+          <div class="audio-step-card active" onclick="setStep(0)">
+            <div class="step-num">1</div>
+            <div class="step-name">🔔 இசை (Chime)</div>
+            <div class="step-desc">Ancient Bell</div>
+          </div>
+          <div class="audio-step-card" onclick="setStep(1)">
+            <div class="step-num">2</div>
+            <div class="step-name">👋 அறிமுகம் (Intro)</div>
+            <div class="step-desc">"வணக்கம்! எண் 1"</div>
+          </div>
+          <div class="audio-step-card" onclick="setStep(2)">
+            <div class="step-num">3</div>
+            <div class="step-name">📜 குறள் (Verse)</div>
+            <div class="step-desc">4/3 Couplet</div>
+          </div>
+          <div class="audio-step-card" onclick="setStep(3)">
+            <div class="step-num">4</div>
+            <div class="step-name">💡 பொருள் (Meaning)</div>
+            <div class="step-desc">Porul Narration</div>
+          </div>
+        </div>
+
+        <!-- Live Step Box -->
+        <div id="step-preview" style="background:rgba(0,0,0,0.3);border-radius:16px;padding:20px;margin-bottom:24px;border:1px solid var(--border)">
+          <div style="font-size:0.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:6px">
+            ACTIVE STEP 1: CULTURAL CHIME
+          </div>
+          <div style="font-size:1.1rem;font-weight:600;color:#fff">
+            🔔 Ancient temple bell & tambura chord chime plays to center your morning mindset.
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+          <button class="btn-primary" style="padding:10px 24px;font-size:0.88rem" onclick="playNextStep()">
+            ▶ Play Next Step in Sequence
+          </button>
+          <div style="font-size:0.82rem;color:var(--muted)">
+            Speed: <strong>1.0x Normal</strong> • 100% Offline Synthesized Audio
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES / SUPERPOWERS -->
+  <section id="features" class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Built Different</span>
+        <h2 class="section-title">Engineered for Lifelong Mastery</h2>
+        <p class="section-desc">Every detail designed with pedagogical precision, authentic Tamil typography, and strict privacy.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feat-box">
+          <div class="feat-icon">🧠</div>
+          <h4>SM-2 Spaced Repetition</h4>
+          <p>Never forget a verse. Our mathematically optimized algorithm schedules reviews exactly when memory decay begins.</p>
+        </div>
+
+        <div class="feat-box">
+          <div class="feat-icon">📜</div>
+          <h4>Strict 4/3 Couplet Meter</h4>
+          <p>Every verse precisely split into 4 words on Line 1 and 3 words on Line 2 (*குறள் வெண்பா*) for effortless rhythmic memory.</p>
+        </div>
+
+        <div class="feat-box">
+          <div class="feat-icon">🔤</div>
+          <h4>Multi-Font Typography</h4>
+          <p>Read comfortably with 4 authentic typefaces: Anek Tamil (Modern default), Mukta Malar, Noto Serif, and Noto Sans.</p>
+        </div>
+
+        <div class="feat-box">
+          <div class="feat-icon">⚡</div>
+          <h4>30-Second Kural Blitz</h4>
+          <p>Test your rapid recall under pressure in a fast-paced sprint designed for competitive recitation contestants.</p>
+        </div>
+
+        <div class="feat-box">
+          <div class="feat-icon">💎</div>
+          <h4>Life Pearls & Action Steps</h4>
+          <p>Go beyond theory. Every couplet includes a contemporary philosophical takeaway and a tangible mindfulness habit.</p>
+        </div>
+
+        <div class="feat-box">
+          <div class="feat-icon">🛡️</div>
+          <h4>100% Offline & Private</h4>
+          <p>Zero accounts, zero ads, and zero cloud uploads. Your learning journey stays completely on your personal device.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="section" style="padding-top:0">
+    <div class="section-inner">
+      <div class="cta-banner">
+        <h2>Start Your Thirukkural Journey Today</h2>
+        <p>Join thousands of students, kids, and lifelong learners mastering Tamil wisdom with their personal offline coach.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.kuralwise.app" target="_blank" rel="noopener" class="btn-primary" style="font-size:1.05rem;padding:16px 36px">
+          Get KuralWise Free on Google Play ⚡
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" class="section" style="padding-top:20px">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Got Questions?</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-wrap">
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span>Is KuralWise completely free and ad-free?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-a">
+            Yes! KuralWise is 100% free and contains zero advertisements, zero banner trackers, and zero in-app popups.
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span>How does the SM-2 spaced repetition algorithm work?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-a">
+            Based on the SuperMemo SM-2 algorithm, KuralWise tracks how quickly and accurately you recall a couplet. It then automatically schedules reviews at increasing intervals (1 day, 6 days, 15 days, etc.) to cement the verse into your long-term memory.
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span>Can I use KuralWise without an internet connection?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-a">
+            Absolutely. All 1,330 Kurals, multi-tier meanings, audio capsules, and spaced repetition engines run 100% offline on your device.
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span>Is KuralWise suitable for school recitation competitions like Kural Theni?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-a">
+            Yes, the School Track is specifically calibrated for Kural Theni, Shriram Ilakkiya Kazhagam, and inter-school contests, featuring Weak Kural Radar and competition countdown readiness rings.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="images/app_icon.png" alt="KuralWise" style="width:28px;height:28px;border-radius:6px" />
+        <span>KuralWise</span>
+      </div>
+      <div class="footer-links">
+        <a href="#tracks">Tracks</a>
+        <a href="#audio-capsule">Kural Radio</a>
+        <a href="#features">Features</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="https://wiselyrise.in" target="_blank" rel="noopener">WiselyRise Solutions</a>
+      </div>
+      <p class="footer-copy">© 2026 WiselyRise Solutions. Built with pride in Tamil Nadu, India. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a href="https://wa.me/919999999999?text=Hello%20WiselyRise,%20I%20have%20a%20question%20about%20KuralWise" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+  </a>
+
+  <!-- INTERACTIVE DEMO SCRIPT -->
+  <script>
+    const stepsData = [
+      {
+        num: "ACTIVE STEP 1: CULTURAL CHIME",
+        text: "🔔 Ancient temple bell & tambura chord chime plays to center your morning mindset."
+      },
+      {
+        num: "ACTIVE STEP 2: GREETINGS & INTRO",
+        text: "👋 'வணக்கம்! திருக்குறள் எண் ஒன்று, அதிகாரம் கடவுள் வாழ்த்து.'"
+      },
+      {
+        num: "ACTIVE STEP 3: COUPLET RECITAL (4/3 METER)",
+        text: "📜 'அகர முதல எழுத்தெல்லாம் ஆதி / பகவன் முதற்றே உலகு.'"
+      },
+      {
+        num: "ACTIVE STEP 4: MEANING & LIFE PEARL",
+        text: "💡 'பொருள்: எழுத்துகளுக்கெல்லாம் அகரம் தொடக்கம் போல, உலகத்திற்கு ஆதிபகவனே தொடக்கம்.'"
+      }
+    ];
+
+    let currentStep = 0;
+
+    function setStep(idx) {
+      currentStep = idx;
+      const cards = document.querySelectorAll('.audio-step-card');
+      cards.forEach((c, i) => {
+        if (i === idx) c.classList.add('active');
+        else c.classList.remove('active');
+      });
+      const preview = document.getElementById('step-preview');
+      preview.innerHTML = `
+        <div style="font-size:0.75rem;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:6px">
+          ${stepsData[idx].num}
+        </div>
+        <div style="font-size:1.1rem;font-weight:600;color:#fff">
+          ${stepsData[idx].text}
+        </div>
+      `;
+    }
+
+    function playNextStep() {
+      currentStep = (currentStep + 1) % stepsData.length;
+      setStep(currentStep);
+    }
+
+    function toggleFaq(elem) {
+      elem.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
