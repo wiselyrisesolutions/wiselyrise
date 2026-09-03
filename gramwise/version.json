@@ -1,7 +1,7 @@
 {
-  "latest_build": 101,
-  "latest_version": "3.8.1",
+  "latest_build": 104,
+  "latest_version": "3.8.4",
   "min_build": 52,
-  "changelog": "New Feature: Trend Analytics",
+  "changelog": "New: Timeline view for items",
   "store_url": "https://play.google.com/store/apps/details?id=com.gramwise.app"
 }
