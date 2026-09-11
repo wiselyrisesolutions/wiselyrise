@@ -1,7 +1,7 @@
 {
-  "latest_build": 44,
-  "latest_version": "1.4.4",
+  "latest_build": 45,
+  "latest_version": "1.4.5",
   "min_build": 1,
-  "changelog": "UX & Bugfixes",
+  "changelog": "Bugfixes",
   "store_url": "https://play.google.com/store/apps/details?id=com.keywise.app"
 }
