@@ -1,6 +1,6 @@
 {
-  "latest_build": 68,
-  "latest_version": "2.9.8",
+  "latest_build": 71,
+  "latest_version": "3.0.1",
   "min_build": 54,
   "changelog": "Bugfixes and stability improvements.",
   "store_url": "https://play.google.com/store/apps/details?id=com.pixwise.app"

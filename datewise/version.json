@@ -1,7 +1,7 @@
 {
-  "latest_build": 70,
-  "latest_version": "2.7.10",
+  "latest_build": 80,
+  "latest_version": "2.7.20",
   "min_build": 1,
-  "changelog": "New features: Calendar view and custom greetings",
+  "changelog": "The all-new DateWise is here! \n⚡ Smart Add — create reminders by typing, speaking naturally.\n👥 People Hub — all your circles & milestones in one place.\n📥 Inbox — capture ideas, set date later.",
   "store_url": "https://play.google.com/store/apps/details?id=com.datewise.app"
 }
