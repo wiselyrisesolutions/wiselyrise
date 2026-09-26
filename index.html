@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang='en'>
 <head>
   <meta charset='UTF-8'>
@@ -452,6 +452,11 @@
       #wr-logo.wr-glow { animation: none; filter: drop-shadow(0 0 18px rgba(0,153,238,0.4)); }
       .wr-stage-float { animation: none; }
     }
+    /* Pre-hide stroke paths before JS initialises them — eliminates the static-logo flash */
+    #wr-w1, #wr-w2, #wr-w3, #wr-sh, #wr-rs, #wr-ra, #wr-rl {
+      stroke-dasharray: 9999;
+      stroke-dashoffset: 9999;
+    }
     @media (max-width: 900px) {
       .values-grid { grid-template-columns: 1fr 1fr; }
       .about-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -884,8 +889,8 @@
   }
   function wrRevealPath(id) {
     const el = document.getElementById(id);
-    el.style.strokeDasharray  = '';
-    el.style.strokeDashoffset = '';
+    el.style.strokeDasharray  = 'none';
+    el.style.strokeDashoffset = '0';
     el.style.transition = 'none';
   }
 
