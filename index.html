@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang='en'>
 <head>
   <meta charset='UTF-8'>
@@ -414,6 +414,44 @@
     @keyframes fadeUp   { from { opacity:0; transform:translateY(20px);  } to { opacity:1; transform:none; } }
     @keyframes pulse    { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.7);} }
     @keyframes scrollPulse { 0%{opacity:0;transform:scaleY(0);transform-origin:top;} 50%{opacity:1;} 100%{opacity:0;transform:scaleY(1);transform-origin:top;} }
+
+    /* ── ANIMATED HERO LOGO ─────────────────────────────────── */
+    .hero-logo-wrap { position: relative; }
+    #wr-logo {
+      width: clamp(140px, 26vw, 200px);
+      height: auto;
+      overflow: visible;
+      transition: filter 0.8s ease;
+      display: block;
+    }
+    #wr-logo.wr-glow {
+      filter:
+        drop-shadow(0 0 18px rgba(0,153,238,0.4))
+        drop-shadow(0 0 52px rgba(0,204,168,0.16));
+      animation: wrLogoBreath 4s 0.8s ease-in-out infinite;
+    }
+    .wr-stage-float { animation: wrDrift 5s ease-in-out infinite; }
+    @keyframes wrDrift {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+    @keyframes wrLogoBreath {
+      0%, 100% {
+        filter:
+          drop-shadow(0 0 18px rgba(0,153,238,0.4))
+          drop-shadow(0 0 52px rgba(0,204,168,0.16));
+      }
+      50% {
+        filter:
+          drop-shadow(0 0 30px rgba(0,153,238,0.56))
+          drop-shadow(0 0 68px rgba(0,204,168,0.24));
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #wr-logo { transition: none; }
+      #wr-logo.wr-glow { animation: none; filter: drop-shadow(0 0 18px rgba(0,153,238,0.4)); }
+      .wr-stage-float { animation: none; }
+    }
     @media (max-width: 900px) {
       .values-grid { grid-template-columns: 1fr 1fr; }
       .about-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -512,8 +550,60 @@
   <div class="hero-orb-1"></div>
   <div class="hero-orb-2"></div>
   <div class="hero-content">
-    <div class="hero-logo-wrap">
-      <img src="/images/logo_dark_trans.png" alt="WiselyRise Logo" style="width:120px; height:auto;">
+    <div class="hero-logo-wrap" id="wr-stage">
+      <svg id="wr-logo" viewBox="0 0 124 108" xmlns="http://www.w3.org/2000/svg" aria-label="WiselyRise animated logo">
+        <defs>
+          <!-- Standard R / accent gradient (top-left → bottom-right) -->
+          <linearGradient id="wr-g-r" x1="62" y1="16" x2="114" y2="96" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#0099EE"/>
+            <stop offset="100%" stop-color="#00CCA8"/>
+          </linearGradient>
+          <!-- Shared ascending stroke: warm white at junction → blue at apex -->
+          <linearGradient id="wr-g-sh" x1="66" y1="92" x2="86" y2="16" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#FFFFFF"/>
+            <stop offset="48%"  stop-color="#0099EE"/>
+            <stop offset="100%" stop-color="#0088DD"/>
+          </linearGradient>
+          <!-- Comet radial: bright white core → transparent edge -->
+          <radialGradient id="wr-g-comet" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#FFFFFF"/>
+            <stop offset="55%"  stop-color="rgba(0,153,238,0.55)"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+          <!-- Soft glow filter -->
+          <filter id="wr-f-glow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="2.8" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- Strong glow (apex burst) -->
+          <filter id="wr-f-glow2" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- W strokes (drawn left → right) -->
+        <path id="wr-w1" fill="none" stroke="#FFFFFF"        stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" d="M 10,16 L 28,92"/>
+        <path id="wr-w2" fill="none" stroke="#FFFFFF"        stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" d="M 28,92 L 47,52"/>
+        <path id="wr-w3" fill="none" stroke="#FFFFFF"        stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" d="M 47,52 L 66,92"/>
+
+        <!-- Shared ascending stroke (the Rise moment) -->
+        <path id="wr-sh" fill="none" stroke="url(#wr-g-sh)" stroke-width="9.5" stroke-linecap="round"                          d="M 66,92 L 86,16"/>
+
+        <!-- R strokes -->
+        <path id="wr-rs" fill="none" stroke="url(#wr-g-r)"  stroke-width="9.5" stroke-linecap="round"                          d="M 86,16 L 86,92"/>
+        <path id="wr-ra" fill="none" stroke="url(#wr-g-r)"  stroke-width="9.5" stroke-linecap="round"                          d="M 86,16 C 122,16 122,60 86,60"/>
+        <path id="wr-rl" fill="none" stroke="url(#wr-g-r)"  stroke-width="9.5" stroke-linecap="round"                          d="M 86,60 L 114,92"/>
+
+        <!-- FX elements -->
+        <circle id="wr-jct"    cx="66" cy="92" r="0" fill="#0099EE"           opacity="0" filter="url(#wr-f-glow)"/>
+        <circle id="wr-comet"  cx="66" cy="92" r="0" fill="url(#wr-g-comet)"  opacity="0"/>
+        <circle id="wr-aring"  cx="86" cy="16" r="0" fill="none" stroke="#00CCA8" stroke-width="1.2" opacity="0"/>
+        <circle id="wr-aring2" cx="86" cy="16" r="0" fill="none" stroke="#0099EE" stroke-width="0.7" opacity="0"/>
+
+        <!-- Particle group -->
+        <g id="wr-ptg"></g>
+      </svg>
     </div>
     <div class="hero-sub">WiselyRise Solutions</div>
     <h1 class="hero-headline">Build Smart.<br><span class="grad">Rise Higher.</span></h1>
@@ -752,6 +842,256 @@
   });
 </script>
 <script src="/shared/contact-modal.js"></script>
+
+<!-- ── ANIMATED LOGO SCRIPT ──────────────────────────────────────── -->
+<script>
+(function () {
+  'use strict';
+
+  /* ── REDUCED MOTION: skip animation, show finished logo ── */
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const wrLogo  = document.getElementById('wr-logo');
+  const wrStage = document.getElementById('wr-stage');
+  const wrPtg   = document.getElementById('wr-ptg');
+  let wrParticles = [];
+  let wrAmbientOn = false;
+  let wrRafId     = null;
+
+  /* ── EASING ── */
+  const wrEaseOut   = t => 1 - Math.pow(1 - t, 3);
+  const wrEaseIn    = t => t * t * t;
+  const wrEaseInOut = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+
+  /* ── PATH HELPERS ── */
+  function wrInitPath(id) {
+    const el  = document.getElementById(id);
+    const len = el.getTotalLength();
+    el.style.strokeDasharray  = len;
+    el.style.strokeDashoffset = len;
+    el.style.transition = 'none';
+    el.getBoundingClientRect();
+  }
+  function wrDrawPath(id, dur, ease) {
+    ease = ease || 'ease-in-out';
+    const el = document.getElementById(id);
+    el.getBoundingClientRect();
+    el.style.transition = `stroke-dashoffset ${dur}ms ${ease}`;
+    el.style.strokeDashoffset = '0';
+  }
+  function wrRevealPath(id) {
+    const el = document.getElementById(id);
+    el.style.strokeDasharray  = '';
+    el.style.strokeDashoffset = '';
+    el.style.transition = 'none';
+  }
+
+  /* ── SVG HELPER ── */
+  function wrSa(id, attrs) {
+    const el = document.getElementById(id);
+    for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+  }
+  function wrSvgEl(tag, attrs) {
+    const ns = 'http://www.w3.org/2000/svg';
+    const el = document.createElementNS(ns, tag);
+    for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+    return el;
+  }
+
+  /* ── PARTICLE CLASS ── */
+  const WR_PAL = ['#0099EE','#00CCA8','#30DDCC','#70CCFF'];
+  class WrParticle {
+    constructor(x, y, opts) {
+      opts = opts || {};
+      this.x = x; this.y = y;
+      const ang = opts.angle !== undefined ? opts.angle : Math.random() * Math.PI * 2;
+      const spd = opts.speed !== undefined ? opts.speed : (Math.random() * 0.75 + 0.3);
+      this.vx   = Math.cos(ang) * spd;
+      this.vy   = Math.sin(ang) * spd - (opts.upBias !== undefined ? opts.upBias : 0.85);
+      this.life  = 1.0;
+      this.decay = opts.decay !== undefined ? opts.decay : (0.008 + Math.random() * 0.009);
+      this.r     = opts.r     !== undefined ? opts.r     : (Math.random() * 1.3 + 0.3);
+      this.color = opts.color !== undefined ? opts.color : WR_PAL[Math.floor(Math.random() * WR_PAL.length)];
+      this.el = wrSvgEl('circle', {
+        cx: x, cy: y, r: this.r,
+        fill: this.color, opacity: 0.8,
+        filter: 'url(#wr-f-glow)'
+      });
+      wrPtg.appendChild(this.el);
+    }
+    update() {
+      this.x  += this.vx;
+      this.y  += this.vy;
+      this.vy -= 0.013;
+      this.life -= this.decay;
+      const op = Math.max(0, this.life * 0.82);
+      this.el.setAttribute('cx', this.x);
+      this.el.setAttribute('cy', this.y);
+      this.el.setAttribute('opacity', op);
+    }
+    remove() { this.el.remove(); }
+    get dead() { return this.life <= 0; }
+  }
+
+  /* ── PARTICLE ENGINE ── */
+  function wrSpawnAmbient() {
+    const t = Math.random();
+    let x, y;
+    switch (Math.floor(Math.random() * 4)) {
+      case 0: x = 66 + t*20; y = 92 - t*76; break;
+      case 1: x = 86;        y = 16 + t*76; break;
+      case 2: x = 86 + t*26; y = 16 + t*22; break;
+      default:x = 86 + t*28; y = 60 + t*32;
+    }
+    wrParticles.push(new WrParticle(x, y, {
+      upBias: 0.75,
+      decay:  0.007 + Math.random() * 0.007,
+      r:      Math.random() * 1.0 + 0.25,
+      speed:  Math.random() * 0.35 + 0.08
+    }));
+  }
+  function wrStartEngine() {
+    function tick() {
+      wrParticles = wrParticles.filter(p => {
+        p.update();
+        if (p.dead) { p.remove(); return false; }
+        return true;
+      });
+      if (wrAmbientOn && Math.random() < 0.38) wrSpawnAmbient();
+      if (wrParticles.length > 0 || wrAmbientOn) wrRafId = requestAnimationFrame(tick);
+      else wrRafId = null;
+    }
+    if (wrRafId) cancelAnimationFrame(wrRafId);
+    wrRafId = requestAnimationFrame(tick);
+  }
+
+  /* ── JUNCTION FLASH ── */
+  function wrJunctionFlash() {
+    let t0 = null;
+    const dur = 400;
+    function frame(ts) {
+      if (!t0) t0 = ts;
+      const p = Math.min(1, (ts - t0) / dur);
+      wrSa('wr-jct', { r: wrEaseOut(p) * 6, opacity: Math.max(0, 1 - p) });
+      if (p < 1) requestAnimationFrame(frame);
+      else wrSa('wr-jct', { r: 0, opacity: 0 });
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ── COMET ── */
+  function wrAnimComet(dur) {
+    let t0 = null;
+    wrSa('wr-comet', { r: 5.5, opacity: 0.92 });
+    function frame(ts) {
+      if (!t0) t0 = ts;
+      const p  = Math.min(1, (ts - t0) / dur);
+      const ep = wrEaseOut(p);
+      const cx = 66 + ep * 20;
+      const cy = 92 - ep * 76;
+      const r  = 5.5 - ep * 3;
+      const op = p < 0.88 ? 0.92 : (1 - p) * 7.67;
+      wrSa('wr-comet', { cx, cy, r, opacity: Math.max(0, op) });
+      if (Math.random() < 0.75) {
+        wrParticles.push(new WrParticle(cx, cy, {
+          speed:  Math.random() * 0.4  + 0.08,
+          upBias: 0.1,
+          decay:  0.038 + Math.random() * 0.022,
+          r:      Math.random() * 1.0  + 0.2,
+          color:  Math.random() > 0.55 ? '#0099EE' : 'rgba(210,235,255,0.88)'
+        }));
+      }
+      if (p < 1) requestAnimationFrame(frame);
+      else { wrSa('wr-comet', { r: 0, opacity: 0 }); wrApexBurst(); }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ── APEX BURST ── */
+  function wrApexBurst() {
+    [
+      { id: 'wr-aring',  dur: 600, maxR: 22, stroke: '#00CCA8', sw: 1.3 },
+      { id: 'wr-aring2', dur: 900, maxR: 32, stroke: '#0099EE', sw: 0.7 }
+    ].forEach(({ id, dur, maxR, stroke, sw }) => {
+      let t0 = null;
+      function ring(ts) {
+        if (!t0) t0 = ts;
+        const p = Math.min(1, (ts - t0) / dur);
+        wrSa(id, { r: wrEaseOut(p) * maxR, opacity: (1-p) * 0.85, 'stroke-width': sw * (1 - p * 0.5) });
+        if (p < 1) requestAnimationFrame(ring);
+        else wrSa(id, { r: 0, opacity: 0 });
+      }
+      requestAnimationFrame(ring);
+    });
+    const count = 18;
+    for (let i = 0; i < count; i++) {
+      const angle = (Math.PI * 2 / count) * i - Math.PI / 2;
+      const spd   = Math.random() * 2.4 + 0.9;
+      wrParticles.push(new WrParticle(86, 16, {
+        angle, speed: spd,
+        upBias: Math.random() * 0.4 - 0.4,
+        decay:  0.018 + Math.random() * 0.014,
+        r:      Math.random() * 2.0 + 0.5
+      }));
+    }
+  }
+
+  /* ── INSTANT FINISH (reduced-motion) ── */
+  function wrShowFinished() {
+    ['wr-w1','wr-w2','wr-w3','wr-sh','wr-rs','wr-ra','wr-rl'].forEach(wrRevealPath);
+    wrLogo.classList.add('wr-glow');
+    wrStage.classList.add('wr-stage-float');
+  }
+
+  /* ── MAIN SEQUENCE ── */
+  function wrRun() {
+    if (prefersReduced) { wrShowFinished(); return; }
+
+    ['wr-w1','wr-w2','wr-w3','wr-sh','wr-rs','wr-ra','wr-rl'].forEach(wrInitPath);
+    ['wr-jct','wr-comet','wr-aring','wr-aring2'].forEach(id => wrSa(id, { r: 0, opacity: 0 }));
+    wrLogo.classList.remove('wr-glow');
+    wrStage.classList.remove('wr-stage-float');
+
+    const at = (ms, fn) => setTimeout(fn, ms);
+
+    // W strokes
+    at(360,  () => wrDrawPath('wr-w1', 580, 'ease-in-out'));
+    at(650,  () => wrDrawPath('wr-w2', 360, 'ease-in-out'));
+    at(870,  () => wrDrawPath('wr-w3', 340, 'ease-in-out'));
+
+    // Junction flash
+    at(1060, wrJunctionFlash);
+
+    // The Ascent
+    at(1180, () => {
+      wrDrawPath('wr-sh', 320, 'cubic-bezier(0.05, 0.0, 0.1, 1.0)');
+      wrAnimComet(310);
+      wrStartEngine();
+    });
+
+    // R cascade from apex
+    at(1550, () => {
+      wrDrawPath('wr-rs', 530, 'ease-out');
+      wrDrawPath('wr-ra', 460, 'ease-out');
+    });
+    at(1930, () => wrDrawPath('wr-rl', 290, 'ease-out'));
+
+    // Full logo glow
+    at(2200, () => wrLogo.classList.add('wr-glow'));
+
+    // Ambient particles
+    at(2320, () => { wrAmbientOn = true; if (!wrRafId) wrStartEngine(); });
+
+    // Ambient off
+    at(4000, () => { wrAmbientOn = false; });
+
+    // Idle float
+    at(4400, () => wrStage.classList.add('wr-stage-float'));
+  }
+
+  window.addEventListener('load', () => setTimeout(wrRun, 300));
+})();
+</script>
 
 <!-- ============================================================
      WHATSAPP FLOATING BUTTON
