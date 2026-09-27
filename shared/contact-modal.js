@@ -433,7 +433,7 @@
         btn.disabled = false;
         btn.textContent = currentSubmitLabel;
         setStatus(
-          err.message || 'Submission failed. Please email admin@wiselyrise.in directly.',
+          err.message || 'Submission failed. Please email contact@wiselyrise.in directly.',
           'error'
         );
       }
