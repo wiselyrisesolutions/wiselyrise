@@ -45,6 +45,18 @@ ul{list-style:none}
 [data-reveal][data-d="5"]{transition-delay:.40s}[data-reveal][data-d="6"]{transition-delay:.48s}
 @media(prefers-reduced-motion:reduce){[data-reveal]{opacity:1!important;transform:none!important;transition:none!important}}
 
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow { animation: heroFadeUp 0.55s ease 0.06s both; }
+.hero-title   { animation: heroFadeUp 0.65s ease 0.16s both; }
+.hero-sub     { animation: heroFadeUp 0.65s ease 0.26s both; }
+.hero-btns    { animation: heroFadeUp 0.65s ease 0.36s both; }
+.hero-chips   { animation: heroFadeUp 0.65s ease 0.44s both; }
+.hero-visual  { animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both; }
+
 /* ── NAV ────────────────────────────────────── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;display:flex;align-items:center;padding:0 5%;background:rgba(7,13,14,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .nav-inner{width:100%;max-width:1100px;margin:0 auto;display:flex;align-items:center}
@@ -271,7 +283,7 @@ footer a:hover{color:var(--teal)}
   <a href="#screenshots" onclick="closeMM()">Screenshots</a>
   <a href="#privacy" onclick="closeMM()">Privacy</a>
   <a href="#" onclick="closeMM();openContactModal('pixwise');return false;">Feedback</a>
-  <a href="/pixwise/privacy" onclick="closeMM()">Privacy Policy</a>
+  <a href="/pixwise/privacy.html" onclick="closeMM()">Privacy Policy</a>
   <a href="/" onclick="closeMM()">← WiselyRise</a>
 </div>
 
@@ -471,7 +483,7 @@ footer a:hover{color:var(--teal)}
 <!-- ══ LINKS ══════════════════════════════════ -->
 <div class="page-links">
   <a class="link-pill" href="/pixwise/privacy">🔒 Privacy Policy</a>
-  <a class="link-pill" href="/pixwise/terms">📜 Terms of Service</a>
+  <a class="link-pill" href="/pixwise/terms.html">📜 Terms of Service</a>
   <a class="link-pill" href="#" onclick="openContactModal('pixwise');return false;">✉️ Feedback</a>
   <a class="link-pill" href="/">🏠 WiselyRise</a>
 </div>

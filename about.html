@@ -53,6 +53,27 @@
     .reveal-delay-3 { transition-delay: 0.3s; }
     .reveal-delay-4 { transition-delay: 0.4s; }
 
+    
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .page-eyebrow { animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both; }
+    .page-title   { animation: heroFadeUp 0.68s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both; }
+    .page-lead    { animation: heroFadeUp 0.68s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page-eyebrow, .page-title, .page-lead {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
     nav {
       position: fixed;
       top: 0;
@@ -572,18 +593,20 @@
       </div>
     </a>
     <div class='nav-links'>
-      <a href='/#apps'>Apps</a>
+      <a href='/services.html'>Services</a>
+      <a href='/#apps'>Our Apps</a>
       <a href='about.html'>About</a>
       <a href='#contact'>Contact</a>
     </div>
-    <button class='nav-cta' onclick='openContactModal(); return false;'>Get in Touch</button>
+    <button class='nav-cta' onclick='openContactModal("custom-software"); return false;'>Start a Project</button>
     <button class='hamburger' id='hamburger' aria-label='Menu'><span></span><span></span><span></span></button>
   </div>
 </nav>
 
 <div class='mobile-menu' id='mobileMenu'>
   <a href='/' onclick='closeMM()'>Home</a>
-  <a href='/#apps' onclick='closeMM()'>Apps</a>
+  <a href='/services.html' onclick='closeMM()'>Services</a>
+  <a href='/#apps' onclick='closeMM()'>Our Apps</a>
   <a href='#contact' onclick='closeMM()'>Contact</a>
 </div>
 
@@ -730,8 +753,7 @@
         <div class='contact-card-icon'>LOC</div>
         <div class='contact-card-label'>Address</div>
         <div class='contact-card-value' style='font-size:12px;'>Erode, Tamil Nadu<br>India</div>
-</a>      
-</div>
+      </a>
     </div>
   </div>
 </section>

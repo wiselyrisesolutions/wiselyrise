@@ -343,6 +343,30 @@
       transform: translateY(0);
     }
 
+    
+    /* Hero entrance animations */
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero .eyebrow      { animation: heroFadeUp 0.55s ease 0.06s both; }
+    .hero h1            { animation: heroFadeUp 0.65s ease 0.16s both; }
+    .hero p             { animation: heroFadeUp 0.65s ease 0.26s both; }
+    .hero .hero-actions { animation: heroFadeUp 0.65s ease 0.36s both; }
+    .hero-card          { animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero .eyebrow, .hero h1, .hero p, .hero .hero-actions, .hero-card {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
     @media (max-width: 980px) {
       .hero { grid-template-columns: 1fr; }
       .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -433,7 +457,7 @@
   </header>
 
   <main class="container">
-    <section class="hero reveal">
+    <section class="hero">
       <div>
         <div class="eyebrow">Built for Indian Clinics</div>
         <h1>From front desk chaos to <span>predictable patient flow</span>.</h1>
@@ -579,7 +603,7 @@
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   </script>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="cwGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1dc8ad"/>
+      <stop offset="100%" stop-color="#0f7fa8"/>
+    </linearGradient>
+    <linearGradient id="crossGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e6f9f6"/>
+    </linearGradient>
+    <filter id="cwShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0f7fa8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <!-- Background squircle -->
+  <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#cwGrad)" filter="url(#cwShadow)"/>
+  
+  <!-- Subtle inner glow rim -->
+  <rect x="2.5" y="2.5" width="43" height="43" rx="11.5" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+
+  <!-- Medical Cross / Pulse Icon -->
+  <!-- Cross vertical bar -->
+  <rect x="21" y="11" width="6" height="26" rx="3" fill="url(#crossGrad)"/>
+  <!-- Cross horizontal bar -->
+  <rect x="11" y="21" width="26" height="6" rx="3" fill="url(#crossGrad)"/>
+
+  <!-- Dynamic Heartbeat pulse dot / accent in center -->
+  <circle cx="24" cy="24" r="2.2" fill="#0f7fa8"/>
+</svg>

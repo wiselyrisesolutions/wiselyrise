@@ -71,7 +71,7 @@
       <div class="cm-header">
         <div>
           <div class="cm-title">Get in Touch</div>
-          <div class="cm-sub">Report a bug, suggest a feature, or share an idea</div>
+          <div class="cm-sub">Start a project, book an App Health Check, or share feedback</div>
         </div>
         <button class="cm-close" id="cmClose" aria-label="Close">✕</button>
       </div>
@@ -83,6 +83,8 @@
             <label class="cm-label" for="cmCategory">Category <span class="cm-req">*</span></label>
             <select class="cm-input cm-select" id="cmCategory" required>
               <option value="">Select category…</option>
+              <option value="project">🚀 Start a Project / Inquiry</option>
+              <option value="healthcheck">🩺 App Health Check</option>
               <option value="bug">🐛 Bug Report</option>
               <option value="feature">✨ New Feature</option>
               <option value="improvement">🔧 Improvement</option>
@@ -90,18 +92,17 @@
             </select>
           </div>
           <div class="cm-field">
-            <label class="cm-label" for="cmProduct">Product <span class="cm-req">*</span></label>
+            <label class="cm-label" for="cmProduct">Subject Area / Product <span class="cm-req">*</span></label>
             <select class="cm-input cm-select" id="cmProduct" required>
-              <option value="">Select product…</option>
+              <option value="">Select subject…</option>
+              <option value="custom-software">Custom Software / Client Project</option>
+              <option value="healthcheck">App Health Check (Pre-Launch QA)</option>
+              <option value="app-rescue">App Rescue (Bug Fixing / Recovery)</option>
               <option value="datewise">DateWise</option>
               <option value="pixwise">PixWise</option>
               <option value="gramwise">GramWise</option>
               <option value="keywise">KeyWise</option>
-              <option value="kuralwise">KuralWise</option>
-              <option value="docuwise">DocuWise</option>
-              <option value="clinicwise">ClinicWise</option>
-              <option value="chitwise">ChitWise</option>
-              <option value="other">Something Else 💡</option>
+              <option value="other">Other / Consultation 💡</option>
             </select>
           </div>
         </div>
@@ -135,7 +136,7 @@
         </div>
         <div class="cm-actions">
           <div class="cm-status" id="cmStatus"></div>
-          <button type="submit" class="cm-submit" id="cmSubmit">Send Feedback</button>
+          <button type="submit" class="cm-submit" id="cmSubmit">Send Message</button>
         </div>
       </form>
       <div class="cm-success" id="cmSuccess">
@@ -176,7 +177,7 @@
       document.getElementById('cmStatus').textContent = '';
       const btn = document.getElementById('cmSubmit');
       btn.disabled = false;
-      btn.textContent = 'Send Feedback';
+      btn.textContent = 'Send Message';
     }
   };
 

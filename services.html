@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services &amp; Lifecycle — WiselyRise Solutions</title>
+  <meta name="description" content="Explore WiselyRise software services: App Health Check pre-launch QA, App Rescue bug fixing, custom Flutter development, and business workflow software. Built in Erode, Tamil Nadu.">
+  <meta property="og:title" content="Services &amp; Lifecycle — WiselyRise Solutions">
+  <meta property="og:description" content="We build, test, fix, and improve mobile and web software. Explore our App Health Check, App Rescue, and Custom Development services.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wiselyrise.in/services">
+  <link rel="canonical" href="https://wiselyrise.in/services">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#070F1C">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy:          #070F1C;
+      --navy-mid:      #0C1D38;
+      --navy-soft:     #132444;
+      --navy-dark:     #040912;
+      --blue:          #0099EE;
+      --teal:          #00CCA8;
+      --amber:         #D48A3A;
+      --amber-soft:    rgba(212, 138, 58, 0.12);
+      --amber-border:  rgba(212, 138, 58, 0.28);
+      --white:         #FFFFFF;
+      --muted:         #7A90A8;
+      --border:        rgba(216,228,239,0.12);
+      --border-strong: rgba(216,228,239,0.22);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--navy);
+      font-family: 'Outfit', sans-serif;
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .page-hero .page-eyebrow { animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both; }
+    .page-hero .page-title   { animation: heroFadeUp 0.68s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both; }
+    .page-hero .page-lead    { animation: heroFadeUp 0.68s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both; }
+    .page-hero-actions       { animation: heroFadeUp 0.68s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page-hero .page-eyebrow, .page-hero .page-title, .page-hero .page-lead, .page-hero-actions {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(7,15,28,0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      padding: 0 32px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
+    .nav-name { font-size: 17px; font-weight: 700; color: var(--white); letter-spacing: 0.4px; }
+    .nav-sub  { font-size: 8px; font-weight: 400; letter-spacing: 3.5px; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-top: 2px; }
+    .nav-divider { width: 1px; height: 34px; background: var(--border); }
+    .nav-links { display: flex; align-items: center; gap: 6px; }
+    .nav-links a {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.5px;
+      color: var(--muted); text-decoration: none;
+      padding: 7px 12px; border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a.active, .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .nav-cta {
+      font-size: 12px; font-weight: 600;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: var(--white); text-decoration: none;
+      padding: 8px 18px; border-radius: 100px;
+      border: none; cursor: pointer; font-family: inherit;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.92; transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; cursor: pointer; background: none; border: none; }
+    .hamburger span { width: 20px; height: 2px; background: var(--white); border-radius: 2px; transition: transform 0.25s, opacity 0.25s; display: block; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none; position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+      background: rgba(7,15,28,0.98); backdrop-filter: blur(16px);
+      z-index: 199; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a, .mobile-menu button {
+      font-size: 1.05rem; font-weight: 600; color: var(--white);
+      padding: 12px 24px; border-radius: 10px; background: none; border: none;
+      cursor: pointer; font-family: inherit;
+    }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 140px 32px 70px;
+      text-align: center;
+      position: relative; overflow: hidden;
+      background: radial-gradient(circle at 50% -20%, rgba(0,153,238,0.18), transparent 70%);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 3.5px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+    }
+    .page-title {
+      font-size: clamp(36px, 5.5vw, 56px); font-weight: 700;
+      line-height: 1.15; color: var(--white); margin-bottom: 18px; letter-spacing: -0.5px;
+    }
+    .page-title .grad {
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .page-lead {
+      font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.65);
+      max-width: 760px; margin: 0 auto 32px; line-height: 1.7;
+    }
+
+    /* Common Section Styles */
+    .section { max-width: 1120px; margin: 0 auto; padding: 96px 32px; }
+    .section-header { max-width: 780px; margin-bottom: 48px; }
+    .section-header-center { text-align: center; max-width: 780px; margin: 0 auto 48px; }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 3.5px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 12px; display: inline-block;
+    }
+    .section-eyebrow.amber { color: var(--amber); }
+
+    .section-eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(0, 153, 238, 0.08);
+      border: 1px solid rgba(0, 153, 238, 0.28);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .stage-pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 10px var(--teal);
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(1.35); }
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px); font-weight: 700;
+      line-height: 1.2; color: var(--white); margin-bottom: 14px; letter-spacing: -0.2px;
+    }
+    .section-title .grad {
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .section-title .grad-amber {
+      background: linear-gradient(90deg, var(--amber), #F3BA7A);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .section-rule {
+      width: 52px; height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+      border-radius: 2px; margin-bottom: 18px;
+    }
+    .section-rule.center { margin-left: auto; margin-right: auto; }
+    .section-rule.amber { background: linear-gradient(90deg, var(--amber), #F3BA7A); }
+    .section-lead {
+      font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.65);
+      line-height: 1.75; max-width: 720px; margin-bottom: 24px;
+    }
+
+    /* Stages Quick Navigator */
+    .stages-nav-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .stage-nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.22s ease;
+      cursor: pointer;
+    }
+    .stage-nav-pill .pill-num {
+      font-size: 11px;
+      font-weight: 700;
+      opacity: 0.65;
+    }
+    .stage-nav-pill.build {
+      background: rgba(0, 153, 238, 0.08);
+      border: 1px solid rgba(0, 153, 238, 0.26);
+      color: #92d5ff;
+    }
+    .stage-nav-pill.build:hover {
+      background: rgba(0, 153, 238, 0.18);
+      border-color: rgba(0, 153, 238, 0.55);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 153, 238, 0.25);
+    }
+    .stage-nav-pill.test {
+      background: rgba(0, 204, 168, 0.08);
+      border: 1px solid rgba(0, 204, 168, 0.26);
+      color: #6ee7b7;
+    }
+    .stage-nav-pill.test:hover {
+      background: rgba(0, 204, 168, 0.18);
+      border-color: rgba(0, 204, 168, 0.55);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 204, 168, 0.25);
+    }
+    .stage-nav-pill.fix {
+      background: rgba(212, 138, 58, 0.08);
+      border: 1px solid rgba(212, 138, 58, 0.28);
+      color: #fbbf24;
+    }
+    .stage-nav-pill.fix:hover {
+      background: rgba(212, 138, 58, 0.18);
+      border-color: rgba(212, 138, 58, 0.55);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(212, 138, 58, 0.25);
+    }
+    .stage-nav-pill.improve {
+      background: rgba(167, 139, 250, 0.08);
+      border: 1px solid rgba(167, 139, 250, 0.28);
+      color: #c4b5fd;
+    }
+    .stage-nav-pill.improve:hover {
+      background: rgba(167, 139, 250, 0.18);
+      border-color: rgba(167, 139, 250, 0.55);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(167, 139, 250, 0.25);
+    }
+
+    /* Detailed Stages Section */
+    .service-stage-block {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 24px; padding: 48px; margin-bottom: 40px;
+      display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px;
+      transition: border-color 0.3s ease;
+    }
+    .service-stage-block:hover { border-color: rgba(0,153,238,0.35); }
+    .stage-meta { display: flex; flex-direction: column; }
+    .stage-tag {
+      font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .stage-tag.build   { color: var(--blue); }
+    .stage-tag.test    { color: var(--teal); }
+    .stage-tag.fix     { color: var(--amber); }
+    .stage-tag.improve { color: #C77DFF; }
+    .stage-name { font-size: 32px; font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 12px; }
+    .stage-summary { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 24px; }
+    .stage-details h4 { font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--white); margin-bottom: 14px; }
+    .stage-check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .stage-check-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.8); line-height: 1.6;
+    }
+    .stage-check-list li svg { width: 16px; height: 16px; color: var(--teal); flex-shrink: 0; margin-top: 3px; }
+
+    /* Buttons */
+    .btn-primary, .btn-ghost, .btn-amber {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 26px; border-radius: 100px; font-size: 13px; font-weight: 600;
+      letter-spacing: 0.4px; border: none; cursor: pointer; text-decoration: none;
+      font-family: inherit; transition: all 0.2s ease; width: fit-content;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--blue), var(--teal)); color: var(--white); }
+    .btn-primary:hover { transform: translateY(-2px); opacity: 0.94; }
+    .btn-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--white); }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); }
+    .btn-amber { background: linear-gradient(135deg, var(--amber), #E8A050); color: #070F1C; font-weight: 700; }
+    .btn-amber:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(212,138,58,0.35); }
+
+    /* Deep Dive App Health Check */
+    .health-deep-dive {
+      width: 100%;
+      background: var(--navy-mid);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 96px 32px;
+    }
+    .health-deep-dive-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .health-grid-2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 36px;
+    }
+    .health-plan-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 36px 32px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .health-plan-card.featured {
+      border-color: var(--amber-border);
+      background: radial-gradient(80% 120% at 90% 10%, rgba(212,138,58,0.08) 0%, rgba(12,29,56,0.5) 60%), rgba(255,255,255,0.02);
+    }
+    .health-plan-badge {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 10px;
+    }
+    .health-plan-title { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .health-plan-price { font-size: 38px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .health-plan-price.amber {
+      background: linear-gradient(135deg, var(--amber), #F3BA7A);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .health-plan-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+
+    /* FAQ Section */
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+    .faq-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 26px 24px;
+    }
+    .faq-item h4 { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+    .faq-item p { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.65; }
+
+    /* Footer */
+    footer { background: #040912; border-top: 1px solid var(--border); padding: 56px 32px 36px; }
+    .footer-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.5fr repeat(4, 1fr);
+      gap: 36px; align-items: flex-start;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 10px; }
+    .footer-brand-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+    .footer-brand p { font-size: 12.5px; font-weight: 300; color: rgba(255,255,255,0.4); max-width: 280px; line-height: 1.6; }
+    .footer-tagline { color: rgba(0,204,168,0.65) !important; margin-top: 4px; font-weight: 500 !important; }
+    .footer-links-group h4 {
+      font-size: 10px; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+    }
+    .footer-links-group a, .footer-links-group button {
+      display: block; font-size: 13px; font-weight: 300;
+      color: rgba(255,255,255,0.45); text-decoration: none; background: none; border: none; padding: 0;
+      font-family: inherit; cursor: pointer; text-align: left;
+      margin-bottom: 10px; transition: color 0.2s;
+    }
+    .footer-links-group a:hover, .footer-links-group button:hover { color: var(--white); }
+    .footer-bottom {
+      max-width: 1120px; margin: 40px auto 0;
+      padding-top: 24px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 11.5px; font-weight: 300; color: rgba(255,255,255,0.3); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .service-stage-block { grid-template-columns: 1fr; gap: 28px; padding: 36px 28px; }
+      .health-grid-2 { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 680px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+
+    /* WhatsApp Button */
+    .wa-float {
+      position: fixed; right: 20px; bottom: 20px; width: 54px; height: 54px;
+      border-radius: 50%; background: linear-gradient(135deg, #25D366, #128C7E);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35); text-decoration: none; z-index: 999;
+      transition: transform 0.18s ease;
+    }
+    .wa-float:hover { transform: scale(1.08); }
+    .wa-float__icon { width: 28px; height: 28px; fill: white; position: relative; z-index: 1; flex-shrink: 0; }
+    .wa-float__ring {
+      position: absolute; inset: 0; border-radius: 50%; border: 2px solid #25D366;
+      animation: waPing 2s cubic-bezier(0, 0, 0.2, 1) infinite; pointer-events: none;
+    }
+    @keyframes waPing { 0%{transform:scale(1);opacity:0.8;} 75%,100%{transform:scale(1.55);opacity:0;} }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/images/logo_dark_trans.png" alt="WiselyRise" style="width:28px; height:auto;">
+      <div class="nav-divider"></div>
+      <div class="nav-wordmark">
+        <div class="nav-name">WiselyRise</div>
+        <div class="nav-sub">Solutions</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="/services.html" class="active">Services</a>
+      <a href="/#healthcheck">App Health Check</a>
+      <a href="/#apps">Our Apps</a>
+      <a href="/#solutions">Solutions</a>
+      <a href="/about.html">About</a>
+    </div>
+    <button class="nav-cta" onclick="openContactModal('custom-software'); return false;">Start a Project</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/services.html" onclick="closeMM()">Services</a>
+  <a href="/#healthcheck" onclick="closeMM()">App Health Check</a>
+  <a href="/#apps" onclick="closeMM()">Our Apps</a>
+  <a href="/#solutions" onclick="closeMM()">Solutions</a>
+  <a href="/about.html" onclick="closeMM()">About</a>
+  <button onclick="closeMM(); openContactModal('custom-software');" class="nav-cta">Start a Project</button>
+</div>
+
+<!-- ══ HERO SECTION ════════════════════════════════════ -->
+<section class="page-hero">
+  <div class="page-eyebrow">Capabilities &amp; Lifecycle</div>
+  <h1 class="page-title">Software Services Built on<br><span class="grad">Real Product Craft.</span></h1>
+  <p class="page-lead">We build, test, fix, and improve software with the exact same discipline behind our own consumer apps. Engage at any stage of your product lifecycle.</p>
+  <div class="page-hero-actions" style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
+    <button class="btn-primary" onclick="openContactModal('custom-software')">Start a Project</button>
+    <a href="#health-pricing" class="btn-amber">App Health Check &middot; &#8377;2,999</a>
+  </div>
+</section>
+
+<!-- ══ THE 4 LIFECYCLE STAGES IN DETAIL ═══════════════ -->
+<section class="section" id="stages">
+  <div class="section-header reveal">
+    <div class="section-eyebrow-pill">
+      <span class="stage-pulse-dot"></span>
+      <span>The 4 Stages</span>
+    </div>
+    <h2 class="section-title">Where Can WiselyRise <span class="grad">Step In?</span></h2>
+    <div class="section-rule"></div>
+    <p class="section-lead">Software is rarely static. Whether you are building from zero or rescuing an existing app from crashes, our services align to your current reality.</p>
+    <div class="stages-nav-pills">
+      <a href="#stage-build" class="stage-nav-pill build"><span class="pill-num">01</span> Build from Scratch</a>
+      <a href="#stage-test" class="stage-nav-pill test"><span class="pill-num">02</span> Quality Assurance</a>
+      <a href="#stage-fix" class="stage-nav-pill fix"><span class="pill-num">03</span> App Rescue &amp; Repair</a>
+      <a href="#stage-improve" class="stage-nav-pill improve"><span class="pill-num">04</span> Continuous Evolution</a>
+    </div>
+  </div>
+
+  <!-- STAGE 01: BUILD -->
+  <div class="service-stage-block reveal" id="stage-build">
+    <div class="stage-meta">
+      <div class="stage-tag build">Stage 01 &middot; Build</div>
+      <h3 class="stage-name">Build from Scratch</h3>
+      <p class="stage-summary">We turn validated ideas, operational requirements, and product designs into fast, maintainable, production software. Clean state management, offline-first reliability, and zero bloated frameworks.</p>
+      <button class="btn-primary" onclick="openContactModal('custom-software')">Discuss Build Scope &rarr;</button>
+    </div>
+    <div class="stage-details">
+      <h4>What we deliver in Build engagements:</h4>
+      <ul class="stage-check-list">
+        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span><strong>Rapid MVPs:</strong> Focused initial releases designed to get to the Google Play Store or web without unnecessary delays.</span></li>
+        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span><strong>Custom Business Tools:</strong> Digitize paper/Excel workflows with role-based internal portals and dashboards.</span></li>
+        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span><strong>Offline-First Architecture:</strong> Resilient local databases (SQLite/SQLCipher) that work reliably without active internet.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STAGE 02: TEST -->
+  <div class="service-stage-block reveal" id="stage-test">
+    <div class="stage-meta">
+      <div class="stage-tag test">Stage 02 &middot; Test</div>
+      <h3 class="stage-name">App Quality Assurance</h3>
+      <p class="stage-summary">Real human exploratory testing across real Android and iOS devices. We uncover subtle edge-case bugs, race conditions, memory leaks, and input quirks before public release.</p>
+      <a href="#health-pricing" class="btn-ghost">View Health Check Packages &rarr;</a>
+    </div>
+    <div class="stage-details">
+      <h4>Our QA testing scope includes:</h4>
+      <ul class="stage-check-list">
+        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span><strong>Critical Journey Testing:</strong> End-to-end verification of onboarding, payment, booking, and authentication flows.</span></li>
+        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span><strong>Network &amp; Lifecycle Drops:</strong> Testing abrupt connection drops, airplane mode toggles, and background resume stability.</span></li>
+        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span><strong>Actionable Deliverables:</strong> Clean defect report classifying bugs by severity (Critical, High, Medium, Low) with exact reproduction steps.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STAGE 03: FIX -->
+  <div class="service-stage-block reveal" id="stage-fix">
+    <div class="stage-meta">
+      <div class="stage-tag fix">Stage 03 &middot; Fix</div>
+      <h3 class="stage-name">App Rescue &amp; Repair</h3>
+      <p class="stage-summary">Inherited a broken codebase? Previous developers left mid-project? We analyze existing Flutter and Android repositories, isolate the root cause of crashes, and resolve them without an expensive rewrite.</p>
+      <button class="btn-amber" onclick="openContactModal('app-rescue')">Request Codebase Rescue &rarr;</button>
+    </div>
+    <div class="stage-details">
+      <h4>Common App Rescue scenarios we solve:</h4>
+      <ul class="stage-check-list">
+        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span><strong>Fatal Exceptions &amp; ANRs:</strong> Profiling and eliminating memory leaks, null pointer crashes, and UI freezes.</span></li>
+        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span><strong>Firebase &amp; Auth Failures:</strong> Fixing broken Google Sign-In, Phone Auth OTP loops, and Firestore rule violations.</span></li>
+        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span><strong>Play Store Rejections:</strong> Bringing outdated Target SDK versions, privacy disclosures, and app bundles into full compliance.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STAGE 04: IMPROVE -->
+  <div class="service-stage-block reveal" id="stage-improve">
+    <div class="stage-meta">
+      <div class="stage-tag improve">Stage 04 &middot; Improve</div>
+      <h3 class="stage-name">Continuous Evolution</h3>
+      <p class="stage-summary">Your product works, but users are requesting features or encountering UX friction. We provide ongoing engineering maintenance, performance optimization, and deliberate feature rollouts.</p>
+      <button class="btn-ghost" onclick="openContactModal('custom-software')">Discuss Maintenance &rarr;</button>
+    </div>
+    <div class="stage-details">
+      <h4>How we improve live software:</h4>
+      <ul class="stage-check-list">
+        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span><strong>UI/UX Polish:</strong> Eliminating clunky animations, fixing touch target sizes, and streamlining user journeys.</span></li>
+        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span><strong>Feature Sprints:</strong> Scoping and shipping specific high-priority modules with zero disruption to active users.</span></li>
+        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          <span><strong>Version Upgrades:</strong> Keeping dependencies, Flutter SDKs, and platform APIs current with latest mobile OS standards.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APP HEALTH CHECK PACKAGES (FULL WIDTH BACKGROUND BAND) ══ -->
+<section class="health-deep-dive" id="health-pricing">
+  <div class="health-deep-dive-inner">
+    <div class="section-header-center reveal">
+    <span class="section-eyebrow amber">Fixed-Price Packages</span>
+    <h2 class="section-title">App Health Check Pricing</h2>
+    <div class="section-rule center amber"></div>
+    <p class="section-lead" style="margin-left: auto; margin-right: auto;">Clear deliverables, fixed pricing, and no surprise invoices. Uncover launch-critical flaws before public release.</p>
+  </div>
+
+  <div class="health-grid-2">
+    <!-- Single Platform -->
+    <div class="health-plan-card featured reveal">
+      <div>
+        <div class="health-plan-badge">&#9733; Most Popular &middot; Pre-Release</div>
+        <h3 class="health-plan-title">Standard Platform Review</h3>
+        <div class="health-plan-price amber">&#8377;2,999</div>
+        <div class="health-plan-sub">Single Platform &middot; Android APK or iOS TestFlight</div>
+        <ul class="stage-check-list">
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Core user flow and onboarding testing</span></li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Edge cases, input validation &amp; empty states</span></li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Network drops, airplane mode &amp; background lifecycle</span></li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Structured PDF report with video evidence</span></li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Delivered in 3&ndash;5 business days</span></li>
+        </ul>
+      </div>
+      <button class="btn-amber" style="width:100%; justify-content:center;" onclick="openContactModal('healthcheck')">Book Single Platform (&#8377;2,999)</button>
+    </div>
+
+    <!-- Dual Platform -->
+    <div class="health-plan-card reveal reveal-delay-1">
+      <div>
+        <div class="health-plan-badge" style="color:var(--teal);">&#9881; Cross-Platform</div>
+        <h3 class="health-plan-title">Dual Platform Comprehensive</h3>
+        <div class="health-plan-price">&#8377;4,999</div>
+        <div class="health-plan-sub">Both Platforms &middot; Android + iOS Coverage</div>
+        <ul class="stage-check-list">
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Everything in Single Platform included</span></li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Dual-platform parity verification (Android vs iOS UI/behavior)</span></li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Platform-specific permission &amp; back-button testing</span></li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Priority triage &amp; post-report clarification call</span></li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <span>Delivered in 4&ndash;6 business days</span></li>
+        </ul>
+      </div>
+      <button class="btn-ghost" style="width:100%; justify-content:center;" onclick="openContactModal('healthcheck')">Book Dual Platform (&#8377;4,999)</button>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ SECTION ═══════════════════════════════════ -->
+<section class="section" id="faq">
+  <div class="section-header reveal">
+    <span class="section-eyebrow">Client FAQ</span>
+    <h2 class="section-title">Frequently Asked <span class="grad">Questions</span></h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item reveal">
+      <h4>Do you require access to source code for an App Health Check?</h4>
+      <p>No. For pre-launch QA, we only need an installable build (APK / Android App Bundle or iOS TestFlight invite) and test credentials. We do not require source code access unless you also want code-level triage.</p>
+    </div>
+    <div class="faq-item reveal reveal-delay-1">
+      <h4>Can we sign an NDA before sharing app builds or requirements?</h4>
+      <p>Absolutely. We treat all client concepts, builds, and proprietary business workflows with absolute confidentiality. We are happy to sign standard non-disclosure agreements before review.</p>
+    </div>
+    <div class="faq-item reveal reveal-delay-2">
+      <h4>What technologies does WiselyRise specialize in?</h4>
+      <p>Our core mobile specialty is Flutter &amp; Dart for cross-platform apps, plus native Android (Kotlin). On web and backend, we build with clean HTML5/CSS3/JavaScript, REST APIs, Firebase, and SQLite/SQLCipher on-device databases.</p>
+    </div>
+    <div class="faq-item reveal reveal-delay-3">
+      <h4>How does payment and billing work?</h4>
+      <p>For fixed-scope services like the App Health Check, payment is straightforward upfront. For custom build and rescue projects, we work in milestone-based sprints with clear deliverables before each invoice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-row">
+        <img src="/images/logo_dark_trans.png" alt="WiselyRise" style="width:26px; height:auto;">
+        <span style="font-size:16px;font-weight:700;color:rgba(255,255,255,0.75);">WiselyRise Solutions</span>
+      </div>
+      <p>Software studio based in Erode, Tamil Nadu. Building products and solving client problems across India and worldwide.</p>
+      <p class="footer-tagline">Build Smart. Rise Higher.</p>
+    </div>
+    <div class="footer-links-group">
+      <h4>Services</h4>
+      <a href="/services.html">The 4 Stages</a>
+      <a href="/services.html#health-pricing">App Health Check</a>
+      <a href="/services.html#stages">App Rescue</a>
+      <a href="/#solutions">Custom Solutions</a>
+    </div>
+    <div class="footer-links-group">
+      <h4>Our Apps</h4>
+      <a href="/datewise">DateWise</a>
+      <a href="/gramwise">GramWise</a>
+      <a href="/keywise">KeyWise</a>
+      <a href="/pixwise">PixWise</a>
+    </div>
+    <div class="footer-links-group">
+      <h4>Company</h4>
+      <a href="/about.html">About Studio</a>
+      <a href="/about.html#contact">Contact &amp; Location</a>
+      <button onclick="openContactModal('custom-software')">Inquire Project</button>
+    </div>
+    <div class="footer-links-group">
+      <h4>Connect</h4>
+      <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>
+      <a href="https://play.google.com/store/apps/dev?id=6095301009563464440" target="_blank" rel="noopener">Google Play Store</a>
+      <a href="https://wa.me/919080743973" target="_blank" rel="noopener">WhatsApp Direct</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 WiselyRise Solutions. All rights reserved. &middot; Built in Erode, Tamil Nadu.</p>
+    <p>Elevating Digital Experiences &middot; Built with intent.</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const hb = document.getElementById('hamburger');
+  const mm = document.getElementById('mobileMenu');
+  if (hb && mm) {
+    hb.addEventListener('click', () => {
+      hb.classList.toggle('open');
+      mm.classList.toggle('open');
+      document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+    });
+  }
+  
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (href === '#' || href === '') return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  function closeMM() {
+    if (hb && mm) {
+      hb.classList.remove('open');
+      mm.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+</script>
+<script src="/shared/contact-modal.js"></script>
+
+<a class="wa-float"
+   href="https://wa.me/919080743973?text=Hi%20WiselyRise!%20I'd%20like%20to%20discuss%20services%20or%20an%20app%20health%20check."
+   target="_blank" rel="noopener noreferrer"
+   aria-label="Chat with WiselyRise on WhatsApp">
+  <span class="wa-float__ring" aria-hidden="true"></span>
+  <svg class="wa-float__icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+</body>
+</html>

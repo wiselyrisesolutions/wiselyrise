@@ -1,0 +1,17 @@
+{
+  "name": "wiselyrise",
+  "version": "1.0.0",
+  "description": "WiselyRise Solutions website and apps showcase",
+  "scripts": {
+    "start": "node serve.js",
+    "dev": "node serve.js"
+  },
+  "keywords": [
+    "wiselyrise",
+    "software-studio",
+    "mobile-apps",
+    "flutter"
+  ],
+  "author": "WiselyRise Solutions",
+  "license": "UNLICENSED"
+}

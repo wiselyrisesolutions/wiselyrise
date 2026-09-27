@@ -63,6 +63,29 @@
     .reveal-d2 { transition-delay: 0.18s; }
     .reveal-d3 { transition-delay: 0.26s; }
 
+    
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero .eyebrow      { animation: heroFadeUp 0.55s ease 0.06s both; }
+    .hero h1            { animation: heroFadeUp 0.65s ease 0.16s both; }
+    .hero p             { animation: heroFadeUp 0.65s ease 0.26s both; }
+    .hero .hero-actions { animation: heroFadeUp 0.65s ease 0.36s both; }
+    .hero .hero-card    { animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero .eyebrow, .hero h1, .hero p, .hero .hero-actions, .hero .hero-card {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
     header {
       position: sticky;
       top: 0;
@@ -610,16 +633,16 @@
   <main>
     <section class="hero">
       <div>
-        <div class="eyebrow reveal">Offline. Encrypted. Yours.</div>
-        <h1 class="reveal reveal-d1">Keep credentials <span>private by design</span> and practical in daily use.</h1>
-        <p class="reveal reveal-d2">KeyWise is an on-device credential manager built for people who prefer control over complexity. Vault data is encrypted on your phone, works offline, and stays in your hands.</p>
-        <div class="hero-actions reveal reveal-d3">
+        <div class="eyebrow">Offline. Encrypted. Yours.</div>
+        <h1>Keep credentials <span>private by design</span> and practical in daily use.</h1>
+        <p>KeyWise is an on-device credential manager built for people who prefer control over complexity. Vault data is encrypted on your phone, works offline, and stays in your hands.</p>
+        <div class="hero-actions">
           <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.keywise.app" target="_blank" rel="noopener noreferrer">Get KeyWise</a>
           <a class="btn btn-ghost" href="#features">Explore Features</a>
           <button class="btn btn-ghost" onclick="openContactModal('keywise'); return false;">Share Feedback</button>
         </div>
       </div>
-      <div class="hero-card reveal reveal-d2">
+      <div class="hero-card">
         <img src="images/web_home.png" alt="KeyWise app preview" />
         <div class="hero-note">
           <div><strong>No Cloud Sync</strong> All vault data stays on-device.</div>
@@ -811,33 +834,7 @@
       });
     });
   </script>
-  <script>
-    (function loadContactModalScript() {
-      const scriptCandidates = [
-        '/shared/contact-modal.js',
-        '../shared/contact-modal.js',
-      ];
-      let index = 0;
-
-      const loadNext = () => {
-        if (index >= scriptCandidates.length) {
-          return;
-        }
-        const script = document.createElement('script');
-        script.src = scriptCandidates[index++];
-        script.defer = true;
-        script.onerror = loadNext;
-        script.onload = () => {
-          if (typeof window.openContactModal !== 'function') {
-            loadNext();
-          }
-        };
-        document.body.appendChild(script);
-      };
-
-      loadNext();
-    })();
-  </script>
+  <script src="/shared/contact-modal.js"></script>
 <!-- ============================================================
      WHATSAPP FLOATING BUTTON
      ============================================================ -->
