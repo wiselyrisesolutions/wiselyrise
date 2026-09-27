@@ -235,27 +235,10 @@ exports.submitContactForm = onRequest(
       html
     };
 
-    // Send to submitter too if they gave email (confirmation)
-    const confirmOptions = safeEmail ? {
-      from:    `"WiselyRise" <${gmailUser}>`,
-      to:      safeEmail,
-      replyTo: 'contact@wiselyrise.in',
-      subject: `We received your message — ${categoryLabel}`,
-      text:    `Hi,\n\nThank you for reaching out to WiselyRise!\n\nWe received your ${categoryLabel.toLowerCase()} and will get back to you soon.\n\nCategory : ${categoryLabel}\nProduct  : ${productLabel}\n${safeSubject ? 'Subject  : ' + safeSubject : ''}\n\nIf this is a project inquiry, expect a response within 24 hours.\n\n— WiselyRise Team\nhttps://wiselyrise.in`,
-      html:    `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px 16px">
-        <div style="font-size:22px;font-weight:800;color:#5b21b6;margin-bottom:8px">✓ Message received!</div>
-        <p style="color:#374151">Thanks for reaching out. We received your <strong>${categoryLabel.toLowerCase()}</strong> for <strong>${productLabel}</strong>.</p>
-        ${category === 'project' || category === 'healthcheck' ? '<p style="color:#374151">We\'ll review and get back to you <strong>within 24 hours</strong>.</p>' : '<p style="color:#374151">Our team will review it and follow up if needed.</p>'}
-        <p style="color:#9ca3af;font-size:12px;margin-top:24px">— WiselyRise Team · <a href="https://wiselyrise.in" style="color:#7c3aed">wiselyrise.in</a></p>
-      </div>`
-    } : null;
-
+    /* ── Send notification to contact@wiselyrise.in ────────────────── */
     try {
       const transporter = createTransport();
       await transporter.sendMail(mailOptions);
-      if (confirmOptions) {
-        await transporter.sendMail(confirmOptions).catch(() => {}); // non-fatal
-      }
     } catch (mailErr) {
       console.error('Email send failed:', mailErr.message);
       // Don't fail the whole request over email — fall through to GitHub Issue
