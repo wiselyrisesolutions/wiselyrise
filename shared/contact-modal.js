@@ -3,13 +3,88 @@
  * Usage:
  *   <script src="/shared/contact-modal.js"></script>
  *   <button onclick="openContactModal()">Contact</button>
- *   <button onclick="openContactModal('datewise')">Contact</button>  ← pre-selects product
+ *   <button onclick="openContactModal('custom-software')">Start a Project</button>
+ *   <button onclick="openContactModal('healthcheck')">App Health Check</button>
+ *   <button onclick="openContactModal('datewise')">DateWise feedback</button>
  * ─────────────────────────────────────────────────────────────────── */
 (function () {
   /* ── Config ───────────────────────────────────────────────────────── */
-  // Update this URL after deploying the Firebase Function.
   const FUNCTION_URL = 'https://submitcontactform-c6cct7lpba-uc.a.run.app';
   const MAX = 3, MAXSZ = 3 * 1024 * 1024;
+
+  /* ── Context map: preselect value → { title, sub, category, product } */
+  const CONTEXTS = {
+    'custom-software': {
+      title: 'Start a Project',
+      sub: 'Tell us about your idea or product. We\'ll get back within 24 hours.',
+      category: 'project',
+      product: 'custom-software',
+      submitLabel: 'Send Inquiry'
+    },
+    'healthcheck': {
+      title: 'Book an App Health Check',
+      sub: 'Get a full report on your app\'s quality, crashes & performance — starting ₹2,999.',
+      category: 'healthcheck',
+      product: 'healthcheck',
+      submitLabel: 'Book Health Check'
+    },
+    'app-rescue': {
+      title: 'App Rescue Inquiry',
+      sub: 'Tell us about the issues your app is facing. We\'ll review and respond quickly.',
+      category: 'project',
+      product: 'app-rescue',
+      submitLabel: 'Send Inquiry'
+    },
+    'datewise': {
+      title: 'DateWise Feedback',
+      sub: 'Report a bug, suggest a feature, or share an idea for DateWise.',
+      category: 'bug',
+      product: 'datewise',
+      submitLabel: 'Send Feedback'
+    },
+    'gramwise': {
+      title: 'GramWise Feedback',
+      sub: 'Report a bug, suggest a feature, or share an idea for GramWise.',
+      category: 'bug',
+      product: 'gramwise',
+      submitLabel: 'Send Feedback'
+    },
+    'keywise': {
+      title: 'KeyWise Feedback',
+      sub: 'Report a bug, suggest a feature, or share an idea for KeyWise.',
+      category: 'bug',
+      product: 'keywise',
+      submitLabel: 'Send Feedback'
+    },
+    'pixwise': {
+      title: 'PixWise Feedback',
+      sub: 'Report a bug, suggest a feature, or share an idea for PixWise.',
+      category: 'bug',
+      product: 'pixwise',
+      submitLabel: 'Send Feedback'
+    },
+    'kuralwise': {
+      title: 'KuralWise Feedback',
+      sub: 'Report a bug, suggest a feature, or share an idea for KuralWise.',
+      category: 'bug',
+      product: 'kuralwise',
+      submitLabel: 'Send Feedback'
+    },
+    'clinicwise': {
+      title: 'ClinicWise Enquiry',
+      sub: 'Request a product walkthrough, pilot access, or share feedback.',
+      category: 'project',
+      product: 'clinicwise',
+      submitLabel: 'Send Enquiry'
+    },
+    'docuwise': {
+      title: 'DocuWise Feedback',
+      sub: 'Report a bug, suggest a feature, or share an idea for DocuWise.',
+      category: 'bug',
+      product: 'docuwise',
+      submitLabel: 'Send Feedback'
+    }
+  };
 
   /* ── Inject CSS ───────────────────────────────────────────────────── */
   const CSS = `
@@ -19,7 +94,7 @@
   .cm-box{background:#fff;border-radius:20px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.2);animation:cmSlideUp .3s cubic-bezier(.22,1,.36,1) both;font-family:'DM Sans','Inter',system-ui,-apple-system,sans-serif}
   .cm-header{display:flex;align-items:flex-start;justify-content:space-between;padding:28px 28px 20px;border-bottom:1px solid #e8e8ea;position:sticky;top:0;background:#fff;z-index:2;border-radius:20px 20px 0 0}
   .cm-title{font-size:1.2rem;font-weight:800;letter-spacing:-.03em;margin-bottom:3px;color:#0f0f0f}
-  .cm-sub{font-size:.82rem;color:#6b7280}
+  .cm-sub{font-size:.82rem;color:#6b7280;line-height:1.5;max-width:440px}
   .cm-close{width:32px;height:32px;border-radius:50%;background:#e8e8ea;color:#6b7280;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:background .18s,color .18s;flex-shrink:0;margin-top:2px}
   .cm-close:hover{background:#e2e2e5;color:#111}
   .cm-form{padding:24px 28px 28px}
@@ -70,8 +145,8 @@
     <div class="cm-box">
       <div class="cm-header">
         <div>
-          <div class="cm-title">Get in Touch</div>
-          <div class="cm-sub">Start a project, book an App Health Check, or share feedback</div>
+          <div class="cm-title" id="cmTitle">Get in Touch</div>
+          <div class="cm-sub" id="cmSub">Start a project, book an App Health Check, or share feedback</div>
         </div>
         <button class="cm-close" id="cmClose" aria-label="Close">✕</button>
       </div>
@@ -98,10 +173,13 @@
               <option value="custom-software">Custom Software / Client Project</option>
               <option value="healthcheck">App Health Check (Pre-Launch QA)</option>
               <option value="app-rescue">App Rescue (Bug Fixing / Recovery)</option>
+              <option value="clinicwise">ClinicWise</option>
               <option value="datewise">DateWise</option>
               <option value="pixwise">PixWise</option>
               <option value="gramwise">GramWise</option>
               <option value="keywise">KeyWise</option>
+              <option value="kuralwise">KuralWise</option>
+              <option value="docuwise">DocuWise</option>
               <option value="other">Other / Consultation 💡</option>
             </select>
           </div>
@@ -116,15 +194,15 @@
         </div>
         <div class="cm-row-2">
           <div class="cm-field">
-            <label class="cm-label" for="cmDevice">Device / OS <span class="cm-opt">(optional)</span></label>
-            <input type="text" class="cm-input" id="cmDevice" placeholder="e.g. Redmi Note 12 · Android 14" maxlength="100" />
+            <label class="cm-label" for="cmDevice">Company / App Name <span class="cm-opt">(optional)</span></label>
+            <input type="text" class="cm-input" id="cmDevice" placeholder="e.g. My Startup App" maxlength="100" />
           </div>
           <div class="cm-field">
-            <label class="cm-label" for="cmEmail">Your Email <span class="cm-opt">(optional)</span></label>
-            <input type="email" class="cm-input" id="cmEmail" placeholder="For follow-up replies" maxlength="120" />
+            <label class="cm-label" for="cmEmail">Your Email <span class="cm-req">*</span></label>
+            <input type="email" class="cm-input" id="cmEmail" placeholder="For follow-up replies" maxlength="120" required />
           </div>
         </div>
-        <div class="cm-field">
+        <div class="cm-field" id="cmAttachField">
           <label class="cm-label">Attachments <span class="cm-opt">(up to 3 images · max 3 MB each)</span></label>
           <div class="cm-drop" id="cmDrop">
             <input type="file" id="cmFiles" accept="image/jpeg,image/png,image/webp,image/gif" multiple style="display:none" />
@@ -141,8 +219,8 @@
       </form>
       <div class="cm-success" id="cmSuccess">
         <div class="cm-success-icon">✓</div>
-        <h3>Thank you!</h3>
-        <p>Your feedback has been received. We'll review it and follow up if needed.</p>
+        <h3>Message sent!</h3>
+        <p id="cmSuccessMsg">We received your message and will get back to you soon.</p>
         <button class="cm-submit" id="cmSuccessClose">Close</button>
       </div>
     </div>
@@ -152,32 +230,95 @@
 
   /* ── State ────────────────────────────────────────────────────────── */
   let files = [];
+  let currentSubmitLabel = 'Send Message';
 
   /* ── Public API ───────────────────────────────────────────────────── */
   window.openContactModal = function (preselect) {
-    document.getElementById('contactModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    if (preselect) {
-      const sel = document.getElementById('cmProduct');
-      if (sel) sel.value = preselect;
+    const modal  = document.getElementById('contactModal');
+    const title  = document.getElementById('cmTitle');
+    const sub    = document.getElementById('cmSub');
+    const submit = document.getElementById('cmSubmit');
+
+    // Reset to defaults first
+    title.textContent  = 'Get in Touch';
+    sub.textContent    = 'Start a project, book an App Health Check, or share feedback';
+    currentSubmitLabel = 'Send Message';
+    submit.textContent = currentSubmitLabel;
+
+    // Apply context if a known preselect is passed
+    if (preselect && CONTEXTS[preselect]) {
+      const ctx = CONTEXTS[preselect];
+      title.textContent  = ctx.title;
+      sub.textContent    = ctx.sub;
+      currentSubmitLabel = ctx.submitLabel;
+      submit.textContent = currentSubmitLabel;
+
+      const catSel  = document.getElementById('cmCategory');
+      const prodSel = document.getElementById('cmProduct');
+      if (catSel  && ctx.category) catSel.value  = ctx.category;
+      if (prodSel && ctx.product)  prodSel.value = ctx.product;
+
+      // For project/healthcheck contexts, relabel Device field to Company/App Name
+      const deviceLabel = document.querySelector('label[for="cmDevice"]');
+      if (deviceLabel) {
+        if (ctx.category === 'project' || ctx.category === 'healthcheck') {
+          deviceLabel.innerHTML = 'Company / App Name <span class="cm-opt">(optional)</span>';
+          document.getElementById('cmDevice').placeholder = 'e.g. My Startup App';
+        } else {
+          deviceLabel.innerHTML = 'Device / OS <span class="cm-opt">(optional)</span>';
+          document.getElementById('cmDevice').placeholder = 'e.g. Redmi Note 12 · Android 14';
+        }
+      }
+
+      // For app feedback contexts, email is optional; for project/healthcheck, it is required
+      const emailInput = document.getElementById('cmEmail');
+      const emailLabel = document.querySelector('label[for="cmEmail"]');
+      if (emailInput && emailLabel) {
+        if (ctx.category === 'project' || ctx.category === 'healthcheck') {
+          emailInput.required = true;
+          emailLabel.innerHTML = 'Your Email <span class="cm-req">*</span>';
+        } else {
+          emailInput.required = false;
+          emailLabel.innerHTML = 'Your Email <span class="cm-opt">(optional)</span>';
+        }
+      }
+    } else if (preselect) {
+      // Unknown preselect — just try to pre-select product dropdown
+      const prodSel = document.getElementById('cmProduct');
+      if (prodSel) prodSel.value = preselect;
     }
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Focus first empty required field
+    setTimeout(() => {
+      const first = modal.querySelector('select:invalid, input:invalid');
+      if (first) first.focus();
+    }, 350);
   };
 
   window.closeContactModal = function () {
-    document.getElementById('contactModal').classList.remove('open');
+    const modal = document.getElementById('contactModal');
+    modal.classList.remove('open');
     document.body.style.overflow = '';
-    const suc = document.getElementById('cmSuccess');
-    if (suc.style.display === 'flex') {
+
+    const suc  = document.getElementById('cmSuccess');
+    const form = document.getElementById('cmForm');
+    if (suc && suc.style.display === 'flex') {
       suc.style.display = 'none';
-      const form = document.getElementById('cmForm');
       form.style.display = '';
-      form.reset();
-      files = [];
-      document.getElementById('cmThumbs').innerHTML = '';
-      document.getElementById('cmStatus').textContent = '';
-      const btn = document.getElementById('cmSubmit');
+    }
+    if (form) form.reset();
+    files = [];
+    const thumbs = document.getElementById('cmThumbs');
+    if (thumbs) thumbs.innerHTML = '';
+    const status = document.getElementById('cmStatus');
+    if (status) status.textContent = '';
+    const btn = document.getElementById('cmSubmit');
+    if (btn) {
       btn.disabled = false;
-      btn.textContent = 'Send Message';
+      btn.textContent = currentSubmitLabel;
     }
   };
 
@@ -214,18 +355,18 @@
   /* ── Wire up events after DOM is ready ───────────────────────────── */
   function init() {
     const modal = document.getElementById('contactModal');
-    const form = document.getElementById('cmForm');
-    const drop = document.getElementById('cmDrop');
-    const inp = document.getElementById('cmFiles');
+    const form  = document.getElementById('cmForm');
+    const drop  = document.getElementById('cmDrop');
+    const inp   = document.getElementById('cmFiles');
 
     document.getElementById('cmClose').addEventListener('click', closeContactModal);
     document.getElementById('cmSuccessClose').addEventListener('click', closeContactModal);
     modal.addEventListener('click', e => { if (e.target === modal) closeContactModal(); });
 
-    drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('drag'); });
+    drop.addEventListener('dragover',  e  => { e.preventDefault(); drop.classList.add('drag'); });
     drop.addEventListener('dragleave', () => drop.classList.remove('drag'));
-    drop.addEventListener('drop', e => { e.preventDefault(); drop.classList.remove('drag'); addFiles(e.dataTransfer.files); });
-    drop.addEventListener('click', e => { if (e.target.id !== 'cmPickFiles') inp.click(); });
+    drop.addEventListener('drop',      e  => { e.preventDefault(); drop.classList.remove('drag'); addFiles(e.dataTransfer.files); });
+    drop.addEventListener('click',     e  => { if (e.target.id !== 'cmPickFiles') inp.click(); });
     document.getElementById('cmPickFiles').addEventListener('click', e => { e.stopPropagation(); inp.click(); });
     inp.addEventListener('change', () => { addFiles(inp.files); inp.value = ''; });
 
@@ -237,18 +378,25 @@
       e.preventDefault();
       if (form.querySelector('[name="_trap"]').value) return; // honeypot
 
-      const product = document.getElementById('cmProduct').value;
+      const product  = document.getElementById('cmProduct').value;
       const category = document.getElementById('cmCategory').value;
-      const subject = document.getElementById('cmSubject').value.trim();
-      const desc = document.getElementById('cmDesc').value.trim();
-      const device = document.getElementById('cmDevice').value.trim();
-      const email = document.getElementById('cmEmail').value.trim();
+      const subject  = document.getElementById('cmSubject').value.trim();
+      const desc     = document.getElementById('cmDesc').value.trim();
+      const device   = document.getElementById('cmDevice').value.trim();
+      const email    = document.getElementById('cmEmail').value.trim();
 
-      if (!product || !category || !subject || !desc) { setStatus('Please fill all required fields.', 'error'); return; }
-      if (subject.length < 4) { setStatus('Subject is too short.', 'error'); return; }
+      if (!product || !category)  { setStatus('Please select a category and subject area.', 'error'); return; }
+      if (!subject)               { setStatus('Please enter a subject.', 'error'); return; }
+      if (subject.length < 4)     { setStatus('Subject is too short.', 'error'); return; }
+      if (!desc)                  { setStatus('Please add some details.', 'error'); return; }
+
+      const emailInput = document.getElementById('cmEmail');
+      if (emailInput.required && !email) { setStatus('Please enter your email address.', 'error'); return; }
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus('Please enter a valid email address.', 'error'); return; }
 
       const btn = document.getElementById('cmSubmit');
-      btn.disabled = true; btn.textContent = 'Sending…';
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
       setStatus('', '');
 
       // Convert files to base64 for the server-side proxy
@@ -270,11 +418,24 @@
         });
         const data = await r.json();
         if (!r.ok) throw new Error(data.error || r.status);
+
+        // Show success with context-aware message
+        const isProject = category === 'project' || category === 'healthcheck';
+        const successMsg = document.getElementById('cmSuccessMsg');
+        if (successMsg) {
+          successMsg.textContent = isProject
+            ? 'We received your inquiry and will reach out within 24 hours.'
+            : 'Your feedback has been received. We\'ll review it and follow up if needed.';
+        }
         document.getElementById('cmForm').style.display = 'none';
         document.getElementById('cmSuccess').style.display = 'flex';
       } catch (err) {
-        btn.disabled = false; btn.textContent = 'Send Feedback';
-        setStatus(err.message || 'Submission failed. Please email contact@wiselywise.in directly.', 'error');
+        btn.disabled = false;
+        btn.textContent = currentSubmitLabel;
+        setStatus(
+          err.message || 'Submission failed. Please email admin@wiselyrise.in directly.',
+          'error'
+        );
       }
     });
   }
