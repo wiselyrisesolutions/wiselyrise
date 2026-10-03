@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -102,84 +102,129 @@
   </div>
 
   <h1>Privacy Policy</h1>
-  <p class="subtitle">Last updated: 22 September 2026</p>
+  <p class="subtitle">Last updated: 2 October 2026</p>
 
-  <p>DateWise ("we", "our", or "the app") is developed by WiselyRise. This Privacy Policy explains what data we collect, how we use it, and how we protect your information when you use the DateWise mobile application.</p>
+  <p>DateWise ("we", "our", or "the app") is developed and operated by <strong>WiselyRise Solutions</strong> ("WiselyRise"). We built DateWise with an uncompromising privacy-first philosophy: <strong>your personal events, dates, relationships, and notes belong to you and stay on your device</strong>. This Privacy Policy details what information DateWise accesses, how that information is handled, and your rights under applicable privacy legislation including the India Digital Personal Data Protection Act (DPDP Act 2023), GDPR, and Google Play Developer Program Policies.</p>
 
-  <h2>1. Information You Provide</h2>
-
-  <h3>1.1 Reminders &amp; Events</h3>
-  <p>When you create reminders, DateWise stores locally on your device: titles, dates, notes, notification times, repeat rules, relationship tags, and reminder types. This data is stored in a local SQLite database protected by your device's built-in security.</p>
-
-  <h3>1.2 People Hub</h3>
-  <p>If you use the People Hub, we store locally: names, relationship categories (Family, Friends, Work, etc.), phone numbers (optional), email addresses (optional), WhatsApp handles (optional), contact lookup keys (optional), and notes. All People data stays on your device. If you enable Google Drive backup (Pro feature), this data is also backed up to your personal Drive App Data folder.</p>
-
-  <h3>1.3 Inbox</h3>
-  <p>Notes and capture items you add to the Inbox (title, notes, linked person, category, tags) are stored locally on your device. They are included in Google Drive backup only if you explicitly enable it.</p>
-
-  <h3>1.4 Contact Import</h3>
-  <p>If you choose to import from your device contacts, we access contact names, birthday/anniversary dates, and optionally profile photos. We request this permission only when you explicitly initiate an import. We read contacts — we never write to or modify your contacts.</p>
-
-  <h3>1.5 Photos &amp; Avatars</h3>
-  <p>If you attach a photo to a reminder or person profile, it is stored locally on your device. If you enable the optional "Include Photos" setting for Google Drive backup, avatar photos are also uploaded to your personal Google Drive App Data folder. Photos are <strong>never</strong> shared with third parties or stored on our servers.</p>
-
-  <h3>1.6 Google Sign-In (Cloud Backup, Pro)</h3>
-  <p>If you sign in for Google Drive backup, we receive your Google display name, email address, and profile photo URL from Google. We use this solely to authenticate you and to identify your backup file in Google Drive App Data. We do not store your Google credentials on our servers.</p>
-
-  <h2>2. Information Collected Automatically</h2>
+  <h2>1. Core Privacy Principles</h2>
   <ul>
-    <li><strong>App &amp; Device Info:</strong> We may collect basic device information (OS version, app version) for crash diagnostics only.</li>
-    <li>We do <strong>not</strong> collect location data, advertising identifiers, browsing history, or behavioral analytics.</li>
-    <li><strong>Smart Add Trials:</strong> The number of Smart Add sessions used (free trial count) is stored locally on your device using SharedPreferences. This count is not transmitted to any server.</li>
-    <li><strong>Engagement Signals:</strong> Lightweight local counters (e.g. days used, reminders created) are stored on-device only to offer contextual prompts such as upgrade suggestions. No engagement data is transmitted to servers.</li>
+    <li><strong>100% Offline-First:</strong> All reminder data, contact lists, notes, and preferences are stored in a local SQLite database directly on your device.</li>
+    <li><strong>No Account Required:</strong> You never need to register, create a username, or provide an email to use DateWise's core features.</li>
+    <li><strong>Zero Tracking &amp; Advertising:</strong> We do not use third-party analytics trackers, advertising SDKs, device fingerprinting, or behavioral surveillance tools.</li>
+    <li><strong>No WiselyRise Data Servers:</strong> WiselyRise does not operate remote servers that store, process, or harvest your personal reminder or contact data.</li>
   </ul>
 
-  <h2>3. Data Storage &amp; Security</h2>
+  <h2>2. Information You Provide &amp; Store Locally</h2>
 
-  <h3>3.1 Local Storage</h3>
-  <p>All reminder, people, and inbox data is stored locally on your device in a SQLite database. Your data remains on your device unless you explicitly enable Google Drive backup.</p>
+  <h3>2.1 Reminders &amp; Events</h3>
+  <p>When you create reminders, DateWise stores on your device: event titles, dates, times, recurrence rules, urgency levels, notes, category types (e.g. Birthdays, Anniversaries, Bills &amp; EMIs, Renewals, Insurance, Medicines, Appointments, Exams, Remembrance, and Custom types), and relationship tags. This data is stored locally in an encrypted/sandboxed SQLite database protected by your mobile operating system's security architecture.</p>
 
-  <h3>3.2 Deleted Data &amp; Recycle Bin</h3>
-  <p>Reminders you delete are moved to the Recycle Bin and kept locally for up to 30 days before permanent deletion. People you delete are recorded in a local tombstone ledger (used for cloud sync conflict resolution) with entries pruned automatically after 365 days. This tombstone data stays on your device and is included in cloud backup only to support conflict-free sync.</p>
+  <h3>2.2 People Hub</h3>
+  <p>When you add contacts to the People Hub, we store locally: names, relationship circles (Family, Friends, Work, Relatives, School, Neighbors, VIP), optional phone numbers, optional email addresses, optional WhatsApp handles, linked contact lookup keys, avatar photo file paths, and personal notes. All People Hub data remains strictly on your device.</p>
 
-  <h3>3.3 Google Drive Backup (Pro Feature)</h3>
-  <p>If you enable Google Drive backup, your reminder, people, and inbox data is stored in your personal Google Drive account's App Data folder — accessible only by DateWise and by you. If you additionally enable the "Include Photos" option, avatar photos are also backed up. Google Drive servers comply with industry-standard security practices. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+  <h3>2.3 Inbox Notes &amp; Temporary Captures</h3>
+  <p>Items captured in the Inbox (titles, notes, rough dates, assigned people, and image attachments such as receipt snapshots or gift ideas) are stored locally in your device's private app storage. They are scheduled into reminders or deleted at your discretion.</p>
 
-  <h3>3.4 Security Measures</h3>
+  <h3>2.4 Photos &amp; Avatars</h3>
+  <p>If you attach a photo to a reminder or assign an avatar photo to a contact, the image file is saved in DateWise's private local application directory on your device. Photos are <strong>never</strong> transmitted to WiselyRise. If (and only if) you enable the optional "Include Photos" setting for Google Drive Cloud Backup (a Pro feature), avatar images are uploaded to your personal Google Drive Application Data folder.</p>
+
+  <h2>3. Device Permissions &amp; Smart Features</h2>
+
+  <h3>3.1 Device Contacts Permission (<code>READ_CONTACTS</code>)</h3>
+  <p><strong>Prominent Disclosure:</strong> DateWise offers an optional "Import from Contacts" feature to help you quickly import birthdays and anniversaries from your phone's address book into reminders and People profiles.</p>
   <ul>
-    <li>Local data is protected by your device's built-in security (lock screen, encryption).</li>
-    <li>Cloud data is stored in your personal Google Drive App Data folder, which is inaccessible to other apps and to WiselyRise servers.</li>
-    <li>App Lock (biometric/fingerprint) provides an additional privacy layer within the app.</li>
-    <li>No user data is ever transmitted to WiselyRise servers.</li>
+    <li><strong>On-Demand Access Only:</strong> DateWise requests the <code>READ_CONTACTS</code> permission only when you explicitly tap "Import from Contacts" in the app.</li>
+    <li><strong>Read-Only:</strong> DateWise only reads contact display names, birthday dates, anniversary dates, and contact photos. DateWise <strong>never modifies, edits, or deletes</strong> your device contacts.</li>
+    <li><strong>No Remote Transmission:</strong> Contact information is processed locally on your phone to create reminders in your local SQLite database. Your address book is <strong>never uploaded, transmitted, sold, or shared</strong> with WiselyRise or any third party.</li>
+    <li><strong>Permission Revocation:</strong> You can revoke contacts access at any time via Android Settings &rarr; Apps &rarr; DateWise &rarr; Permissions. Previously imported reminders will remain on your device until you delete them.</li>
   </ul>
 
-  <h2>4. Data Sharing</h2>
-  <p>We do <strong>not</strong> sell, trade, or share your personal data with third parties. The only external parties involved in data processing are:</p>
+  <h3>3.2 Smart Add &amp; On-Device Natural Language Processing</h3>
+  <p>DateWise includes "Smart Add", which allows you to type or dictate reminder prompts in plain language (e.g. <em>"Mom's birthday next Friday"</em> or <em>"Car insurance due Oct 15"</em>):</p>
   <ul>
-    <li><strong>Google Sign-In &amp; Google Drive:</strong> Used for authentication and cloud backup (governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>).</li>
-    <li><strong>Google Play Billing:</strong> Used for processing the one-time Pro in-app purchase (governed by Google Play's terms).</li>
-  </ul>
-  <p>Your reminder, people, and inbox data is never transmitted to WiselyRise or any third-party server except your own Google Drive when you opt in.</p>
-
-  <h2>5. Your Rights</h2>
-  <ul>
-    <li><strong>Access &amp; Export:</strong> You can export all your data at any time using Settings → Local Backup (JSON format).</li>
-    <li><strong>Deletion:</strong> Delete individual reminders (moved to Recycle Bin for 30 days), or clear all data from within the app. Google Drive backup data can be deleted using the Delete Backup option in the Cloud Backup screen.</li>
-    <li><strong>Revoke Permissions:</strong> You can revoke contacts, notification, or Google Sign-In permissions at any time via your device app settings or your Google account settings.</li>
+    <li><strong>100% On-Device Parsing:</strong> Natural language date, category, and name detection is executed entirely offline using an in-app deterministic parsing engine. <strong>No prompt text is ever transmitted to OpenAI, Google Cloud, Gemini, or any remote AI server.</strong></li>
+    <li><strong>Local Trial Counter:</strong> Free users receive 3 free Smart Add trial uses. The number of trials used is stored locally in device <code>SharedPreferences</code> and is never transmitted to any external server.</li>
   </ul>
 
-  <h2>6. Children's Privacy</h2>
-  <p>DateWise is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has provided us data, please contact us and we will promptly address it.</p>
+  <h3>3.3 Microphone Permission (<code>RECORD_AUDIO</code>) &amp; Speech-to-Text</h3>
+  <p>If you choose to use voice input in Smart Add by tapping the microphone icon:</p>
+  <ul>
+    <li>The app requests the <code>RECORD_AUDIO</code> permission solely to enable real-time speech-to-text transcription.</li>
+    <li>Speech recognition is performed locally using the Android operating system's built-in speech recognition framework.</li>
+    <li>DateWise <strong>does not record, save, store, or transmit your audio or voice data</strong> to any server. In-memory audio buffers are discarded immediately once transcription concludes or is cancelled.</li>
+  </ul>
 
-  <h2>7. Changes to This Policy</h2>
-  <p>We may update this Privacy Policy from time to time. Changes will be reflected by the "Last updated" date at the top. Continued use of the app after changes constitutes acceptance of the revised policy.</p>
+  <h3>3.4 Voice Announcements (Text-to-Speech)</h3>
+  <p>DateWise can announce reminder titles aloud upon notification. This feature uses the Android device's native Text-to-Speech (TTS) synthesizer engine locally. No voice audio is downloaded from or transmitted to external servers.</p>
 
-  <h2>8. Contact Us</h2>
-  <p>If you have questions or concerns about this Privacy Policy, please contact us:</p>
+  <h3>3.5 Biometric Authentication (<code>USE_BIOMETRIC</code> / <code>USE_FINGERPRINT</code>)</h3>
+  <p>DateWise provides an optional App Lock feature using device biometrics (fingerprint or screen lock). Biometric verification is performed entirely by the Android operating system at the secure hardware level (BiometricPrompt API). DateWise <strong>never accesses, collects, or stores</strong> your biometric data, fingerprints, or passcodes.</p>
+
+  <h3>3.6 Alarms &amp; Notifications (<code>SCHEDULE_EXACT_ALARM</code> / <code>POST_NOTIFICATIONS</code>)</h3>
+  <p>DateWise schedules reminders locally using Android's exact alarm mechanisms (<code>AlarmManager</code>) and posts alerts via local notification channels. Reminder alerts are generated entirely on your device without the use of push notification servers or cloud messaging relays.</p>
+
+  <h2>4. Cloud Backup &amp; Multi-Device Sync (Pro Feature)</h2>
+  <p>DateWise Pro includes an optional Cloud Backup and multi-device synchronization feature powered by Google Drive. This feature is entirely voluntary and is disabled by default.</p>
+
+  <h3>4.1 Google Sign-In &amp; Restricted Application Data Scope</h3>
+  <ul>
+    <li><strong>Authentication:</strong> If you choose to enable Cloud Backup, you sign in with your own Google account via Google Sign-In. DateWise receives your Google display name, email address, and profile photo URL to verify identity and show your active backup account.</li>
+    <li><strong>Restricted Access (<code>drive.appdata</code>):</strong> DateWise requests access strictly to the dedicated Google Drive <strong>Application Data folder</strong> (<code>drive.appdata</code> scope). This is a hidden, sandboxed directory created specifically for DateWise. DateWise <strong>cannot read, view, modify, or access any other files, documents, or photos</strong> in your Google Drive.</li>
+  </ul>
+
+  <h3>4.2 Backup Data Contents &amp; Conflict Resolution</h3>
+  <ul>
+    <li><strong>Contents:</strong> Cloud backup files contain your reminders, People Hub entries, Inbox notes, category settings, and a local deletion ledger (tombstones). If "Include Photos" is enabled, contact avatar photos are also included.</li>
+    <li><strong>Sync Conflict Handling:</strong> When synchronizing across multiple devices, DateWise computes cryptographic hashes to detect conflicts. If a conflict occurs, DateWise prompts you to choose either <strong>Merge</strong> (combining entries from both devices) or <strong>Overwrite</strong> (replacing one device's data).</li>
+    <li><strong>Third-Party Infrastructure:</strong> Your backup file resides solely within your personal Google Drive storage, subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. WiselyRise has no access to your Google Drive credentials or your backup files.</li>
+  </ul>
+
+  <h2>5. Data Retention, Recycle Bin &amp; Deletion</h2>
+
+  <h3>5.1 Local Recycle Bin</h3>
+  <p>When you delete a reminder, it is moved to the local <strong>Recycle Bin</strong> and retained on your device until you choose to restore it or permanently delete it. You can manually restore individual items, permanently delete specific entries, or empty the entire Recycle Bin at any time via Settings &rarr; Recycle Bin.</p>
+
+  <h3>5.2 Deletion Tombstone Ledger</h3>
+  <p>To ensure that deleted contacts are not accidentally resurrected when restoring or merging cloud backups across multiple devices, DateWise records deleted contact IDs in a local tombstone ledger. These tombstone entries contain only unique identifiers and timestamps, remain on your device, and are automatically pruned after 365 days.</p>
+
+  <h3>5.3 Google Drive Backup Deletion</h3>
+  <p>You can delete your Google Drive backup at any time from within the app by navigating to Settings &rarr; Cloud Backup &rarr; Delete Backup. This initiates deletion of the backup file from your Google Drive AppData folder. Actual removal is subject to Google Drive's own propagation timelines and trash policies.</p>
+
+  <h3>5.4 Total Data Wipe</h3>
+  <p>To erase all local DateWise data, you can clear app storage via Android Settings &rarr; Apps &rarr; DateWise &rarr; Storage &rarr; Clear Data, or uninstall the application. Once cleared, local data cannot be recovered unless previously backed up to Google Drive or exported to a local backup file.</p>
+
+  <h2>6. Data Sharing &amp; Third Parties</h2>
+  <p>WiselyRise does <strong>not</strong> sell, rent, monetize, or share your personal data with third parties. The only third-party service providers involved in operating the app are:</p>
+  <ul>
+    <li><strong>Google Play Billing:</strong> Used to securely process the one-time Pro in-app purchase. Google handles payment card details according to the Google Play Terms of Service.</li>
+    <li><strong>Google Drive &amp; Google Identity Services:</strong> Used strictly for optional user-initiated cloud backup and sign-in authentication.</li>
+    <li><strong>Native External Apps (WhatsApp / Phone Calls):</strong> If you choose to contact a person via the 1-tap WhatsApp or phone dialer shortcuts, DateWise launches the native phone dialer or WhatsApp application on your device with pre-filled details. No data is sent to WiselyRise servers during this action.</li>
+  </ul>
+
+  <h2>7. Your Privacy Rights</h2>
+  <p>Under applicable data protection laws (including the India Digital Personal Data Protection Act 2023, GDPR, and CCPA/CPRA), you have the right to:</p>
+  <ul>
+    <li><strong>Access &amp; Portability:</strong> You can export your entire reminder and people database at any time in structured JSON format via Settings &rarr; Local Backup.</li>
+    <li><strong>Rectification &amp; Erasure:</strong> You can edit or delete any reminder, contact, or note directly within the app at any time.</li>
+    <li><strong>Withdraw Consent:</strong> You can revoke device permissions (Contacts, Microphone, Notifications) via your Android device settings, or disconnect your Google Drive backup account via Settings &rarr; Cloud Backup &rarr; Disconnect.</li>
+    <li><strong>Supervisory Authority (EEA/UK):</strong> If you are located in the European Economic Area or United Kingdom and believe your data has been processed in violation of applicable law, you have the right to lodge a complaint with your national data protection supervisory authority.</li>
+  </ul>
+
+  <h2>8. Children's Privacy</h2>
+  <p>DateWise is a general-audience productivity tool and is not directed at children under the age of 13. We do not knowingly collect or solicit personal information from children. If you believe a child has provided personal information to the app, please contact us so we can investigate and assist.</p>
+
+  <h2>9. Changes to This Privacy Policy</h2>
+  <p>We may update this Privacy Policy from time to time to reflect changes in app functionality, legal standards, or operating system policies. Any updates will be posted on this page with an updated "Last updated" date. Continued use of DateWise after updates constitutes acceptance of the revised policy.</p>
+
+  <h2>10. Contact &amp; Grievance Redressal</h2>
+  <p>For any questions, concerns, or requests regarding this Privacy Policy or your data, please contact WiselyRise Solutions:</p>
+  <p><strong>Grievance Officer:</strong> Privacy &amp; Compliance Team, WiselyRise Solutions</p>
   <p><strong>Email:</strong> <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a></p>
-  <p><strong>WhatsApp:</strong> <a href="https://wa.me/919080743973" target="_blank" rel="noopener">+91 90807 43973</a></p>
+  <p><strong>WhatsApp Support:</strong> <a href="https://wa.me/919080743973?text=Hi%20WiselyRise!%20I%20have%20a%20question%20about%20DateWise." target="_blank" rel="noopener">+91 90807 43973</a></p>
+  <p><strong>Location:</strong> Tamil Nadu, India</p>
 
   <hr class="divider" />
+
   <p style="color:var(--muted);font-size:.8rem;text-align:center">© 2026 WiselyRise. All rights reserved.</p>
   <p style="text-align:center;margin-top:16px;font-size:.84rem"><a href="/datewise/">❮ Back to DateWise</a> &nbsp;·&nbsp; <a href="/">WiselyRise 🏠︎</a></p>
 </div>
@@ -187,7 +232,7 @@
      WHATSAPP FLOATING BUTTON
      ============================================================ -->
 <a class="wa-float"
-   href="https://wa.me/919080743973"
+   href="https://wa.me/919080743973?text=Hi%20WiselyRise!%20I%20have%20a%20question%20about%20DateWise."
    target="_blank" rel="noopener noreferrer"
    aria-label="Chat with WiselyRise on WhatsApp">
   <span class="wa-float__ring" aria-hidden="true"></span>

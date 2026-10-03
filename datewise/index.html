@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -238,40 +238,276 @@
     .notif-bullets li{display:flex;align-items:flex-start;gap:10px;font-size:.88rem;line-height:1.5}
     .nb-check{width:22px;height:22px;border-radius:50%;background:var(--green-bg);color:var(--green);font-size:.72rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-weight:700}
 
-    /* ── FEATURES ──────────────────────────────────────── */
-    .features-bg{background:var(--bg)}
+    /* ── FEATURES (CONTINUOUS SCROLL SHOWCASE) ────────── */
+    .features-bg{background:var(--bg);position:relative}
 
-    /* Desktop tab layout */
-    .feat-tabs{display:flex;gap:8px;margin:28px 0 40px;flex-wrap:wrap;justify-content:center}
-    .feat-tab{padding:9px 20px;border-radius:100px;border:1.5px solid var(--border);font-size:.83rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;background:var(--surface)}
-    .feat-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-    .feat-panels-desktop{display:block}
-    .feat-panel{display:none;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-    .feat-panel.active{display:grid;animation:fadeUp .4s ease both}
-    .feat-panel-img img{width:100%;max-width:280px;margin:0 auto;border-radius:26px;box-shadow:var(--shadow-lg)}
-    .feat-panel-img svg{width:100%;max-width:280px;margin:0 auto;border-radius:26px;box-shadow:var(--shadow-lg);display:block;background:#fff}
-    .feat-panel-content h3{font-family:'Inter Tight',sans-serif;font-size:1.55rem;font-weight:800;letter-spacing:-.03em;margin-bottom:12px;line-height:1.2}
-    .feat-panel-content p{color:var(--muted);line-height:1.75;margin-bottom:20px;font-size:.95rem}
-    .feat-bullets{list-style:none;display:flex;flex-direction:column;gap:9px}
-    .feat-bullets li{display:flex;align-items:flex-start;gap:10px;font-size:.88rem;line-height:1.5}
-    .fbi{width:20px;height:20px;border-radius:50%;background:var(--accent-bg);color:var(--accent);font-size:.68rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-weight:700}
+    /* Floating / Sticky Capsule Dock */
+    .feat-dock-sticky{
+      position:sticky;
+      top:calc(var(--nav-h) + 10px);
+      z-index:80;
+      margin:28px auto 44px;
+      max-width:1080px;
+      padding:0 12px;
+      transition:all .25s ease;
+    }
+    .feat-dock{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:6px;
+      padding:6px 10px;
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+      border:1.5px solid rgba(124,58,237,.18);
+      border-radius:100px;
+      box-shadow:0 12px 36px rgba(91,33,182,.1),0 2px 6px rgba(0,0,0,.04);
+      overflow-x:auto;
+      scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;
+    }
+    .feat-dock::-webkit-scrollbar{display:none}
 
-    /* Mobile accordion layout */
-    .feat-accordion{display:none;flex-direction:column;gap:10px;margin-top:24px}
-    .facc-item{border:1.5px solid var(--border);border-radius:16px;overflow:hidden;background:var(--surface);transition:border-color .2s}
-    .facc-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;user-select:none;gap:12px}
-    .facc-title{font-size:.92rem;font-weight:700;color:var(--fg)}
-    .facc-arrow{width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--accent-bg);color:var(--accent-mid);transition:transform .25s,background .2s;flex-shrink:0}
-    .facc-item.open .facc-arrow{transform:rotate(180deg);background:var(--accent);color:#fff}
-    .facc-item.open{border-color:var(--accent-light)}
-    .facc-body{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.22,1,.36,1)}
-    .facc-item.open .facc-body{max-height:640px}
-    .facc-inner{padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
-    .facc-img{text-align:center}
-    .facc-img img{width:150px;border-radius:18px;box-shadow:var(--shadow-md);margin:0 auto;display:block}
-    .facc-img svg{width:150px;border-radius:18px;box-shadow:var(--shadow-md);margin:0 auto;display:block;background:#fff}
-    .facc-inner h4{font-size:.9rem;font-weight:700;margin-bottom:4px}
-    .facc-inner p{font-size:.84rem;color:var(--muted);line-height:1.65;margin-bottom:10px}
+    .feat-dock-nav{
+      display:flex;
+      align-items:center;
+      gap:4px;
+      flex-wrap:nowrap;
+    }
+    .feat-tab{
+      padding:8px 16px;
+      border-radius:100px;
+      border:1.5px solid transparent;
+      font-size:.82rem;
+      font-weight:600;
+      color:var(--muted);
+      cursor:pointer;
+      transition:all .2s cubic-bezier(.22,1,.36,1);
+      background:transparent;
+      white-space:nowrap;
+      flex-shrink:0;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      user-select:none;
+    }
+    .feat-tab:hover{
+      color:var(--accent);
+      background:var(--accent-bg);
+    }
+    .feat-tab.active{
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 4px 16px rgba(91,33,182,.3);
+    }
+
+    /* Auto Tour Button */
+    .feat-tour-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:7px 14px;
+      border-radius:100px;
+      background:linear-gradient(135deg,var(--accent-bg) 0%,#ede9fe 100%);
+      border:1px solid rgba(124,58,237,.22);
+      font-size:.76rem;
+      font-weight:700;
+      color:var(--accent);
+      cursor:pointer;
+      white-space:nowrap;
+      flex-shrink:0;
+      transition:all .2s ease;
+      margin-left:6px;
+    }
+    .feat-tour-btn:hover{
+      background:var(--accent);
+      color:#fff;
+      border-color:var(--accent);
+      box-shadow:0 4px 14px rgba(91,33,182,.25);
+    }
+    .feat-tour-btn.touring{
+      background:#dc2626;
+      color:#fff;
+      border-color:#dc2626;
+    }
+
+    /* Stream of feature cards */
+    .feat-stream{
+      display:flex;
+      flex-direction:column;
+      gap:44px;
+      max-width:1080px;
+      margin:0 auto;
+    }
+    .feat-card{
+      background:var(--surface);
+      border:1.5px solid var(--border);
+      border-radius:28px;
+      padding:48px;
+      box-shadow:var(--shadow-sm);
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:54px;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      scroll-margin-top:calc(var(--nav-h) + 80px);
+      transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;
+    }
+    .feat-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 20px 48px rgba(91,33,182,.1);
+      border-color:var(--accent-light);
+    }
+    .feat-card::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;
+      height:3.5px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-light));
+      opacity:0;
+      transition:opacity .3s ease;
+    }
+    .feat-card:hover::before,.feat-card.active-card::before{
+      opacity:1;
+    }
+
+    /* Alternating zigzag on laptop & desktop */
+    .feat-card.alt-reverse .feat-card-visual{order:2}
+    .feat-card.alt-reverse .feat-card-content{order:1}
+
+    /* Visual container */
+    .feat-card-visual{
+      background:radial-gradient(circle at center,#f6f4fe 0%,#ede8fc 100%);
+      border-radius:24px;
+      padding:32px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(124,58,237,.1);
+      position:relative;
+      min-height:360px;
+    }
+    .feat-card-visual img{
+      width:100%;
+      max-width:280px;
+      margin:0 auto;
+      border-radius:22px;
+      box-shadow:0 16px 42px rgba(91,33,182,.15);
+      display:block;
+      transition:transform .35s ease;
+    }
+    .feat-card-visual svg{
+      width:100%;
+      max-width:280px;
+      margin:0 auto;
+      border-radius:22px;
+      box-shadow:0 16px 42px rgba(91,33,182,.15);
+      display:block;
+      background:#fff;
+      transition:transform .35s ease;
+    }
+    .feat-card:hover .feat-card-visual img,
+    .feat-card:hover .feat-card-visual svg{
+      transform:scale(1.025) translateY(-3px);
+    }
+
+    /* Content styling */
+    .feat-badge-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:14px;
+    }
+    .feat-num-badge{
+      font-family:'Inter Tight',sans-serif;
+      font-size:.78rem;
+      font-weight:800;
+      color:var(--accent);
+      background:var(--accent-bg);
+      border:1px solid rgba(124,58,237,.16);
+      padding:3px 10px;
+      border-radius:8px;
+      letter-spacing:.02em;
+    }
+    .feat-badge{
+      display:inline-block;
+      font-size:.68rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--accent-mid);
+      background:var(--accent-bg);
+      padding:4px 12px;
+      border-radius:100px;
+    }
+    .feat-card-content h3{
+      font-family:'Inter Tight',sans-serif;
+      font-size:clamp(1.45rem,2.6vw,1.95rem);
+      font-weight:800;
+      letter-spacing:-.025em;
+      margin-bottom:14px;
+      line-height:1.22;
+      color:var(--fg);
+    }
+    .feat-card-content p{
+      color:var(--muted);
+      line-height:1.75;
+      margin-bottom:22px;
+      font-size:.95rem;
+    }
+    .feat-bullets{
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-bottom:24px;
+    }
+    .feat-bullets li{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      font-size:.88rem;
+      line-height:1.5;
+    }
+    .fbi{
+      width:20px;
+      height:20px;
+      border-radius:50%;
+      background:var(--accent-bg);
+      color:var(--accent);
+      font-size:.68rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+      margin-top:2px;
+      font-weight:700;
+    }
+    .feat-tags{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      padding-top:18px;
+      border-top:1px solid var(--border);
+    }
+    .feat-tag{
+      font-size:.74rem;
+      font-weight:600;
+      padding:4px 11px;
+      border-radius:100px;
+      background:#f1f5f9;
+      color:#475569;
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+    }
+    .feat-tag--pro{
+      background:linear-gradient(135deg,var(--accent-bg) 0%,#ede9fe 100%);
+      color:var(--accent);
+      border:1px solid rgba(124,58,237,.2);
+      font-weight:700;
+    }
 
     /* ── HOW IT WORKS ──────────────────────────────────── */
     .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
@@ -545,10 +781,16 @@
         align-items:center;padding:0;
       }
       .feat-chip{width:74px;height:74px;padding:8px}
-      .feat-chip img{width:58px;height:58px}
-      /* Features: hide desktop tabs, show accordion */
-      .feat-panels-desktop{display:none}
-      .feat-accordion{display:flex}
+      /* Features stream responsive */
+      .feat-dock-sticky{top:calc(var(--nav-h) + 6px);margin:20px auto 32px}
+      .feat-dock{border-radius:18px;padding:6px 8px}
+      .feat-tab{padding:7px 13px;font-size:.78rem}
+      .feat-stream{gap:28px}
+      .feat-card{grid-template-columns:1fr;gap:28px;padding:32px 24px;border-radius:22px;scroll-margin-top:calc(var(--nav-h) + 68px)}
+      .feat-card.alt-reverse .feat-card-visual{order:0}
+      .feat-card.alt-reverse .feat-card-content{order:1}
+      .feat-card-visual{min-height:280px;padding:20px}
+      .feat-card-visual img,.feat-card-visual svg{max-width:240px}
       /* Layout fixes */
       .about-grid,.notif-grid{grid-template-columns:1fr;gap:36px}
       .how-grid{grid-template-columns:1fr}
@@ -577,6 +819,13 @@
       .cta-band{padding:60px 5%}
       .ss-header{padding:56px 5% 28px}
       .ss-track img{flex:0 0 155px;height:330px}
+      .feat-dock-sticky{top:calc(var(--nav-h) + 4px);margin:16px auto 24px;padding:0 4px}
+      .feat-dock{border-radius:14px}
+      .feat-tour-btn{display:none}
+      .feat-card{padding:24px 18px;border-radius:18px;gap:20px;scroll-margin-top:calc(var(--nav-h) + 58px)}
+      .feat-card-visual{min-height:220px;padding:16px}
+      .feat-card-visual img,.feat-card-visual svg{max-width:200px}
+      .feat-card-content h3{font-size:1.32rem}
     }
     @media(max-width:400px){
       .hero h1{font-size:2rem}
@@ -656,7 +905,7 @@
     <li><a href="#faq">FAQ</a></li>
     <li><a href="/" style="color:var(--accent-mid);font-weight:600">WiselyRise 🏠︎</a></li>
   </ul>
-  <a href="#" class="nav-cta nav-desktop" onclick="openContactModal('datewise');return false;" style="margin-right:8px;background:none;border:1.5px solid var(--accent);color:var(--accent)">Feedback</a>
+  <a href="javascript:void(0)" class="nav-cta nav-desktop" onclick="openContactModal('datewise')" style="margin-right:8px;background:none;border:1.5px solid var(--accent);color:var(--accent)">Feedback</a>
   <a class="nav-cta nav-desktop" href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener">
     Get it on Google Play
   </a>
@@ -673,7 +922,7 @@
   <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
   <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
   <a href="/" onclick="closeMobileMenu()">WiselyRise</a>
-  <a href="#" onclick="closeMobileMenu();openContactModal('datewise');return false;">Feedback</a>
+  <a href="javascript:void(0)" onclick="closeMobileMenu();openContactModal('datewise')">Feedback</a>
   <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener" onclick="closeMobileMenu()">
     Get the App
   </a>
@@ -811,7 +1060,7 @@
 <div class="stats-band">
   <div class="stats-grid">
     <div class="stat-item reveal">
-      <div class="stat-num">10</div>
+      <div class="stat-num">9</div>
       <div class="stat-label">Built-in Reminder Types</div>
     </div>
     <div class="stat-item reveal d1">
@@ -862,23 +1111,33 @@
       <p class="section-desc reveal d2" style="margin:12px auto 0">From voice alerts to home widgets, DateWise handles every important date end to end without extra apps.</p>
     </div>
 
-    <!-- Desktop tab + panel -->
-    <div class="feat-panels-desktop">
-      <div class="feat-tabs reveal d2">
-        <button class="feat-tab active" data-tab="smartadd">⚡ Smart Add</button>
-        <button class="feat-tab" data-tab="peoplehub">👥 People Hub</button>
-        <button class="feat-tab" data-tab="inbox">📥 Inbox</button>
-        <button class="feat-tab" data-tab="timeline">☰ Smart Timeline</button>
-        <button class="feat-tab" data-tab="voice">🗣️ Voice Alerts</button>
-        <button class="feat-tab" data-tab="contacts">📇 Contact Import</button>
-        <button class="feat-tab" data-tab="widget">🏠 Home Widget</button>
-        <button class="feat-tab" data-tab="privacy">🔒 Privacy &amp; Security</button>
-        <button class="feat-tab" data-tab="pro">💎 Pro Features</button>
+    <!-- Floating Sticky Capsule Dock -->
+    <div class="feat-dock-sticky">
+      <div class="feat-dock" id="featDock">
+        <div class="feat-dock-nav" role="tablist" aria-label="Features navigation">
+          <button class="feat-tab active" data-target="feat-smartadd" role="tab" aria-selected="true"><span>⚡</span> Smart Add</button>
+          <button class="feat-tab" data-target="feat-peoplehub" role="tab" aria-selected="false"><span>👥</span> People Hub</button>
+          <button class="feat-tab" data-target="feat-inbox" role="tab" aria-selected="false"><span>📥</span> Inbox</button>
+          <button class="feat-tab" data-target="feat-timeline" role="tab" aria-selected="false"><span>☰</span> Timeline</button>
+          <button class="feat-tab" data-target="feat-voice" role="tab" aria-selected="false"><span>🗣️</span> Voice Alerts</button>
+          <button class="feat-tab" data-target="feat-contacts" role="tab" aria-selected="false"><span>📇</span> Contact Import</button>
+          <button class="feat-tab" data-target="feat-widget" role="tab" aria-selected="false"><span>🏠</span> Home Widget</button>
+          <button class="feat-tab" data-target="feat-privacy" role="tab" aria-selected="false"><span>🔒</span> Privacy</button>
+          <button class="feat-tab" data-target="feat-pro" role="tab" aria-selected="false"><span>💎</span> Pro</button>
+        </div>
+        <button class="feat-tour-btn" id="featTourBtn" aria-label="Toggle auto guided tour of features">
+          <span class="tour-icon">▶</span>
+          <span>Auto Tour</span>
+        </button>
       </div>
+    </div>
 
-      <!-- ── Smart Add panel ── -->
-      <div class="feat-panel active" id="tab-smartadd">
-        <div class="feat-panel-img reveal">
+    <!-- Continuous Scroll Stream of Features -->
+    <div class="feat-stream">
+
+      <!-- ── 01: Smart Add ── -->
+      <article class="feat-card reveal" id="feat-smartadd" data-feature="feat-smartadd">
+        <div class="feat-card-visual">
           <svg viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Smart Add — type or speak to create a reminder instantly">
             <defs>
               <linearGradient id="saPhone" x1="0" y1="0" x2="0" y2="1">
@@ -927,7 +1186,11 @@
             <text x="140" y="392" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#a78bfa">AI-detected · edit anything before saving</text>
           </svg>
         </div>
-        <div class="feat-panel-content reveal d1">
+        <div class="feat-card-content reveal d1">
+          <div class="feat-badge-row">
+            <span class="feat-num-badge">01</span>
+            <span class="feat-badge">⚡ SMART ADD</span>
+          </div>
           <h3>Create Reminders<br /><span class="text-accent">by Typing or Speaking</span></h3>
           <p>Just describe what you need in plain language — "Car insurance due Oct 15" or "Mom's birthday next Friday" — and DateWise detects the date, type, and person for you.</p>
           <ul class="feat-bullets">
@@ -937,12 +1200,17 @@
             <li><span class="fbi">✓</span> Works for birthdays, bills, renewals, and custom types</li>
             <li><span class="fbi">✓</span> Fastest way to capture an important date before you forget</li>
           </ul>
+          <div class="feat-tags">
+            <span class="feat-tag">✨ Voice &amp; AI-Detected</span>
+            <span class="feat-tag">⏱️ 3-Second Capture</span>
+            <span class="feat-tag">🎁 3 Free Trials</span>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <!-- ── People Hub panel ── -->
-      <div class="feat-panel" id="tab-peoplehub">
-        <div class="feat-panel-img reveal">
+      <!-- ── 02: People Hub ── -->
+      <article class="feat-card alt-reverse reveal" id="feat-peoplehub" data-feature="feat-peoplehub">
+        <div class="feat-card-visual">
           <svg viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="People Hub — relationship centre for contacts and milestones">
             <defs>
               <linearGradient id="phBg" x1="0" y1="0" x2="0" y2="1">
@@ -997,7 +1265,11 @@
             <text x="140" y="400" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#a78bfa">Tap any contact to see their full timeline</text>
           </svg>
         </div>
-        <div class="feat-panel-content reveal d1">
+        <div class="feat-card-content reveal d1">
+          <div class="feat-badge-row">
+            <span class="feat-num-badge">02</span>
+            <span class="feat-badge">👥 PEOPLE HUB</span>
+          </div>
           <h3>Everyone Who Matters,<br /><span class="text-accent">All in One Place</span></h3>
           <p>People Hub is a dedicated relationship centre. See upcoming milestones, ages, linked reminders, and relationship circles for every contact — at a glance.</p>
           <ul class="feat-bullets">
@@ -1007,12 +1279,17 @@
             <li><span class="fbi">✓</span> Attach photos, crop avatars, and add notes</li>
             <li><span class="fbi">✓</span> Send wishes directly via WhatsApp or SMS</li>
           </ul>
+          <div class="feat-tags">
+            <span class="feat-tag">👥 7 Relationship Circles</span>
+            <span class="feat-tag">🎂 Auto Age Counter</span>
+            <span class="feat-tag">💬 1-Tap Wishes</span>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <!-- ── Inbox panel ── -->
-      <div class="feat-panel" id="tab-inbox">
-        <div class="feat-panel-img reveal">
+      <!-- ── 03: Inbox ── -->
+      <article class="feat-card reveal" id="feat-inbox" data-feature="feat-inbox">
+        <div class="feat-card-visual">
           <svg viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capture to Inbox — save ideas and notes to schedule later">
             <defs>
               <linearGradient id="ibBg" x1="0" y1="0" x2="0" y2="1">
@@ -1064,7 +1341,11 @@
             <text x="140" y="400" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#a78bfa">Capture now · schedule when ready</text>
           </svg>
         </div>
-        <div class="feat-panel-content reveal d1">
+        <div class="feat-card-content reveal d1">
+          <div class="feat-badge-row">
+            <span class="feat-num-badge">03</span>
+            <span class="feat-badge">📥 INBOX</span>
+          </div>
           <h3>Capture First,<br /><span class="text-accent">Schedule When Ready</span></h3>
           <p>Not every important thought arrives at the right moment. Inbox lets you capture ideas, rough dates, and notes instantly — then convert them into proper scheduled reminders at your own pace.</p>
           <ul class="feat-bullets">
@@ -1074,14 +1355,24 @@
             <li><span class="fbi">✓</span> Never lose a fleeting idea or rough date again</li>
             <li><span class="fbi">✓</span> Triage at your own pace — no pressure to schedule immediately</li>
           </ul>
+          <div class="feat-tags">
+            <span class="feat-tag">📥 Zero-Friction Capture</span>
+            <span class="feat-tag">📸 Photo Attachments</span>
+            <span class="feat-tag">⚡ 1-Tap Convert</span>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <div class="feat-panel" id="tab-timeline">
-        <div class="feat-panel-img reveal">
-          <img src="/datewise/images/Screen-1.png" alt="Smart timeline" />
+      <!-- ── 04: Smart Timeline ── -->
+      <article class="feat-card alt-reverse reveal" id="feat-timeline" data-feature="feat-timeline">
+        <div class="feat-card-visual">
+          <img src="/datewise/images/Screen-1.png" alt="Smart timeline" loading="lazy" />
         </div>
-        <div class="feat-panel-content reveal d1">
+        <div class="feat-card-content reveal d1">
+          <div class="feat-badge-row">
+            <span class="feat-num-badge">04</span>
+            <span class="feat-badge">☰ SMART TIMELINE</span>
+          </div>
           <h3>Know What's Coming<br /><span class="text-accent">Before It Arrives</span></h3>
           <p>Your upcoming events are automatically sorted into Today, Tomorrow, This Week, This Month, and Later — so you always know what needs attention right now.</p>
           <ul class="feat-bullets">
@@ -1091,27 +1382,17 @@
             <li><span class="fbi">✓</span> Swipe to snooze or delete</li>
             <li><span class="fbi">✓</span> Auto-calculated age &amp; years counter</li>
           </ul>
+          <div class="feat-tags">
+            <span class="feat-tag">📅 Urgency Grouping</span>
+            <span class="feat-tag">👆 Swipe to Snooze</span>
+            <span class="feat-tag">🏷️ Category Filter Chips</span>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <div class="feat-panel" id="tab-contacts">
-        <div class="feat-panel-img reveal">
-          <img src="/datewise/images/Screen-4.png" alt="Import contacts" />
-        </div>
-        <div class="feat-panel-content reveal d1">
-          <h3>Import All Birthdays<br /><span class="text-accent">in One Tap</span></h3>
-          <p>Pull all birthdays from your phone contacts instantly. DateWise reads the data and creates reminders automatically — no manual entry needed.</p>
-          <ul class="feat-bullets">
-            <li><span class="fbi">✓</span> One-tap import from phone contacts</li>
-            <li><span class="fbi">✓</span> Auto-tag by relationship (Family, Friends, Work, VIP)</li>
-            <li><span class="fbi">✓</span> Notifications set automatically at 7 days and on the day</li>
-            <li><span class="fbi">✓</span> Re-run anytime from Settings → Import from Contacts</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="feat-panel" id="tab-voice">
-        <div class="feat-panel-img reveal">
+      <!-- ── 05: Voice Alerts ── -->
+      <article class="feat-card reveal" id="feat-voice" data-feature="feat-voice">
+        <div class="feat-card-visual">
           <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Voice announcement preview card">
             <defs>
               <linearGradient id="voiceBg" x1="0" y1="0" x2="1" y2="1">
@@ -1130,7 +1411,11 @@
             <text x="140" y="229" font-family="Inter, sans-serif" font-size="12" text-anchor="middle" fill="#6d28d9">Sound + voice, naturally timed</text>
           </svg>
         </div>
-        <div class="feat-panel-content reveal d1">
+        <div class="feat-card-content reveal d1">
+          <div class="feat-badge-row">
+            <span class="feat-num-badge">05</span>
+            <span class="feat-badge">🗣️ VOICE ALERTS</span>
+          </div>
           <h3>Hear Important Dates<br /><span class="text-accent">Even Without Looking</span></h3>
           <p>DateWise can play your selected notification sound and then read the reminder aloud. It is ideal while driving, cooking, or when your phone is across the room.</p>
           <ul class="feat-bullets">
@@ -1139,11 +1424,43 @@
             <li><span class="fbi">✓</span> Works with test notifications before you rely on it</li>
             <li><span class="fbi">✓</span> Respects silent and vibrate mode automatically</li>
           </ul>
+          <div class="feat-tags">
+            <span class="feat-tag">🗣️ Hands-Free Alerts</span>
+            <span class="feat-tag">🔔 10 Curated Sounds</span>
+            <span class="feat-tag">🔕 Mute Scope Control</span>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <div class="feat-panel" id="tab-widget">
-        <div class="feat-panel-img reveal">
+      <!-- ── 06: Contact Import ── -->
+      <article class="feat-card alt-reverse reveal" id="feat-contacts" data-feature="feat-contacts">
+        <div class="feat-card-visual">
+          <img src="/datewise/images/Screen-4.png" alt="Import contacts" loading="lazy" />
+        </div>
+        <div class="feat-card-content reveal d1">
+          <div class="feat-badge-row">
+            <span class="feat-num-badge">06</span>
+            <span class="feat-badge">📇 CONTACT IMPORT</span>
+          </div>
+          <h3>Import All Birthdays<br /><span class="text-accent">in One Tap</span></h3>
+          <p>Pull all birthdays from your phone contacts instantly. DateWise reads the data and creates reminders automatically — no manual entry needed.</p>
+          <ul class="feat-bullets">
+            <li><span class="fbi">✓</span> One-tap import from phone contacts</li>
+            <li><span class="fbi">✓</span> Auto-tag by relationship (Family, Friends, Work, VIP)</li>
+            <li><span class="fbi">✓</span> Notifications set automatically at 7 days and on the day</li>
+            <li><span class="fbi">✓</span> Re-run anytime from Settings → Import from Contacts</li>
+          </ul>
+          <div class="feat-tags">
+            <span class="feat-tag">📇 1-Tap Sync</span>
+            <span class="feat-tag">🔒 Read-Only Permission</span>
+            <span class="feat-tag">⚡ Instant Setup</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 07: Home Widget ── -->
+      <article class="feat-card reveal" id="feat-widget" data-feature="feat-widget">
+        <div class="feat-card-visual">
           <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home screen widget showing a birthday reminder due today">
             <rect x="2" y="2" width="276" height="276" rx="34" fill="#ffffff" stroke="#e4e4e8" stroke-width="2"/>
             <text x="24" y="42" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0d0d12">DateWise</text>
@@ -1157,7 +1474,11 @@
             <text x="140" y="247" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#dc2626">Today</text>
           </svg>
         </div>
-        <div class="feat-panel-content reveal d1">
+        <div class="feat-card-content reveal d1">
+          <div class="feat-badge-row">
+            <span class="feat-num-badge">07</span>
+            <span class="feat-badge">🏠 HOME WIDGET</span>
+          </div>
           <h3>Glance and Go —<br /><span class="text-accent">No Need to Open the App</span></h3>
           <p>One resizable home screen widget shows what's coming up without unlocking your phone. Drag it from a compact single-line strip up to a full grouped view of your next few reminders.</p>
           <ul class="feat-bullets">
@@ -1167,14 +1488,24 @@
             <li><span class="fbi">✓</span> Tap any reminder to jump straight to it</li>
             <li><span class="fbi">✓</span> Free on every plan — no Pro required</li>
           </ul>
+          <div class="feat-tags">
+            <span class="feat-tag">🏠 8 Resizable Sizes</span>
+            <span class="feat-tag">🔴 Urgency Color Coding</span>
+            <span class="feat-tag">🆓 100% Free</span>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <div class="feat-panel" id="tab-privacy">
-        <div class="feat-panel-img reveal">
-          <img src="/datewise/images/Screen-5.png" alt="Private and Secure" />
+      <!-- ── 08: Privacy & Security ── -->
+      <article class="feat-card alt-reverse reveal" id="feat-privacy" data-feature="feat-privacy">
+        <div class="feat-card-visual">
+          <img src="/datewise/images/Screen-5.png" alt="Private and Secure" loading="lazy" />
         </div>
-        <div class="feat-panel-content reveal d1">
+        <div class="feat-card-content reveal d1">
+          <div class="feat-badge-row">
+            <span class="feat-num-badge">08</span>
+            <span class="feat-badge">🔒 PRIVACY &amp; SECURITY</span>
+          </div>
           <h3>Your Data,<br /><span class="text-accent">Your Control</span></h3>
           <p>Everything you add stays on your device. No account needed, no cloud syncing unless you opt in, and no one ever sees your reminders.</p>
           <ul class="feat-bullets">
@@ -1182,16 +1513,26 @@
             <li><span class="fbi">✓</span> Biometric app lock keeps your data private</li>
             <li><span class="fbi">✓</span> Optional Google Drive backup to your own account (Pro)</li>
             <li><span class="fbi">✓</span> No analytics, no ad tracking, no data sharing — ever</li>
-            <li><span class="fbi">✓</span> Recycle Bin: restore deleted reminders within 30 days</li>
+            <li><span class="fbi">✓</span> Recycle Bin: restore or permanently purge deleted items anytime</li>
           </ul>
+          <div class="feat-tags">
+            <span class="feat-tag">🔒 100% On-Device</span>
+            <span class="feat-tag">🛡️ Fingerprint / PIN Lock</span>
+            <span class="feat-tag">🗑️ Recycle Bin</span>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <div class="feat-panel" id="tab-pro">
-        <div class="feat-panel-img reveal">
-          <img src="/datewise/images/Screen-7.png" alt="Pro membership" />
+      <!-- ── 09: Pro Membership ── -->
+      <article class="feat-card reveal" id="feat-pro" data-feature="feat-pro">
+        <div class="feat-card-visual" style="background: radial-gradient(circle at center, #ede9fe 0%, #ddd6fe 100%);">
+          <img src="/datewise/images/Screen-7.png" alt="Pro membership" loading="lazy" />
         </div>
-        <div class="feat-panel-content reveal d1">
+        <div class="feat-card-content reveal d1">
+          <div class="feat-badge-row">
+            <span class="feat-num-badge">09</span>
+            <span class="feat-badge" style="background:linear-gradient(90deg,var(--accent),var(--accent-mid));color:#fff;">💎 PRO MEMBERSHIP</span>
+          </div>
           <h3>Unlock More<br /><span class="text-accent">with DateWise Pro</span></h3>
           <p>Pro is a one-time purchase — not a subscription. Pay once, keep it forever. Designed for power users who want the full experience.</p>
           <ul class="feat-bullets">
@@ -1203,308 +1544,15 @@
             <li><span class="fbi">✓</span> Unlimited Smart Add (free users get 3 trials)</li>
             <li><span class="fbi">✓</span> One-time purchase — no subscription, ever</li>
           </ul>
+          <div class="feat-tags">
+            <span class="feat-tag feat-tag--pro">💎 ₹49 Lifetime</span>
+            <span class="feat-tag feat-tag--pro">☁️ Google Drive Sync</span>
+            <span class="feat-tag feat-tag--pro">⭐ Custom Emojis</span>
+            <span class="feat-tag feat-tag--pro">♾️ Unlimited People</span>
+          </div>
         </div>
-      </div>
-    </div>
+      </article>
 
-    <!-- Mobile accordion -->
-    <div class="feat-accordion" id="featAccordion">
-      <!-- ── Smart Add ── -->
-      <div class="facc-item open">
-        <div class="facc-header">
-          <span class="facc-title">⚡ Smart Add</span>
-          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-        <div class="facc-body">
-          <div class="facc-inner">
-            <div class="facc-img">
-              <svg viewBox="0 0 280 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Smart Add illustration">
-                <defs>
-                  <linearGradient id="saPhoneM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5f3ff"/><stop offset="1" stop-color="#ede9fe"/></linearGradient>
-                  <linearGradient id="saBarM" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
-                </defs>
-                <rect x="2" y="2" width="276" height="316" rx="36" fill="#fff" stroke="#e4e4e8" stroke-width="2"/>
-                <rect x="12" y="12" width="256" height="296" rx="28" fill="url(#saPhoneM)"/>
-                <rect x="100" y="18" width="80" height="10" rx="5" fill="#ddd6fe"/>
-                <text x="140" y="52" font-family="Inter,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#3b0764">Smart Add</text>
-                <rect x="24" y="66" width="74" height="24" rx="12" fill="#7c3aed"/>
-                <text x="61" y="82" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">🎂 Birthday</text>
-                <rect x="106" y="66" width="88" height="24" rx="12" fill="#5b21b6"/>
-                <text x="150" y="82" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">📅 Next Friday</text>
-                <rect x="20" y="104" width="240" height="50" rx="14" fill="#fff" stroke="#ddd6fe" stroke-width="1.5"/>
-                <text x="36" y="124" font-family="Inter,sans-serif" font-size="12" fill="#3b0764" font-weight="500">"Mom's birthday next Friday"</text>
-                <circle cx="246" cy="129" r="14" fill="#7c3aed"/>
-                <text x="246" y="134" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" fill="#fff">🎙</text>
-                <rect x="20" y="168" width="240" height="90" rx="16" fill="#fff" stroke="#e4e4e8" stroke-width="1.5"/>
-                <rect x="20" y="168" width="240" height="4" rx="2" fill="url(#saBarM)"/>
-                <text x="36" y="192" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#3b0764">Mom's Birthday</text>
-                <text x="36" y="212" font-family="Inter,sans-serif" font-size="11" fill="#64748b">📅 Friday, 26 Sep · 👤 Mom · 🏷 Family</text>
-                <rect x="24" y="274" width="232" height="38" rx="19" fill="url(#saBarM)"/>
-                <text x="140" y="297" font-family="Inter,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#fff">Save Reminder ✓</text>
-              </svg>
-            </div>
-            <div>
-              <h4>Create Reminders by Typing or Speaking</h4>
-              <p>Describe what you need in plain language and DateWise detects the date, type, and person for you.</p>
-              <ul class="feat-bullets">
-                <li><span class="fbi">✓</span> Natural language and voice input</li>
-                <li><span class="fbi">✓</span> Auto-detects date, category, and person</li>
-                <li><span class="fbi">✓</span> Pre-fills the form — just review and save</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- ── People Hub ── -->
-      <div class="facc-item">
-        <div class="facc-header">
-          <span class="facc-title">👥 People Hub</span>
-          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-        <div class="facc-body">
-          <div class="facc-inner">
-            <div class="facc-img">
-              <svg viewBox="0 0 280 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="People Hub illustration">
-                <defs>
-                  <linearGradient id="phBgM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5f3ff"/><stop offset="1" stop-color="#ede9fe"/></linearGradient>
-                </defs>
-                <rect x="2" y="2" width="276" height="296" rx="36" fill="#fff" stroke="#e4e4e8" stroke-width="2"/>
-                <rect x="12" y="12" width="256" height="276" rx="28" fill="url(#phBgM)"/>
-                <rect x="100" y="18" width="80" height="10" rx="5" fill="#ddd6fe"/>
-                <text x="140" y="52" font-family="Inter,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#3b0764">People Hub</text>
-                <rect x="20" y="68" width="240" height="70" rx="14" fill="#fff" stroke="#e4e4e8" stroke-width="1.5"/>
-                <circle cx="50" cy="103" r="20" fill="#7c3aed"/>
-                <text x="50" y="110" font-family="Inter,sans-serif" font-size="16" font-weight="800" text-anchor="middle" fill="#fff">A</text>
-                <text x="80" y="96" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#0d0d12">Amma</text>
-                <text x="80" y="114" font-family="Inter,sans-serif" font-size="10" fill="#64748b">🎂 Birthday in 3 days · Turns 58</text>
-                <text x="80" y="128" font-family="Inter,sans-serif" font-size="10" fill="#7c3aed" font-weight="600">Family</text>
-                <rect x="20" y="150" width="240" height="70" rx="14" fill="#fff" stroke="#e4e4e8" stroke-width="1.5"/>
-                <circle cx="50" cy="185" r="20" fill="#059669"/>
-                <text x="50" y="192" font-family="Inter,sans-serif" font-size="16" font-weight="800" text-anchor="middle" fill="#fff">R</text>
-                <text x="80" y="178" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#0d0d12">Rahul</text>
-                <text x="80" y="196" font-family="Inter,sans-serif" font-size="10" fill="#64748b">💑 Anniversary in 12 days</text>
-                <text x="80" y="210" font-family="Inter,sans-serif" font-size="10" fill="#059669" font-weight="600">Friends</text>
-                <rect x="20" y="232" width="240" height="58" rx="14" fill="#fff" stroke="#e4e4e8" stroke-width="1.5"/>
-                <circle cx="50" cy="261" r="20" fill="#d97706"/>
-                <text x="50" y="268" font-family="Inter,sans-serif" font-size="16" font-weight="800" text-anchor="middle" fill="#fff">P</text>
-                <text x="80" y="256" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#0d0d12">Priya</text>
-                <text x="80" y="274" font-family="Inter,sans-serif" font-size="10" fill="#64748b">🎂 Birthday in 28 days · VIP</text>
-              </svg>
-            </div>
-            <div>
-              <h4>Everyone Who Matters, All in One Place</h4>
-              <p>A dedicated relationship centre — see milestones, ages, and linked reminders for every contact.</p>
-              <ul class="feat-bullets">
-                <li><span class="fbi">✓</span> 7 circles: Family, Friends, Work, VIP…</li>
-                <li><span class="fbi">✓</span> Countdown to each contact's next milestone</li>
-                <li><span class="fbi">✓</span> Send wishes via WhatsApp or SMS</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- ── Inbox ── -->
-      <div class="facc-item">
-        <div class="facc-header">
-          <span class="facc-title">📥 Inbox</span>
-          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-        <div class="facc-body">
-          <div class="facc-inner">
-            <div class="facc-img">
-              <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Inbox illustration">
-                <defs>
-                  <linearGradient id="ibBgM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0fdf4"/><stop offset="1" stop-color="#f5f3ff"/></linearGradient>
-                  <linearGradient id="ibBtnM" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
-                </defs>
-                <rect x="2" y="2" width="276" height="276" rx="36" fill="#fff" stroke="#e4e4e8" stroke-width="2"/>
-                <rect x="12" y="12" width="256" height="256" rx="28" fill="url(#ibBgM)"/>
-                <rect x="100" y="18" width="80" height="10" rx="5" fill="#ddd6fe"/>
-                <text x="120" y="50" font-family="Inter,sans-serif" font-size="14" font-weight="800" text-anchor="middle" fill="#3b0764">Inbox</text>
-                <rect x="186" y="38" width="46" height="20" rx="10" fill="#7c3aed"/>
-                <text x="209" y="51" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" fill="#fff" font-weight="700">3 items</text>
-                <rect x="20" y="64" width="240" height="64" rx="14" fill="#fff" stroke="#7c3aed" stroke-width="1.5"/>
-                <rect x="20" y="64" width="5" height="64" rx="2" fill="#7c3aed"/>
-                <text x="38" y="84" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#0d0d12">Gift idea for Dad's birthday</text>
-                <text x="38" y="100" font-family="Inter,sans-serif" font-size="11" fill="#64748b">Noise-cancelling headphones</text>
-                <rect x="38" y="108" width="90" height="16" rx="8" fill="#7c3aed"/>
-                <text x="83" y="119" font-family="Inter,sans-serif" font-size="9" text-anchor="middle" fill="#fff" font-weight="600">→ Convert to Reminder</text>
-                <rect x="20" y="140" width="240" height="60" rx="14" fill="#fff" stroke="#e4e4e8" stroke-width="1.5"/>
-                <rect x="20" y="140" width="5" height="60" rx="2" fill="#059669"/>
-                <text x="38" y="160" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#0d0d12">Passport renewal — check date</text>
-                <text x="38" y="178" font-family="Inter,sans-serif" font-size="11" fill="#64748b">Expires sometime next year</text>
-                <rect x="20" y="212" width="240" height="44" rx="22" fill="#fff" stroke="#ddd6fe" stroke-width="1.5"/>
-                <text x="46" y="238" font-family="Inter,sans-serif" font-size="11" fill="#94a3b8">Jot something down…</text>
-                <circle cx="244" cy="234" r="14" fill="url(#ibBtnM)"/>
-                <text x="244" y="240" font-family="Inter,sans-serif" font-size="14" text-anchor="middle" fill="#fff">+</text>
-              </svg>
-            </div>
-            <div>
-              <h4>Capture First, Schedule When Ready</h4>
-              <p>Capture ideas, rough dates, and notes instantly — convert them into reminders at your own pace.</p>
-              <ul class="feat-bullets">
-                <li><span class="fbi">✓</span> One-tap quick capture</li>
-                <li><span class="fbi">✓</span> Convert any note into a full reminder</li>
-                <li><span class="fbi">✓</span> Attach images — receipts, gift ideas, docs</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="facc-item open">
-        <div class="facc-header">
-          <span class="facc-title">☰ Smart Timeline</span>
-          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-        <div class="facc-body">
-          <div class="facc-inner">
-            <div class="facc-img"><img src="/datewise/images/Screen-1.png" alt="Smart timeline" loading="lazy" /></div>
-            <div>
-              <h4>Know What's Coming Before It Arrives</h4>
-              <p>Auto-sorted into Today, Tomorrow, This Week, This Month, and Later.</p>
-              <ul class="feat-bullets">
-                <li><span class="fbi">✓</span> Urgency-based grouping</li>
-                <li><span class="fbi">✓</span> Filter chips by reminder type</li>
-                <li><span class="fbi">✓</span> Relationship tags: Family, Friends, Work, VIP</li>
-                <li><span class="fbi">✓</span> Auto-calculated age &amp; years counter</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="facc-item">
-        <div class="facc-header">
-          <span class="facc-title">🗣️ Voice Alerts</span>
-          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-        <div class="facc-body">
-          <div class="facc-inner">
-            <div class="facc-img">
-              <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Voice announcement preview card">
-                <defs>
-                  <linearGradient id="voiceBgMobile" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#f3e8ff"/>
-                    <stop offset="1" stop-color="#ede9fe"/>
-                  </linearGradient>
-                </defs>
-                <rect x="2" y="2" width="276" height="276" rx="34" fill="#ffffff" stroke="#e4e4e8" stroke-width="2"/>
-                <rect x="22" y="22" width="236" height="236" rx="28" fill="url(#voiceBgMobile)"/>
-                <circle cx="140" cy="95" r="32" fill="#7c3aed"/>
-                <text x="140" y="106" font-family="Inter, sans-serif" font-size="26" text-anchor="middle" fill="#ffffff">🗣️</text>
-                <text x="140" y="150" font-family="Inter, sans-serif" font-size="18" font-weight="800" text-anchor="middle" fill="#3b0764">Voice Announcement</text>
-                <text x="140" y="172" font-family="Inter, sans-serif" font-size="13" text-anchor="middle" fill="#5b21b6">"Mom's birthday is today"</text>
-                <rect x="56" y="194" width="168" height="12" rx="6" fill="#ddd6fe"/>
-                <rect x="56" y="194" width="108" height="12" rx="6" fill="#7c3aed"/>
-              </svg>
-            </div>
-            <div>
-              <h4>Voice reminders with personality</h4>
-              <p>DateWise can announce reminders aloud right after your selected notification sound.</p>
-              <ul class="feat-bullets">
-                <li><span class="fbi">✓</span> Clear sound + voice sequence</li>
-                <li><span class="fbi">✓</span> Choose voice type and speed</li>
-                <li><span class="fbi">✓</span> Safe behavior in silent/vibrate mode</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="facc-item">
-        <div class="facc-header">
-          <span class="facc-title">👥 Contact Import</span>
-          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-        <div class="facc-body">
-          <div class="facc-inner">
-            <div class="facc-img"><img src="/datewise/images/Screen-4.png" alt="Import contacts" loading="lazy" /></div>
-            <div>
-              <h4>Import All Birthdays in One Tap</h4>
-              <p>Pull birthdays from your phone contacts and create reminders automatically.</p>
-              <ul class="feat-bullets">
-                <li><span class="fbi">✓</span> One-tap import from phone contacts</li>
-                <li><span class="fbi">✓</span> Tag by relationship</li>
-                <li><span class="fbi">✓</span> Notifications set automatically for same day and 1 day before</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="facc-item">
-        <div class="facc-header">
-          <span class="facc-title">🏠 Home Widget</span>
-          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-        <div class="facc-body">
-          <div class="facc-inner">
-            <div class="facc-img">
-              <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home screen widget showing a birthday reminder due today">
-                <rect x="2" y="2" width="276" height="276" rx="34" fill="#ffffff" stroke="#e4e4e8" stroke-width="2"/>
-                <text x="24" y="42" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0d0d12">DateWise</text>
-                <circle cx="246" cy="35" r="14" fill="#f5f3ff"/>
-                <text x="246" y="40" font-family="Inter, sans-serif" font-size="13" text-anchor="middle" fill="#5b21b6">⟳</text>
-                <line x1="24" y1="56" x2="256" y2="56" stroke="#e4e4e8" stroke-width="1.5"/>
-                <circle cx="140" cy="142" r="56" fill="#f5f3ff"/>
-                <text x="140" y="158" font-family="Inter, sans-serif" font-size="44" text-anchor="middle">🎂</text>
-                <text x="140" y="220" font-family="Inter, sans-serif" font-size="17" font-weight="800" text-anchor="middle" fill="#0d0d12">Appa's Birthday</text>
-                <rect x="106" y="230" width="68" height="25" rx="12.5" fill="#fee2e2"/>
-                <text x="140" y="247" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#dc2626">Today</text>
-              </svg>
-            </div>
-            <div>
-              <h4>Glance and Go — No Need to Open the App</h4>
-              <p>One resizable home screen widget shows what's coming up without unlocking your phone.</p>
-              <ul class="feat-bullets">
-                <li><span class="fbi">✓</span> One widget, eight sizes — resize by dragging the corners</li>
-                <li><span class="fbi">✓</span> Larger sizes group reminders into Today, Tomorrow, This Week</li>
-                <li><span class="fbi">✓</span> Color-coded by urgency: red for today, amber for this week</li>
-                <li><span class="fbi">✓</span> Free on every plan — no Pro required</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="facc-item">
-        <div class="facc-header">
-          <span class="facc-title">🔒 Privacy &amp; Security</span>
-          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-        <div class="facc-body">
-          <div class="facc-inner">
-            <div class="facc-img"><img src="/datewise/images/Screen-5.png" alt="Private and Secure" loading="lazy" /></div>
-            <div>
-              <h4>Your Data, Your Control</h4>
-              <p>Everything stays on your device. No cloud unless you choose. No data sharing.</p>
-              <ul class="feat-bullets">
-                <li><span class="fbi">✓</span> 100% offline-first, no account</li>
-                <li><span class="fbi">✓</span> Biometric app lock</li>
-                <li><span class="fbi">✓</span> No analytics or ad tracking</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="facc-item">
-        <div class="facc-header">
-          <span class="facc-title">💎 Pro Features</span>
-          <span class="facc-arrow"><svg width="10" height="7" viewBox="0 0 10 7" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-        <div class="facc-body">
-          <div class="facc-inner">
-            <div class="facc-img"><img src="/datewise/images/Screen-7.png" alt="Pro membership" loading="lazy" /></div>
-            <div>
-              <h4>Unlock More with DateWise Pro</h4>
-              <p>One-time purchase. Pay once, keep it forever.</p>
-              <ul class="feat-bullets">
-                <li><span class="fbi">✓</span> Cloud backup with automatic sync-lite, via your own Google Drive</li>
-                <li><span class="fbi">✓</span> Custom reminder types + emoji</li>
-                <li><span class="fbi">✓</span> Custom reminder intervals</li>
-                <li><span class="fbi">✓</span> Custom relationship tags</li>
-                <li><span class="fbi">✓</span> No subscription, ever</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1740,7 +1788,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q"><span class="faq-q-text">What does Pro cost and is it a subscription?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a">DateWise Pro is a one-time in-app purchase (₹49 in India, pricing varies by region). It unlocks Google Drive backup, custom reminder types, unlimited reminders, and the Pro stats dashboard. No subscriptions — pay once, keep forever.</div>
+        <div class="faq-a">DateWise Pro is a one-time in-app purchase (₹49 in India, pricing varies by region). It unlocks Google Drive backup &amp; sync, custom reminder types (beyond the 9 built-in ones), unlimited Smart Add, unlimited People Hub entries, and the Pro stats dashboard. No subscriptions — pay once, keep forever.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span class="faq-q-text">Is my data private and secure?</span><span class="faq-arr">▼</span></button>
@@ -1756,7 +1804,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q"><span class="faq-q-text">What is the Recycle Bin and how long does it keep deleted items?</span><span class="faq-arr">▼</span></button>
-        <div class="faq-a">Deleted reminders move to the Recycle Bin and stay there for up to 30 days before being permanently removed. You can restore any item from Settings → Recycle Bin at any time. One-time reminders whose date has passed also automatically move there when "Auto-Move to Recycle Bin" is turned on in Settings.</div>
+        <div class="faq-a">Deleted reminders move to the Recycle Bin and stay there safely until you choose to restore them or permanently empty the bin. You can restore any item from Settings → Recycle Bin at any time. One-time reminders whose date has passed also automatically move there when "Auto-Move to Recycle Bin" is turned on in Settings.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span class="faq-q-text">What is Smart Add and how many free uses do I get?</span><span class="faq-arr">▼</span></button>
@@ -1858,26 +1906,117 @@
     document.body.style.overflow = '';
   }
 
-  // ── Desktop feature tabs ───────────────────
-  document.querySelectorAll('.feat-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      const id = 'tab-' + tab.dataset.tab;
-      document.querySelectorAll('.feat-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.feat-panel').forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById(id)?.classList.add('active');
-    });
-  });
+  // ── Features Stream: ScrollSpy, Sticky Dock & Auto Tour ──
+  (function() {
+    const featCards = document.querySelectorAll('.feat-card');
+    const featTabs = document.querySelectorAll('.feat-tab');
+    const featDock = document.getElementById('featDock');
+    const tourBtn = document.getElementById('featTourBtn');
+    let isTouring = false;
+    let tourTimer = null;
+    let currentTourIdx = 0;
 
-  // ── Mobile feature accordion ───────────────
-  document.querySelectorAll('.facc-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const item = header.closest('.facc-item');
-      const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.facc-item.open').forEach(i => i.classList.remove('open'));
-      if (!wasOpen) item.classList.add('open');
+    function scrollToFeature(targetId) {
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      const navH = 64;
+      const dockH = document.querySelector('.feat-dock-sticky')?.offsetHeight || 52;
+      const totalOffset = navH + dockH + 16;
+      const y = el.getBoundingClientRect().top + (window.scrollY || window.pageYOffset || 0) - totalOffset;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    }
+
+    // Tab Click -> smooth scroll
+    featTabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        stopTour();
+        const targetId = tab.dataset.target;
+        scrollToFeature(targetId);
+      });
     });
-  });
+
+    // ScrollSpy: highlight active tab & auto-scroll horizontal dock on mobile
+    if ('IntersectionObserver' in window && featCards.length) {
+      const featObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            featTabs.forEach(tab => {
+              const isMatch = tab.dataset.target === id;
+              tab.classList.toggle('active', isMatch);
+              tab.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+              if (isMatch && featDock) {
+                // Auto-center the active tab in the horizontally scrollable dock
+                const dockW = featDock.clientWidth;
+                const tabLeft = tab.offsetLeft;
+                const tabW = tab.clientWidth;
+                featDock.scrollTo({
+                  left: Math.max(0, tabLeft - (dockW / 2) + (tabW / 2)),
+                  behavior: 'smooth'
+                });
+              }
+            });
+            featCards.forEach(c => c.classList.toggle('active-card', c.id === id));
+          }
+        });
+      }, {
+        rootMargin: '-20% 0px -55% 0px',
+        threshold: 0
+      });
+
+      featCards.forEach(card => featObs.observe(card));
+    }
+
+    // Auto Tour
+    function nextTourStep() {
+      if (!isTouring) return;
+      const card = featCards[currentTourIdx];
+      if (card) {
+        scrollToFeature(card.id);
+      }
+      currentTourIdx = (currentTourIdx + 1) % featCards.length;
+      tourTimer = setTimeout(nextTourStep, 4000);
+    }
+
+    function startTour() {
+      if (!featCards.length) return;
+      isTouring = true;
+      if (tourBtn) {
+        tourBtn.classList.add('touring');
+        tourBtn.innerHTML = '<span>⏸ Pause Tour</span>';
+      }
+      const activeTab = document.querySelector('.feat-tab.active');
+      if (activeTab) {
+        const idx = Array.from(featTabs).indexOf(activeTab);
+        currentTourIdx = (idx >= 0 && idx < featCards.length - 1) ? idx + 1 : 0;
+      } else {
+        currentTourIdx = 0;
+      }
+      nextTourStep();
+    }
+
+    function stopTour() {
+      if (!isTouring) return;
+      isTouring = false;
+      clearTimeout(tourTimer);
+      if (tourBtn) {
+        tourBtn.classList.remove('touring');
+        tourBtn.innerHTML = '<span class="tour-icon">▶</span><span>Auto Tour</span>';
+      }
+    }
+
+    if (tourBtn) {
+      tourBtn.addEventListener('click', () => {
+        if (isTouring) stopTour();
+        else startTour();
+      });
+    }
+
+    // User manual interaction pauses the auto-tour
+    window.addEventListener('wheel', () => { if (isTouring) stopTour(); }, { passive: true });
+    window.addEventListener('touchstart', () => { if (isTouring) stopTour(); }, { passive: true });
+  })();
 
   // ── Screenshots carousel ───────────────────
   (function() {

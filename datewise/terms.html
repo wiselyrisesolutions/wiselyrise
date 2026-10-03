@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -102,104 +102,133 @@
   </div>
 
   <h1>Terms of Use</h1>
-  <p class="subtitle">Last updated: 22 September 2026</p>
+  <p class="subtitle">Last updated: 2 October 2026</p>
 
-  <p>These Terms of Use ("Terms") govern your use of the DateWise mobile application ("the app") developed by WiselyRise. By downloading, installing, or using DateWise, you agree to these Terms.</p>
+  <p>These Terms of Use ("Terms") constitute a legally binding agreement between you ("User", "you", or "your") and <strong>WiselyRise Solutions</strong> ("WiselyRise", "we", "us", or "our") governing your download, access, and use of the <strong>DateWise</strong> mobile application ("DateWise", "the app") and related services.</p>
 
-  <h2>1. Acceptance of Terms</h2>
-  <p>By accessing or using DateWise, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, please do not use the app.</p>
+  <p>By downloading, installing, accessing, or using DateWise, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree to these Terms, please do not download, install, or use the app.</p>
+
+  <h2>1. Eligibility &amp; Acceptance</h2>
+  <p>You must be at least 13 years old (or the age of majority in your jurisdiction) to use DateWise. By using DateWise, you represent and warrant that you have the legal capacity to enter into these Terms.</p>
 
   <h2>2. Description of Service</h2>
-  <p>DateWise is a personal reminder application that helps you remember important dates and life events. The app offers:</p>
+  <p>DateWise is a privacy-first personal reminder, milestone tracking, and relationship organization mobile application designed for Android devices. The app offers two service tiers:</p>
   <ul>
-    <li><strong>Free Features:</strong> Create and manage reminders, full smart notification system with voice announcements, People Hub (up to 5 people), Inbox capture, 3 Smart Add trials, calendar view, Recycle Bin, local backup and export, import from phone contacts, app lock, and home screen widget.</li>
-    <li><strong>Pro Features (one-time purchase):</strong> Unlimited people in People Hub, unlimited Smart Add sessions, Google Drive cloud backup &amp; restore (text and optionally photos), custom reminder types with emojis, custom reminder intervals, custom relationship tags, and Pro stats dashboard. Additional Pro features may be added over time at no extra charge to existing Pro users.</li>
+    <li><strong>Free Tier:</strong> Includes unlimited personal reminders, smart timeline grouping (Today, Tomorrow, This Week, This Month, Later), interactive calendar view, smart notifications with customizable advance alerts, on-device voice announcements (Text-to-Speech), resizable home screen widgets, Inbox capture, in-app Recycle Bin, biometric app lock, local backup and JSON export, contact birthday import, and People Hub access for up to <strong>5 people profiles</strong>, plus <strong>3 free Smart Add trials</strong>.</li>
+    <li><strong>Pro Tier (One-Time In-App Purchase):</strong> Unlocks <strong>unlimited people profiles</strong> in People Hub, <strong>unlimited Smart Add sessions</strong>, Google Drive Cloud Backup and multi-device sync (with optional avatar photo sync), custom reminder types with over 120 custom emojis, custom reminder intervals, custom relationship tags, and Pro statistics dashboard. Additional Pro features may be added over time at no extra charge to existing Pro users.</li>
   </ul>
 
-  <h2>3. User Accounts</h2>
+  <h2>3. Offline Architecture &amp; User Accounts</h2>
   <ul>
-    <li>DateWise does not require account creation for any core feature.</li>
-    <li>Google Sign-In is required only for Google Drive cloud backup (Pro feature).</li>
-    <li>You are responsible for maintaining the security of your Google account credentials.</li>
-    <li>All core functionality works fully offline without any account.</li>
+    <li>DateWise does not require user registration, username creation, or cloud sign-in for any core offline functionality.</li>
+    <li>All core data is stored exclusively in a sandboxed SQLite database on your device.</li>
+    <li>Google Sign-In is required solely if you choose to activate the optional Google Drive Cloud Backup feature (Pro). You are solely responsible for maintaining the security and confidentiality of your Google account credentials.</li>
   </ul>
 
-  <h2>4. Smart Add — Free Trial Usage</h2>
-  <p>Free users are entitled to 3 Smart Add sessions (natural language and voice input for creating reminders). Once all 3 trials are used, Smart Add becomes a Pro-only feature. Manual reminder creation remains available to all free users at all times. The trial count is stored locally on your device.</p>
-
-  <h2>5. People Hub — Free Tier Limit</h2>
-  <p>Free users can add up to 5 people to the People Hub. Upgrading to Pro removes this limit. Existing people entries are not deleted if you exceed the limit — Pro must be purchased to add additional entries.</p>
-
-  <h2>6. Pro Purchase</h2>
-
-  <h3>6.1 Purchase</h3>
-  <p>Pro features are available as a one-time in-app purchase through Google Play Billing. The purchase is tied to your Google Play account and can be restored on any device signed into the same Google account via the Restore Purchase option in Settings.</p>
-
-  <h3>6.2 Refunds</h3>
-  <p>Refund policies are governed by Google Play's terms. Please refer to <a href="https://support.google.com/googleplay/answer/2479637" target="_blank" rel="noopener">Google Play's refund policy</a> for details. We are happy to assist — contact us at <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>.</p>
-
-  <h3>6.3 Feature Changes</h3>
-  <p>We may add new Pro features over time. Existing Pro features will remain available to all Pro users. We will not remove Pro features without reasonable notice.</p>
-
-  <h2>7. Cloud Backup &amp; Sync (Pro)</h2>
+  <h2>4. Smart Add &amp; Voice Input Terms</h2>
   <ul>
-    <li>Cloud backup stores your data in your personal Google Drive App Data folder. WiselyRise does not have access to this data.</li>
-    <li>When syncing across multiple devices, the app may detect a conflict (where both devices have different newer data). You may resolve conflicts by choosing Merge (combine data from both) or Overwrite (one device's data replaces the other).</li>
-    <li>WiselyRise is not liable for data loss resulting from sync conflicts, incorrect merge or overwrite choices, or Google Drive service interruptions.</li>
-    <li>We recommend using the Local Backup feature regularly as an additional safety measure.</li>
+    <li><strong>Assistive Tool Only:</strong> Smart Add is an on-device natural language and speech recognition parsing aid designed for user convenience. While it attempts to accurately detect dates, category types, and contact names from your input, <strong>natural language parsing is inherently heuristic and probabilistic</strong>.</li>
+    <li><strong>Mandatory User Verification:</strong> <strong>You are solely responsible for reviewing and verifying all pre-filled reminder details</strong> (including the scheduled date, time, category, and recurrence rule) before tapping "Save Reminder". WiselyRise disclaims any liability for missed reminders, mistaken dates, or scheduling errors resulting from speech recognition transcription mistakes or parsing ambiguities.</li>
+    <li><strong>Free Trials:</strong> Free users receive 3 free Smart Add trial uses. Once these 3 trials are consumed, Smart Add requires DateWise Pro. Manual reminder creation remains 100% free and unlimited at all times.</li>
   </ul>
 
-  <h2>8. User Data &amp; Content</h2>
+  <h2>5. People Hub &amp; Contact Import</h2>
   <ul>
-    <li>You retain full ownership of all data you enter into DateWise.</li>
-    <li>You are responsible for the content of your reminders, notes, and people data.</li>
-    <li>We do not monitor, review, or moderate user-created content.</li>
-    <li>You may export or delete your data at any time via Settings.</li>
+    <li><strong>Free Tier Capacity:</strong> Free users may create up to 5 contact profiles in the People Hub. Upgrading to DateWise Pro removes this cap. Existing contact data will never be deleted if you reach the free limit; purchasing Pro simply unlocks the ability to add additional profiles.</li>
+    <li><strong>Lawful Contact Import:</strong> When using the "Import from Contacts" feature, you represent that you have the lawful right to import your device contacts' names and birth/anniversary dates for your own personal, non-commercial use.</li>
+    <li><strong>External Communication Shortcuts:</strong> DateWise provides one-tap shortcut buttons to launch your device's native phone dialer or third-party messaging apps (such as WhatsApp) to send wishes. DateWise does not operate these third-party services and bears no responsibility for message transmission, third-party carrier fees, or messaging platform availability.</li>
   </ul>
 
-  <h2>9. Recycle Bin</h2>
-  <p>Deleted reminders are moved to the Recycle Bin and retained locally on your device for up to 30 days, after which they are permanently deleted. You can restore any item from the Recycle Bin within this window. WiselyRise is not liable for data permanently removed from the Recycle Bin.</p>
+  <h2>6. Pro In-App Purchase &amp; Billing</h2>
 
-  <h2>10. Acceptable Use</h2>
+  <h3>6.1 One-Time Lifetime License</h3>
+  <p>DateWise Pro is offered as a <strong>one-time, non-consumable in-app purchase</strong> (₹49 in India; regional pricing set by Google Play). <strong>DateWise Pro is NOT a subscription.</strong> There are no recurring fees, no automatic renewal charges, and no hidden monthly or annual costs.</p>
+
+  <h3>6.2 Billing &amp; Payment Processing</h3>
+  <p>All in-app purchases are processed securely by Google LLC through Google Play In-App Billing. WiselyRise does not collect, receive, or store your payment card or banking information. Your purchase is subject to the <a href="https://play.google.com/intl/en_us/about/play-terms/" target="_blank" rel="noopener">Google Play Terms of Service</a>.</p>
+
+  <h3>6.3 Refunds</h3>
+  <p>Refunds are administered directly by Google Play in accordance with <a href="https://support.google.com/googleplay/answer/2479637" target="_blank" rel="noopener">Google Play's Refund Policies</a>. If you encounter any technical issues or need assistance with your purchase, please contact our support team at <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>.</p>
+
+  <h3>6.4 License Restoration</h3>
+  <p>Your Pro license is tied to your Google Play account. You can restore your purchase on any compatible Android device logged into the same Google account by tapping "Restore Purchase" in DateWise Settings.</p>
+
+  <h2>7. Cloud Backup, Multi-Device Sync &amp; Conflict Resolution</h2>
+  <ul>
+    <li><strong>Google Drive AppData Storage:</strong> Cloud backup stores your data in your personal Google Drive account's sandboxed Application Data folder. WiselyRise does not own, manage, or host this storage infrastructure.</li>
+    <li><strong>Conflict Resolution (Merge vs. Overwrite):</strong> When synchronizing across multiple devices with conflicting data, DateWise prompts you to select either <strong>Merge</strong> (combining data) or <strong>Overwrite</strong> (replacing data). <strong>You are solely responsible for your choice of conflict resolution.</strong> WiselyRise is not liable for data overwrites, accidental deletions, duplicate records, or data inconsistencies resulting from user-selected conflict actions.</li>
+    <li><strong>Service Interruptions:</strong> WiselyRise is not responsible for cloud backup failures, sync delays, or data loss caused by Google Drive outages, network disconnections, Google account suspensions, or device storage quotas.</li>
+    <li><strong>Local Backup Recommendation:</strong> We strongly urge users to periodically create an offline JSON backup via Settings &rarr; Local Backup.</li>
+  </ul>
+
+  <h2>8. Critical Disclaimers: Medical, Financial, Legal &amp; Time-Sensitive Reliance</h2>
+  <div style="background:var(--accent-bg);border-left:4px solid var(--accent);padding:14px 16px;border-radius:0 12px 12px 0;margin:16px 0;">
+    <p style="font-weight:700;color:var(--accent);margin-bottom:6px;">⚠️ IMPORTANT DISCLAIMER REGARDING CRITICAL EVENTS:</p>
+    <p style="margin-bottom:6px;"><strong>DateWise is designed solely as an informational personal memory aid and lifestyle reminder tool. It is NOT a medical device, diagnostic system, healthcare compliance tool, or financial advisory platform.</strong></p>
+    <p style="margin-bottom:0;">You must <strong>NEVER rely solely or primarily on DateWise</strong> for time-critical, life-dependent, or severe financial obligations, including but not limited to: critical prescription medication schedules, emergency medical appointments, loan/mortgage default deadlines, tax filing cutoff times, court appearances, or legal statute of limitations.</p>
+  </div>
+  <p>You assume full responsibility for maintaining independent calendars, primary alarm systems, and professional safeguards for all critical health, financial, and legal commitments. WiselyRise expressly disclaims any liability for bodily injury, health complications, financial penalties, late fees, interest charges, legal damages, or missed opportunities arising from your reliance on DateWise.</p>
+
+  <h2>9. Notification Delivery &amp; Operating System Limitations</h2>
+  <p>DateWise utilizes Android exact alarms to schedule notifications. However, <strong>timely notification delivery is subject to factors outside WiselyRise's control</strong>, including:</p>
+  <ul>
+    <li>Operating system battery optimization algorithms (Android Doze mode).</li>
+    <li>Aggressive manufacturer-specific background task killers (such as those on Xiaomi MIUI/HyperOS, Samsung One UI, Oppo/Vivo ColorOS, and OnePlus OxygenOS).</li>
+    <li>Operating system notification permission states (<code>POST_NOTIFICATIONS</code>).</li>
+    <li>Device sound modes (Silent, Vibrate, Do Not Disturb / Priority Only).</li>
+    <li>User-configured mute scopes (muting specific cards, tones, or voice alerts within DateWise).</li>
+    <li>Device hardware reboots where the device has not been unlocked following boot.</li>
+  </ul>
+  <p>WiselyRise does not warrant that notifications or voice announcements will always be delivered on time, audibly, or without delay.</p>
+
+  <h2>10. Recycle Bin &amp; Data Deletion</h2>
+  <p>Deleted reminders are moved to the in-app Recycle Bin and retained locally on your device until you choose to restore them or permanently delete / empty the bin. If you have enabled "Auto-Move to Recycle Bin", expired one-time reminders will also move there. WiselyRise bears no liability for data permanently deleted from the Recycle Bin or following manual emptying of the bin.</p>
+
+  <h2>11. User Content &amp; Intellectual Property</h2>
+  <ul>
+    <li><strong>Your Content:</strong> You retain complete ownership of all reminders, notes, contact entries, and text you input into DateWise ("User Content"). We do not inspect, monitor, or claim ownership of your User Content.</li>
+    <li><strong>WiselyRise Intellectual Property:</strong> The DateWise application, software code, graphic designs, logos, custom reminder icons, user interface, and branding are the exclusive intellectual property of WiselyRise Solutions and are protected by applicable copyright, trademark, and intellectual property laws.</li>
+    <li><strong>Limited License:</strong> WiselyRise grants you a personal, non-exclusive, non-transferable, revocable license to use DateWise on your personal Android device in accordance with these Terms.</li>
+  </ul>
+
+  <h2>12. Acceptable Use Restrictions</h2>
   <p>You agree not to:</p>
   <ul>
-    <li>Reverse-engineer, decompile, or disassemble the app.</li>
-    <li>Attempt to gain unauthorised access to any data or systems.</li>
-    <li>Use the app for any unlawful or prohibited purpose.</li>
-    <li>Distribute, sublicense, or resell the app or its features.</li>
+    <li>Decompile, reverse-engineer, disassemble, or attempt to derive the source code of DateWise.</li>
+    <li>Modify, adapt, translate, or create derivative works based on the app.</li>
+    <li>Circumvent or bypass licensing mechanisms, feature locks, or trial counters.</li>
+    <li>Rent, lease, sublicense, resell, or distribute DateWise to any third party.</li>
+    <li>Use DateWise for any unlawful, harassing, defamatory, or fraudulent purpose.</li>
   </ul>
 
-  <h2>11. Intellectual Property</h2>
-  <p>The DateWise app, including its design, code, icons, and branding, is the intellectual property of WiselyRise. You are granted a limited, non-exclusive, non-transferable licence to use the app for personal, non-commercial purposes.</p>
+  <h2>13. Disclaimer of Warranties</h2>
+  <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, DATEWISE IS PROVIDED ON AN <strong>"AS IS"</strong> AND <strong>"AS AVAILABLE"</strong> BASIS, WITH ALL FAULTS AND WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE. WISELYRISE EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, TITLE, QUIET ENJOYMENT, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT DATEWISE WILL BE UNINTERRUPTED, SECURE, ACCURATE, ERROR-FREE, OR COMPATIBLE WITH EVERY HARDWARE MODEL OR OS VERSION.</p>
 
-  <h2>12. Disclaimer of Warranties</h2>
-  <p>DateWise is provided "as is" without warranties of any kind. We do not guarantee that:</p>
-  <ul>
-    <li>The app will be uninterrupted, error-free, or free of harmful components.</li>
-    <li>Reminders and notifications will always be delivered on time (delivery depends on device settings, battery optimisation, manufacturer background restrictions, and OS policies).</li>
-    <li>Cloud backup data will be preserved indefinitely (subject to your Google account and Drive storage availability).</li>
-    <li>Smart Add will always correctly detect the intent, date, or person from natural language input.</li>
-  </ul>
+  <h2>14. Limitation of Liability</h2>
+  <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL WISELYRISE SOLUTIONS, ITS FOUNDERS, OFFICERS, EMPLOYEES, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF DATA, MISSED APPOINTMENTS, MISSED MEDICATIONS, FINANCIAL LATE FEES, LOSS OF PROFITS, BUSINESS INTERRUPTION, OR DEVICE MALFUNCTION), ARISING OUT OF OR IN CONNECTION WITH YOUR USE OR INABILITY TO USE DATEWISE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+  <p>IN ALL CASES, WISELYRISE'S TOTAL AGGREGATE LIABILITY ARISING UNDER OR RELATED TO THESE TERMS OR YOUR USE OF DATEWISE SHALL NOT EXCEED THE ACTUAL AMOUNT PAID BY YOU FOR THE DATEWISE PRO LICENSE (OR ₹49 INR, WHICHEVER IS GREATER).</p>
 
-  <h2>13. Limitation of Liability</h2>
-  <p>To the maximum extent permitted by law, WiselyRise shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the app, including but not limited to missed reminders, data loss, sync conflicts, or service interruptions.</p>
+  <h2>15. Indemnification</h2>
+  <p>You agree to defend, indemnify, and hold harmless WiselyRise Solutions and its personnel from and against any claims, liabilities, damages, losses, and expenses (including reasonable legal fees) arising out of or in any way connected with your violation of these Terms, your misuse of the app, or your violation of any third-party rights (including privacy rights of imported contacts).</p>
 
-  <h2>14. Modifications to the App &amp; Terms</h2>
-  <ul>
-    <li>We reserve the right to modify, suspend, or discontinue any part of the app at any time.</li>
-    <li>We may update these Terms from time to time. Changes will be reflected by the "Last updated" date above.</li>
-    <li>Continued use of the app after changes constitutes acceptance of the revised Terms.</li>
-  </ul>
+  <h2>16. Termination</h2>
+  <p>These Terms remain in effect until terminated. You may terminate these Terms at any time by uninstalling and ceasing all use of DateWise. Because DateWise is a 100% offline, locally-installed application with no user accounts, WiselyRise has no technical means to remotely suspend or revoke access. However, if you materially breach these Terms, your licence to use DateWise terminates automatically. Upon such termination, you must cease all use of the app and delete it from your device.</p>
 
-  <h2>15. Governing Law</h2>
-  <p>These Terms are governed by the laws of India. Any disputes arising from these Terms shall be subject to the jurisdiction of the courts in India.</p>
+  <h2>17. Governing Law &amp; Dispute Resolution</h2>
+  <p>These Terms shall be governed by and construed in accordance with the laws of <strong>India</strong>, without regard to its conflict of law principles. Any dispute, controversy, or claim arising out of or relating to these Terms or your use of DateWise shall be subject to the exclusive jurisdiction of the competent courts located in <strong>Tamil Nadu, India</strong>.</p>
 
-  <h2>16. Contact Us</h2>
-  <p>If you have questions about these Terms, please contact us:</p>
+  <h2>18. Contact &amp; Support</h2>
+  <p>If you have questions, feedback, or legal inquiries regarding these Terms of Use, please reach out to us:</p>
+  <p><strong>Entity:</strong> WiselyRise Solutions</p>
   <p><strong>Email:</strong> <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a></p>
-  <p><strong>WhatsApp:</strong> <a href="https://wa.me/919080743973" target="_blank" rel="noopener">+91 90807 43973</a></p>
+  <p><strong>WhatsApp Support:</strong> <a href="https://wa.me/919080743973?text=Hi%20WiselyRise!%20I%20have%20a%20question%20about%20DateWise." target="_blank" rel="noopener">+91 90807 43973</a></p>
+  <p><strong>Location:</strong> Tamil Nadu, India</p>
+
+  <h2>19. Severability</h2>
+  <p>If any provision of these Terms is found to be invalid, illegal, or unenforceable by a court of competent jurisdiction, that provision shall be modified to the minimum extent necessary to make it enforceable. If modification is not possible, the provision shall be severed from these Terms. The validity and enforceability of all remaining provisions shall not be affected in any way.</p>
 
   <hr class="divider" />
+
   <p style="color:var(--muted);font-size:.8rem;text-align:center">© 2026 WiselyRise. All rights reserved.</p>
   <p style="text-align:center;margin-top:16px;font-size:.84rem"><a href="/datewise/">❮ Back to DateWise</a> &nbsp;·&nbsp; <a href="/">WiselyRise 🏠︎</a></p>
 </div>
@@ -207,7 +236,7 @@
      WHATSAPP FLOATING BUTTON
      ============================================================ -->
 <a class="wa-float"
-   href="https://wa.me/919080743973"
+   href="https://wa.me/919080743973?text=Hi%20WiselyRise!%20I%20have%20a%20question%20about%20DateWise."
    target="_blank" rel="noopener noreferrer"
    aria-label="Chat with WiselyRise on WhatsApp">
   <span class="wa-float__ring" aria-hidden="true"></span>
