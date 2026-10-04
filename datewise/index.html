@@ -435,19 +435,17 @@
       border-radius:32px;
       overflow:hidden;
       background:#ffffff;
-      line-height:0;
+      line-height:normal;
       display:block;
       box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
     }
-    .phone-screen img{
-      width:100%!important;
-      height:auto!important;
-      max-width:100%!important;
-      display:block!important;
-      border-radius:0!important;
-      box-shadow:none!important;
-      margin:0!important;
-      transform:none!important;
+    .phone-screen > img.phone-screen-img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:0;
+      box-shadow:none;
+      margin:0;
     }
     .feat-card:hover .phone-frame{
       transform:translateY(-5px) scale(1.02);
@@ -556,8 +554,14 @@
       gap:6px;
     }
     .hu-icon{
-      width:18px;height:18px;
+      width:20px;
+      height:20px;
+      max-width:20px;
+      max-height:20px;
       border-radius:5px;
+      object-fit:cover;
+      flex-shrink:0;
+      display:inline-block;
     }
     .hu-name{
       font-size:.72rem;
@@ -791,8 +795,14 @@
       color:#1e1b4b;
     }
     .mw-icon{
-      width:18px;height:18px;
-      border-radius:4px;
+      width:20px;
+      height:20px;
+      max-width:20px;
+      max-height:20px;
+      border-radius:5px;
+      object-fit:cover;
+      flex-shrink:0;
+      display:inline-block;
     }
     .mat-widget-actions{
       display:flex;
@@ -920,8 +930,20 @@
     }
     .dock-phone{background:#22c55e;color:#fff}
     .dock-messages{background:#3b82f6;color:#fff}
-    .dock-dw{background:#7c3aed;padding:4px}
-    .dock-dw img{width:100%;height:100%;object-fit:contain}
+    .dock-dw{
+      background:#7c3aed;
+      padding:4px;
+      overflow:hidden;
+    }
+    .dock-dw img{
+      width:100%;
+      height:100%;
+      max-width:26px;
+      max-height:26px;
+      object-fit:cover;
+      border-radius:8px;
+      display:block;
+    }
     .dock-camera{background:#e2e8f0;color:#1e293b}
 
     /* ── SCREEN 01: SMART ADD BOTTOM SHEET ────────────── */
@@ -2858,7 +2880,7 @@
                 <div class="heads-up-card">
                   <div class="heads-up-header">
                     <div class="heads-up-app">
-                      <img src="/datewise/images/app_icon_dark_trans.png" alt="" class="hu-icon" />
+                      <img src="/datewise/images/app_icon_playstore.png" alt="DateWise" class="hu-icon" />
                       <span class="hu-name">DateWise</span>
                       <span class="hu-time">• Just now</span>
                     </div>
@@ -3029,7 +3051,7 @@
                 <div class="mat-widget">
                   <div class="mat-widget-head">
                     <div class="mat-widget-title">
-                      <img src="/datewise/images/app_icon_dark_trans.png" alt="" class="mw-icon" />
+                      <img src="/datewise/images/app_icon_playstore.png" alt="DateWise" class="mw-icon" />
                       <span>DateWise</span>
                     </div>
                     <div class="mat-widget-actions">
@@ -3084,7 +3106,7 @@
                   <div class="dock-app dock-phone">📞</div>
                   <div class="dock-app dock-messages">💬</div>
                   <div class="dock-app dock-dw">
-                    <img src="/datewise/images/app_icon_dark_trans.png" alt="" />
+                    <img src="/datewise/images/app_icon_playstore.png" alt="DateWise" />
                   </div>
                   <div class="dock-app dock-camera">📷</div>
                 </div>
