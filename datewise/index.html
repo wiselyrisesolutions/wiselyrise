@@ -378,39 +378,551 @@
 
     /* Visual container */
     .feat-card-visual{
-      background:radial-gradient(circle at center,#f6f4fe 0%,#ede8fc 100%);
-      border-radius:24px;
-      padding:32px 24px;
+      background:radial-gradient(circle at 50% 35%,#faf8ff 0%,#f1ecfc 65%,#eae4fa 100%);
+      border-radius:26px;
+      padding:36px 20px;
       display:flex;
       align-items:center;
       justify-content:center;
-      border:1px solid rgba(124,58,237,.1);
+      border:1.5px solid rgba(124,58,237,.12);
       position:relative;
-      min-height:360px;
+      min-height:460px;
+      overflow:hidden;
     }
-    .feat-card-visual img{
+    .feat-card-visual::before{
+      content:'';
+      position:absolute;
+      top:12%;left:50%;
+      transform:translate(-50%,0);
+      width:280px;height:280px;
+      background:radial-gradient(circle,rgba(124,58,237,.14) 0%,transparent 70%);
+      border-radius:50%;
+      pointer-events:none;
+    }
+
+    /* ── PHONE HARDWARE FRAME ────────────────────────── */
+    .phone-frame{
+      position:relative;
       width:100%;
-      max-width:280px;
+      max-width:260px;
       margin:0 auto;
-      border-radius:22px;
-      box-shadow:0 16px 42px rgba(91,33,182,.15);
+      background:#101116;
+      border-radius:40px;
+      padding:9px 8px 11px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.14),
+        0 0 0 3.5px #1c1e28,
+        0 24px 60px -10px rgba(15,23,42,.35),
+        0 10px 24px -6px rgba(91,33,182,.22);
+      transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease;
+      user-select:none;
+      z-index:2;
+    }
+    .phone-frame::before{
+      /* Front Camera Punch-hole */
+      content:'';
+      position:absolute;
+      top:14px;left:50%;
+      transform:translateX(-50%);
+      width:10px;height:10px;
+      background:#050608;
+      border-radius:50%;
+      z-index:20;
+      box-shadow:inset 0 0 1.5px rgba(255,255,255,.4);
+    }
+    .phone-screen{
+      position:relative;
+      border-radius:32px;
+      overflow:hidden;
+      background:#ffffff;
+      line-height:0;
       display:block;
-      transition:transform .35s ease;
+      box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
     }
-    .feat-card-visual svg{
-      width:100%;
-      max-width:280px;
-      margin:0 auto;
+    .phone-screen img{
+      width:100%!important;
+      height:auto!important;
+      max-width:100%!important;
+      display:block!important;
+      border-radius:0!important;
+      box-shadow:none!important;
+      margin:0!important;
+      transform:none!important;
+    }
+    .feat-card:hover .phone-frame{
+      transform:translateY(-5px) scale(1.02);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.22),
+        0 0 0 3.5px #2a2c3a,
+        0 32px 72px -12px rgba(15,23,42,.44),
+        0 16px 32px -6px rgba(91,33,182,.3);
+    }
+
+    /* Device images with pre-baked chassis (Screen-4, Screen-5, Screen-7) */
+    .framed-device-img{
+      width:100%!important;
+      max-width:290px!important;
+      margin:0 auto!important;
+      display:block!important;
+      border-radius:0!important;
+      box-shadow:none!important;
+      background:transparent!important;
+      filter:drop-shadow(0 20px 38px rgba(15,23,42,.22)) drop-shadow(0 6px 14px rgba(91,33,182,.16));
+      transition:transform .35s cubic-bezier(.22,1,.36,1),filter .35s ease!important;
+      z-index:2;
+    }
+    .feat-card:hover .framed-device-img{
+      transform:translateY(-5px) scale(1.02)!important;
+      filter:drop-shadow(0 28px 52px rgba(15,23,42,.32)) drop-shadow(0 10px 22px rgba(91,33,182,.26))!important;
+    }
+
+    /* Phone Status Bar (for custom screens) */
+    .phone-status-bar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:8px 18px 4px;
+      font-size:.64rem;
+      font-weight:700;
+      color:#1e1e24;
+      line-height:1;
+      position:relative;
+      z-index:10;
+    }
+    .phone-status-bar--light{
+      color:#ffffff;
+      text-shadow:0 1px 3px rgba(0,0,0,.5);
+    }
+    .status-bar-icons{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:.58rem;
+    }
+
+    /* Phone Bottom Navigation Bar Gesture Pill */
+    .phone-nav-bar{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:10px 0 8px;
+      line-height:1;
+      background:inherit;
+    }
+    .phone-nav-pill{
+      width:80px;height:4px;
+      border-radius:2px;
+      background:rgba(0,0,0,.35);
+    }
+    .phone-nav-pill--light{
+      background:rgba(255,255,255,.6);
+    }
+
+    /* ── SCREEN 05: VOICE ALERTS PHONE SCREEN ────────── */
+    .phone-screen--voice{
+      background:linear-gradient(180deg,#ede9fe 0%,#f5f3ff 38%,#ffffff 100%);
+      min-height:510px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      line-height:normal;
+    }
+    .phone-content-voice{
+      padding:8px 12px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      flex:1;
+    }
+    .heads-up-card{
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border:1px solid rgba(124,58,237,.18);
+      border-radius:20px;
+      padding:14px;
+      box-shadow:0 12px 28px rgba(91,33,182,.14),0 2px 6px rgba(0,0,0,.04);
+      text-align:left;
+    }
+    .heads-up-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:8px;
+    }
+    .heads-up-app{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .hu-icon{
+      width:18px;height:18px;
+      border-radius:5px;
+    }
+    .hu-name{
+      font-size:.72rem;
+      font-weight:700;
+      color:#3b0764;
+    }
+    .hu-time{
+      font-size:.62rem;
+      color:#7c3aed;
+      font-weight:500;
+    }
+    .hu-chevron{
+      font-size:.75rem;
+      color:#94a3b8;
+    }
+    .heads-up-title{
+      font-size:.88rem;
+      font-weight:800;
+      color:#0f172a;
+      line-height:1.25;
+      margin-bottom:2px;
+    }
+    .heads-up-sub{
+      font-size:.72rem;
+      color:#64748b;
+      margin-bottom:12px;
+      line-height:1.35;
+    }
+    .voice-player-box{
+      background:linear-gradient(135deg,#f5f3ff 0%,#ede9fe 100%);
+      border:1px solid rgba(124,58,237,.22);
+      border-radius:14px;
+      padding:10px 12px;
+      margin-bottom:12px;
+    }
+    .voice-wave-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:8px;
+    }
+    .voice-badge-live{
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      font-size:.58rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      color:#7c3aed;
+      text-transform:uppercase;
+    }
+    .voice-live-dot{
+      width:6px;height:6px;
+      border-radius:50%;
+      background:#7c3aed;
+      animation:pulseDot 1.4s ease-in-out infinite;
+    }
+    @keyframes pulseDot{
+      0%,100%{opacity:1;transform:scale(1)}
+      50%{opacity:.35;transform:scale(.7)}
+    }
+    .voice-sound-tag{
+      font-size:.62rem;
+      font-weight:600;
+      color:#5b21b6;
+      background:rgba(255,255,255,.85);
+      padding:2px 7px;
+      border-radius:100px;
+    }
+    .voice-wave-display{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:6px;
+    }
+    .voice-speaker-circle{
+      width:32px;height:32px;
+      border-radius:50%;
+      background:#7c3aed;
+      color:#ffffff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.95rem;
+      flex-shrink:0;
+      box-shadow:0 4px 10px rgba(124,58,237,.35);
+    }
+    .voice-waveform{
+      display:flex;
+      align-items:center;
+      gap:3.5px;
+      height:24px;
+      flex:1;
+    }
+    .wave-bar{
+      flex:1;
+      background:#7c3aed;
+      border-radius:4px;
+      min-height:4px;
+      transform-origin:center;
+      animation:waveBounce 1.2s ease-in-out infinite alternate;
+    }
+    @keyframes waveBounce{
+      0%{height:4px;opacity:.45}
+      100%{height:22px;opacity:1}
+    }
+    .wb1{animation-delay:.05s}.wb2{animation-delay:.25s}.wb3{animation-delay:.15s}
+    .wb4{animation-delay:.4s}.wb5{animation-delay:.2s}.wb6{animation-delay:.5s}
+    .wb7{animation-delay:.1s}.wb8{animation-delay:.35s}.wb9{animation-delay:.2s}.wb10{animation-delay:.45s}
+
+    .voice-spoken-text{
+      font-size:.68rem;
+      font-weight:600;
+      color:#4c1d95;
+      font-style:italic;
+      line-height:1.35;
+    }
+    .heads-up-actions{
+      display:flex;
+      gap:8px;
+    }
+    .hu-btn{
+      flex:1;
+      padding:7px 10px;
+      border-radius:100px;
+      font-size:.68rem;
+      font-weight:700;
+      text-align:center;
+      cursor:pointer;
+      display:inline-block;
+    }
+    .hu-btn-primary{
+      background:#7c3aed;
+      color:#ffffff;
+      box-shadow:0 4px 10px rgba(124,58,237,.25);
+    }
+    .hu-btn-sec{
+      background:#f1f5f9;
+      color:#334155;
+    }
+
+    .voice-settings-card{
+      background:#ffffff;
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:16px;
+      padding:10px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      box-shadow:0 2px 8px rgba(0,0,0,.03);
+      text-align:left;
+    }
+    .vs-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:.68rem;
+    }
+    .vs-label{
+      color:#64748b;
+      font-weight:500;
+    }
+    .vs-val{
+      font-weight:700;
+      color:#1e1e24;
+    }
+    .vs-val-check{
+      color:#059669;
+    }
+
+    /* ── SCREEN 07: MATERIAL YOU WIDGET PHONE SCREEN ── */
+    .phone-screen--widget{
+      background:linear-gradient(160deg,#1e1b4b 0%,#2e1065 40%,#0f172a 100%);
+      min-height:510px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      line-height:normal;
+      position:relative;
+    }
+    .phone-content-widget{
+      padding:8px 12px 10px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      flex:1;
+    }
+    .android-clock-glance{
+      text-align:left;
+      padding:6px 6px 0;
+      color:#ffffff;
+    }
+    .acg-time{
+      font-family:'Inter Tight',sans-serif;
+      font-size:2.1rem;
+      font-weight:800;
+      line-height:1;
+      letter-spacing:-.03em;
+      text-shadow:0 2px 10px rgba(0,0,0,.4);
+    }
+    .acg-date{
+      font-size:.68rem;
+      font-weight:500;
+      opacity:.85;
+      margin-top:3px;
+      text-shadow:0 1px 4px rgba(0,0,0,.4);
+    }
+    .mat-widget{
+      background:rgba(255,255,255,.95);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
       border-radius:22px;
-      box-shadow:0 16px 42px rgba(91,33,182,.15);
-      display:block;
-      background:#fff;
-      transition:transform .35s ease;
+      padding:12px 14px;
+      box-shadow:0 14px 32px rgba(0,0,0,.28),0 2px 6px rgba(0,0,0,.08);
+      text-align:left;
     }
-    .feat-card:hover .feat-card-visual img,
-    .feat-card:hover .feat-card-visual svg{
-      transform:scale(1.025) translateY(-3px);
+    .mat-widget-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:10px;
+      padding-bottom:8px;
+      border-bottom:1px solid rgba(0,0,0,.06);
     }
+    .mat-widget-title{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:.76rem;
+      font-weight:800;
+      color:#1e1b4b;
+    }
+    .mw-icon{
+      width:18px;height:18px;
+      border-radius:4px;
+    }
+    .mat-widget-actions{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .mw-action-btn{
+      width:22px;height:22px;
+      border-radius:50%;
+      background:#f1f5f9;
+      color:#475569;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.72rem;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .mw-action-add{
+      background:#7c3aed;
+      color:#ffffff;
+      font-size:.88rem;
+    }
+    .mat-widget-list{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
+    .mw-item{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:6px 8px;
+      border-radius:12px;
+      background:#f8fafc;
+      transition:background .18s;
+    }
+    .mw-item--urgent{
+      background:#fef2f2;
+      border-left:2.5px solid #ef4444;
+    }
+    .mw-item-left{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      overflow:hidden;
+    }
+    .mw-item-icon{
+      font-size:1rem;
+      flex-shrink:0;
+    }
+    .mw-item-info{
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+    .mw-item-name{
+      font-size:.72rem;
+      font-weight:700;
+      color:#0f172a;
+      white-space:nowrap;
+      text-overflow:ellipsis;
+      overflow:hidden;
+    }
+    .mw-item-date{
+      font-size:.58rem;
+      color:#64748b;
+      white-space:nowrap;
+    }
+    .mw-badge{
+      font-size:.56rem;
+      font-weight:800;
+      padding:2px 7px;
+      border-radius:100px;
+      white-space:nowrap;
+      letter-spacing:.02em;
+    }
+    .mw-badge--today{
+      background:#fee2e2;
+      color:#dc2626;
+    }
+    .mw-badge--soon{
+      background:#fef3c7;
+      color:#b45309;
+    }
+    .mw-badge--upcoming{
+      background:#ede9fe;
+      color:#7c3aed;
+    }
+    .mat-widget-foot{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:8px;
+      padding-top:6px;
+      border-top:1px dashed rgba(0,0,0,.08);
+      font-size:.62rem;
+      font-weight:600;
+      color:#7c3aed;
+    }
+    .mw-foot-arrow{
+      font-size:.8rem;
+    }
+
+    /* Android Home Screen App Dock */
+    .android-app-dock{
+      margin-top:auto;
+      background:rgba(255,255,255,.16);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      border-radius:20px;
+      padding:8px 12px;
+      display:flex;
+      justify-content:space-around;
+      align-items:center;
+    }
+    .dock-app{
+      width:34px;height:34px;
+      border-radius:11px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1rem;
+      box-shadow:0 4px 10px rgba(0,0,0,.2);
+    }
+    .dock-phone{background:#22c55e;color:#fff}
+    .dock-messages{background:#3b82f6;color:#fff}
+    .dock-dw{background:#7c3aed;padding:4px}
+    .dock-dw img{width:100%;height:100%;object-fit:contain}
+    .dock-camera{background:#e2e8f0;color:#1e293b}
 
     /* Content styling */
     .feat-badge-row{
@@ -789,8 +1301,9 @@
       .feat-card{grid-template-columns:1fr;gap:28px;padding:32px 24px;border-radius:22px;scroll-margin-top:calc(var(--nav-h) + 68px)}
       .feat-card.alt-reverse .feat-card-visual{order:0}
       .feat-card.alt-reverse .feat-card-content{order:1}
-      .feat-card-visual{min-height:280px;padding:20px}
-      .feat-card-visual img,.feat-card-visual svg{max-width:240px}
+      .feat-card-visual{min-height:360px;padding:24px 16px}
+      .feat-card-visual .phone-frame{max-width:245px}
+      .feat-card-visual .framed-device-img{max-width:270px!important}
       /* Layout fixes */
       .about-grid,.notif-grid{grid-template-columns:1fr;gap:36px}
       .how-grid{grid-template-columns:1fr}
@@ -823,8 +1336,11 @@
       .feat-dock{border-radius:14px}
       .feat-tour-btn{display:none}
       .feat-card{padding:24px 18px;border-radius:18px;gap:20px;scroll-margin-top:calc(var(--nav-h) + 58px)}
-      .feat-card-visual{min-height:220px;padding:16px}
-      .feat-card-visual img,.feat-card-visual svg{max-width:200px}
+      .feat-card-visual{min-height:300px;padding:18px 12px}
+      .feat-card-visual .phone-frame{max-width:220px;padding:7px 6px 9px;border-radius:32px}
+      .feat-card-visual .phone-screen{border-radius:26px}
+      .feat-card-visual .phone-screen--voice,.feat-card-visual .phone-screen--widget{min-height:460px}
+      .feat-card-visual .framed-device-img{max-width:235px!important}
       .feat-card-content h3{font-size:1.32rem}
     }
     @media(max-width:400px){
@@ -1138,72 +1654,31 @@
       <!-- ── 01: Smart Add ── -->
       <article class="feat-card reveal" id="feat-smartadd" data-feature="feat-smartadd">
         <div class="feat-card-visual">
-          <svg viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Smart Add — type or speak to create a reminder instantly">
-            <defs>
-              <linearGradient id="saPhone" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#f5f3ff"/>
-                <stop offset="1" stop-color="#ede9fe"/>
-              </linearGradient>
-              <linearGradient id="saBar" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#7c3aed"/>
-                <stop offset="1" stop-color="#a78bfa"/>
-              </linearGradient>
-            </defs>
-            <!-- phone shell -->
-            <rect x="2" y="2" width="276" height="416" rx="36" fill="#ffffff" stroke="#e4e4e8" stroke-width="2"/>
-            <rect x="12" y="12" width="256" height="396" rx="28" fill="url(#saPhone)"/>
-            <!-- status bar notch -->
-            <rect x="100" y="18" width="80" height="10" rx="5" fill="#ddd6fe"/>
-            <!-- header -->
-            <text x="140" y="56" font-family="Inter, sans-serif" font-size="15" font-weight="800" text-anchor="middle" fill="#3b0764">Smart Add</text>
-            <text x="140" y="74" font-family="Inter, sans-serif" font-size="11" text-anchor="middle" fill="#7c3aed">Type or speak naturally</text>
-            <!-- detected chip row -->
-            <rect x="24" y="90" width="74" height="26" rx="13" fill="#7c3aed"/>
-            <text x="61" y="107" font-family="Inter, sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">🎂 Birthday</text>
-            <rect x="106" y="90" width="88" height="26" rx="13" fill="#5b21b6"/>
-            <text x="150" y="107" font-family="Inter, sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">📅 Next Friday</text>
-            <rect x="202" y="90" width="60" height="26" rx="13" fill="#8b5cf6"/>
-            <text x="232" y="107" font-family="Inter, sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">👤 Mom</text>
-            <!-- input box -->
-            <rect x="20" y="130" width="240" height="54" rx="16" fill="#fff" stroke="#ddd6fe" stroke-width="1.5"/>
-            <text x="36" y="152" font-family="Inter, sans-serif" font-size="13" fill="#3b0764" font-weight="500">"Mom's birthday</text>
-            <text x="36" y="170" font-family="Inter, sans-serif" font-size="13" fill="#3b0764" font-weight="500">next Friday"</text>
-            <!-- mic button -->
-            <circle cx="246" cy="157" r="16" fill="#7c3aed"/>
-            <text x="246" y="163" font-family="Inter, sans-serif" font-size="14" text-anchor="middle" fill="#fff">🎙</text>
-            <!-- preview card -->
-            <rect x="20" y="200" width="240" height="110" rx="18" fill="#fff" stroke="#e4e4e8" stroke-width="1.5"/>
-            <rect x="20" y="200" width="240" height="4" rx="2" fill="url(#saBar)"/>
-            <text x="36" y="228" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#3b0764">Mom's Birthday</text>
-            <rect x="36" y="236" width="48" height="18" rx="9" fill="#f5f3ff"/>
-            <text x="60" y="248" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#7c3aed" font-weight="600">🎂 Birthday</text>
-            <text x="36" y="270" font-family="Inter, sans-serif" font-size="11" fill="#64748b">📅 Friday, 26 Sep 2025</text>
-            <text x="36" y="288" font-family="Inter, sans-serif" font-size="11" fill="#64748b">👤 Mom · 🏷 Family</text>
-            <!-- save button -->
-            <rect x="24" y="328" width="232" height="44" rx="22" fill="url(#saBar)"/>
-            <text x="140" y="355" font-family="Inter, sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#fff">Save Reminder ✓</text>
-            <!-- bottom hint -->
-            <text x="140" y="392" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#a78bfa">Auto-detected · edit anything before saving</text>
-          </svg>
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <img src="/datewise/images/app_quickadd.jpg" alt="DateWise 3-way Quick Add and Smart Add sheet" loading="lazy" />
+            </div>
+          </div>
         </div>
         <div class="feat-card-content reveal d1">
           <div class="feat-badge-row">
             <span class="feat-num-badge">01</span>
-            <span class="feat-badge">⚡ SMART ADD</span>
+            <span class="feat-badge">⚡ 3-WAY SMART ADD</span>
           </div>
-          <h3>Create Reminders<br /><span class="text-accent">by Typing or Speaking</span></h3>
-          <p>Just describe what you need in plain language — "Car insurance due Oct 15" or "Mom's birthday next Friday" — and DateWise detects the date, type, and person for you.</p>
+          <h3>Create in Seconds —<br /><span class="text-accent">Tap, Type, or Speak</span></h3>
+          <p>Capture reminders effortlessly, however your thoughts come to you. Quick-tap common categories, speak a hands-free voice prompt, type in plain language, or save thoughts directly to your Inbox.</p>
           <ul class="feat-bullets">
-            <li><span class="fbi">✓</span> Natural language and voice input</li>
-            <li><span class="fbi">✓</span> Auto-detects date, category, and linked person</li>
-            <li><span class="fbi">✓</span> Pre-fills the reminder form — just review and save</li>
-            <li><span class="fbi">✓</span> Works for birthdays, bills, renewals, and custom types</li>
-            <li><span class="fbi">✓</span> Fastest way to capture an important date before you forget</li>
+            <li><span class="fbi">✓</span> 3 Smart Add modes: Speak (Voice prompt), Type (Natural text), and Notes (Capture to Inbox)</li>
+            <li><span class="fbi">✓</span> One-touch categories: Birthday 🎂, Bill/EMI 🧾, Appointment 🏫, Renewal 🔄, and Add Anything ♾️</li>
+            <li><span class="fbi">✓</span> Automatically detects dates, times, and linked contacts from your description</li>
+            <li><span class="fbi">✓</span> Pre-fills the reminder form in under 3 seconds — simply review and save</li>
+            <li><span class="fbi">✓</span> Built offline-first: speech and text processing happen immediately with zero delay</li>
           </ul>
           <div class="feat-tags">
-            <span class="feat-tag">⚡ Voice &amp; Auto-Detect</span>
-            <span class="feat-tag">⏱️ 3-Second Capture</span>
-            <span class="feat-tag">🎁 3 Free Trials</span>
+            <span class="feat-tag">🎙️ Voice Prompt</span>
+            <span class="feat-tag">⌨️ Natural Text</span>
+            <span class="feat-tag">📝 Notes to Inbox</span>
+            <span class="feat-tag">⚡ 3-Second Capture</span>
           </div>
         </div>
       </article>
@@ -1211,78 +1686,31 @@
       <!-- ── 02: People Hub ── -->
       <article class="feat-card alt-reverse reveal" id="feat-peoplehub" data-feature="feat-peoplehub">
         <div class="feat-card-visual">
-          <svg viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="People Hub — relationship centre for contacts and milestones">
-            <defs>
-              <linearGradient id="phBg" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#f5f3ff"/>
-                <stop offset="1" stop-color="#ede9fe"/>
-              </linearGradient>
-            </defs>
-            <!-- phone shell -->
-            <rect x="2" y="2" width="276" height="416" rx="36" fill="#ffffff" stroke="#e4e4e8" stroke-width="2"/>
-            <rect x="12" y="12" width="256" height="396" rx="28" fill="url(#phBg)"/>
-            <!-- notch -->
-            <rect x="100" y="18" width="80" height="10" rx="5" fill="#ddd6fe"/>
-            <!-- header -->
-            <text x="140" y="56" font-family="Inter, sans-serif" font-size="15" font-weight="800" text-anchor="middle" fill="#3b0764">People Hub</text>
-            <!-- circle filter pills -->
-            <rect x="24" y="66" width="58" height="22" rx="11" fill="#7c3aed"/>
-            <text x="53" y="81" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#fff" font-weight="700">👨‍👩‍👧 Family</text>
-            <rect x="90" y="66" width="56" height="22" rx="11" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
-            <text x="118" y="81" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#7c3aed" font-weight="600">🤝 Friends</text>
-            <rect x="154" y="66" width="48" height="22" rx="11" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
-            <text x="178" y="81" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#7c3aed" font-weight="600">💼 Work</text>
-            <rect x="210" y="66" width="46" height="22" rx="11" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
-            <text x="233" y="81" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#7c3aed" font-weight="600">⭐ VIP</text>
-            <!-- person card 1 -->
-            <rect x="20" y="100" width="240" height="82" rx="16" fill="#fff" stroke="#e4e4e8" stroke-width="1.5"/>
-            <circle cx="52" cy="141" r="22" fill="#7c3aed"/>
-            <text x="52" y="148" font-family="Inter, sans-serif" font-size="18" font-weight="800" text-anchor="middle" fill="#fff">A</text>
-            <text x="84" y="132" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#0d0d12">Amma</text>
-            <rect x="84" y="138" width="38" height="16" rx="8" fill="#f5f3ff"/>
-            <text x="103" y="149" font-family="Inter, sans-serif" font-size="9" text-anchor="middle" fill="#7c3aed" font-weight="600">Family</text>
-            <text x="84" y="168" font-family="Inter, sans-serif" font-size="10" fill="#64748b">🎂 Birthday in 3 days · Turns 58</text>
-            <text x="236" y="141" font-family="Inter, sans-serif" font-size="18" text-anchor="middle">›</text>
-            <!-- person card 2 -->
-            <rect x="20" y="194" width="240" height="82" rx="16" fill="#fff" stroke="#e4e4e8" stroke-width="1.5"/>
-            <circle cx="52" cy="235" r="22" fill="#059669"/>
-            <text x="52" y="242" font-family="Inter, sans-serif" font-size="18" font-weight="800" text-anchor="middle" fill="#fff">R</text>
-            <text x="84" y="226" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#0d0d12">Rahul</text>
-            <rect x="84" y="232" width="38" height="16" rx="8" fill="#ecfdf5"/>
-            <text x="103" y="243" font-family="Inter, sans-serif" font-size="9" text-anchor="middle" fill="#059669" font-weight="600">Friends</text>
-            <text x="84" y="262" font-family="Inter, sans-serif" font-size="10" fill="#64748b">💑 Anniversary in 12 days</text>
-            <text x="236" y="235" font-family="Inter, sans-serif" font-size="18" text-anchor="middle">›</text>
-            <!-- person card 3 -->
-            <rect x="20" y="288" width="240" height="82" rx="16" fill="#fff" stroke="#e4e4e8" stroke-width="1.5"/>
-            <circle cx="52" cy="329" r="22" fill="#d97706"/>
-            <text x="52" y="336" font-family="Inter, sans-serif" font-size="18" font-weight="800" text-anchor="middle" fill="#fff">P</text>
-            <text x="84" y="320" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#0d0d12">Priya</text>
-            <rect x="84" y="326" width="28" height="16" rx="8" fill="#fffbeb"/>
-            <text x="98" y="337" font-family="Inter, sans-serif" font-size="9" text-anchor="middle" fill="#d97706" font-weight="600">VIP</text>
-            <text x="84" y="356" font-family="Inter, sans-serif" font-size="10" fill="#64748b">🎂 Birthday in 28 days · Turns 30</text>
-            <text x="236" y="329" font-family="Inter, sans-serif" font-size="18" text-anchor="middle">›</text>
-            <!-- bottom hint -->
-            <text x="140" y="400" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#a78bfa">Tap any contact to see their full timeline</text>
-          </svg>
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <img src="/datewise/images/app_people.jpg" alt="DateWise People Hub with photo avatars and relationship circles" loading="lazy" />
+            </div>
+          </div>
         </div>
         <div class="feat-card-content reveal d1">
           <div class="feat-badge-row">
             <span class="feat-num-badge">02</span>
             <span class="feat-badge">👥 PEOPLE HUB</span>
           </div>
-          <h3>Everyone Who Matters,<br /><span class="text-accent">All in One Place</span></h3>
-          <p>People Hub is a dedicated relationship centre. See upcoming milestones, ages, linked reminders, and relationship circles for every contact — at a glance.</p>
+          <h3>Everyone Who Matters,<br /><span class="text-accent">In One Dedicated Space</span></h3>
+          <p>People Hub is your central relationship dashboard. See upcoming birthdays, anniversaries, linked events, and life milestones for your loved ones and colleagues — all in one clean tab.</p>
           <ul class="feat-bullets">
-            <li><span class="fbi">✓</span> 7 circles: Family, Friends, Work, Relatives, School, Neighbors, VIP</li>
-            <li><span class="fbi">✓</span> Countdown to each contact's next milestone</li>
-            <li><span class="fbi">✓</span> View all reminders linked to a person on their profile</li>
-            <li><span class="fbi">✓</span> Attach photos, crop avatars, and add notes</li>
-            <li><span class="fbi">✓</span> Send wishes directly via WhatsApp or SMS</li>
+            <li><span class="fbi">✓</span> 7 Relationship Circles: Family, Friends, Work, Relatives, School, Neighbors, VIP</li>
+            <li><span class="fbi">✓</span> Real photo avatars &amp; live milestone countdowns ("In 3 days 🎂")</li>
+            <li><span class="fbi">✓</span> Contact timeline profile: tap any person to see their complete history &amp; linked reminders</li>
+            <li><span class="fbi">✓</span> Auto age calculation: keeps track of exact ages and milestone birthdays on autopilot</li>
+            <li><span class="fbi">✓</span> 1-tap greetings: send warm, curated birthday and anniversary wishes via WhatsApp or SMS</li>
           </ul>
           <div class="feat-tags">
-            <span class="feat-tag">👥 7 Relationship Circles</span>
+            <span class="feat-tag">👥 Relationship Circles</span>
             <span class="feat-tag">🎂 Auto Age Counter</span>
-            <span class="feat-tag">💬 1-Tap Wishes</span>
+            <span class="feat-tag">🖼️ Custom Photo Avatars</span>
+            <span class="feat-tag">💬 1-Tap WhatsApp Wishes</span>
           </div>
         </div>
       </article>
@@ -1290,102 +1718,63 @@
       <!-- ── 03: Inbox ── -->
       <article class="feat-card reveal" id="feat-inbox" data-feature="feat-inbox">
         <div class="feat-card-visual">
-          <svg viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capture to Inbox — save ideas and notes to schedule later">
-            <defs>
-              <linearGradient id="ibBg" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#f0fdf4"/>
-                <stop offset="1" stop-color="#f5f3ff"/>
-              </linearGradient>
-              <linearGradient id="ibBtn" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#7c3aed"/>
-                <stop offset="1" stop-color="#a78bfa"/>
-              </linearGradient>
-            </defs>
-            <!-- phone shell -->
-            <rect x="2" y="2" width="276" height="416" rx="36" fill="#ffffff" stroke="#e4e4e8" stroke-width="2"/>
-            <rect x="12" y="12" width="256" height="396" rx="28" fill="url(#ibBg)"/>
-            <!-- notch -->
-            <rect x="100" y="18" width="80" height="10" rx="5" fill="#ddd6fe"/>
-            <!-- header -->
-            <text x="140" y="54" font-family="Inter, sans-serif" font-size="15" font-weight="800" text-anchor="middle" fill="#3b0764">Inbox</text>
-            <rect x="210" y="42" width="46" height="20" rx="10" fill="#7c3aed"/>
-            <text x="233" y="55" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#fff" font-weight="700">3 items</text>
-            <!-- inbox item 1 — active -->
-            <rect x="20" y="72" width="240" height="76" rx="16" fill="#fff" stroke="#7c3aed" stroke-width="1.5"/>
-            <rect x="20" y="72" width="5" height="76" rx="2" fill="#7c3aed"/>
-            <text x="38" y="96" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#0d0d12">Gift idea for Dad's birthday</text>
-            <text x="38" y="112" font-family="Inter, sans-serif" font-size="11" fill="#64748b">Noise-cancelling headphones</text>
-            <rect x="38" y="122" width="90" height="18" rx="9" fill="#7c3aed"/>
-            <text x="83" y="134" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#fff" font-weight="600">→ Convert to Reminder</text>
-            <text x="238" y="118" font-family="Inter, sans-serif" font-size="18" text-anchor="middle" fill="#64748b">✕</text>
-            <!-- inbox item 2 -->
-            <rect x="20" y="160" width="240" height="72" rx="16" fill="#fff" stroke="#e4e4e8" stroke-width="1.5"/>
-            <rect x="20" y="160" width="5" height="72" rx="2" fill="#059669"/>
-            <text x="38" y="184" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#0d0d12">Passport renewal — check date</text>
-            <text x="38" y="200" font-family="Inter, sans-serif" font-size="11" fill="#64748b">Expires sometime next year</text>
-            <rect x="38" y="210" width="90" height="18" rx="9" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
-            <text x="83" y="222" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#7c3aed" font-weight="600">→ Convert to Reminder</text>
-            <!-- inbox item 3 -->
-            <rect x="20" y="244" width="240" height="72" rx="16" fill="#fff" stroke="#e4e4e8" stroke-width="1.5"/>
-            <rect x="20" y="244" width="5" height="72" rx="2" fill="#d97706"/>
-            <text x="38" y="268" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#0d0d12">Gym membership — check expiry</text>
-            <text x="38" y="284" font-family="Inter, sans-serif" font-size="11" fill="#64748b">Roughly 3 months away</text>
-            <rect x="38" y="294" width="90" height="18" rx="9" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
-            <text x="83" y="306" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#7c3aed" font-weight="600">→ Convert to Reminder</text>
-            <!-- quick-add bar -->
-            <rect x="20" y="332" width="240" height="48" rx="24" fill="#fff" stroke="#ddd6fe" stroke-width="1.5"/>
-            <text x="46" y="360" font-family="Inter, sans-serif" font-size="12" fill="#94a3b8">Jot something down…</text>
-            <circle cx="244" cy="356" r="16" fill="url(#ibBtn)"/>
-            <text x="244" y="362" font-family="Inter, sans-serif" font-size="16" text-anchor="middle" fill="#fff">+</text>
-            <!-- bottom hint -->
-            <text x="140" y="400" font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#a78bfa">Capture now · schedule when ready</text>
-          </svg>
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <img src="/datewise/images/app_inbox.jpg" alt="DateWise dedicated Inbox tab with multi-tag notes and triage list" loading="lazy" />
+            </div>
+          </div>
         </div>
         <div class="feat-card-content reveal d1">
           <div class="feat-badge-row">
             <span class="feat-num-badge">03</span>
-            <span class="feat-badge">📥 INBOX</span>
+            <span class="feat-badge">📥 DEDICATED INBOX</span>
           </div>
           <h3>Capture First,<br /><span class="text-accent">Schedule When Ready</span></h3>
-          <p>Not every important thought arrives at the right moment. Inbox lets you capture ideas, rough dates, and notes instantly — then convert them into proper scheduled reminders at your own pace.</p>
+          <p>Not every important thought has a fixed date yet. The dedicated Inbox tab gives you a zero-pressure holding ground to quickly jot thoughts, rough dates, policy notes, and tag contacts — then convert to scheduled reminders whenever you're ready.</p>
           <ul class="feat-bullets">
-            <li><span class="fbi">✓</span> Quick-capture bar: one tap to jot anything down</li>
-            <li><span class="fbi">✓</span> Attach images — receipts, gift ideas, documents</li>
-            <li><span class="fbi">✓</span> Convert any note into a full reminder with one tap</li>
-            <li><span class="fbi">✓</span> Never lose a fleeting idea or rough date again</li>
-            <li><span class="fbi">✓</span> Triage at your own pace — no pressure to schedule immediately</li>
+            <li><span class="fbi">✓</span> Dedicated navigation tab: access your Inbox directly from the main floating dock</li>
+            <li><span class="fbi">✓</span> Triage at your pace: keep ideas safe without feeling pressured to schedule immediately</li>
+            <li><span class="fbi">✓</span> Multi-tag classification: tag notes by Work, Insurance, Family, or custom labels</li>
+            <li><span class="fbi">✓</span> 1-tap convert: transform any captured note into a full scheduled reminder with alerts</li>
+            <li><span class="fbi">✓</span> Counter badge: easily see how many items are waiting to be scheduled</li>
           </ul>
           <div class="feat-tags">
-            <span class="feat-tag">📥 Zero-Friction Capture</span>
-            <span class="feat-tag">📸 Photo Attachments</span>
-            <span class="feat-tag">⚡ 1-Tap Convert</span>
+            <span class="feat-tag">📥 Zero-Pressure Capture</span>
+            <span class="feat-tag">🏷️ Multi-Tag Classification</span>
+            <span class="feat-tag">⚡ 1-Tap Convert to Reminder</span>
+            <span class="feat-tag">🗂️ Clutter-Free Triage</span>
           </div>
         </div>
       </article>
 
-      <!-- ── 04: Smart Timeline ── -->
+      <!-- ── 04: Calendar & Timeline ── -->
       <article class="feat-card alt-reverse reveal" id="feat-timeline" data-feature="feat-timeline">
         <div class="feat-card-visual">
-          <img src="/datewise/images/Screen-1.png" alt="Smart timeline" loading="lazy" />
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <img src="/datewise/images/app_calendar.jpg" alt="DateWise Interactive Calendar and urgency-grouped Timeline" loading="lazy" />
+            </div>
+          </div>
         </div>
         <div class="feat-card-content reveal d1">
           <div class="feat-badge-row">
             <span class="feat-num-badge">04</span>
-            <span class="feat-badge">☰ SMART TIMELINE</span>
+            <span class="feat-badge">📆 CALENDAR &amp; TIMELINE</span>
           </div>
-          <h3>Know What's Coming<br /><span class="text-accent">Before It Arrives</span></h3>
-          <p>Your upcoming events are automatically sorted into Today, Tomorrow, This Week, This Month, and Later — so you always know what needs attention right now.</p>
+          <h3>Interactive Calendar &amp;<br /><span class="text-accent">Smart Urgency Timeline</span></h3>
+          <p>Switch effortlessly between an interactive monthly calendar view and an urgency-grouped timeline. Every date with an event is marked with clear category icons, so you never miss an upcoming milestone.</p>
           <ul class="feat-bullets">
-            <li><span class="fbi">✓</span> Urgency-based grouping: Today → Later</li>
-            <li><span class="fbi">✓</span> Filter chips by type: Birthday, Bill, Custom…</li>
-            <li><span class="fbi">✓</span> Relationship tags: Family, Friends, Work, VIP</li>
-            <li><span class="fbi">✓</span> Swipe to snooze or delete</li>
-            <li><span class="fbi">✓</span> Auto-calculated age &amp; years counter</li>
+            <li><span class="fbi">✓</span> Interactive month view: see birthdays 🎂, bills 💵, and renewals 🛡️ directly on calendar dates</li>
+            <li><span class="fbi">✓</span> Urgency-grouped stream: automatically sorted into Today, Tomorrow, This Week, and This Month</li>
+            <li><span class="fbi">✓</span> Deep filtering: filter simultaneously by category (Birthday, Insurance...) and relationship (Family, Work...)</li>
+            <li><span class="fbi">✓</span> Fluid swipe actions: swipe any reminder to snooze, complete, or edit in seconds</li>
+            <li><span class="fbi">✓</span> Visual countdown pills: clear badges showing "In 3 days", "In 7 days" for proactive planning</li>
           </ul>
           <div class="feat-tags">
-            <span class="feat-tag">📅 Urgency Grouping</span>
+            <span class="feat-tag">📆 Interactive Monthly Calendar</span>
+            <span class="feat-tag">☰ Urgency-Grouped Stream</span>
+            <span class="feat-tag">🏷️ Dual Category &amp; Tag Filters</span>
             <span class="feat-tag">👆 Swipe to Snooze</span>
-            <span class="feat-tag">🏷️ Category Filter Chips</span>
           </div>
         </div>
       </article>
@@ -1393,40 +1782,108 @@
       <!-- ── 05: Voice Alerts ── -->
       <article class="feat-card reveal" id="feat-voice" data-feature="feat-voice">
         <div class="feat-card-visual">
-          <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Voice announcement preview card">
-            <defs>
-              <linearGradient id="voiceBg" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#f3e8ff"/>
-                <stop offset="1" stop-color="#ede9fe"/>
-              </linearGradient>
-            </defs>
-            <rect x="2" y="2" width="276" height="276" rx="34" fill="#ffffff" stroke="#e4e4e8" stroke-width="2"/>
-            <rect x="22" y="22" width="236" height="236" rx="28" fill="url(#voiceBg)"/>
-            <circle cx="140" cy="95" r="32" fill="#7c3aed"/>
-            <text x="140" y="106" font-family="Inter, sans-serif" font-size="26" text-anchor="middle" fill="#ffffff">🗣️</text>
-            <text x="140" y="150" font-family="Inter, sans-serif" font-size="18" font-weight="800" text-anchor="middle" fill="#3b0764">Voice Announcement</text>
-            <text x="140" y="172" font-family="Inter, sans-serif" font-size="13" text-anchor="middle" fill="#5b21b6">"Mom's birthday is today"</text>
-            <rect x="56" y="194" width="168" height="12" rx="6" fill="#ddd6fe"/>
-            <rect x="56" y="194" width="108" height="12" rx="6" fill="#7c3aed"/>
-            <text x="140" y="229" font-family="Inter, sans-serif" font-size="12" text-anchor="middle" fill="#6d28d9">Sound + voice, naturally timed</text>
-          </svg>
+          <div class="phone-frame">
+            <div class="phone-screen phone-screen--voice">
+              <!-- Android Status Bar -->
+              <div class="phone-status-bar">
+                <span>6:05</span>
+                <div class="status-bar-icons">
+                  <span>VoLTE</span>
+                  <span>4G</span>
+                  <span>89%</span>
+                </div>
+              </div>
+              
+              <div class="phone-content-voice">
+                <!-- Heads-Up Notification Card -->
+                <div class="heads-up-card">
+                  <div class="heads-up-header">
+                    <div class="heads-up-app">
+                      <img src="/datewise/images/app_icon_dark_trans.png" alt="" class="hu-icon" />
+                      <span class="hu-name">DateWise</span>
+                      <span class="hu-time">• Just now</span>
+                    </div>
+                    <span class="hu-chevron">▾</span>
+                  </div>
+                  <div class="heads-up-title">Mom's Birthday — Today! 🎂</div>
+                  <div class="heads-up-sub">Turning 36 · Plan ahead &amp; celebrate</div>
+                  
+                  <!-- Voice Announcement Player Box -->
+                  <div class="voice-player-box">
+                    <div class="voice-wave-header">
+                      <span class="voice-badge-live">
+                        <span class="voice-live-dot"></span>
+                        VOICE ANNOUNCEMENT
+                      </span>
+                      <span class="voice-sound-tag">🔔 Temple Bell</span>
+                    </div>
+                    <div class="voice-wave-display">
+                      <div class="voice-speaker-circle">🗣️</div>
+                      <div class="voice-waveform" aria-hidden="true">
+                        <span class="wave-bar wb1"></span>
+                        <span class="wave-bar wb2"></span>
+                        <span class="wave-bar wb3"></span>
+                        <span class="wave-bar wb4"></span>
+                        <span class="wave-bar wb5"></span>
+                        <span class="wave-bar wb6"></span>
+                        <span class="wave-bar wb7"></span>
+                        <span class="wave-bar wb8"></span>
+                        <span class="wave-bar wb9"></span>
+                        <span class="wave-bar wb10"></span>
+                      </div>
+                    </div>
+                    <div class="voice-spoken-text">
+                      "Reminder: Mom's birthday is today. Turning 36."
+                    </div>
+                  </div>
+
+                  <!-- Quick actions -->
+                  <div class="heads-up-actions">
+                    <span class="hu-btn hu-btn-primary">💬 Send Wishes</span>
+                    <span class="hu-btn hu-btn-sec">⏰ Snooze 30m</span>
+                  </div>
+                </div>
+
+                <!-- Settings / Preferences preview card -->
+                <div class="voice-settings-card">
+                  <div class="vs-row">
+                    <span class="vs-label">🗣️ Voice Speed</span>
+                    <span class="vs-val">Normal (1.0x)</span>
+                  </div>
+                  <div class="vs-row">
+                    <span class="vs-label">🎵 Notification Sound</span>
+                    <span class="vs-val">Temple Bell</span>
+                  </div>
+                  <div class="vs-row">
+                    <span class="vs-label">🔕 Mute on Silent</span>
+                    <span class="vs-val vs-val-check">Auto-Sync ✓</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Android navigation bar -->
+              <div class="phone-nav-bar"><span class="phone-nav-pill"></span></div>
+            </div>
+          </div>
         </div>
         <div class="feat-card-content reveal d1">
           <div class="feat-badge-row">
             <span class="feat-num-badge">05</span>
-            <span class="feat-badge">🗣️ VOICE ALERTS</span>
+            <span class="feat-badge">🗣️ VOICE &amp; SOUND ALERTS</span>
           </div>
           <h3>Hear Important Dates<br /><span class="text-accent">Even Without Looking</span></h3>
-          <p>DateWise can play your selected notification sound and then read the reminder aloud. It is ideal while driving, cooking, or when your phone is across the room.</p>
+          <p>DateWise plays your selected notification chime and then reads the reminder aloud with natural text-to-speech. Perfect while driving, cooking, working out, or when your phone is across the room.</p>
           <ul class="feat-bullets">
-            <li><span class="fbi">✓</span> Voice + sound sequence tuned for clarity</li>
-            <li><span class="fbi">✓</span> Choose voice type and speech speed in Settings</li>
-            <li><span class="fbi">✓</span> Works with test notifications before you rely on it</li>
-            <li><span class="fbi">✓</span> Respects silent and vibrate mode automatically</li>
+            <li><span class="fbi">✓</span> Hands-free announcements: speaks who, what, and how many days are left</li>
+            <li><span class="fbi">✓</span> 10 curated notification sounds including Temple Bell, Universe, and Zen Chime</li>
+            <li><span class="fbi">✓</span> Customizable speech speed and voice selector in Settings</li>
+            <li><span class="fbi">✓</span> Respects silent and do-not-disturb modes automatically</li>
+            <li><span class="fbi">✓</span> Built-in audio test feature to preview sounds and voice before scheduling</li>
           </ul>
           <div class="feat-tags">
-            <span class="feat-tag">🗣️ Hands-Free Alerts</span>
-            <span class="feat-tag">🔔 10 Curated Sounds</span>
+            <span class="feat-tag">🗣️ Hands-Free Voice Readout</span>
+            <span class="feat-tag">🔔 10 Curated Chimes</span>
+            <span class="feat-tag">🚗 Driving &amp; Cooking Friendly</span>
             <span class="feat-tag">🔕 Mute Scope Control</span>
           </div>
         </div>
@@ -1435,25 +1892,27 @@
       <!-- ── 06: Contact Import ── -->
       <article class="feat-card alt-reverse reveal" id="feat-contacts" data-feature="feat-contacts">
         <div class="feat-card-visual">
-          <img src="/datewise/images/Screen-4.png" alt="Import contacts" loading="lazy" />
+          <img class="framed-device-img" src="/datewise/images/Screen-4.png" alt="DateWise one-tap contact import screen" loading="lazy" />
         </div>
         <div class="feat-card-content reveal d1">
           <div class="feat-badge-row">
             <span class="feat-num-badge">06</span>
             <span class="feat-badge">📇 CONTACT IMPORT</span>
           </div>
-          <h3>Import All Birthdays<br /><span class="text-accent">in One Tap</span></h3>
-          <p>Pull all birthdays from your phone contacts instantly. DateWise reads the data and creates reminders automatically — no manual entry needed.</p>
+          <h3>Import All Birthdays<br /><span class="text-accent">in One Simple Tap</span></h3>
+          <p>Instantly sync all birthdays stored in your Google or device contacts. DateWise reads the dates and creates structured reminders automatically — saving you hours of manual typing.</p>
           <ul class="feat-bullets">
-            <li><span class="fbi">✓</span> One-tap import from phone contacts</li>
-            <li><span class="fbi">✓</span> Auto-tag by relationship (Family, Friends, Work, VIP)</li>
-            <li><span class="fbi">✓</span> Notifications set automatically at 7 days and on the day</li>
-            <li><span class="fbi">✓</span> Re-run anytime from Settings → Import from Contacts</li>
+            <li><span class="fbi">✓</span> One-tap import from phone and Google contacts</li>
+            <li><span class="fbi">✓</span> Auto-tags by relationship: Family, Friends, Work, or VIP</li>
+            <li><span class="fbi">✓</span> Automatically schedules 7-day and same-day notifications</li>
+            <li><span class="fbi">✓</span> Read-only permission: DateWise never alters or uploads your contacts</li>
+            <li><span class="fbi">✓</span> Re-sync anytime from Settings → Import from Contacts</li>
           </ul>
           <div class="feat-tags">
-            <span class="feat-tag">📇 1-Tap Sync</span>
+            <span class="feat-tag">📇 1-Tap Contact Sync</span>
             <span class="feat-tag">🔒 Read-Only Permission</span>
-            <span class="feat-tag">⚡ Instant Setup</span>
+            <span class="feat-tag">🏷️ Auto Circle Assignment</span>
+            <span class="feat-tag">⚡ Instant Onboarding</span>
           </div>
         </div>
       </article>
@@ -1461,37 +1920,114 @@
       <!-- ── 07: Home Widget ── -->
       <article class="feat-card reveal" id="feat-widget" data-feature="feat-widget">
         <div class="feat-card-visual">
-          <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home screen widget showing a birthday reminder due today">
-            <rect x="2" y="2" width="276" height="276" rx="34" fill="#ffffff" stroke="#e4e4e8" stroke-width="2"/>
-            <text x="24" y="42" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#0d0d12">DateWise</text>
-            <circle cx="246" cy="35" r="14" fill="#f5f3ff"/>
-            <text x="246" y="40" font-family="Inter, sans-serif" font-size="13" text-anchor="middle" fill="#5b21b6">⟳</text>
-            <line x1="24" y1="56" x2="256" y2="56" stroke="#e4e4e8" stroke-width="1.5"/>
-            <circle cx="140" cy="142" r="56" fill="#f5f3ff"/>
-            <text x="140" y="158" font-family="Inter, sans-serif" font-size="44" text-anchor="middle">🎂</text>
-            <text x="140" y="220" font-family="Inter, sans-serif" font-size="17" font-weight="800" text-anchor="middle" fill="#0d0d12">Appa's Birthday</text>
-            <rect x="106" y="230" width="68" height="25" rx="12.5" fill="#fee2e2"/>
-            <text x="140" y="247" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#dc2626">Today</text>
-          </svg>
+          <div class="phone-frame">
+            <div class="phone-screen phone-screen--widget">
+              <!-- Android Status Bar -->
+              <div class="phone-status-bar phone-status-bar--light">
+                <span>6:05</span>
+                <div class="status-bar-icons">
+                  <span>VoLTE</span>
+                  <span>4G</span>
+                  <span>89%</span>
+                </div>
+              </div>
+
+              <div class="phone-content-widget">
+                <!-- Android At a Glance Clock & Date -->
+                <div class="android-clock-glance">
+                  <div class="acg-time">6:05</div>
+                  <div class="acg-date">Wednesday, Oct 7 • 28°C ⛅</div>
+                </div>
+
+                <!-- Material You DateWise 4x3 Widget -->
+                <div class="mat-widget">
+                  <div class="mat-widget-head">
+                    <div class="mat-widget-title">
+                      <img src="/datewise/images/app_icon_dark_trans.png" alt="" class="mw-icon" />
+                      <span>DateWise</span>
+                    </div>
+                    <div class="mat-widget-actions">
+                      <span class="mw-action-btn" title="Refresh">⟳</span>
+                      <span class="mw-action-btn mw-action-add" title="Quick Add">+</span>
+                    </div>
+                  </div>
+
+                  <div class="mat-widget-list">
+                    <div class="mw-item mw-item--urgent">
+                      <div class="mw-item-left">
+                        <span class="mw-item-icon">🎂</span>
+                        <div class="mw-item-info">
+                          <span class="mw-item-name">Vairaa</span>
+                          <span class="mw-item-date">Oct 7 (Wed) · 6 ▸ 7 yrs</span>
+                        </div>
+                      </div>
+                      <span class="mw-badge mw-badge--today">In 3 days</span>
+                    </div>
+
+                    <div class="mw-item">
+                      <div class="mw-item-left">
+                        <span class="mw-item-icon">💵</span>
+                        <div class="mw-item-info">
+                          <span class="mw-item-name">Ravi Chit</span>
+                          <span class="mw-item-date">Oct 11 (Sun) · EMI</span>
+                        </div>
+                      </div>
+                      <span class="mw-badge mw-badge--soon">In 7 days</span>
+                    </div>
+
+                    <div class="mw-item">
+                      <div class="mw-item-left">
+                        <span class="mw-item-icon">🛡️</span>
+                        <div class="mw-item-info">
+                          <span class="mw-item-name">Skoda Car Insurance</span>
+                          <span class="mw-item-date">Oct 15 (Thu) · Yearly</span>
+                        </div>
+                      </div>
+                      <span class="mw-badge mw-badge--upcoming">In 11 days</span>
+                    </div>
+                  </div>
+
+                  <div class="mat-widget-foot">
+                    <span>+4 more this month</span>
+                    <span class="mw-foot-arrow">›</span>
+                  </div>
+                </div>
+
+                <!-- Android App Dock at bottom -->
+                <div class="android-app-dock">
+                  <div class="dock-app dock-phone">📞</div>
+                  <div class="dock-app dock-messages">💬</div>
+                  <div class="dock-app dock-dw">
+                    <img src="/datewise/images/app_icon_dark_trans.png" alt="" />
+                  </div>
+                  <div class="dock-app dock-camera">📷</div>
+                </div>
+              </div>
+
+              <!-- Android navigation bar -->
+              <div class="phone-nav-bar"><span class="phone-nav-pill phone-nav-pill--light"></span></div>
+            </div>
+          </div>
         </div>
         <div class="feat-card-content reveal d1">
           <div class="feat-badge-row">
             <span class="feat-num-badge">07</span>
-            <span class="feat-badge">🏠 HOME WIDGET</span>
+            <span class="feat-badge">🏠 HOME SCREEN WIDGET</span>
           </div>
           <h3>Glance and Go —<br /><span class="text-accent">No Need to Open the App</span></h3>
-          <p>One resizable home screen widget shows what's coming up without unlocking your phone. Drag it from a compact single-line strip up to a full grouped view of your next few reminders.</p>
+          <p>Keep upcoming dates front and center on your Android home screen. One versatile, resizable widget displays your next birthdays, bills, and renewals with dynamic urgency color coding.</p>
           <ul class="feat-bullets">
-            <li><span class="fbi">✓</span> One widget, eight sizes — resize by dragging the corners</li>
-            <li><span class="fbi">✓</span> Larger sizes group reminders into Today, Tomorrow, This Week</li>
-            <li><span class="fbi">✓</span> Color-coded by urgency: red for today, amber for this week</li>
-            <li><span class="fbi">✓</span> Tap any reminder to jump straight to it</li>
-            <li><span class="fbi">✓</span> Free on every plan — no Pro required</li>
+            <li><span class="fbi">✓</span> 8 Resizable sizes: from a compact 2x1 single-line glance to a full 4x4 multi-event hub</li>
+            <li><span class="fbi">✓</span> Urgency color coding: red for today, warm amber for this week, violet for upcoming</li>
+            <li><span class="fbi">✓</span> Tap any item to jump straight into its reminder details</li>
+            <li><span class="fbi">✓</span> Quick "+" shortcut on the widget to create reminders in one tap</li>
+            <li><span class="fbi">✓</span> 100% Free on every plan — no Pro subscription required</li>
           </ul>
           <div class="feat-tags">
-            <span class="feat-tag">🏠 8 Resizable Sizes</span>
+            <span class="feat-tag">🏠 8 Resizable Layouts</span>
             <span class="feat-tag">🔴 Urgency Color Coding</span>
-            <span class="feat-tag">🆓 100% Free</span>
+            <span class="feat-tag">⚡ 1-Tap Quick Add Shortcut</span>
+            <span class="feat-tag">🆓 Free for Everyone</span>
           </div>
         </div>
       </article>
@@ -1499,26 +2035,27 @@
       <!-- ── 08: Privacy & Security ── -->
       <article class="feat-card alt-reverse reveal" id="feat-privacy" data-feature="feat-privacy">
         <div class="feat-card-visual">
-          <img src="/datewise/images/Screen-5.png" alt="Private and Secure" loading="lazy" />
+          <img class="framed-device-img" src="/datewise/images/Screen-5.png" alt="Private and Secure on-device storage" loading="lazy" />
         </div>
         <div class="feat-card-content reveal d1">
           <div class="feat-badge-row">
             <span class="feat-num-badge">08</span>
             <span class="feat-badge">🔒 PRIVACY &amp; SECURITY</span>
           </div>
-          <h3>Your Data,<br /><span class="text-accent">Your Control</span></h3>
-          <p>Everything you add stays on your device. No account needed, no cloud syncing unless you opt in, and no one ever sees your reminders.</p>
+          <h3>Your Data Stays Yours —<br /><span class="text-accent">100% On-Device</span></h3>
+          <p>DateWise is built offline-first. Your birthdays, notes, contacts, and personal events never leave your device unless you explicitly opt in to your own Google Drive backup.</p>
           <ul class="feat-bullets">
-            <li><span class="fbi">✓</span> 100% offline-first, no account required</li>
-            <li><span class="fbi">✓</span> Biometric app lock keeps your data private</li>
-            <li><span class="fbi">✓</span> Optional Google Drive backup to your own account (Pro)</li>
-            <li><span class="fbi">✓</span> No analytics, no ad tracking, no data sharing — ever</li>
-            <li><span class="fbi">✓</span> Recycle Bin: restore or permanently purge deleted items anytime</li>
+            <li><span class="fbi">✓</span> 100% offline-first: no accounts, no signups, no external databases</li>
+            <li><span class="fbi">✓</span> Biometric app lock: protect your reminders with fingerprint or PIN</li>
+            <li><span class="fbi">✓</span> Zero tracking: no analytics, no third-party SDKs, no ads, ever</li>
+            <li><span class="fbi">✓</span> Recycle Bin: safely recover accidentally deleted reminders anytime</li>
+            <li><span class="fbi">✓</span> Private Google Drive backup: your backups stay in your personal cloud, under your control</li>
           </ul>
           <div class="feat-tags">
             <span class="feat-tag">🔒 100% On-Device</span>
-            <span class="feat-tag">🛡️ Fingerprint / PIN Lock</span>
-            <span class="feat-tag">🗑️ Recycle Bin</span>
+            <span class="feat-tag">🛡️ Biometric / PIN Lock</span>
+            <span class="feat-tag">🚫 Zero Ad Tracking</span>
+            <span class="feat-tag">🗑️ Recycle Bin Safety Net</span>
           </div>
         </div>
       </article>
@@ -1526,29 +2063,29 @@
       <!-- ── 09: Pro Membership ── -->
       <article class="feat-card reveal" id="feat-pro" data-feature="feat-pro">
         <div class="feat-card-visual" style="background: radial-gradient(circle at center, #ede9fe 0%, #ddd6fe 100%);">
-          <img src="/datewise/images/Screen-7.png" alt="Pro membership" loading="lazy" />
+          <img class="framed-device-img" src="/datewise/images/Screen-7.png" alt="DateWise Pro membership and lifetime access screen" loading="lazy" />
         </div>
         <div class="feat-card-content reveal d1">
           <div class="feat-badge-row">
             <span class="feat-num-badge">09</span>
             <span class="feat-badge" style="background:linear-gradient(90deg,var(--accent),var(--accent-mid));color:#fff;">💎 PRO MEMBERSHIP</span>
           </div>
-          <h3>Unlock More<br /><span class="text-accent">with DateWise Pro</span></h3>
-          <p>Pro is a one-time purchase — not a subscription. Pay once, keep it forever. Designed for power users who want the full experience.</p>
+          <h3>Unlock More Power<br /><span class="text-accent">with One-Time Pro</span></h3>
+          <p>DateWise Pro is a one-time purchase — never a recurring subscription. Pay once, unlock every advanced capability forever, and sync seamlessly across all your personal devices.</p>
           <ul class="feat-bullets">
-            <li><span class="fbi">✓</span> Cloud backup with automatic sync across your devices, via your own Google Drive</li>
-            <li><span class="fbi">✓</span> Custom reminder types with your own emoji</li>
-            <li><span class="fbi">✓</span> Custom reminder intervals</li>
-            <li><span class="fbi">✓</span> Custom relationship tags</li>
-            <li><span class="fbi">✓</span> Unlimited people in People Hub (free tier: up to 5)</li>
-            <li><span class="fbi">✓</span> Unlimited Smart Add (free users get 3 trials)</li>
-            <li><span class="fbi">✓</span> One-time purchase — no subscription, ever</li>
+            <li><span class="fbi">✓</span> Private Google Drive cloud backup &amp; multi-device sync</li>
+            <li><span class="fbi">✓</span> Custom reminder types with personalized emojis and default alert rules</li>
+            <li><span class="fbi">✓</span> Custom recurring intervals: repeat every 10 days, 45 days, or custom cycles</li>
+            <li><span class="fbi">✓</span> Custom relationship tags: MyLove, Bestie, Doctor, VIP — any label you need</li>
+            <li><span class="fbi">✓</span> Unlimited people in People Hub (free tier includes up to 5)</li>
+            <li><span class="fbi">✓</span> Unlimited Smart Add prompts (free tier includes 3 trials)</li>
+            <li><span class="fbi">✓</span> ₹49 lifetime access — no hidden renewals, pay once and keep forever</li>
           </ul>
           <div class="feat-tags">
             <span class="feat-tag feat-tag--pro">💎 ₹49 Lifetime</span>
             <span class="feat-tag feat-tag--pro">☁️ Google Drive Sync</span>
-            <span class="feat-tag feat-tag--pro">⭐ Custom Emojis</span>
-            <span class="feat-tag feat-tag--pro">♾️ Unlimited People</span>
+            <span class="feat-tag feat-tag--pro">🎨 Custom Types &amp; Emojis</span>
+            <span class="feat-tag feat-tag--pro">♾️ Unlimited Everything</span>
           </div>
         </div>
       </article>
