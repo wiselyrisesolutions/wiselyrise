@@ -438,6 +438,7 @@
       line-height:normal;
       display:block;
       box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
+      min-height:470px;
     }
     .phone-screen > img.phone-screen-img{
       width:100%;
@@ -519,7 +520,7 @@
     /* ── SCREEN 05: VOICE ALERTS PHONE SCREEN ────────── */
     .phone-screen--voice{
       background:linear-gradient(180deg,#ede9fe 0%,#f5f3ff 38%,#ffffff 100%);
-      min-height:510px;
+      min-height:470px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
@@ -735,7 +736,7 @@
     /* ── SCREEN 07: MATERIAL YOU WIDGET PHONE SCREEN ── */
     .phone-screen--widget{
       background:linear-gradient(160deg,#1e1b4b 0%,#2e1065 40%,#0f172a 100%);
-      min-height:510px;
+      min-height:470px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
@@ -949,7 +950,7 @@
     /* ── SCREEN 01: SMART ADD BOTTOM SHEET ────────────── */
     .phone-screen--smartadd{
       background:#f8f7ff;
-      min-height:510px;
+      min-height:470px;
       display:flex;
       flex-direction:column;
       line-height:normal;
@@ -1093,7 +1094,7 @@
     /* ── SCREEN 02: PEOPLE HUB ───────────────────────── */
     .phone-screen--people{
       background:#f8f7ff;
-      min-height:510px;
+      min-height:470px;
       display:flex;
       flex-direction:column;
       line-height:normal;
@@ -1222,7 +1223,7 @@
     /* ── SCREEN 03: INBOX ────────────────────────────── */
     .phone-screen--inbox{
       background:#f8f7ff;
-      min-height:510px;
+      min-height:470px;
       display:flex;
       flex-direction:column;
       line-height:normal;
@@ -1327,7 +1328,7 @@
     /* ── SCREEN 04: CALENDAR + TIMELINE ─────────────── */
     .phone-screen--calendar{
       background:#ffffff;
-      min-height:510px;
+      min-height:470px;
       display:flex;
       flex-direction:column;
       line-height:normal;
@@ -1470,7 +1471,7 @@
     /* ── SCREEN 06: CONTACT IMPORT (teal onboarding) ─── */
     .phone-screen--contacts{
       background:linear-gradient(180deg,#b2ebe8 0%,#d0f5f2 40%,#e8faf9 100%);
-      min-height:510px;
+      min-height:470px;
       display:flex;
       flex-direction:column;
       align-items:stretch;
@@ -1607,7 +1608,7 @@
     /* ── SCREEN 08: PRIVACY & SECURE (green onboarding) ─ */
     .phone-screen--privacy{
       background:linear-gradient(180deg,#bbf7d0 0%,#dcfce7 40%,#f0fdf4 100%);
-      min-height:510px;
+      min-height:470px;
       display:flex;
       flex-direction:column;
       align-items:stretch;
@@ -1617,7 +1618,7 @@
     /* ── SCREEN 09: PRO MEMBERSHIP ───────────────────── */
     .phone-screen--pro{
       background:#ffffff;
-      min-height:510px;
+      min-height:470px;
       display:flex;
       flex-direction:column;
       line-height:normal;
@@ -2121,9 +2122,10 @@
       .feat-card{grid-template-columns:1fr;gap:28px;padding:32px 24px;border-radius:22px;scroll-margin-top:calc(var(--nav-h) + 68px)}
       .feat-card.alt-reverse .feat-card-visual{order:0}
       .feat-card.alt-reverse .feat-card-content{order:1}
-      .feat-card-visual{min-height:360px;padding:24px 16px}
-      .feat-card-visual .phone-frame{max-width:245px}
-      .feat-card-visual .framed-device-img{max-width:270px!important}
+      .feat-card-visual{min-height:auto;padding:26px 16px}
+      .feat-card-visual .phone-frame{max-width:260px}
+      .feat-card-visual .phone-screen,
+      .feat-card-visual [class*="phone-screen--"]{min-height:450px}
       /* Layout fixes */
       .about-grid,.notif-grid{grid-template-columns:1fr;gap:36px}
       .how-grid{grid-template-columns:1fr}
@@ -2155,18 +2157,44 @@
       .feat-dock-sticky{top:calc(var(--nav-h) + 4px);margin:16px auto 24px;padding:0 4px}
       .feat-dock{border-radius:14px}
       .feat-tour-btn{display:none}
-      .feat-card{padding:24px 18px;border-radius:18px;gap:20px;scroll-margin-top:calc(var(--nav-h) + 58px)}
-      .feat-card-visual{min-height:300px;padding:18px 12px}
-      .feat-card-visual .phone-frame{max-width:220px;padding:7px 6px 9px;border-radius:32px}
-      .feat-card-visual .phone-screen{border-radius:26px}
-      .feat-card-visual .phone-screen--voice,.feat-card-visual .phone-screen--widget{min-height:460px}
-      .feat-card-visual .framed-device-img{max-width:235px!important}
+      .feat-card{padding:22px 14px;border-radius:18px;gap:20px;scroll-margin-top:calc(var(--nav-h) + 58px)}
+      .feat-card-visual{min-height:auto;padding:22px 10px}
+      .feat-card-visual .phone-frame{width:100%;max-width:265px;padding:8px 7px 10px;border-radius:34px}
+      .feat-card-visual .phone-screen,
+      .feat-card-visual [class*="phone-screen--"]{border-radius:26px;min-height:430px}
+      /* Compact proportional elements on mobile screens */
+      .ob-icon-circle{width:52px;height:52px;font-size:1.5rem;margin-bottom:8px}
+      .ob-hero{padding:8px 14px 6px}
+      .ob-desc{margin-bottom:10px}
+      .ob-checklist{gap:5px;margin-bottom:10px}
+      .ob-check-row{padding:7px 10px}
+      .ob-cta-teal,.ob-cta-green{padding:10px;margin:0 10px 8px;font-size:.74rem}
+      .cal-grid-wrap{padding:6px 8px 4px}
+      .cal-timeline{padding:4px 8px 6px;gap:5px}
+      .cal-tl-item{padding:6px 8px}
+      .sa-main-area{padding:8px 12px 4px;gap:6px}
+      .sa-bottom-sheet{padding:12px 10px 10px}
+      .sa-mode-card{padding:8px 5px}
+      .ph-list{padding:8px 10px;gap:6px}
+      .ph-contact-card{padding:8px 10px}
+      .ib-list{padding:6px 10px;gap:6px}
+      .ib-note-card{padding:9px 10px}
+      .mat-widget{padding:10px 12px}
+      .mat-widget-list{gap:5px}
+      .mw-item{padding:5px 7px}
+      .pro-hero-card{padding:14px 12px 12px;margin:8px 10px 0}
+      .pro-stats-grid{padding:0 10px;gap:6px}
+      .pro-stat-card{padding:8px 10px}
+      .pro-type-section{padding:6px 12px 8px}
       .feat-card-content h3{font-size:1.32rem}
     }
     @media(max-width:400px){
       .hero h1{font-size:2rem}
       .feat-chip{width:64px;height:64px;padding:7px}
       .feat-chip img{width:50px;height:50px}
+      .feat-card-visual .phone-frame{max-width:248px}
+      .feat-card-visual .phone-screen,
+      .feat-card-visual [class*="phone-screen--"]{min-height:415px}
     }
 
     /* ============================================================
