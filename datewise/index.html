@@ -1868,55 +1868,6 @@
     .how-card h3{font-size:1.05rem;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:var(--fg)}
     .how-card p{font-size:.86rem;color:var(--muted);line-height:1.68}
 
-    /* ── SPOTLIGHT / FEATURE SHOWCASE ─────────────────── */
-    .spotlight-section{background:linear-gradient(180deg,#ffffff 0%,#f8f7fc 100%)}
-    .spotlight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
-    .spotlight-card{
-      background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);
-      overflow:hidden;box-shadow:var(--shadow-sm);
-      display:flex;flex-direction:column;
-      transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s cubic-bezier(.22,1,.36,1),border-color .3s;
-    }
-    .spotlight-card:hover{
-      transform:translateY(-6px);
-      box-shadow:0 20px 48px rgba(91,33,182,.14);
-      border-color:var(--accent-light);
-    }
-    .spotlight-img-wrap{
-      background:radial-gradient(circle at center,#f5f3ff 0%,#ebe6fa 100%);
-      padding:24px 20px 0;
-      display:flex;justify-content:center;align-items:flex-end;
-      overflow:hidden;min-height:360px;position:relative;
-    }
-    .spotlight-img-wrap img{
-      width:auto;max-height:350px;max-width:100%;
-      border-radius:24px 24px 0 0;
-      filter:drop-shadow(0 14px 28px rgba(30,10,60,.18));
-      transition:transform .35s ease;
-      display:block;
-    }
-    .spotlight-card:hover .spotlight-img-wrap img{
-      transform:scale(1.03) translateY(-4px);
-    }
-    .spotlight-body{padding:26px 24px 30px;display:flex;flex-direction:column;flex:1;text-align:left}
-    .spotlight-pill{
-      display:inline-flex;align-items:center;gap:6px;
-      font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-      color:var(--accent-mid);background:var(--accent-bg);
-      padding:4px 10px;border-radius:100px;margin-bottom:12px;width:fit-content;
-    }
-    .spotlight-card h3{
-      font-family:'Inter Tight',sans-serif;font-size:1.25rem;font-weight:800;
-      letter-spacing:-.02em;line-height:1.26;margin-bottom:10px;color:var(--fg);
-    }
-    .spotlight-card p{font-size:.87rem;color:var(--muted);line-height:1.68;margin-bottom:18px}
-    .spotlight-bullets{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:auto;border-top:1px solid var(--border);padding-top:16px}
-    .spotlight-bullets li{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--fg)}
-    .spotlight-bullet-icon{
-      width:18px;height:18px;border-radius:50%;background:var(--green-bg);
-      color:var(--green);display:flex;align-items:center;justify-content:center;
-      font-size:.62rem;flex-shrink:0;font-weight:800;
-    }
 
     /* ── SCREENSHOTS CAROUSEL ──────────────────────────── */
     .ss-section{background:var(--bg);overflow:hidden}
@@ -2129,7 +2080,6 @@
       /* Layout fixes */
       .about-grid,.notif-grid{grid-template-columns:1fr;gap:36px}
       .how-grid{grid-template-columns:1fr}
-      .spotlight-grid{grid-template-columns:1fr;max-width:480px;margin:40px auto 0;gap:32px}
       .stats-grid{grid-template-columns:repeat(2,1fr);gap:16px}
       .footer-top{grid-template-columns:1fr 1fr;gap:32px}
       .section{padding:68px 5%}
@@ -2264,7 +2214,7 @@
   <ul class="nav-links nav-desktop">
     <li><a href="#features">Features</a></li>
     <li><a href="#how-it-works">How it works</a></li>
-    <li><a href="#spotlight">Spotlight</a></li>
+    <li><a href="#screenshots">Screenshots</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="/" style="color:var(--accent-mid);font-weight:600">WiselyRise 🏠︎</a></li>
@@ -2282,7 +2232,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#features" onclick="closeMobileMenu()">Features</a>
   <a href="#how-it-works" onclick="closeMobileMenu()">How it works</a>
-  <a href="#spotlight" onclick="closeMobileMenu()">Spotlight</a>
+  <a href="#screenshots" onclick="closeMobileMenu()">Screenshots</a>
   <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
   <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
   <a href="/" onclick="closeMobileMenu()">WiselyRise</a>
@@ -3374,67 +3324,6 @@
   </div>
 </section>
 
-<!-- ═══ SPOTLIGHT / FEATURE SHOWCASE ═════════ -->
-<section class="section spotlight-section" id="spotlight">
-  <div class="section-inner text-center">
-    <span class="section-label reveal">Spotlight</span>
-    <h2 class="section-title reveal d1">Designed for Moments<br /><span class="text-accent">That Actually Matter</span></h2>
-    <p class="section-desc reveal d2" style="margin:0 auto">A closer look at how DateWise turns everyday dates into proactive peace of mind.</p>
-    
-    <div class="spotlight-grid">
-      <!-- Spotlight 1: Timeline -->
-      <div class="spotlight-card reveal d1">
-        <div class="spotlight-img-wrap">
-          <img src="/datewise/images/promo_timeline.png" alt="DateWise smart timeline showing today, tomorrow, and upcoming events" loading="lazy" />
-        </div>
-        <div class="spotlight-body">
-          <span class="spotlight-pill">Timeline &amp; Countdown</span>
-          <h3>Urgency Grouping That Keeps You Ahead</h3>
-          <p>Your upcoming events are automatically categorized into Today, Tomorrow, This Week, and Later. Clear countdown badges and anniversary years calculate on autopilot.</p>
-          <ul class="spotlight-bullets">
-            <li><span class="spotlight-bullet-icon">✓</span> Chronological urgency sorting</li>
-            <li><span class="spotlight-bullet-icon">✓</span> Multi-circle relationship filters</li>
-            <li><span class="spotlight-bullet-icon">✓</span> Automatic age &amp; milestone calculation</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Spotlight 2: Notifications -->
-      <div class="spotlight-card reveal d2">
-        <div class="spotlight-img-wrap">
-          <img src="/datewise/images/promo_notify.png" alt="DateWise contextual lock-screen notification cards" loading="lazy" />
-        </div>
-        <div class="spotlight-body">
-          <span class="spotlight-pill">Contextual Alerts</span>
-          <h3>Reminders That Advise Your Next Move</h3>
-          <p>More than just alarms. Get context-aware messages telling you when to plan ahead, set aside renewal funds, or get ready to celebrate — delivered reliably offline.</p>
-          <ul class="spotlight-bullets">
-            <li><span class="spotlight-bullet-icon">✓</span> Multiple reminder heads (7 days, 1 day, today)</li>
-            <li><span class="spotlight-bullet-icon">✓</span> Intelligent adaptive snooze</li>
-            <li><span class="spotlight-bullet-icon">✓</span> 100% on-device scheduling</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Spotlight 3: Wishes & People -->
-      <div class="spotlight-card reveal d3">
-        <div class="spotlight-img-wrap">
-          <img src="/datewise/images/promo_wish.png" alt="DateWise birthday wishes bottom sheet ready to copy and share" loading="lazy" />
-        </div>
-        <div class="spotlight-body">
-          <span class="spotlight-pill">Heartfelt Wishes</span>
-          <h3>Warm Wishes Ready to Send in Seconds</h3>
-          <p>Never search the web for greeting messages again. Browse warm, curated wishes personalized for family, friends, or VIPs, and share instantly via WhatsApp or SMS.</p>
-          <ul class="spotlight-bullets">
-            <li><span class="spotlight-bullet-icon">✓</span> Curated wishes library by relationship</li>
-            <li><span class="spotlight-bullet-icon">✓</span> 1-tap WhatsApp and SMS sharing</li>
-            <li><span class="spotlight-bullet-icon">✓</span> Direct contact shortcuts &amp; notes</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══ SCREENSHOTS ══════════════════════════ -->
 <section class="ss-section" id="screenshots">
@@ -3603,7 +3492,7 @@
         <ul>
           <li><a href="#features">Features</a></li>
           <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#spotlight">Spotlight</a></li>
+          <li><a href="#screenshots">Screenshots</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener">Google Play</a></li>
         </ul>
