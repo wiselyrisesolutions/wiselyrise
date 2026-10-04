@@ -1445,7 +1445,284 @@
     .cal-badge-amber{background:#fef3c7;color:#b45309;}
     .cal-badge-violet{background:#ede9fe;color:#7c3aed;}
 
-    /* Content styling */
+    /* ── SCREEN 06: CONTACT IMPORT (teal onboarding) ─── */
+    .phone-screen--contacts{
+      background:linear-gradient(180deg,#b2ebe8 0%,#d0f5f2 40%,#e8faf9 100%);
+      min-height:510px;
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      line-height:normal;
+    }
+    .ob-skip{
+      text-align:right;
+      padding:10px 16px 0;
+      font-size:.65rem;
+      font-weight:700;
+      color:#0e7c7b;
+    }
+    .ob-hero{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:10px 20px 8px;
+      text-align:center;
+      flex:1;
+    }
+    .ob-icon-circle{
+      width:64px;height:64px;
+      border-radius:50%;
+      background:#ffffff;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.8rem;
+      box-shadow:0 6px 18px rgba(14,124,123,.18);
+      margin-bottom:12px;
+    }
+    .ob-title{
+      font-size:.95rem;
+      font-weight:800;
+      color:#0e7c7b;
+      line-height:1.2;
+      margin-bottom:4px;
+    }
+    .ob-subtitle{
+      font-size:.65rem;
+      font-weight:600;
+      color:#0e7c7b;
+      opacity:.85;
+      margin-bottom:8px;
+    }
+    .ob-desc{
+      font-size:.64rem;
+      color:#134e4a;
+      line-height:1.45;
+      margin-bottom:14px;
+      max-width:90%;
+    }
+    .ob-checklist{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+      margin-bottom:14px;
+    }
+    .ob-check-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:rgba(255,255,255,.7);
+      border-radius:12px;
+      padding:9px 12px;
+    }
+    .ob-check-icon{
+      width:20px;height:20px;
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:.65rem;
+      font-weight:800;
+      flex-shrink:0;
+    }
+    .ob-check-icon--teal{background:#ccf2f0;color:#0e7c7b;}
+    .ob-check-icon--green{background:#bbf7d0;color:#15803d;}
+    .ob-check-text{
+      font-size:.68rem;
+      font-weight:600;
+      color:#134e4a;
+    }
+    .ob-info-link{
+      font-size:.62rem;
+      font-weight:600;
+      color:#0e7c7b;
+      background:rgba(255,255,255,.6);
+      border:1px solid rgba(14,124,123,.25);
+      padding:6px 14px;
+      border-radius:100px;
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      margin-bottom:10px;
+    }
+    .ob-dots{
+      display:flex;gap:5px;
+      justify-content:center;
+      margin-bottom:8px;
+    }
+    .ob-dot{
+      width:6px;height:6px;
+      border-radius:50%;
+      background:rgba(14,124,123,.25);
+    }
+    .ob-dot--active{
+      width:18px;
+      border-radius:3px;
+      background:#0e7c7b;
+    }
+    .ob-cta-teal{
+      margin:0 12px 14px;
+      padding:13px;
+      border-radius:14px;
+      background:#0e7c7b;
+      color:#fff;
+      font-size:.78rem;
+      font-weight:800;
+      text-align:center;
+      letter-spacing:.03em;
+      box-shadow:0 6px 16px rgba(14,124,123,.3);
+    }
+    .ob-cta-green{
+      margin:0 12px 14px;
+      padding:13px;
+      border-radius:14px;
+      background:#16a34a;
+      color:#fff;
+      font-size:.78rem;
+      font-weight:800;
+      text-align:center;
+      letter-spacing:.03em;
+      box-shadow:0 6px 16px rgba(22,163,74,.3);
+    }
+
+    /* ── SCREEN 08: PRIVACY & SECURE (green onboarding) ─ */
+    .phone-screen--privacy{
+      background:linear-gradient(180deg,#bbf7d0 0%,#dcfce7 40%,#f0fdf4 100%);
+      min-height:510px;
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      line-height:normal;
+    }
+
+    /* ── SCREEN 09: PRO MEMBERSHIP ───────────────────── */
+    .phone-screen--pro{
+      background:#ffffff;
+      min-height:510px;
+      display:flex;
+      flex-direction:column;
+      line-height:normal;
+    }
+    .pro-topbar{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px 8px;
+      border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    .pro-topbar-back{font-size:.8rem;color:#64748b;}
+    .pro-topbar-title{
+      font-size:.82rem;
+      font-weight:800;
+      color:#0f172a;
+    }
+    .pro-hero-card{
+      margin:10px 12px 0;
+      border-radius:18px;
+      background:linear-gradient(135deg,#f59e0b 0%,#fbbf24 50%,#f97316 100%);
+      padding:18px 16px 16px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      box-shadow:0 8px 24px rgba(245,158,11,.3);
+    }
+    .pro-hero-badge{
+      font-size:1.6rem;
+      margin-bottom:6px;
+    }
+    .pro-hero-name{
+      font-size:.95rem;
+      font-weight:800;
+      color:#ffffff;
+      letter-spacing:-.01em;
+    }
+    .pro-hero-sub{
+      font-size:.65rem;
+      color:rgba(255,255,255,.9);
+      font-weight:600;
+      margin-top:2px;
+      margin-bottom:10px;
+    }
+    .pro-hero-since{
+      background:rgba(255,255,255,.22);
+      color:#fff;
+      font-size:.62rem;
+      font-weight:700;
+      padding:4px 14px;
+      border-radius:100px;
+    }
+    .pro-section-label{
+      font-size:.72rem;
+      font-weight:800;
+      color:#0f172a;
+      padding:10px 14px 6px;
+    }
+    .pro-stats-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      padding:0 12px;
+    }
+    .pro-stat-card{
+      border-radius:14px;
+      padding:10px 12px;
+    }
+    .pro-stat-card--blue{background:#eff6ff;}
+    .pro-stat-card--purple{background:#f5f3ff;}
+    .pro-stat-card--amber{background:#fffbeb;}
+    .pro-stat-card--teal{background:#f0fdfa;}
+    .pro-stat-icon{font-size:.9rem;margin-bottom:4px;}
+    .pro-stat-num{
+      font-size:1.35rem;
+      font-weight:800;
+      line-height:1;
+    }
+    .pro-stat-num--blue{color:#1d4ed8;}
+    .pro-stat-num--purple{color:#7c3aed;}
+    .pro-stat-num--amber{color:#d97706;}
+    .pro-stat-num--teal{color:#0f766e;}
+    .pro-stat-label{
+      font-size:.58rem;
+      color:#64748b;
+      font-weight:600;
+      margin-top:2px;
+    }
+    .pro-type-section{
+      padding:8px 14px 10px;
+    }
+    .pro-type-row{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:5px;
+    }
+    .pro-type-name{
+      font-size:.62rem;
+      color:#334155;
+      font-weight:600;
+      width:60px;
+      flex-shrink:0;
+    }
+    .pro-type-bar-wrap{
+      flex:1;
+      height:5px;
+      background:#f1f5f9;
+      border-radius:3px;
+      overflow:hidden;
+    }
+    .pro-type-bar{
+      height:100%;
+      border-radius:3px;
+      background:#1d4ed8;
+    }
+    .pro-type-count{
+      font-size:.6rem;
+      font-weight:700;
+      color:#64748b;
+      width:14px;
+      text-align:right;
+      flex-shrink:0;
+    }
+
+
     .feat-badge-row{
       display:flex;
       align-items:center;
@@ -2671,7 +2948,40 @@
       <!-- ── 06: Contact Import ── -->
       <article class="feat-card alt-reverse reveal" id="feat-contacts" data-feature="feat-contacts">
         <div class="feat-card-visual">
-          <img class="framed-device-img" src="/datewise/images/Screen-4.png" alt="DateWise one-tap contact import screen" loading="lazy" />
+          <div class="phone-frame">
+            <div class="phone-screen phone-screen--contacts">
+              <div class="ob-skip">Skip</div>
+              <div class="ob-hero">
+                <div class="ob-icon-circle">📇</div>
+                <div class="ob-title">Import from Contacts</div>
+                <div class="ob-subtitle">One tap setup</div>
+                <div class="ob-desc">Pull birthdays from your contacts instantly. Tag them as Family, Friends, Work, or VIP.</div>
+                <div class="ob-checklist">
+                  <div class="ob-check-row">
+                    <div class="ob-check-icon ob-check-icon--teal">✓</div>
+                    <div class="ob-check-text">Import birthdays in one tap</div>
+                  </div>
+                  <div class="ob-check-row">
+                    <div class="ob-check-icon ob-check-icon--teal">✓</div>
+                    <div class="ob-check-text">Tag by relationship</div>
+                  </div>
+                  <div class="ob-check-row">
+                    <div class="ob-check-icon ob-check-icon--teal">✓</div>
+                    <div class="ob-check-text">Available anytime in Settings</div>
+                  </div>
+                </div>
+                <div class="ob-info-link">ⓘ Settings → Import from Contacts</div>
+              </div>
+              <div class="ob-dots">
+                <div class="ob-dot"></div>
+                <div class="ob-dot"></div>
+                <div class="ob-dot ob-dot--active"></div>
+                <div class="ob-dot"></div>
+              </div>
+              <div class="ob-cta-teal">Continue</div>
+              <div class="phone-nav-bar"><span class="phone-nav-pill"></span></div>
+            </div>
+          </div>
         </div>
         <div class="feat-card-content reveal d1">
           <div class="feat-badge-row">
@@ -2808,7 +3118,39 @@
       <!-- ── 08: Privacy & Security ── -->
       <article class="feat-card alt-reverse reveal" id="feat-privacy" data-feature="feat-privacy">
         <div class="feat-card-visual">
-          <img class="framed-device-img" src="/datewise/images/Screen-5.png" alt="Private and Secure on-device storage" loading="lazy" />
+          <div class="phone-frame">
+            <div class="phone-screen phone-screen--privacy">
+              <div class="ob-hero">
+                <div style="height:14px"></div>
+                <div class="ob-icon-circle" style="box-shadow:0 6px 18px rgba(22,163,74,.18);">🔒</div>
+                <div class="ob-title" style="color:#15803d;">Private &amp; Secure</div>
+                <div class="ob-subtitle" style="color:#15803d;">Your data, your control</div>
+                <div class="ob-desc" style="color:#14532d;">Everything stays on your device. Optional cloud backup to your own Google Drive for extra safety.</div>
+                <div class="ob-checklist">
+                  <div class="ob-check-row">
+                    <div class="ob-check-icon ob-check-icon--green">✓</div>
+                    <div class="ob-check-text" style="color:#14532d;">Offline-first, no account needed</div>
+                  </div>
+                  <div class="ob-check-row">
+                    <div class="ob-check-icon ob-check-icon--green">✓</div>
+                    <div class="ob-check-text" style="color:#14532d;">Biometric app lock</div>
+                  </div>
+                  <div class="ob-check-row">
+                    <div class="ob-check-icon ob-check-icon--green">✓</div>
+                    <div class="ob-check-text" style="color:#14532d;">Optional Google Drive backup</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ob-dots">
+                <div class="ob-dot" style="background:rgba(22,163,74,.25)"></div>
+                <div class="ob-dot" style="background:rgba(22,163,74,.25)"></div>
+                <div class="ob-dot" style="background:rgba(22,163,74,.25)"></div>
+                <div class="ob-dot ob-dot--active" style="background:#16a34a"></div>
+              </div>
+              <div class="ob-cta-green">Get Started</div>
+              <div class="phone-nav-bar"><span class="phone-nav-pill"></span></div>
+            </div>
+          </div>
         </div>
         <div class="feat-card-content reveal d1">
           <div class="feat-badge-row">
@@ -2832,8 +3174,76 @@
 
       <!-- ── 09: Pro Membership ── -->
       <article class="feat-card reveal" id="feat-pro" data-feature="feat-pro">
-        <div class="feat-card-visual" style="background: radial-gradient(circle at center, #ede9fe 0%, #ddd6fe 100%);">
-          <img class="framed-device-img" src="/datewise/images/Screen-7.png" alt="DateWise Pro membership and lifetime access screen" loading="lazy" />
+        <div class="feat-card-visual" style="background:radial-gradient(circle at center,#ede9fe 0%,#ddd6fe 100%);">
+          <div class="phone-frame">
+            <div class="phone-screen phone-screen--pro">
+              <!-- Top Bar -->
+              <div class="pro-topbar">
+                <span class="pro-topbar-back">←</span>
+                <span class="pro-topbar-title">Pro Membership</span>
+              </div>
+
+              <!-- Hero Card -->
+              <div class="pro-hero-card">
+                <div class="pro-hero-badge">🏅</div>
+                <div class="pro-hero-name">DateWise Pro</div>
+                <div class="pro-hero-sub">Lifetime Access</div>
+                <div class="pro-hero-since">Member since Mar 5, 2026</div>
+              </div>
+
+              <!-- Stats -->
+              <div class="pro-section-label">Your Stats</div>
+              <div class="pro-stats-grid">
+                <div class="pro-stat-card pro-stat-card--blue">
+                  <div class="pro-stat-icon">📅</div>
+                  <div class="pro-stat-num pro-stat-num--blue">21</div>
+                  <div class="pro-stat-label">Total Reminders</div>
+                </div>
+                <div class="pro-stat-card pro-stat-card--purple">
+                  <div class="pro-stat-icon">🔷</div>
+                  <div class="pro-stat-num pro-stat-num--purple">5</div>
+                  <div class="pro-stat-label">Types Used</div>
+                </div>
+                <div class="pro-stat-card pro-stat-card--amber">
+                  <div class="pro-stat-icon">🗓️</div>
+                  <div class="pro-stat-num pro-stat-num--amber">247</div>
+                  <div class="pro-stat-label">Days as Pro</div>
+                </div>
+                <div class="pro-stat-card pro-stat-card--teal">
+                  <div class="pro-stat-icon">🏷️</div>
+                  <div class="pro-stat-num pro-stat-num--teal">2</div>
+                  <div class="pro-stat-label">Tags Used</div>
+                </div>
+              </div>
+
+              <!-- By Type -->
+              <div class="pro-type-section">
+                <div class="pro-section-label" style="padding:8px 0 6px;">By Type</div>
+                <div class="pro-type-row">
+                  <div class="pro-type-name">Birthday</div>
+                  <div class="pro-type-bar-wrap"><div class="pro-type-bar" style="width:85%"></div></div>
+                  <div class="pro-type-count">17</div>
+                </div>
+                <div class="pro-type-row">
+                  <div class="pro-type-name">Anniversary</div>
+                  <div class="pro-type-bar-wrap"><div class="pro-type-bar" style="width:5%"></div></div>
+                  <div class="pro-type-count">1</div>
+                </div>
+                <div class="pro-type-row">
+                  <div class="pro-type-name">Bill/EMI</div>
+                  <div class="pro-type-bar-wrap"><div class="pro-type-bar" style="width:5%"></div></div>
+                  <div class="pro-type-count">1</div>
+                </div>
+                <div class="pro-type-row">
+                  <div class="pro-type-name">Insurance</div>
+                  <div class="pro-type-bar-wrap"><div class="pro-type-bar" style="width:5%"></div></div>
+                  <div class="pro-type-count">1</div>
+                </div>
+              </div>
+
+              <div class="phone-nav-bar"><span class="phone-nav-pill"></span></div>
+            </div>
+          </div>
         </div>
         <div class="feat-card-content reveal d1">
           <div class="feat-badge-row">
