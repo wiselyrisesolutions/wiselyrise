@@ -139,10 +139,11 @@
     <li><strong>Permission Revocation:</strong> You can revoke contacts access at any time via Android Settings &rarr; Apps &rarr; DateWise &rarr; Permissions. Previously imported reminders will remain on your device until you delete them.</li>
   </ul>
 
-  <h3>3.2 Smart Add &amp; On-Device Natural Language Processing</h3>
+  <h3>3.2 Smart Add &amp; On-Device Rule-Based Parsing</h3>
   <p>DateWise includes "Smart Add", which allows you to type or dictate reminder prompts in plain language (e.g. <em>"Mom's birthday next Friday"</em> or <em>"Car insurance due Oct 15"</em>):</p>
   <ul>
-    <li><strong>100% On-Device Parsing:</strong> Natural language date, category, and name detection is executed entirely offline using an in-app deterministic parsing engine. <strong>No prompt text is ever transmitted to OpenAI, Google Cloud, Gemini, or any remote AI server.</strong></li>
+    <li><strong>No AI or Machine Learning:</strong> DateWise does not use artificial intelligence (AI), machine learning models, or cloud-based language processors. Smart Add relies entirely on offline, deterministic date-pattern matching and keyword rules built into the app.</li>
+    <li><strong>100% On-Device Processing:</strong> All text parsing is performed strictly offline on your device. No prompt text, voice dictation, or parsed dates are ever transmitted to WiselyRise, third-party AI services, or any external servers.</li>
     <li><strong>Local Trial Counter:</strong> Free users receive 3 free Smart Add trial uses. The number of trials used is stored locally in device <code>SharedPreferences</code> and is never transmitted to any external server.</li>
   </ul>
 
