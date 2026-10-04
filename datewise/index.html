@@ -924,6 +924,527 @@
     .dock-dw img{width:100%;height:100%;object-fit:contain}
     .dock-camera{background:#e2e8f0;color:#1e293b}
 
+    /* ── SCREEN 01: SMART ADD BOTTOM SHEET ────────────── */
+    .phone-screen--smartadd{
+      background:#f8f7ff;
+      min-height:510px;
+      display:flex;
+      flex-direction:column;
+      line-height:normal;
+    }
+    .sa-main-area{
+      flex:1;
+      padding:10px 14px 6px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .sa-list-item{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:9px 10px;
+      background:#ffffff;
+      border-radius:14px;
+      box-shadow:0 1px 4px rgba(0,0,0,.06);
+      border:1px solid rgba(0,0,0,.04);
+    }
+    .sa-item-left{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .sa-item-icon{
+      width:28px;height:28px;
+      border-radius:9px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:.85rem;
+      flex-shrink:0;
+    }
+    .sa-icon-b{background:#fce7f3;}
+    .sa-icon-e{background:#fef9c3;}
+    .sa-icon-a{background:#dbeafe;}
+    .sa-icon-r{background:#dcfce7;}
+    .sa-item-text{
+      font-size:.72rem;
+      font-weight:700;
+      color:#0f172a;
+    }
+    .sa-item-sub{
+      font-size:.58rem;
+      color:#94a3b8;
+      margin-top:1px;
+    }
+    .sa-item-badge{
+      font-size:.56rem;
+      font-weight:700;
+      padding:2px 7px;
+      border-radius:100px;
+      background:#ede9fe;
+      color:#7c3aed;
+    }
+    .sa-divider{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin:4px 0;
+    }
+    .sa-divider-line{
+      flex:1;
+      height:1px;
+      background:rgba(124,58,237,.15);
+    }
+    .sa-divider-label{
+      font-size:.58rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      color:#7c3aed;
+      text-transform:uppercase;
+    }
+    /* SMART ADD bottom sheet */
+    .sa-bottom-sheet{
+      background:#ffffff;
+      border-top-left-radius:26px;
+      border-top-right-radius:26px;
+      padding:16px 12px 14px;
+      box-shadow:0 -8px 28px rgba(91,33,182,.12);
+      border-top:1px solid rgba(124,58,237,.12);
+    }
+    .sa-sheet-handle{
+      width:36px;height:4px;
+      background:#e2e8f0;
+      border-radius:2px;
+      margin:0 auto 14px;
+    }
+    .sa-sheet-title{
+      font-size:.64rem;
+      font-weight:800;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:#7c3aed;
+      text-align:center;
+      margin-bottom:10px;
+    }
+    .sa-mode-row{
+      display:flex;
+      gap:7px;
+    }
+    .sa-mode-card{
+      flex:1;
+      border-radius:16px;
+      padding:10px 6px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:5px;
+      text-align:center;
+      box-shadow:0 4px 14px rgba(91,33,182,.15),0 1px 3px rgba(0,0,0,.06);
+      transition:transform .2s;
+    }
+    .sa-mode-speak{
+      background:linear-gradient(145deg,#7c3aed,#5b21b6);
+      color:#fff;
+    }
+    .sa-mode-type{
+      background:linear-gradient(145deg,#6d28d9,#4c1d95);
+      color:#fff;
+    }
+    .sa-mode-notes{
+      background:linear-gradient(145deg,#ede9fe,#ddd6fe);
+      color:#4c1d95;
+    }
+    .sa-mode-icon{
+      font-size:1.25rem;
+      line-height:1;
+    }
+    .sa-mode-label{
+      font-size:.65rem;
+      font-weight:800;
+      line-height:1.1;
+    }
+    .sa-mode-hint{
+      font-size:.55rem;
+      opacity:.8;
+      font-weight:500;
+    }
+
+    /* ── SCREEN 02: PEOPLE HUB ───────────────────────── */
+    .phone-screen--people{
+      background:#f8f7ff;
+      min-height:510px;
+      display:flex;
+      flex-direction:column;
+      line-height:normal;
+    }
+    .ph-topbar{
+      background:#ffffff;
+      padding:10px 14px 8px;
+      border-bottom:1px solid rgba(0,0,0,.05);
+    }
+    .ph-topbar-title{
+      font-size:.85rem;
+      font-weight:800;
+      color:#0f172a;
+      margin-bottom:8px;
+    }
+    .ph-filter-row{
+      display:flex;
+      gap:6px;
+    }
+    .ph-pill{
+      padding:4px 10px;
+      border-radius:100px;
+      font-size:.6rem;
+      font-weight:700;
+      background:#f1f5f9;
+      color:#64748b;
+      white-space:nowrap;
+    }
+    .ph-pill--active{
+      background:#7c3aed;
+      color:#fff;
+    }
+    .ph-list{
+      padding:10px 12px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1;
+    }
+    .ph-contact-card{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:#ffffff;
+      border-radius:16px;
+      padding:10px 12px;
+      box-shadow:0 1px 5px rgba(0,0,0,.06);
+      border:1px solid rgba(0,0,0,.04);
+    }
+    .ph-avatar{
+      width:36px;height:36px;
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1rem;
+      font-weight:800;
+      flex-shrink:0;
+      color:#fff;
+      position:relative;
+    }
+    .ph-avatar-a{background:linear-gradient(135deg,#f59e0b,#d97706);}
+    .ph-avatar-b{background:linear-gradient(135deg,#8b5cf6,#6d28d9);}
+    .ph-avatar-c{background:linear-gradient(135deg,#10b981,#059669);}
+    .ph-avatar-d{background:linear-gradient(135deg,#ef4444,#dc2626);}
+    .ph-contact-info{
+      flex:1;
+      overflow:hidden;
+    }
+    .ph-contact-name{
+      font-size:.76rem;
+      font-weight:700;
+      color:#0f172a;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .ph-contact-sub{
+      font-size:.6rem;
+      color:#64748b;
+      margin-top:2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .ph-countdown-badge{
+      font-size:.56rem;
+      font-weight:800;
+      padding:3px 8px;
+      border-radius:100px;
+      white-space:nowrap;
+      flex-shrink:0;
+    }
+    .ph-badge-urgent{background:#fee2e2;color:#dc2626;}
+    .ph-badge-soon{background:#fef3c7;color:#b45309;}
+    .ph-badge-normal{background:#ede9fe;color:#7c3aed;}
+    .ph-nav-dock{
+      background:#ffffff;
+      border-top:1px solid rgba(0,0,0,.06);
+      padding:8px 20px 6px;
+      display:flex;
+      justify-content:space-around;
+      align-items:center;
+    }
+    .ph-dock-tab{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:3px;
+      font-size:.54rem;
+      font-weight:600;
+      color:#94a3b8;
+    }
+    .ph-dock-tab--active{color:#7c3aed;}
+    .ph-dock-tab-icon{font-size:1rem;}
+    .ph-dock-fab{
+      width:36px;height:36px;
+      border-radius:50%;
+      background:#7c3aed;
+      color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.2rem;
+      font-weight:300;
+      box-shadow:0 4px 14px rgba(124,58,237,.35);
+      margin-bottom:2px;
+    }
+
+    /* ── SCREEN 03: INBOX ────────────────────────────── */
+    .phone-screen--inbox{
+      background:#f8f7ff;
+      min-height:510px;
+      display:flex;
+      flex-direction:column;
+      line-height:normal;
+    }
+    .ib-topbar{
+      background:#ffffff;
+      padding:10px 14px 10px;
+      border-bottom:1px solid rgba(0,0,0,.05);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .ib-topbar-title{
+      font-size:.85rem;
+      font-weight:800;
+      color:#0f172a;
+    }
+    .ib-badge{
+      background:#7c3aed;
+      color:#fff;
+      font-size:.6rem;
+      font-weight:800;
+      padding:2px 8px;
+      border-radius:100px;
+    }
+    .ib-waiting-banner{
+      margin:10px 12px 2px;
+      padding:8px 12px;
+      background:linear-gradient(90deg,#ede9fe,#f5f3ff);
+      border-radius:12px;
+      border-left:3px solid #7c3aed;
+      font-size:.66rem;
+      font-weight:700;
+      color:#4c1d95;
+    }
+    .ib-list{
+      padding:8px 12px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1;
+    }
+    .ib-note-card{
+      background:#ffffff;
+      border-radius:16px;
+      padding:11px 12px;
+      box-shadow:0 1px 5px rgba(0,0,0,.06);
+      border:1px solid rgba(0,0,0,.04);
+    }
+    .ib-note-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      margin-bottom:6px;
+    }
+    .ib-note-title{
+      font-size:.74rem;
+      font-weight:700;
+      color:#0f172a;
+      line-height:1.3;
+      max-width:75%;
+    }
+    .ib-note-time{
+      font-size:.56rem;
+      color:#94a3b8;
+      white-space:nowrap;
+    }
+    .ib-note-body{
+      font-size:.64rem;
+      color:#475569;
+      line-height:1.4;
+      margin-bottom:8px;
+    }
+    .ib-tag-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:5px;
+    }
+    .ib-tag{
+      font-size:.56rem;
+      font-weight:700;
+      padding:2px 8px;
+      border-radius:100px;
+    }
+    .ib-tag-purple{background:#ede9fe;color:#7c3aed;}
+    .ib-tag-blue{background:#dbeafe;color:#1d4ed8;}
+    .ib-tag-green{background:#dcfce7;color:#15803d;}
+    .ib-tag-amber{background:#fef3c7;color:#b45309;}
+    .ib-convert-btn{
+      margin-top:8px;
+      width:100%;
+      padding:7px;
+      border-radius:10px;
+      background:linear-gradient(90deg,#7c3aed,#6d28d9);
+      color:#fff;
+      font-size:.65rem;
+      font-weight:800;
+      text-align:center;
+      letter-spacing:.03em;
+    }
+
+    /* ── SCREEN 04: CALENDAR + TIMELINE ─────────────── */
+    .phone-screen--calendar{
+      background:#ffffff;
+      min-height:510px;
+      display:flex;
+      flex-direction:column;
+      line-height:normal;
+    }
+    .cal-topbar{
+      background:#ffffff;
+      padding:10px 14px 6px;
+      border-bottom:1px solid rgba(0,0,0,.05);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .cal-month-label{
+      font-size:.82rem;
+      font-weight:800;
+      color:#0f172a;
+    }
+    .cal-nav-btns{
+      display:flex;
+      gap:10px;
+      font-size:.78rem;
+      color:#7c3aed;
+      font-weight:700;
+    }
+    .cal-grid-wrap{
+      padding:8px 10px 6px;
+    }
+    .cal-day-headers{
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      margin-bottom:4px;
+    }
+    .cal-dh{
+      text-align:center;
+      font-size:.55rem;
+      font-weight:700;
+      color:#94a3b8;
+      padding:2px 0;
+    }
+    .cal-grid{
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:2px;
+    }
+    .cal-cell{
+      aspect-ratio:1/1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      border-radius:8px;
+      position:relative;
+      font-size:.62rem;
+      font-weight:600;
+      color:#334155;
+    }
+    .cal-cell--empty{color:transparent;}
+    .cal-cell--today{
+      background:#7c3aed;
+      color:#fff;
+      font-weight:800;
+    }
+    .cal-cell--marked{
+      font-weight:800;
+      color:#0f172a;
+    }
+    .cal-cell-num{line-height:1;}
+    .cal-cell-marker{
+      font-size:.45rem;
+      line-height:1;
+      margin-top:1px;
+    }
+    .cal-divider{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px 4px;
+    }
+    .cal-divider-line{
+      flex:1;height:1px;
+      background:rgba(0,0,0,.07);
+    }
+    .cal-divider-label{
+      font-size:.58rem;
+      font-weight:800;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      color:#7c3aed;
+    }
+    .cal-timeline{
+      padding:4px 10px 8px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      flex:1;
+    }
+    .cal-tl-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      background:#f8fafc;
+      border-radius:12px;
+      padding:8px 10px;
+      border-left:2.5px solid #e2e8f0;
+    }
+    .cal-tl-item--urgent{
+      background:#fef2f2;
+      border-left-color:#ef4444;
+    }
+    .cal-tl-item--soon{
+      background:#fffbeb;
+      border-left-color:#f59e0b;
+    }
+    .cal-tl-icon{font-size:.88rem;flex-shrink:0;}
+    .cal-tl-info{flex:1;overflow:hidden;}
+    .cal-tl-name{
+      font-size:.7rem;
+      font-weight:700;
+      color:#0f172a;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .cal-tl-date{
+      font-size:.56rem;
+      color:#64748b;
+    }
+    .cal-tl-badge{
+      font-size:.54rem;
+      font-weight:800;
+      padding:2px 6px;
+      border-radius:100px;
+      white-space:nowrap;
+      flex-shrink:0;
+    }
+    .cal-badge-red{background:#fee2e2;color:#dc2626;}
+    .cal-badge-amber{background:#fef3c7;color:#b45309;}
+    .cal-badge-violet{background:#ede9fe;color:#7c3aed;}
+
     /* Content styling */
     .feat-badge-row{
       display:flex;
@@ -1655,8 +2176,69 @@
       <article class="feat-card reveal" id="feat-smartadd" data-feature="feat-smartadd">
         <div class="feat-card-visual">
           <div class="phone-frame">
-            <div class="phone-screen">
-              <img src="/datewise/images/app_quickadd.jpg" alt="DateWise 3-way Quick Add and Smart Add sheet" loading="lazy" />
+            <div class="phone-screen phone-screen--smartadd">
+              <!-- Status Bar -->
+              <div class="phone-status-bar">
+                <span>9:41</span>
+                <div class="status-bar-icons">
+                  <span>VoLTE</span><span>4G</span><span>94%</span>
+                </div>
+              </div>
+
+              <!-- Main app list area (partial) -->
+              <div class="sa-main-area">
+                <div class="sa-list-item">
+                  <div class="sa-item-left">
+                    <div class="sa-item-icon sa-icon-b">🎂</div>
+                    <div>
+                      <div class="sa-item-text">Mom's Birthday</div>
+                      <div class="sa-item-sub">Oct 7 · Family</div>
+                    </div>
+                  </div>
+                  <span class="sa-item-badge">In 3 days</span>
+                </div>
+                <div class="sa-list-item">
+                  <div class="sa-item-left">
+                    <div class="sa-item-icon sa-icon-e">🧾</div>
+                    <div>
+                      <div class="sa-item-text">Ravi Chit EMI</div>
+                      <div class="sa-item-sub">Oct 11 · Monthly</div>
+                    </div>
+                  </div>
+                  <span class="sa-item-badge">In 7 days</span>
+                </div>
+                <div class="sa-divider">
+                  <div class="sa-divider-line"></div>
+                  <span class="sa-divider-label">+ Add New</span>
+                  <div class="sa-divider-line"></div>
+                </div>
+              </div>
+
+              <!-- SMART ADD Bottom Sheet -->
+              <div class="sa-bottom-sheet">
+                <div class="sa-sheet-handle"></div>
+                <div class="sa-sheet-title">⚡ Smart Add</div>
+                <div class="sa-mode-row">
+                  <div class="sa-mode-card sa-mode-speak">
+                    <div class="sa-mode-icon">🎙️</div>
+                    <div class="sa-mode-label">Speak</div>
+                    <div class="sa-mode-hint">Voice prompt</div>
+                  </div>
+                  <div class="sa-mode-card sa-mode-type">
+                    <div class="sa-mode-icon">⌨️</div>
+                    <div class="sa-mode-label">Type</div>
+                    <div class="sa-mode-hint">Natural text</div>
+                  </div>
+                  <div class="sa-mode-card sa-mode-notes">
+                    <div class="sa-mode-icon">📝</div>
+                    <div class="sa-mode-label">Notes</div>
+                    <div class="sa-mode-hint">Save to Inbox</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Nav bar -->
+              <div class="phone-nav-bar"><span class="phone-nav-pill"></span></div>
             </div>
           </div>
         </div>
@@ -1684,8 +2266,80 @@
       <article class="feat-card alt-reverse reveal" id="feat-peoplehub" data-feature="feat-peoplehub">
         <div class="feat-card-visual">
           <div class="phone-frame">
-            <div class="phone-screen">
-              <img src="/datewise/images/app_people.jpg" alt="DateWise People Hub with photo avatars and relationship circles" loading="lazy" />
+            <div class="phone-screen phone-screen--people">
+              <!-- Status Bar -->
+              <div class="phone-status-bar">
+                <span>9:41</span>
+                <div class="status-bar-icons">
+                  <span>VoLTE</span><span>4G</span><span>94%</span>
+                </div>
+              </div>
+
+              <!-- Top Bar -->
+              <div class="ph-topbar">
+                <div class="ph-topbar-title">👥 People</div>
+                <div class="ph-filter-row">
+                  <span class="ph-pill ph-pill--active">All</span>
+                  <span class="ph-pill">Family</span>
+                  <span class="ph-pill">Friends</span>
+                  <span class="ph-pill">Work</span>
+                </div>
+              </div>
+
+              <!-- Contact List -->
+              <div class="ph-list">
+                <div class="ph-contact-card">
+                  <div class="ph-avatar ph-avatar-a">V</div>
+                  <div class="ph-contact-info">
+                    <div class="ph-contact-name">Vairaa</div>
+                    <div class="ph-contact-sub">In 3 days · 🎂 Birthday · Family</div>
+                  </div>
+                  <span class="ph-countdown-badge ph-badge-urgent">3 days</span>
+                </div>
+                <div class="ph-contact-card">
+                  <div class="ph-avatar ph-avatar-b">P</div>
+                  <div class="ph-contact-info">
+                    <div class="ph-contact-name">Priya</div>
+                    <div class="ph-contact-sub">In 12 days · 🎂 Birthday · Friends</div>
+                  </div>
+                  <span class="ph-countdown-badge ph-badge-soon">12 days</span>
+                </div>
+                <div class="ph-contact-card">
+                  <div class="ph-avatar ph-avatar-c">R</div>
+                  <div class="ph-contact-info">
+                    <div class="ph-contact-name">Ravi Kumar</div>
+                    <div class="ph-contact-sub">In 28 days · 🎂 Birthday · Work</div>
+                  </div>
+                  <span class="ph-countdown-badge ph-badge-normal">28 days</span>
+                </div>
+                <div class="ph-contact-card">
+                  <div class="ph-avatar ph-avatar-d">A</div>
+                  <div class="ph-contact-info">
+                    <div class="ph-contact-name">Anjali</div>
+                    <div class="ph-contact-sub">In 45 days · 💍 Anniversary</div>
+                  </div>
+                  <span class="ph-countdown-badge ph-badge-normal">45 days</span>
+                </div>
+              </div>
+
+              <!-- Nav Dock -->
+              <div class="ph-nav-dock">
+                <div class="ph-dock-tab">
+                  <div class="ph-dock-tab-icon">📅</div>
+                  <div>Events</div>
+                </div>
+                <div class="ph-dock-tab ph-dock-tab--active">
+                  <div class="ph-dock-tab-icon">👥</div>
+                  <div>People</div>
+                </div>
+                <div class="ph-dock-fab">＋</div>
+                <div class="ph-dock-tab">
+                  <div class="ph-dock-tab-icon">📥</div>
+                  <div>Inbox</div>
+                </div>
+              </div>
+
+              <div class="phone-nav-bar"><span class="phone-nav-pill"></span></div>
             </div>
           </div>
         </div>
@@ -1713,8 +2367,51 @@
       <article class="feat-card reveal" id="feat-inbox" data-feature="feat-inbox">
         <div class="feat-card-visual">
           <div class="phone-frame">
-            <div class="phone-screen">
-              <img src="/datewise/images/app_inbox.jpg" alt="DateWise dedicated Inbox tab with multi-tag notes and triage list" loading="lazy" />
+            <div class="phone-screen phone-screen--inbox">
+              <!-- Status Bar -->
+              <div class="phone-status-bar">
+                <span>9:41</span>
+                <div class="status-bar-icons">
+                  <span>VoLTE</span><span>4G</span><span>94%</span>
+                </div>
+              </div>
+
+              <!-- Inbox Header -->
+              <div class="ib-topbar">
+                <div class="ib-topbar-title">📥 Inbox</div>
+                <span class="ib-badge">2 pending</span>
+              </div>
+
+              <!-- Waiting Banner -->
+              <div class="ib-waiting-banner">2 items waiting to be scheduled</div>
+
+              <!-- Note Cards -->
+              <div class="ib-list">
+                <div class="ib-note-card">
+                  <div class="ib-note-header">
+                    <div class="ib-note-title">Car insurance renewal — check Skoda policy docs</div>
+                    <div class="ib-note-time">Oct 2</div>
+                  </div>
+                  <div class="ib-note-body">Need to compare quotes before renewing. Due mid-Oct.</div>
+                  <div class="ib-tag-row">
+                    <span class="ib-tag ib-tag-purple">🛡️ Insurance</span>
+                    <span class="ib-tag ib-tag-amber">🚗 Vehicle</span>
+                  </div>
+                  <div class="ib-convert-btn">⚡ Convert to Reminder</div>
+                </div>
+                <div class="ib-note-card">
+                  <div class="ib-note-header">
+                    <div class="ib-note-title">Book dentist appointment for Dec</div>
+                    <div class="ib-note-time">Sep 30</div>
+                  </div>
+                  <div class="ib-tag-row">
+                    <span class="ib-tag ib-tag-blue">🏥 Health</span>
+                    <span class="ib-tag ib-tag-green">👨‍👩‍👧 Family</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="phone-nav-bar"><span class="phone-nav-pill"></span></div>
             </div>
           </div>
         </div>
@@ -1742,8 +2439,105 @@
       <article class="feat-card alt-reverse reveal" id="feat-timeline" data-feature="feat-timeline">
         <div class="feat-card-visual">
           <div class="phone-frame">
-            <div class="phone-screen">
-              <img src="/datewise/images/app_calendar.jpg" alt="DateWise Interactive Calendar and urgency-grouped Timeline" loading="lazy" />
+            <div class="phone-screen phone-screen--calendar">
+              <!-- Status Bar -->
+              <div class="phone-status-bar">
+                <span>9:41</span>
+                <div class="status-bar-icons">
+                  <span>VoLTE</span><span>4G</span><span>94%</span>
+                </div>
+              </div>
+
+              <!-- Calendar Top Bar -->
+              <div class="cal-topbar">
+                <span class="cal-month-label">📅 October 2026</span>
+                <div class="cal-nav-btns"><span>‹</span><span>›</span></div>
+              </div>
+
+              <!-- Calendar Grid -->
+              <div class="cal-grid-wrap">
+                <div class="cal-day-headers">
+                  <div class="cal-dh">S</div><div class="cal-dh">M</div><div class="cal-dh">T</div>
+                  <div class="cal-dh">W</div><div class="cal-dh">T</div><div class="cal-dh">F</div><div class="cal-dh">S</div>
+                </div>
+                <div class="cal-grid">
+                  <!-- Row 1: empty, empty, empty, 1, 2, 3, 4 -->
+                  <div class="cal-cell cal-cell--empty">·</div><div class="cal-cell cal-cell--empty">·</div><div class="cal-cell cal-cell--empty">·</div>
+                  <div class="cal-cell"><div class="cal-cell-num">1</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">2</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">3</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">4</div></div>
+                  <!-- Row 2: 5, 6, 7, 8, 9, 10, 11 -->
+                  <div class="cal-cell"><div class="cal-cell-num">5</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">6</div></div>
+                  <div class="cal-cell cal-cell--marked"><div class="cal-cell-num">7</div><div class="cal-cell-marker">🎂</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">8</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">9</div></div>
+                  <div class="cal-cell cal-cell--today"><div class="cal-cell-num">10</div></div>
+                  <div class="cal-cell cal-cell--marked"><div class="cal-cell-num">11</div><div class="cal-cell-marker">💵</div></div>
+                  <!-- Row 3: 12–18 -->
+                  <div class="cal-cell"><div class="cal-cell-num">12</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">13</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">14</div></div>
+                  <div class="cal-cell cal-cell--marked"><div class="cal-cell-num">15</div><div class="cal-cell-marker">🛡️</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">16</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">17</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">18</div></div>
+                  <!-- Row 4: 19–25 -->
+                  <div class="cal-cell"><div class="cal-cell-num">19</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">20</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">21</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">22</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">23</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">24</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">25</div></div>
+                  <!-- Row 5: 26–31 -->
+                  <div class="cal-cell"><div class="cal-cell-num">26</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">27</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">28</div></div>
+                  <div class="cal-cell"><div class="cal-cell-num">29</div></div>
+                  <div class="cal-cell cal-cell--marked"><div class="cal-cell-num">30</div><div class="cal-cell-marker">🎂</div></div>
+                  <div class="cal-cell cal-cell--marked"><div class="cal-cell-num">31</div><div class="cal-cell-marker">🏫</div></div>
+                  <div class="cal-cell cal-cell--empty">·</div>
+                </div>
+              </div>
+
+              <!-- Timeline Divider -->
+              <div class="cal-divider">
+                <div class="cal-divider-line"></div>
+                <span class="cal-divider-label">This Week</span>
+                <div class="cal-divider-line"></div>
+              </div>
+
+              <!-- Urgency Timeline -->
+              <div class="cal-timeline">
+                <div class="cal-tl-item cal-tl-item--urgent">
+                  <div class="cal-tl-icon">🎂</div>
+                  <div class="cal-tl-info">
+                    <div class="cal-tl-name">Vairaa's Birthday</div>
+                    <div class="cal-tl-date">Oct 7 · 6 → 7 yrs</div>
+                  </div>
+                  <span class="cal-tl-badge cal-badge-red">In 3 days</span>
+                </div>
+                <div class="cal-tl-item cal-tl-item--soon">
+                  <div class="cal-tl-icon">💵</div>
+                  <div class="cal-tl-info">
+                    <div class="cal-tl-name">Ravi Chit EMI</div>
+                    <div class="cal-tl-date">Oct 11 · Monthly</div>
+                  </div>
+                  <span class="cal-tl-badge cal-badge-amber">In 7 days</span>
+                </div>
+                <div class="cal-tl-item">
+                  <div class="cal-tl-icon">🛡️</div>
+                  <div class="cal-tl-info">
+                    <div class="cal-tl-name">Skoda Car Insurance</div>
+                    <div class="cal-tl-date">Oct 15 · Yearly</div>
+                  </div>
+                  <span class="cal-tl-badge cal-badge-violet">In 11 days</span>
+                </div>
+              </div>
+
+              <div class="phone-nav-bar"><span class="phone-nav-pill"></span></div>
             </div>
           </div>
         </div>
