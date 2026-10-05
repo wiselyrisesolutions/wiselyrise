@@ -1,6 +1,6 @@
 {
-  "latest_build": 82,
-  "latest_version": "2.7.22",
+  "latest_build": 88,
+  "latest_version": "2.7.28",
   "min_build": 1,
   "changelog": "🐛 Bug fixes\n⚡ Enhanced Smart Add features.\n🔔 Cleaner notification cards & voice announcements.",
   "store_url": "https://play.google.com/store/apps/details?id=com.datewise.app"
