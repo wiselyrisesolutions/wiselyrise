@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GrabWise — The Smartest Grocery Planner for Indian Families</title>
+  <meta name="description" content="GrabWise is the smartest household grocery planner for Indian families. Offline-first, Tamil & English, zero ads. Plan. Grab. Done." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================
+       CSS RESET & BASE
+    ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --white: #FFFFFF;
+      --cream: #F6FBF7;
+      --leaf: #2C7A4D;
+      --deep-leaf: #1B4D31;
+      --light-green: #EBF5EE;
+      --turmeric: #E8920A;
+      --chilli: #D32F2F;
+      --muted: #6B8A72;
+      --text-dark: #1A2E21;
+      --text-mid: #3D5A44;
+      --border: #D4EAD9;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ============================================
+       NAVIGATION
+    ============================================ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(44, 122, 77, 0.1);
+      padding: 0 2rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: var(--deep-leaf);
+    }
+
+    .nav-logo .leaf-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--leaf), var(--deep-leaf));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 2px 8px rgba(44,122,77,0.25);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--leaf);
+    }
+
+    .nav-cta {
+      background: var(--leaf);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s !important;
+      box-shadow: 0 2px 10px rgba(44,122,77,0.3);
+    }
+
+    .nav-cta:hover {
+      background: var(--deep-leaf) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(44,122,77,0.4) !important;
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--deep-leaf);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ============================================
+       HERO SECTION
+    ============================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(160deg, #F6FBF7 0%, #EBF5EE 50%, #F0FAF3 100%);
+      padding: 120px 2rem 80px;
+    }
+
+    /* Gravity Animation Container */
+    .gravity-field {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .grocery-emoji {
+      position: absolute;
+      top: -80px;
+      font-size: 32px;
+      opacity: 0.22;
+      animation: floatDown linear infinite;
+      user-select: none;
+      will-change: transform;
+    }
+
+    @keyframes floatDown {
+      0% {
+        transform: translateY(-120px) translateX(0px) rotate(0deg);
+        opacity: 0;
+      }
+      5% {
+        opacity: var(--emoji-opacity, 0.22);
+      }
+      48% {
+        transform: translateY(48vh) translateX(var(--drift-mid, 18px)) rotate(var(--rot-mid, 15deg));
+      }
+      95% {
+        opacity: var(--emoji-opacity, 0.22);
+      }
+      100% {
+        transform: translateY(115vh) translateX(var(--drift-end, -12px)) rotate(var(--rot-end, -10deg));
+        opacity: 0;
+      }
+    }
+
+    /* Individual emoji configurations */
+    .ge-1  { left: 4%;   font-size: 38px; --drift-mid: 14px;  --drift-end: -8px;  --rot-mid: 20deg;   --rot-end: -15deg;  --emoji-opacity: 0.18; animation-duration: 18s; animation-delay: 0s;     }
+    .ge-2  { left: 11%;  font-size: 28px; --drift-mid: -20px; --drift-end: 10px;  --rot-mid: -12deg;  --rot-end: 25deg;   --emoji-opacity: 0.25; animation-duration: 22s; animation-delay: -5s;    }
+    .ge-3  { left: 19%;  font-size: 44px; --drift-mid: 22px;  --drift-end: -15px; --rot-mid: 30deg;   --rot-end: -5deg;   --emoji-opacity: 0.15; animation-duration: 15s; animation-delay: -10s;   }
+    .ge-4  { left: 28%;  font-size: 30px; --drift-mid: -10px; --drift-end: 20px;  --rot-mid: -20deg;  --rot-end: 10deg;   --emoji-opacity: 0.30; animation-duration: 25s; animation-delay: -2s;    }
+    .ge-5  { left: 36%;  font-size: 36px; --drift-mid: 18px;  --drift-end: -22px; --rot-mid: 15deg;   --rot-end: -30deg;  --emoji-opacity: 0.20; animation-duration: 19s; animation-delay: -15s;   }
+    .ge-6  { left: 44%;  font-size: 24px; --drift-mid: -14px; --drift-end: 8px;   --rot-mid: -8deg;   --rot-end: 18deg;   --emoji-opacity: 0.28; animation-duration: 12s; animation-delay: -7s;    }
+    .ge-7  { left: 52%;  font-size: 40px; --drift-mid: 24px;  --drift-end: -18px; --rot-mid: 22deg;   --rot-end: -12deg;  --emoji-opacity: 0.16; animation-duration: 21s; animation-delay: -20s;   }
+    .ge-8  { left: 60%;  font-size: 32px; --drift-mid: -16px; --drift-end: 12px;  --rot-mid: -18deg;  --rot-end: 28deg;   --emoji-opacity: 0.22; animation-duration: 16s; animation-delay: -3s;    }
+    .ge-9  { left: 68%;  font-size: 26px; --drift-mid: 10px;  --drift-end: -24px; --rot-mid: 12deg;   --rot-end: -20deg;  --emoji-opacity: 0.32; animation-duration: 24s; animation-delay: -12s;   }
+    .ge-10 { left: 76%;  font-size: 42px; --drift-mid: -22px; --drift-end: 16px;  --rot-mid: -25deg;  --rot-end: 8deg;    --emoji-opacity: 0.17; animation-duration: 14s; animation-delay: -8s;    }
+    .ge-11 { left: 84%;  font-size: 28px; --drift-mid: 16px;  --drift-end: -10px; --rot-mid: 18deg;   --rot-end: -22deg;  --emoji-opacity: 0.26; animation-duration: 20s; animation-delay: -18s;   }
+    .ge-12 { left: 92%;  font-size: 34px; --drift-mid: -8px;  --drift-end: 20px;  --rot-mid: -10deg;  --rot-end: 15deg;   --emoji-opacity: 0.20; animation-duration: 17s; animation-delay: -4s;    }
+    .ge-13 { left: 7%;   font-size: 30px; --drift-mid: 20px;  --drift-end: -14px; --rot-mid: 28deg;   --rot-end: -8deg;   --emoji-opacity: 0.24; animation-duration: 23s; animation-delay: -22s;   }
+    .ge-14 { left: 15%;  font-size: 38px; --drift-mid: -12px; --drift-end: 18px;  --rot-mid: -15deg;  --rot-end: 32deg;   --emoji-opacity: 0.18; animation-duration: 13s; animation-delay: -6s;    }
+    .ge-15 { left: 23%;  font-size: 26px; --drift-mid: 14px;  --drift-end: -20px; --rot-mid: 10deg;   --rot-end: -18deg;  --emoji-opacity: 0.30; animation-duration: 28s; animation-delay: -16s;   }
+    .ge-16 { left: 31%;  font-size: 46px; --drift-mid: -18px; --drift-end: 10px;  --rot-mid: -22deg;  --rot-end: 14deg;   --emoji-opacity: 0.14; animation-duration: 11s; animation-delay: -9s;    }
+    .ge-17 { left: 40%;  font-size: 32px; --drift-mid: 22px;  --drift-end: -16px; --rot-mid: 16deg;   --rot-end: -26deg;  --emoji-opacity: 0.22; animation-duration: 26s; animation-delay: -25s;   }
+    .ge-18 { left: 48%;  font-size: 24px; --drift-mid: -10px; --drift-end: 14px;  --rot-mid: -8deg;   --rot-end: 20deg;   --emoji-opacity: 0.35; animation-duration: 15s; animation-delay: -11s;   }
+    .ge-19 { left: 56%;  font-size: 36px; --drift-mid: 12px;  --drift-end: -22px; --rot-mid: 24deg;   --rot-end: -10deg;  --emoji-opacity: 0.20; animation-duration: 18s; animation-delay: -30s;   }
+    .ge-20 { left: 64%;  font-size: 28px; --drift-mid: -20px; --drift-end: 8px;   --rot-mid: -14deg;  --rot-end: 26deg;   --emoji-opacity: 0.27; animation-duration: 22s; animation-delay: -14s;   }
+    .ge-21 { left: 72%;  font-size: 40px; --drift-mid: 16px;  --drift-end: -12px; --rot-mid: 20deg;   --rot-end: -18deg;  --emoji-opacity: 0.17; animation-duration: 19s; animation-delay: -1s;    }
+    .ge-22 { left: 80%;  font-size: 30px; --drift-mid: -14px; --drift-end: 18px;  --rot-mid: -18deg;  --rot-end: 12deg;   --emoji-opacity: 0.28; animation-duration: 24s; animation-delay: -19s;   }
+    .ge-23 { left: 88%;  font-size: 22px; --drift-mid: 18px;  --drift-end: -10px; --rot-mid: 12deg;   --rot-end: -24deg;  --emoji-opacity: 0.35; animation-duration: 16s; animation-delay: -13s;   }
+    .ge-24 { left: 2%;   font-size: 34px; --drift-mid: -8px;  --drift-end: 16px;  --rot-mid: -6deg;   --rot-end: 18deg;   --emoji-opacity: 0.22; animation-duration: 20s; animation-delay: -24s;   }
+    .ge-25 { left: 96%;  font-size: 28px; --drift-mid: 10px;  --drift-end: -20px; --rot-mid: 14deg;   --rot-end: -8deg;   --emoji-opacity: 0.24; animation-duration: 14s; animation-delay: -17s;   }
+    .ge-26 { left: 35%;  font-size: 32px; --drift-mid: -16px; --drift-end: 12px;  --rot-mid: -20deg;  --rot-end: 16deg;   --emoji-opacity: 0.19; animation-duration: 27s; animation-delay: -28s;   }
+    .ge-27 { left: 55%;  font-size: 26px; --drift-mid: 20px;  --drift-end: -14px; --rot-mid: 18deg;   --rot-end: -22deg;  --emoji-opacity: 0.30; animation-duration: 12s; animation-delay: -21s;   }
+    .ge-28 { left: 74%;  font-size: 44px; --drift-mid: -12px; --drift-end: 22px;  --rot-mid: -10deg;  --rot-end: 30deg;   --emoji-opacity: 0.13; animation-duration: 25s; animation-delay: -26s;   }
+    .ge-29 { left: 46%;  font-size: 30px; --drift-mid: 14px;  --drift-end: -18px; --rot-mid: 22deg;   --rot-end: -12deg;  --emoji-opacity: 0.26; animation-duration: 21s; animation-delay: -33s;   }
+    .ge-30 { left: 22%;  font-size: 36px; --drift-mid: -22px; --drift-end: 10px;  --rot-mid: -16deg;  --rot-end: 24deg;   --emoji-opacity: 0.21; animation-duration: 23s; animation-delay: -35s;   }
+    .ge-31 { left: 83%;  font-size: 28px; --drift-mid: 18px;  --drift-end: -8px;  --rot-mid: 10deg;   --rot-end: -20deg;  --emoji-opacity: 0.29; animation-duration: 17s; animation-delay: -40s;   }
+    .ge-32 { left: 62%;  font-size: 42px; --drift-mid: -14px; --drift-end: 20px;  --rot-mid: -24deg;  --rot-end: 8deg;    --emoji-opacity: 0.15; animation-duration: 29s; animation-delay: -38s;   }
+
+    /* Hero Content */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 780px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(44, 122, 77, 0.1);
+      border: 1px solid rgba(44, 122, 77, 0.2);
+      color: var(--leaf);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero h1 {
+      font-size: clamp(52px, 8vw, 88px);
+      font-weight: 900;
+      line-height: 1.0;
+      color: var(--deep-leaf);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero h1 .accent {
+      color: var(--turmeric);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      color: var(--text-mid);
+      max-width: 560px;
+      margin: 0 auto 1rem;
+      font-weight: 400;
+      line-height: 1.65;
+    }
+
+    .hero-sub-tamil {
+      font-family: 'Noto Sans Tamil', sans-serif;
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--leaf);
+      color: var(--white);
+      padding: 15px 28px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.22s;
+      box-shadow: 0 4px 20px rgba(44,122,77,0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--deep-leaf);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(44,122,77,0.45);
+    }
+
+    .btn-primary .play-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--leaf);
+      padding: 15px 28px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      border: 2px solid var(--leaf);
+      transition: all 0.22s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--light-green);
+      transform: translateY(-2px);
+    }
+
+    .trust-chips {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .trust-chips span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .trust-chips .check {
+      width: 18px;
+      height: 18px;
+      background: var(--leaf);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       SECTION SHARED STYLES
+    ============================================ */
+    section {
+      padding: 96px 2rem;
+    }
+
+    .section-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--leaf);
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--deep-leaf);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal-delay-6 { transition-delay: 0.6s; }
+
+    /* ============================================
+       PROBLEM-SOLUTION SECTION
+    ============================================ */
+    .problem-section {
+      background: var(--white);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .problem-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--leaf), var(--turmeric));
+      border-radius: 20px 20px 0 0;
+    }
+
+    .problem-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(44,122,77,0.12);
+    }
+
+    .problem-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .problem-before {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--chilli);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      background: rgba(211,47,47,0.07);
+      padding: 6px 12px;
+      border-radius: 8px;
+      width: fit-content;
+    }
+
+    .problem-arrow {
+      font-size: 1.5rem;
+      color: var(--leaf);
+      margin: 0.75rem 0;
+    }
+
+    .problem-after {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--leaf);
+      font-weight: 600;
+      background: rgba(44,122,77,0.08);
+      padding: 6px 12px;
+      border-radius: 8px;
+      width: fit-content;
+    }
+
+    .problem-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--deep-leaf);
+      margin: 1rem 0 0.5rem;
+    }
+
+    .problem-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       FEATURES SECTION
+    ============================================ */
+    .features-section {
+      background: var(--cream);
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--leaf);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(44,122,77,0.12);
+    }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--deep-leaf);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       HOW IT WORKS SECTION
+    ============================================ */
+    .how-section {
+      background: var(--white);
+    }
+
+    .how-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+      align-items: start;
+    }
+
+    .steps-container::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: calc(16.67% + 24px);
+      right: calc(16.67% + 24px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--leaf), var(--turmeric), var(--leaf));
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-number {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, var(--leaf), var(--deep-leaf));
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 4px 20px rgba(44,122,77,0.35);
+    }
+
+    .step-emoji {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .step-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--deep-leaf);
+      margin-bottom: 0.6rem;
+    }
+
+    .step-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================
+       STATS BAND
+    ============================================ */
+    .stats-band {
+      background: linear-gradient(135deg, var(--leaf) 0%, var(--deep-leaf) 100%);
+      padding: 56px 2rem;
+    }
+
+    .stats-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item {
+      color: var(--white);
+    }
+
+    .stat-number {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+      color: #B8F0CC;
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.4;
+    }
+
+    /* ============================================
+       DOWNLOAD CTA SECTION
+    ============================================ */
+    .download-section {
+      background: var(--deep-leaf);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(44,122,77,0.4) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .download-section .section-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .download-section h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .download-section p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .download-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .play-store-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      color: var(--deep-leaf);
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.22s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .play-store-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+
+    .play-store-badge .badge-icon {
+      font-size: 1.6rem;
+    }
+
+    .play-store-badge .badge-text small {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .play-store-badge .badge-text strong {
+      font-size: 1rem;
+      color: var(--deep-leaf);
+    }
+
+    .btn-download-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid rgba(255,255,255,0.35);
+      transition: all 0.22s;
+    }
+
+    .btn-download-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.6);
+      transform: translateY(-2px);
+    }
+
+    .download-note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: #0E2A1A;
+      padding: 56px 2rem 32px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .footer-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand .nav-logo {
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      max-width: 280px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .footer-brand .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 1rem;
+      color: #B8F0CC;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .footer-brand .contact-link:hover {
+      color: var(--white);
+    }
+
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.83rem;
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+
+    .footer-bottom a:hover {
+      color: rgba(255,255,255,0.75);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    /* ============================================
+       MOBILE RESPONSIVE
+    ============================================ */
+    @media (max-width: 768px) {
+
+      nav {
+        padding: 0 1.25rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.25rem;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 1rem;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .hero {
+        padding: 100px 1.25rem 60px;
+      }
+
+      .hero h1 {
+        font-size: clamp(42px, 11vw, 64px);
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-primary, .btn-secondary {
+        justify-content: center;
+      }
+
+      .trust-chips {
+        gap: 0.75rem;
+        font-size: 0.82rem;
+      }
+
+      section {
+        padding: 64px 1.25rem;
+      }
+
+      .problem-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .steps-container::before {
+        display: none;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .download-ctas {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .play-store-badge, .btn-download-secondary {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .grocery-emoji {
+        font-size: 20px !important;
+        opacity: 0.12 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==============================
+       NAVIGATION
+  ============================== -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="leaf-icon">🌿</div>
+      GrabWise
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://play.google.com/store/apps/details?id=com.grabwise.app" class="nav-cta" target="_blank" rel="noopener">Download Free</a></li>
+    </ul>
+
+    <div class="nav-hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+
+  <!-- ==============================
+       HERO SECTION
+  ============================== -->
+  <section class="hero">
+
+    <!-- Gravity Animation Field -->
+    <div class="gravity-field" aria-hidden="true">
+      <span class="grocery-emoji ge-1">🍅</span>
+      <span class="grocery-emoji ge-2">🥕</span>
+      <span class="grocery-emoji ge-3">🧅</span>
+      <span class="grocery-emoji ge-4">🥔</span>
+      <span class="grocery-emoji ge-5">🥦</span>
+      <span class="grocery-emoji ge-6">🍋</span>
+      <span class="grocery-emoji ge-7">🥭</span>
+      <span class="grocery-emoji ge-8">🌶️</span>
+      <span class="grocery-emoji ge-9">🧄</span>
+      <span class="grocery-emoji ge-10">🫚</span>
+      <span class="grocery-emoji ge-11">🥥</span>
+      <span class="grocery-emoji ge-12">🍅</span>
+      <span class="grocery-emoji ge-13">🥕</span>
+      <span class="grocery-emoji ge-14">🍋</span>
+      <span class="grocery-emoji ge-15">🥦</span>
+      <span class="grocery-emoji ge-16">🧅</span>
+      <span class="grocery-emoji ge-17">🌶️</span>
+      <span class="grocery-emoji ge-18">🥭</span>
+      <span class="grocery-emoji ge-19">🧄</span>
+      <span class="grocery-emoji ge-20">🥔</span>
+      <span class="grocery-emoji ge-21">🫚</span>
+      <span class="grocery-emoji ge-22">🍅</span>
+      <span class="grocery-emoji ge-23">🥥</span>
+      <span class="grocery-emoji ge-24">🥕</span>
+      <span class="grocery-emoji ge-25">🌶️</span>
+      <span class="grocery-emoji ge-26">🍋</span>
+      <span class="grocery-emoji ge-27">🥦</span>
+      <span class="grocery-emoji ge-28">🧅</span>
+      <span class="grocery-emoji ge-29">🍅</span>
+      <span class="grocery-emoji ge-30">🥭</span>
+      <span class="grocery-emoji ge-31">🧄</span>
+      <span class="grocery-emoji ge-32">🥔</span>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">🌿 Offline-First · Tamil &amp; English · Zero Ads</div>
+
+      <h1>Plan. <span class="accent">Grab.</span> Done.</h1>
+
+      <p class="hero-sub">
+        The smartest household grocery planner for Indian families.<br />
+        No sign-ups, no ads, no chaos.
+      </p>
+      <p class="hero-sub-tamil">
+        உங்கள் குடும்பத்திற்கான மிகவும் புத்திசாலித்தனமான மளிகைப் திட்டமிடுபவர்.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="https://play.google.com/store/apps/details?id=com.grabwise.app" class="btn-primary" target="_blank" rel="noopener">
+          <div class="play-icon">▶</div>
+          Get on Google Play
+        </a>
+        <a href="https://grabwise.web.app" class="btn-secondary" target="_blank" rel="noopener">
+          🌐 Launch Web App →
+        </a>
+      </div>
+
+      <div class="trust-chips">
+        <span><span class="check">✓</span> 100% Free</span>
+        <span><span class="check">✓</span> Works Offline</span>
+        <span><span class="check">✓</span> No Account Needed</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       PROBLEM-SOLUTION SECTION
+  ============================== -->
+  <section class="problem-section">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-label">The Problem We Solve</span>
+        <h2 class="section-heading">Sound familiar?</h2>
+        <p class="section-sub">Grocery planning for Indian households is chaotic. GrabWise fixes every friction point.</p>
+      </div>
+
+      <div class="problem-grid">
+
+        <div class="problem-card reveal reveal-delay-1">
+          <div class="problem-icon">💬</div>
+          <div class="problem-before">✗ Scattered WhatsApp messages & forgotten lists</div>
+          <div class="problem-arrow">↓</div>
+          <div class="problem-after">✓ One clean, shareable grocery list</div>
+          <h3 class="problem-heading">WhatsApp Chaos → Clean List</h3>
+          <p class="problem-desc">Stop digging through chat groups to find what to buy. GrabWise keeps everything organized in one place, synced and always ready.</p>
+        </div>
+
+        <div class="problem-card reveal reveal-delay-2">
+          <div class="problem-icon">✍️</div>
+          <div class="problem-before">✗ Typing out each item from scratch every time</div>
+          <div class="problem-arrow">↓</div>
+          <div class="problem-after">✓ Browse a 400+ item visual catalog</div>
+          <h3 class="problem-heading">Typing Struggle → Visual Catalog</h3>
+          <p class="problem-desc">Our curated catalog covers 400+ Indian grocery items including vegetables, pulses, spices, and oils — tap to add, done.</p>
+        </div>
+
+        <div class="problem-card reveal reveal-delay-3">
+          <div class="problem-icon">🏪</div>
+          <div class="problem-before">✗ Running back and forth between store sections</div>
+          <div class="problem-arrow">↓</div>
+          <div class="problem-after">✓ Smart Shop Mode by aisle & category</div>
+          <h3 class="problem-heading">Backtracking → Smart Shop Mode</h3>
+          <p class="problem-desc">Shop Mode auto-groups your list by category so you walk through the store once, check off as you go, and never backtrack.</p>
+        </div>
+
+        <div class="problem-card reveal reveal-delay-4">
+          <div class="problem-icon">🌾</div>
+          <div class="problem-before">✗ Native items missing from generic apps</div>
+          <div class="problem-arrow">↓</div>
+          <div class="problem-after">✓ Indian-first catalog with Tamil names</div>
+          <h3 class="problem-heading">Missing Items → Indian-First Catalog</h3>
+          <p class="problem-desc">Murungakkai, Kollu, Sundakkai — every regional staple is there. Items shown in Tamil &amp; English so everyone at home can read the list.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       FEATURES SECTION
+  ============================== -->
+  <section class="features-section" id="features">
+    <div class="section-inner">
+      <div class="features-header reveal">
+        <span class="section-label">Features</span>
+        <h2 class="section-heading">Everything your family needs</h2>
+        <p class="section-sub" style="margin: 0 auto;">Built with care for the way Indian households actually shop — together, offline, and in two languages.</p>
+      </div>
+
+      <div class="features-grid">
+
+        <div class="feature-card reveal reveal-delay-1">
+          <span class="feature-icon">📋</span>
+          <h3 class="feature-title">Smart List Builder</h3>
+          <p class="feature-desc">Build grocery lists in seconds from our curated 400+ item Indian catalog. Tap, quantity, done — no typing required.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-2">
+          <span class="feature-icon">🛒</span>
+          <h3 class="feature-title">Shop Mode</h3>
+          <p class="feature-desc">Auto-sorts your list by store section. Tap items as you grab them. No more forgotten aisles or double-backs.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-3">
+          <span class="feature-icon">📶</span>
+          <h3 class="feature-title">100% Offline First</h3>
+          <p class="feature-desc">Works perfectly without internet — in the basement of a market or in a village with spotty signal. Always available.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-4">
+          <span class="feature-icon">🌐</span>
+          <h3 class="feature-title">Tamil &amp; English</h3>
+          <p class="feature-desc">Every item displayed in both Tamil and English. Share lists with elders or kids — everyone understands the list.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-5">
+          <span class="feature-icon">🔁</span>
+          <h3 class="feature-title">Recurring Templates</h3>
+          <p class="feature-desc">Save your weekly staples as a template. One tap to reload your usual list every shopping day — zero repetition.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-6">
+          <span class="feature-icon">🚫</span>
+          <h3 class="feature-title">Zero Ads. Zero Signups.</h3>
+          <p class="feature-desc">No account creation, no data collection, no ads. Open the app and start shopping. It's yours — completely free, forever.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       HOW IT WORKS SECTION
+  ============================== -->
+  <section class="how-section" id="how-it-works">
+    <div class="section-inner">
+      <div class="how-header reveal">
+        <span class="section-label">How It Works</span>
+        <h2 class="section-heading">Three steps to a perfect shop</h2>
+        <p class="section-sub" style="margin: 0 auto;">GrabWise is designed to be picked up in 30 seconds. No tutorial needed.</p>
+      </div>
+
+      <div class="steps-container">
+
+        <div class="step reveal reveal-delay-1">
+          <div class="step-number">1</div>
+          <span class="step-emoji">📝</span>
+          <h3 class="step-title">Plan Your List</h3>
+          <p class="step-desc">Browse our 400+ item Indian catalog or use a saved template. Add quantities, tap items, and build your list in under 2 minutes.</p>
+        </div>
+
+        <div class="step reveal reveal-delay-2">
+          <div class="step-number">2</div>
+          <span class="step-emoji">🗺️</span>
+          <h3 class="step-title">Activate Shop Mode</h3>
+          <p class="step-desc">Hit "Start Shopping" and your list auto-sorts by category. Walk through the store systematically — vegetables, then grains, then spices.</p>
+        </div>
+
+        <div class="step reveal reveal-delay-3">
+          <div class="step-number">3</div>
+          <span class="step-emoji">✅</span>
+          <h3 class="step-title">Grab &amp; Check Off</h3>
+          <p class="step-desc">Tap each item as it goes in your basket. GrabWise keeps track. Never guess if you've got everything — leave the store confident.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       STATS BAND
+  ============================== -->
+  <section class="stats-band">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-number">400+</div>
+        <div class="stat-label">Items in<br />Catalog</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Works<br />Offline</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Languages:<br />Tamil &amp; English</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-number">₹0</div>
+        <div class="stat-label">Zero Ads<br />Ever</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       FAQ SECTION
+  ============================== -->
+  <section style="background: var(--cream);" id="faq">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center; margin-bottom: 3rem;">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-heading">Got questions?</h2>
+      </div>
+
+      <div style="max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;">
+
+        <details class="reveal reveal-delay-1" style="background:var(--white); border:1px solid var(--border); border-radius:16px; overflow:hidden;">
+          <summary style="padding:1.25rem 1.5rem; font-weight:700; font-size:1rem; color:var(--deep-leaf); cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; user-select:none;">
+            Is GrabWise really free? Forever?
+            <span style="font-size:1.4rem; color:var(--leaf); transition:transform 0.2s;" class="faq-arrow">+</span>
+          </summary>
+          <div style="padding:0 1.5rem 1.25rem; color:var(--muted); font-size:0.95rem; line-height:1.65;">
+            Yes, completely free with no hidden fees, no premium tier, no in-app purchases, and absolutely zero ads. GrabWise is our gift to every Indian household that deserves better grocery planning.
+          </div>
+        </details>
+
+        <details class="reveal reveal-delay-2" style="background:var(--white); border:1px solid var(--border); border-radius:16px; overflow:hidden;">
+          <summary style="padding:1.25rem 1.5rem; font-weight:700; font-size:1rem; color:var(--deep-leaf); cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; user-select:none;">
+            Does it work without an internet connection?
+            <span style="font-size:1.4rem; color:var(--leaf);" class="faq-arrow">+</span>
+          </summary>
+          <div style="padding:0 1.5rem 1.25rem; color:var(--muted); font-size:0.95rem; line-height:1.65;">
+            Absolutely. GrabWise is built offline-first — all data is stored locally on your device. Whether you're at a busy market with no signal or in a rural area, the app works perfectly.
+          </div>
+        </details>
+
+        <details class="reveal reveal-delay-3" style="background:var(--white); border:1px solid var(--border); border-radius:16px; overflow:hidden;">
+          <summary style="padding:1.25rem 1.5rem; font-weight:700; font-size:1rem; color:var(--deep-leaf); cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; user-select:none;">
+            Do I need to create an account?
+            <span style="font-size:1.4rem; color:var(--leaf);" class="faq-arrow">+</span>
+          </summary>
+          <div style="padding:0 1.5rem 1.25rem; color:var(--muted); font-size:0.95rem; line-height:1.65;">
+            No account, no sign-up, no email address required. Download the app, open it, and start building your grocery list immediately. We don't collect your personal data.
+          </div>
+        </details>
+
+        <details class="reveal reveal-delay-4" style="background:var(--white); border:1px solid var(--border); border-radius:16px; overflow:hidden;">
+          <summary style="padding:1.25rem 1.5rem; font-weight:700; font-size:1rem; color:var(--deep-leaf); cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; user-select:none;">
+            What languages does GrabWise support?
+            <span style="font-size:1.4rem; color:var(--leaf);" class="faq-arrow">+</span>
+          </summary>
+          <div style="padding:0 1.5rem 1.25rem; color:var(--muted); font-size:0.95rem; line-height:1.65;">
+            GrabWise supports Tamil and English. Every item in the catalog is displayed in both scripts so the whole family — from grandparents to kids — can read and use the list comfortably.
+          </div>
+        </details>
+
+        <details class="reveal reveal-delay-5" style="background:var(--white); border:1px solid var(--border); border-radius:16px; overflow:hidden;">
+          <summary style="padding:1.25rem 1.5rem; font-weight:700; font-size:1rem; color:var(--deep-leaf); cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; user-select:none;">
+            Can I use it on both web and Android?
+            <span style="font-size:1.4rem; color:var(--leaf);" class="faq-arrow">+</span>
+          </summary>
+          <div style="padding:0 1.5rem 1.25rem; color:var(--muted); font-size:0.95rem; line-height:1.65;">
+            Yes! Download the Android app from Google Play for the best experience, or use the Web App at <a href="https://grabwise.web.app" style="color:var(--leaf); font-weight:600;" target="_blank" rel="noopener">grabwise.web.app</a> on any browser. Both are free.
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       DOWNLOAD CTA SECTION
+  ============================== -->
+  <section class="download-section">
+    <div class="section-inner">
+      <div class="reveal">
+        <h2>Start planning smarter<br />today — it's free.</h2>
+        <p>Join thousands of Indian families who've ditched the WhatsApp chaos for a clean, offline grocery list.</p>
+
+        <div class="download-ctas">
+          <a href="https://play.google.com/store/apps/details?id=com.grabwise.app" class="play-store-badge" target="_blank" rel="noopener">
+            <span class="badge-icon">▶</span>
+            <span class="badge-text">
+              <small>Get it on</small>
+              <strong>Google Play</strong>
+            </span>
+          </a>
+          <a href="https://grabwise.web.app" class="btn-download-secondary" target="_blank" rel="noopener">
+            🌐 Launch Web App →
+          </a>
+        </div>
+
+        <p class="download-note">No account required · Works offline · 100% free forever</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       FOOTER
+  ============================== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="nav-logo" style="color:#B8F0CC;">
+            <div class="leaf-icon">🌿</div>
+            GrabWise
+          </div>
+          <p>The smartest household grocery planner for Indian families. Offline-first, Tamil &amp; English, zero ads — built with love by WiselyRise Solutions.</p>
+          <a href="mailto:contact@wiselyrise.in" class="contact-link">
+            ✉ contact@wiselyrise.in
+          </a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.grabwise.app" target="_blank" rel="noopener">Download on Play Store</a></li>
+            <li><a href="https://grabwise.web.app" target="_blank" rel="noopener">Launch Web App</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="mailto:contact@wiselyrise.in">Contact Us</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 WiselyRise Solutions. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="mailto:contact@wiselyrise.in">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ==============================
+       JAVASCRIPT
+  ============================== -->
+  <script>
+    // ── Hamburger menu toggle ──────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const isOpen = navLinks.classList.contains('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    hamburger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        hamburger.click();
+      }
+    });
+
+    // Close nav when a link is clicked on mobile
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+
+    // ── Scroll Reveal (IntersectionObserver) ──────────────
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+
+    // ── FAQ accordion arrow toggle ──────────────────────────
+    document.querySelectorAll('details').forEach(detail => {
+      detail.addEventListener('toggle', () => {
+        const arrow = detail.querySelector('.faq-arrow');
+        if (arrow) {
+          arrow.textContent = detail.open ? '−' : '+';
+        }
+      });
+    });
+
+
+    // ── Nav background transition on scroll ─────────────────
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 30) {
+        nav.style.boxShadow = '0 2px 20px rgba(27,77,49,0.1)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>

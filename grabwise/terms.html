@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — GrabWise</title>
+  <meta name="description" content="GrabWise Terms of Service. Free household grocery planner by WiselyRise Solutions. Contact: contact@wiselyrise.in">
+  <link rel="canonical" href="https://grabwise.web.app/terms.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --green:       #2C7A4D;
+      --deep:        #1B4D31;
+      --leaf-light:  #EBF5EE;
+      --cream:       #F6FBF7;
+      --white:       #FFFFFF;
+      --text:        #1A2B1E;
+      --muted:       #5C7A63;
+      --border:      #D1E8D7;
+      --turmeric:    #E8920A;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      font-family: 'Outfit', sans-serif;
+      color: var(--text);
+      line-height: 1.75;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(246,251,247,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-leaf { font-size: 24px; }
+    .nav-name { font-size: 18px; font-weight: 700; color: var(--deep); }
+    .nav-back {
+      font-size: 13px; font-weight: 600; color: var(--green); text-decoration: none;
+      display: flex; align-items: center; gap: 6px;
+      padding: 7px 16px; border-radius: 100px;
+      border: 1.5px solid var(--green); transition: background 0.2s;
+    }
+    .nav-back:hover { background: var(--leaf-light); }
+
+    .hero-strip {
+      background: linear-gradient(135deg, #14532D 0%, #2C7A4D 100%);
+      padding: 56px 32px 48px; text-align: center;
+    }
+    .hero-strip .tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9);
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 16px;
+    }
+    .hero-strip h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 12px; }
+    .hero-strip p { font-size: 15px; color: rgba(255,255,255,0.72); max-width: 480px; margin: 0 auto; }
+    .effective { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.5); }
+
+    .content-wrap { max-width: 800px; margin: 0 auto; padding: 48px 32px 80px; }
+
+    /* TOC */
+    .toc {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 16px; padding: 24px 28px; margin-bottom: 40px;
+    }
+    .toc h2 { font-size: 14px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 6px; font-size: 14px; }
+    .toc a { color: var(--green); text-decoration: none; font-weight: 500; }
+    .toc a:hover { text-decoration: underline; }
+
+    .section { margin-bottom: 40px; }
+    .section h2 {
+      font-size: 20px; font-weight: 700; color: var(--deep);
+      padding-bottom: 10px; border-bottom: 2px solid var(--leaf-light);
+      margin-bottom: 16px;
+    }
+    .section h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 8px; }
+    .section p { font-size: 14.5px; color: #3D5540; margin-bottom: 12px; line-height: 1.75; }
+    .section ul { padding-left: 20px; margin-bottom: 12px; }
+    .section ul li { font-size: 14.5px; color: #3D5540; margin-bottom: 7px; line-height: 1.6; }
+
+    /* WARNING BOX */
+    .warn-box {
+      background: #FFF8F0; border: 1.5px solid #F9C784;
+      border-left: 4px solid var(--turmeric);
+      border-radius: 12px; padding: 16px 20px; margin: 16px 0;
+      font-size: 13.5px; color: #7A4F00; line-height: 1.6;
+    }
+    .warn-box strong { color: #6B3A00; }
+
+    /* INFO BOX */
+    .info-box {
+      background: var(--leaf-light); border: 1.5px solid var(--border);
+      border-left: 4px solid var(--green);
+      border-radius: 12px; padding: 16px 20px; margin: 16px 0;
+      font-size: 13.5px; color: var(--deep); line-height: 1.6;
+    }
+
+    /* CONTACT BOX */
+    .contact-box {
+      background: var(--deep); border-radius: 16px;
+      padding: 32px; text-align: center; color: white; margin-top: 48px;
+    }
+    .contact-box h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .contact-box p { font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 16px; }
+    .contact-box a {
+      display: inline-block;
+      background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.22);
+      color: white; border-radius: 100px; padding: 10px 24px;
+      font-size: 14px; font-weight: 600; text-decoration: none; transition: background 0.2s;
+    }
+    .contact-box a:hover { background: rgba(255,255,255,0.2); }
+
+    footer {
+      border-top: 1px solid var(--border); padding: 24px 32px;
+      text-align: center; font-size: 12.5px; color: var(--muted);
+    }
+    footer a { color: var(--green); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .hero-strip { padding: 40px 20px 36px; }
+      .content-wrap { padding: 32px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <span class="nav-leaf">🌿</span>
+      <span class="nav-name">GrabWise</span>
+    </a>
+    <a class="nav-back" href="index.html">← Back to Home</a>
+  </nav>
+
+  <div class="hero-strip">
+    <div class="tag">Legal Document</div>
+    <h1>Terms of Service</h1>
+    <p>Simple terms for a simple app. We keep these clear and honest.</p>
+    <div class="effective">Effective Date: October 11, 2026 &nbsp;·&nbsp; Publisher: WiselyRise Solutions</div>
+  </div>
+
+  <div class="content-wrap">
+
+    <!-- TOC -->
+    <div class="toc">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#s1">Acceptance of Terms</a></li>
+        <li><a href="#s2">Nature of the Service</a></li>
+        <li><a href="#s3">Your Account & Household Code</a></li>
+        <li><a href="#s4">User Conduct</a></li>
+        <li><a href="#s5">Intellectual Property</a></li>
+        <li><a href="#s6">Disclaimer of Warranties</a></li>
+        <li><a href="#s7">Limitation of Liability</a></li>
+        <li><a href="#s8">Termination</a></li>
+        <li><a href="#s9">Modifications to Terms</a></li>
+        <li><a href="#s10">Governing Law</a></li>
+        <li><a href="#s11">Contact Us</a></li>
+      </ol>
+    </div>
+
+    <div class="section" id="s1">
+      <h2>1. Acceptance of Terms</h2>
+      <p>By downloading, installing, accessing, or using the GrabWise mobile application (Android package: <code>com.grabwise.app</code>) or web application (<a href="https://grabwise.web.app" style="color:var(--green)">grabwise.web.app</a>), you agree to be bound by these Terms of Service ("Terms") and our <a href="privacy.html" style="color:var(--green)">Privacy Policy</a>.</p>
+      <p>If you do not agree to these Terms, please do not use GrabWise.</p>
+    </div>
+
+    <div class="section" id="s2">
+      <h2>2. Nature of the Service</h2>
+      <div class="warn-box">
+        <strong>Important Clarification:</strong> GrabWise is a household grocery planning and organizational tool. GrabWise is <strong>NOT</strong> an online grocery retailer, delivery service, price comparison engine, or marketplace.
+      </div>
+      <p>GrabWise helps you organize and plan grocery purchases. It does not sell groceries, guarantee store stock availability, verify real-time retail prices, or fulfill any delivery. Retail transactions you undertake based on your GrabWise list are exclusively between you and the respective third-party retailers.</p>
+    </div>
+
+    <div class="section" id="s3">
+      <h2>3. Your Account & Household Code</h2>
+      <p>GrabWise does not require user accounts, email registration, or phone verification to use core features. When you opt into Cloud-Shared Mode for family synchronization:</p>
+      <ul>
+        <li>GrabWise generates a secure, unique 6-character Household Code (e.g., <code>GRAB88</code>) that links family members to your shared list.</li>
+        <li>Any person who enters your Household Code will have full access to view, add, modify, and check off items on your shared list.</li>
+        <li><strong>You are solely responsible for sharing your Household Code only with people you trust.</strong> Do not publicly share your code.</li>
+        <li>WiselyRise Solutions bears no responsibility for unauthorized list modifications resulting from your sharing of the Household Code with unintended third parties.</li>
+      </ul>
+      <div class="info-box">
+        🔒 GrabWise enforces a brute-force lockout: after 3 incorrect code attempts, the device is locked out for 5 minutes to protect household privacy.
+      </div>
+    </div>
+
+    <div class="section" id="s4">
+      <h2>4. User Conduct</h2>
+      <p>You agree to use GrabWise only for lawful, personal household planning purposes. You agree not to:</p>
+      <ul>
+        <li>Attempt to circumvent, reverse engineer, probe, or exploit the Household Code system or brute-force lockout mechanism.</li>
+        <li>Upload any content (item photos, custom item names, or notes) that is unlawful, defamatory, threatening, harassing, obscene, or infringes on any third-party intellectual property.</li>
+        <li>Use automated scripts, bots, scrapers, or any programmatic means to access, harvest, or disrupt the service or its cloud backend infrastructure.</li>
+        <li>Attempt to gain unauthorized access to any other household's data.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="s5">
+      <h2>5. Intellectual Property</h2>
+      <p>All rights, title, and interest in and to GrabWise — including the application design, user interface architecture, branding, custom iconography, deterministic natural language parsing engine (<code>SmartGroceryParser</code>), curated grocery catalog (400+ items with Tamil-English bilingual data), and all associated software — are owned exclusively by WiselyRise Solutions.</p>
+      <p>You are granted a personal, non-exclusive, non-transferable, revocable license to use GrabWise for personal, household, and non-commercial purposes only. No rights are transferred to you beyond this limited license.</p>
+    </div>
+
+    <div class="section" id="s6">
+      <h2>6. Disclaimer of Warranties</h2>
+      <div class="warn-box">
+        <strong>Important:</strong> GrabWise is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, express or implied.
+      </div>
+      <p>WiselyRise Solutions does not warrant that:</p>
+      <ul>
+        <li>The application will be uninterrupted, timely, secure, or free of errors at all times.</li>
+        <li>Data synchronization will be instantaneous under poor or absent network conditions.</li>
+        <li>The grocery catalog, presets, or AI-assisted suggestions are complete, nutritionally accurate, safe for specific dietary restrictions or allergies, or reflect current local store inventories.</li>
+        <li>The application will be compatible with every device configuration, Android version, or web browser.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="s7">
+      <h2>7. Limitation of Liability</h2>
+      <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL WISELYRISE SOLUTIONS, ITS OFFICERS, DIRECTORS, EMPLOYEES, OR AFFILIATES BE LIABLE FOR ANY:</p>
+      <ul>
+        <li>Indirect, incidental, special, consequential, or punitive damages.</li>
+        <li>Loss of data, loss of device functionality, or any inconvenience arising from interrupted grocery shopping.</li>
+        <li>Damages arising from your reliance on the app's catalog data for dietary, allergy, or medical decision-making.</li>
+      </ul>
+      <p>This limitation applies whether or not WiselyRise Solutions has been advised of the possibility of such damages.</p>
+    </div>
+
+    <div class="section" id="s8">
+      <h2>8. Termination</h2>
+      <p>WiselyRise Solutions reserves the right to suspend or permanently terminate access to cloud synchronization services for any user or household found to be in material violation of these Terms, misusing cloud infrastructure, or engaging in conduct that endangers the service or other users.</p>
+    </div>
+
+    <div class="section" id="s9">
+      <h2>9. Modifications to Terms</h2>
+      <p>We reserve the right to modify these Terms of Service at any time to reflect changes in our practices, legal requirements, or service features. When changes occur, the updated "Effective Date" will be posted on this page. We will notify users of significant changes via an in-app notice. Continued use of GrabWise following any modifications constitutes your acceptance of the revised Terms.</p>
+    </div>
+
+    <div class="section" id="s10">
+      <h2>10. Governing Law & Dispute Resolution</h2>
+      <p>These Terms shall be governed by and construed in accordance with the laws of the Republic of India, without regard to conflict of law principles. Any legal action or proceeding arising under or in connection with these Terms shall be brought exclusively in the competent courts of <strong>Chennai, Tamil Nadu, India</strong>.</p>
+    </div>
+
+    <div class="section" id="s11">
+      <h2>11. Contact Us</h2>
+      <p>If you have any questions about these Terms, wish to report a concern, or need to contact us regarding your use of GrabWise:</p>
+      <ul>
+        <li><strong>Entity:</strong> WiselyRise Solutions</li>
+        <li><strong>Email:</strong> <a href="mailto:contact@wiselyrise.in" style="color:var(--green)">contact@wiselyrise.in</a></li>
+        <li><strong>Website:</strong> <a href="https://grabwise.web.app" style="color:var(--green)">https://grabwise.web.app</a></li>
+      </ul>
+    </div>
+
+    <div class="contact-box">
+      <h2>Have a Question About These Terms?</h2>
+      <p>Write to us. We're a small, transparent team and respond personally.</p>
+      <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>
+      <strong>GrabWise</strong> by <a href="https://wiselyrise.in" target="_blank">WiselyRise Solutions</a> &nbsp;·&nbsp;
+      <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
+      <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>
+    </p>
+    <p style="margin-top:8px;">© 2026 WiselyRise Solutions. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

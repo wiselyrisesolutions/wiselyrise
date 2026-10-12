@@ -222,12 +222,13 @@
       sub: 'Tell us what could work better.',
       submitLabel: 'Send Suggestion',
       successMsg: 'Improvement suggestion received! We appreciate your input.',
+      product: 'datewise',
       fields: () => `
         <div class="cm-field">
           <label class="cm-label" for="cmProduct">Which App? <span class="cm-req">*</span></label>
           <select class="cm-input cm-select" id="cmProduct" required>
             <option value="">Select app…</option>
-            <option value="datewise">DateWise</option>
+            <option value="datewise" selected>DateWise</option>
             <option value="gramwise">GramWise</option>
             <option value="keywise">KeyWise</option>
             <option value="pixwise">PixWise</option>
@@ -319,7 +320,9 @@
       overrideSub: 'Tell us about the issues your app is facing. We\'ll review and respond quickly.',
       overrideProduct: 'app-rescue'
     },
-    'datewise':   { category: 'bug', product: 'datewise' },
+    'datewise':         { category: 'improvement', product: 'datewise' },
+    'datewise-bug':     { category: 'bug',         product: 'datewise' },
+    'datewise-feature': { category: 'feature',     product: 'datewise' },
     'gramwise':   { category: 'bug', product: 'gramwise' },
     'keywise':    { category: 'bug', product: 'keywise' },
     'pixwise':    { category: 'bug', product: 'pixwise' },
@@ -521,9 +524,10 @@
     document.getElementById('cmThumbs').innerHTML = '';
     setStatus('', '');
 
-    // Apply preselect
-    if (preselect && PRESELECT_MAP[preselect]) {
-      const map = PRESELECT_MAP[preselect];
+    // Apply preselect (defaults to DateWise Improvement)
+    const activeKey = preselect || 'datewise';
+    if (activeKey && PRESELECT_MAP[activeKey]) {
+      const map = PRESELECT_MAP[activeKey];
       overrideProduct = map.overrideProduct || map.product || null;
       renderCategory(map.category);
       if (map.overrideTitle) document.getElementById('cmTitle').textContent = map.overrideTitle;

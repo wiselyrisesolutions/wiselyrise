@@ -4017,8 +4017,11 @@
 </script>
 <script src="/shared/contact-modal.js"></script>
 <script>
-  if (new URLSearchParams(window.location.search).get('contact') === '1')
-    setTimeout(function () { openContactModal('datewise'); }, 0);
+  var _cp = new URLSearchParams(window.location.search).get('contact');
+  if (_cp) {
+    var _preselect = (_cp === '1') ? 'datewise' : _cp;
+    setTimeout(function () { openContactModal(_preselect); }, 0);
+  }
 </script>
 
 <!-- ============================================================
