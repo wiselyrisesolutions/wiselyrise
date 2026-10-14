@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The DateWise Story — Why We Built It</title>
+<meta name="description" content="A short story about a late phone call, a lapsed policy, and why we built DateWise: a private, offline reminder app that speaks to your heart, not your schedule." />
+<meta property="og:title" content="The DateWise Story — You remember everything about them. Except the date." />
+<meta property="og:description" content="Why we built DateWise: private, offline reminders for the dates that matter most." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wiselyrise.in/datewise/story" />
+<meta property="og:image" content="https://wiselyrise.in/datewise/images/web_hero_reduced.png" />
+<link rel="canonical" href="https://wiselyrise.in/datewise/story" />
+<link rel="icon" href="/datewise/images/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/datewise/images/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:ital,wght@0,800;0,900;1,800&display=swap" rel="stylesheet" />
+<script>document.documentElement.classList.add('js')</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--fg:#0d0d12;--muted:#64748b;--border:#e4e4e8;--accent:#5b21b6;--mid:#7c3aed;--light:#a78bfa;--bg:#f8f7fc;--night:#0d0720}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--fg);background:#fff;line-height:1.75;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--mid),var(--light));z-index:200}
+nav{position:fixed;top:0;left:0;right:0;height:64px;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(13,7,32,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#fff}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.03em}
+.logo img{width:32px;height:32px;border-radius:20%}
+.nav-r{display:flex;gap:10px;align-items:center;font-size:.84rem;font-weight:600}
+.nav-r .back{opacity:.75}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--mid);color:#fff;padding:9px 20px;border-radius:100px;font-weight:700;font-size:.84rem;transition:transform .2s,box-shadow .2s}
+.pill:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(124,58,237,.45)}
+.pill.ghost{background:none;border:1.5px solid rgba(255,255,255,.35)}
+h1,h2{font-family:'Inter Tight',sans-serif;font-weight:900;letter-spacing:-.03em;line-height:1.08}
+.grad{background:linear-gradient(135deg,#c4b5fd,var(--light) 40%,#f0abfc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:110px 6% 70px;color:#fff;background:radial-gradient(60% 50% at 50% 30%,rgba(124,58,237,.38),transparent 70%),var(--night);position:relative}
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--light);margin-bottom:22px}
+.hero h1{font-size:clamp(2.5rem,7.5vw,5.2rem);max-width:880px}
+.hero p{max-width:540px;margin-top:26px;font-size:1.1rem;color:rgba(255,255,255,.72)}
+.scroll{position:absolute;bottom:26px;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+.ch{padding:100px 6%}
+.ch.tint{background:var(--bg)}
+.ch.night{background:var(--night);color:#fff}
+.wrap{max-width:720px;margin:0 auto}
+.wide{max-width:940px;margin:0 auto}
+.num{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.2em;color:var(--mid);text-transform:uppercase;margin-bottom:14px}
+.night .num{color:var(--light)}
+h2{font-size:clamp(1.9rem,5vw,3.1rem);margin-bottom:26px}
+.ch p{font-size:1.1rem;color:#334155;margin-bottom:20px}
+.night p{color:rgba(255,255,255,.76)}
+.pull{font-family:'Inter Tight',sans-serif;font-style:italic;font-weight:800;font-size:clamp(1.4rem,3.4vw,2rem);line-height:1.3;margin:34px 0;padding-left:22px;border-left:4px solid var(--mid);color:var(--accent)}
+.night .pull{color:#fff;border-color:var(--light)}
+.notif{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:18px;padding:14px 18px;box-shadow:0 6px 24px rgba(0,0,0,.08);max-width:440px;margin:26px 0;color:var(--fg)}
+.notif i{font-style:normal;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#eef0f4;font-size:1.2rem;flex:none}
+.notif small{display:block;font-size:.72rem;color:var(--muted);line-height:1.3}
+.notif b{font-size:.96rem;line-height:1.4;font-weight:600}
+.notif.bad{opacity:.65;filter:grayscale(1)}
+.notif.good{border-color:var(--mid);box-shadow:0 10px 40px rgba(124,58,237,.28)}
+.notif.good i{background:#f3e8ff}
+.leaves{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:38px}
+.leaf{background:#fff;border:1px solid var(--border);border-radius:16px;padding:26px 22px;box-shadow:0 8px 28px rgba(0,0,0,.07);position:relative;overflow:hidden}
+.leaf::before{content:'MISSED';position:absolute;top:0;left:0;right:0;background:var(--accent);color:#fff;font-size:.62rem;letter-spacing:.2em;font-weight:700;text-align:center;padding:3px 0}
+.leaf:nth-child(1){transform:rotate(-1.6deg)}.leaf:nth-child(2){transform:rotate(1deg)}.leaf:nth-child(3){transform:rotate(-.8deg)}
+.leaf b{display:block;font-family:'Inter Tight',sans-serif;font-size:1.25rem;margin:12px 0 6px;line-height:1.2}
+.leaf span{font-size:.9rem;color:var(--muted);line-height:1.55;display:block}
+.walls{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0}
+.wall{padding:10px 18px;border-radius:100px;border:1.5px dashed rgba(255,255,255,.28);color:rgba(255,255,255,.55);text-decoration:line-through;font-size:.95rem}
+.open{padding:12px 24px;border-radius:100px;background:linear-gradient(135deg,var(--mid),#c084fc);color:#fff;font-weight:700;font-size:1rem;box-shadow:0 10px 36px rgba(124,58,237,.5)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 4px}
+.chip{padding:9px 18px;border-radius:100px;border:1.5px solid var(--border);background:#fff;font:600 .88rem 'Inter',sans-serif;color:var(--muted);cursor:pointer;transition:all .2s}
+.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.hear{margin-left:auto;background:var(--mid);color:#fff;border-radius:100px;padding:8px 14px;font:700 .78rem 'Inter',sans-serif;cursor:pointer;flex:none}
+.cap{font-size:.78rem!important;color:var(--muted)!important;margin:6px 0 0!important}
+.field{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);border-radius:16px;padding:18px 22px;font-size:1.15rem;font-weight:500;min-height:62px;color:#fff;margin:28px 0 16px}
+.field::after{content:'';display:inline-block;width:2px;height:1.2em;background:var(--light);margin-left:3px;vertical-align:middle;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.res{background:#fff;color:var(--fg);border-radius:18px;padding:20px 24px;display:flex;gap:16px;align-items:center;opacity:0;transform:translateY(14px);transition:all .6s cubic-bezier(.22,1,.36,1)}
+.res.on{opacity:1;transform:none}
+.res i{font-style:normal;font-size:1.7rem}
+.res b{display:block;line-height:1.35}
+.res span{font-size:.86rem;color:var(--muted)}
+.prom{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
+.prom div{background:#fff;border:1px solid var(--border);border-radius:20px;padding:26px 24px;position:relative;overflow:hidden}
+.prom div::before{content:'';position:absolute;top:0;left:0;right:0;height:3.5px;background:linear-gradient(90deg,var(--accent),var(--light))}
+.prom b{font-family:'Inter Tight',sans-serif;font-size:1.25rem;display:block;margin-bottom:6px}
+.prom span{font-size:.93rem;color:var(--muted);line-height:1.6;display:block}
+.end{text-align:center;padding:120px 6%;color:#fff;background:radial-gradient(60% 60% at 50% 100%,rgba(124,58,237,.5),transparent 70%),var(--night)}
+.end h2{max-width:760px;margin:0 auto 18px}
+.end p{max-width:520px;margin:0 auto 32px;color:rgba(255,255,255,.72);font-size:1.08rem}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.sign{margin-top:44px;font-size:.84rem;color:rgba(255,255,255,.55)}
+footer{background:#07030f;color:rgba(255,255,255,.55);text-align:center;font-size:.8rem;padding:26px 6%}
+footer a{margin:0 10px;text-decoration:underline;text-underline-offset:3px}
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.js .reveal.vis{opacity:1;transform:none}
+@media(max-width:760px){.leaves,.prom{grid-template-columns:1fr}.ch{padding:72px 6%}.nav-r .back{display:none}.leaf:nth-child(n){transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<nav>
+  <a class="logo" href="/datewise/"><img src="/datewise/images/app_icon_playstore.png" alt="DateWise" /><span>DateWise</span></a>
+  <div class="nav-r">
+    <a class="back" href="/datewise/">← Back to DateWise</a>
+    <a class="pill" href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener">Get the app</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">The DateWise Story</div>
+  <h1>You remember everything about them. <span class="grad">Except the date.</span></h1>
+  <p>A short story about a late phone call, a lapsed policy, and why we built an app that would rather speak to your heart than your schedule.</p>
+  <div class="scroll">Scroll to read ↓</div>
+</header>
+
+<section class="ch">
+  <div class="wrap">
+    <div class="num reveal">Chapter 01</div>
+    <h2 class="reveal">The 9:00 AM that wasn't a meeting.</h2>
+    <p class="reveal">It's a Tuesday. You're in the middle of something important-looking. Your phone lights up for half a second, then goes dark again. The reminder arrived exactly on time.</p>
+    <div class="notif bad reveal"><i>📅</i><div><small>Calendar · now</small><b>Event at 9:00 AM</b></div></div>
+    <p class="reveal">That's all it said. It didn't say <em>whose</em> event. It didn't say that today your mother turns sixty-two and has been waiting, politely, not to be the one who calls first.</p>
+    <p class="pull reveal">The phone knew the date. It just had no idea what the date meant.</p>
+  </div>
+</section>
+
+<section class="ch tint">
+  <div class="wide">
+    <div class="wrap">
+      <div class="num reveal">Chapter 02</div>
+      <h2 class="reveal">Three pages that slipped out of the calendar.</h2>
+      <p class="reveal">Nobody forgets on purpose. Dates slip because the tools we trust were built for a different kind of life, one made of stand-ups, sprints and quarterly reviews.</p>
+    </div>
+    <div class="leaves">
+      <div class="leaf reveal"><b>Amma's birthday</b><span>The call came at 9 PM. She said it was fine. It wasn't.</span></div>
+      <div class="leaf reveal"><b>Your anniversary</b><span>A dinner you planned in the car, on the way home.</span></div>
+      <div class="leaf reveal"><b>The insurance renewal</b><span>A policy that lapsed by exactly one day.</span></div>
+    </div>
+    <div class="wrap"><p class="pull reveal" style="margin-top:44px">Our calendars are full of meetings. The dates that matter most never had a meeting invite.</p></div>
+  </div>
+</section>
+
+<section class="ch night">
+  <div class="wrap">
+    <div class="num reveal">Chapter 03</div>
+    <h2 class="reveal">Every app wanted something first.</h2>
+    <p class="reveal">We went looking for a better place to keep these dates. Everywhere, the same toll booth stood at the door: an email, a password, a permission, a fifteen-second ad.</p>
+    <div class="walls reveal"><span class="wall">Create an account</span><span class="wall">Allow tracking</span><span class="wall">Watch an ad to continue</span><span class="open">Open. Type. Done. ✓</span></div>
+    <p class="reveal">We were trying to remember a birthday, not open a bank account. The names of the people you love, their dates, your private notes: that is not data. That is your family. It belongs on your phone and nowhere else.</p>
+    <p class="pull reveal">So we set one rule: DateWise would ask for nothing, and keep everything with you.</p>
+  </div>
+</section>
+
+<section class="ch">
+  <div class="wrap">
+    <div class="num reveal">Chapter 04</div>
+    <h2 class="reveal">What if your phone said it out loud?</h2>
+    <p class="reveal">A reminder should do what a good friend does: tell you what is happening and why it matters. So DateWise doesn't just ping. It speaks, in a voice you pick, with a line that actually helps. Choose a moment and listen.</p>
+    <div class="chips reveal" id="chips">
+      <button class="chip" data-k="b" aria-pressed="true">🎂 Birthday</button>
+      <button class="chip" data-k="a" aria-pressed="false">💍 Anniversary</button>
+      <button class="chip" data-k="r" aria-pressed="false">🚗 Renewal</button>
+    </div>
+    <div class="notif good reveal"><i>💜</i><div><small>DateWise · now</small><b id="goodTxt"></b></div><button class="hear" id="hear" type="button">🔊 Hear it</button></div>
+    <p class="cap">Example wording, to show the idea. Voice playback uses your browser's built-in speech.</p>
+    <p class="pull reveal">Same date. Same phone. Completely different morning.</p>
+  </div>
+</section>
+
+<section class="ch night">
+  <div class="wrap">
+    <div class="num reveal">Chapter 05</div>
+    <h2 class="reveal">If it takes longer than a chai to set up, we failed.</h2>
+    <p class="reveal">The best reminder is the one you actually create. So adding one should feel like sending a text. Type it, or say it, in your own words:</p>
+    <div class="field reveal" id="typedWrap"><span id="typed"></span></div>
+    <div class="res" id="res"><i>✅</i><div><b>Car insurance · Oct 15</b><span>Alerts set: 1 week before · 1 day before · on the day</span></div></div>
+    <p style="margin-top:26px" class="reveal">Under thirty seconds. No form. No account. Everything pre-filled, so you can go back to your day.</p>
+  </div>
+</section>
+
+<section class="ch tint">
+  <div class="wide">
+    <div class="wrap">
+      <div class="num reveal">Chapter 06</div>
+      <h2 class="reveal">What we promised ourselves.</h2>
+      <p class="reveal">Four promises that sit under every design decision, and that we'd rather not break to make a quick rupee.</p>
+    </div>
+    <div class="prom">
+      <div class="reveal"><b>No account. Ever.</b><span>Install, open, start. Nothing to sign up for.</span></div>
+      <div class="reveal"><b>No ads. No tracking.</b><span>Your people stay your people. We collect no analytics and share nothing.</span></div>
+      <div class="reveal"><b>Works without internet.</b><span>Alerts fire from your phone, even in airplane mode and with the app closed.</span></div>
+      <div class="reveal"><b>Pay once, if you want to.</b><span>Core features are free. Pro is a one-time purchase, never a subscription.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="end">
+  <div class="eyebrow reveal">Chapter 07</div>
+  <h2 class="reveal">Somewhere in your year is a date that matters more than any meeting.</h2>
+  <p class="reveal">Give it a proper reminder. Then go call someone you love.</p>
+  <div class="row reveal">
+    <a class="pill" href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener">Get DateWise on Google Play</a>
+    <a class="pill ghost" href="/datewise/">Explore the features</a>
+  </div>
+  <div class="sign reveal">— The WiselyRise Team · Crafted with 💜 in India</div>
+</section>
+
+<footer>
+  <a href="/datewise/">DateWise</a><a href="/datewise/privacy">Privacy</a><a href="/datewise/terms">Terms</a><a href="/">WiselyRise</a>
+</footer>
+
+<script>
+(function(){
+  var bar=document.getElementById('bar');
+  addEventListener('scroll',function(){var h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  var msgs={b:"Amma turns 62 today. Call her before she calls you.",a:"Your 12th anniversary is tomorrow. A small plan beats a big apology.",r:"Car insurance renews in 3 days. Pay on time, stay covered."};
+  var cur='b',goodTxt=document.getElementById('goodTxt'),hear=document.getElementById('hear');
+  goodTxt.textContent=msgs[cur];
+  document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){
+    cur=c.dataset.k;goodTxt.textContent=msgs[cur];
+    document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c)});
+    if('speechSynthesis' in window)speechSynthesis.cancel();
+  })});
+  if('speechSynthesis' in window){
+    hear.addEventListener('click',function(){
+      speechSynthesis.cancel();
+      var u=new SpeechSynthesisUtterance(msgs[cur]);u.lang='en-IN';u.rate=.95;speechSynthesis.speak(u);
+    });
+  }else{hear.style.display='none'}
+
+  var phrase='Car insurance due Oct 15',typed=document.getElementById('typed'),res=document.getElementById('res'),started=false;
+  function run(){
+    if(started)return;started=true;
+    if(matchMedia('(prefers-reduced-motion:reduce)').matches){typed.textContent=phrase;res.classList.add('on');return}
+    var i=0;(function t(){typed.textContent=phrase.slice(0,++i);if(i<phrase.length)setTimeout(t,75);else setTimeout(function(){res.classList.add('on')},400)})();
+  }
+  new IntersectionObserver(function(es,o){if(es[0].isIntersecting){run();o.disconnect()}},{threshold:.6}).observe(document.getElementById('typedWrap'));
+})();
+</script>
+</body>
+</html>

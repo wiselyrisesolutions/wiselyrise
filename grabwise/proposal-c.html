@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GrabWise — Your Family's Grocery, Organized</title>
-  <meta name="description" content="Visual grocery catalog, store routes, Tamil & English support, and real-time family sync. All free, all offline." />
+  <title>GrabWise — Plan. Grab. Done. | Smart Household Grocery Planner</title>
+  <meta name="description" content="Visual grocery catalog, store routes, offline-first household planner, and real-time family sync. All free, all offline." />
+  <link rel="icon" type="image/png" href="assets/icons/app_icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
     /* ============================================================
-       RESET & BASE
+       RESET & BASE (EXACT PROPOSAL-C_OLD FOUNDATION)
     ============================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Outfit', 'Noto Sans Tamil', sans-serif;
+      font-family: 'Outfit', sans-serif;
       background-color: #FFFBF5;
       color: #1a1a1a;
       overflow-x: hidden;
@@ -44,11 +45,42 @@
       --shadow-hover: 0 12px 40px rgba(0,0,0,0.14);
     }
 
-    /* ============================================================
-       KEYFRAMES
-    ============================================================ */
+    /* TOP PREVIEW NAV BAR */
+    .concept-top-bar {
+      background: #1C1917;
+      color: #E7E5E4;
+      padding: 10px 16px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      z-index: 1001;
+    }
+    .concept-top-bar span { color: var(--turmeric); font-weight: 800; }
+    .concept-top-bar a {
+      color: #D6D3D1;
+      text-decoration: none;
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .concept-top-bar a:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    .concept-top-bar a.active {
+      background: var(--turmeric);
+      color: #1C1917;
+      border-color: var(--turmeric);
+      font-weight: 800;
+    }
 
-    /* Grocery Rain: drop from top, bounce, settle */
+    /* KEYFRAMES */
     @keyframes bounce-drop {
       0%   { transform: translateY(-150px); opacity: 0; }
       55%  { transform: translateY(0px);    opacity: 1; }
@@ -58,44 +90,22 @@
       95%  { transform: translateY(-4px);   opacity: 1; }
       100% { transform: translateY(0px);    opacity: 1; }
     }
-
-    /* After bounce, gently float */
     @keyframes gentle-float {
       0%, 100% { transform: translateY(0px); }
       50%       { transform: translateY(-8px); }
     }
-
-    /* Cart pulse */
     @keyframes cart-pulse {
       0%, 100% { transform: scale(1) translateY(0); }
       50%       { transform: scale(1.04) translateY(-6px); }
     }
-
-    /* Badge cycle fade */
     @keyframes badge-fade-in {
       from { opacity: 0; transform: translateY(8px) scale(0.95); }
       to   { opacity: 1; transform: translateY(0)   scale(1);    }
     }
-
-    /* Scroll reveal */
     @keyframes reveal-up {
       from { opacity: 0; transform: translateY(40px); }
       to   { opacity: 1; transform: translateY(0);    }
     }
-
-    /* Shimmer for stat pills */
-    @keyframes shimmer {
-      0%   { background-position: -400px 0; }
-      100% { background-position:  400px 0; }
-    }
-
-    /* Rotate badge slowly */
-    @keyframes spin-slow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-
-    /* Highlight pulse for elder mode button */
     @keyframes elder-pulse {
       0%, 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0.4); }
       50%       { box-shadow: 0 0 0 16px rgba(22,163,74,0); }
@@ -155,7 +165,7 @@
     .nav-links a {
       text-decoration: none;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--text-mid);
       transition: color 0.2s;
     }
@@ -176,53 +186,13 @@
       box-shadow: 0 8px 24px rgba(22,163,74,0.45) !important;
       color: #fff !important;
     }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 6px;
-      background: none;
-      border: none;
-    }
-    .hamburger span {
-      display: block;
-      width: 26px;
-      height: 2.5px;
-      background: var(--text-dark);
-      border-radius: 4px;
-      transition: all 0.3s;
-    }
-    .mobile-menu {
-      display: none;
-      background: var(--white);
-      padding: 20px 24px;
-      border-bottom: 1px solid #f3f4f6;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .mobile-menu a {
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--text-mid);
-      padding: 8px 0;
-      border-bottom: 1px solid #f3f4f6;
-    }
-    .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu.open { display: flex; }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-    }
 
     /* ============================================================
-       HERO
+       HERO: PLAN-A HEADLINE + PROPOSAL-C BOUNCING GROCERY RAIN
     ============================================================ */
     .hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 94vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -230,9 +200,9 @@
       overflow: hidden;
       padding: 100px 24px 80px;
       background: radial-gradient(ellipse 80% 60% at 50% 0%, #FFFDE7 0%, #FFFBF5 60%);
+      text-align: center;
     }
 
-    /* Grocery Rain Container */
     .grocery-rain {
       position: absolute;
       inset: 0;
@@ -251,7 +221,6 @@
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
     }
 
-    /* Big cart at bottom center */
     .hero-cart {
       position: absolute;
       bottom: -10px;
@@ -268,10 +237,9 @@
       position: relative;
       z-index: 10;
       text-align: center;
-      max-width: 760px;
+      max-width: 780px;
     }
 
-    /* Rotating badge */
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -283,7 +251,7 @@
       font-size: 14px;
       font-weight: 700;
       color: #92400E;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       box-shadow: 0 4px 16px rgba(245,158,11,0.2);
       animation: badge-fade-in 0.4s ease both;
     }
@@ -294,24 +262,24 @@
       animation: elder-pulse 2s infinite;
     }
 
+    /* Plan-A Headline in Proposal-C Style */
     .hero h1 {
-      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-size: clamp(3.2rem, 6.5vw, 5.2rem);
       font-weight: 900;
-      line-height: 1.15;
-      letter-spacing: -1.5px;
-      color: var(--text-dark);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      color: var(--green-dark);
       margin-bottom: 20px;
     }
-    .hero h1 .accent-green { color: var(--green); }
     .hero h1 .accent-turmeric { color: var(--turmeric); }
 
     .hero-sub {
-      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      font-size: clamp(1.1rem, 2.2vw, 1.25rem);
       color: var(--muted);
-      max-width: 560px;
+      max-width: 580px;
       margin: 0 auto 36px;
-      line-height: 1.7;
-      font-weight: 400;
+      line-height: 1.65;
+      font-weight: 500;
     }
 
     .hero-actions {
@@ -319,17 +287,17 @@
       gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 48px;
+      margin-bottom: 28px;
     }
     .btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       background: linear-gradient(135deg, #16A34A, #15803D);
       color: #fff;
-      padding: 16px 32px;
+      padding: 16px 34px;
       border-radius: 50px;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 16px;
       text-decoration: none;
       box-shadow: 0 6px 24px rgba(22,163,74,0.4);
@@ -347,7 +315,7 @@
       color: var(--text-dark);
       padding: 16px 32px;
       border-radius: 50px;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 16px;
       text-decoration: none;
       border: 2px solid #e5e7eb;
@@ -360,8 +328,30 @@
       box-shadow: 0 8px 24px rgba(22,163,74,0.15);
     }
 
+    /* Trust Chips Row */
+    .hero-trust-chips {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .trust-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-mid);
+    }
+    .trust-pill .check {
+      color: var(--green);
+      font-weight: 900;
+    }
+
     /* ============================================================
-       STATS BAND
+       STATS BAND (EXACT PROPOSAL-C_OLD)
     ============================================================ */
     .stats-band {
       background: var(--white);
@@ -383,7 +373,7 @@
       gap: 10px;
       padding: 12px 24px;
       border-radius: 50px;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 15px;
       white-space: nowrap;
       transition: transform 0.2s, box-shadow 0.2s;
@@ -393,11 +383,11 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     }
-    .stat-pill.green  { background: var(--green-soft);   color: var(--green-dark); }
+    .stat-pill.green    { background: var(--green-soft);   color: var(--green-dark); }
     .stat-pill.turmeric { background: var(--turmeric-soft); color: #92400E; }
-    .stat-pill.red    { background: #FEE2E2;              color: #991B1B; }
-    .stat-pill.blue   { background: #DBEAFE;              color: #1E40AF; }
-    .stat-pill-icon   { font-size: 20px; }
+    .stat-pill.red      { background: #FEE2E2;              color: #991B1B; }
+    .stat-pill.blue     { background: #DBEAFE;              color: #1E40AF; }
+    .stat-pill-icon     { font-size: 20px; }
 
     /* ============================================================
        SECTION UTILITIES
@@ -413,21 +403,15 @@
       border-radius: 50px;
       padding: 6px 16px;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.5px;
       text-transform: uppercase;
       margin-bottom: 16px;
     }
-    .section-label.turmeric-label {
-      background: var(--turmeric-soft);
-      color: #92400E;
-    }
-    .section-label.red-label {
-      background: #FEE2E2;
-      color: #991B1B;
-    }
+    .section-label.turmeric-label { background: var(--turmeric-soft); color: #92400E; }
+    .section-label.red-label { background: #FEE2E2; color: #991B1B; }
     .section-title {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-size: clamp(2rem, 3.8vw, 3rem);
       font-weight: 900;
       line-height: 1.2;
       letter-spacing: -0.8px;
@@ -437,51 +421,45 @@
     .section-sub {
       font-size: 1.05rem;
       color: var(--muted);
-      max-width: 560px;
+      max-width: 580px;
       line-height: 1.7;
     }
 
-    /* Reveal animation */
+    /* Reveal */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(30px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-    .reveal-delay-5 { transition-delay: 0.5s; }
-    .reveal-delay-6 { transition-delay: 0.6s; }
 
     /* ============================================================
-       BILINGUAL SHOWCASE
+       TWO-MODE APP SHOWCASE (KITCHEN PLANNING VS IN-STORE SHOPPING)
     ============================================================ */
-    .bilingual-section { background: var(--white); }
-    .bilingual-grid {
+    .showcase-section { background: var(--white); }
+    .showcase-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 36px;
       margin-top: 48px;
     }
     .phone-mockup {
       border-radius: 32px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 0 0 6px #e5e7eb, 0 0 0 8px #f3f4f6;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.10), 0 0 0 6px #e5e7eb;
       background: var(--white);
     }
     .phone-header {
-      padding: 20px 20px 12px;
+      padding: 20px 20px 14px;
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    .phone-header.en { background: linear-gradient(135deg, #16A34A, #15803D); }
-    .phone-header.ta { background: linear-gradient(135deg, #F59E0B, #D97706); }
+    .phone-header.plan { background: linear-gradient(135deg, #16A34A, #15803D); }
+    .phone-header.shop { background: linear-gradient(135deg, #F59E0B, #D97706); }
     .phone-header-icon {
       width: 40px; height: 40px;
       border-radius: 12px;
@@ -491,8 +469,8 @@
       justify-content: center;
       font-size: 20px;
     }
-    .phone-header-text h3 { color: #fff; font-size: 15px; font-weight: 700; }
-    .phone-header-text p { color: rgba(255,255,255,0.8); font-size: 12px; }
+    .phone-header-text h3 { color: #fff; font-size: 16px; font-weight: 800; }
+    .phone-header-text p { color: rgba(255,255,255,0.85); font-size: 12px; }
     .phone-search {
       margin: 12px 16px;
       background: #f9fafb;
@@ -524,15 +502,7 @@
       flex-shrink: 0;
     }
     .phone-item-info { flex: 1; }
-    .phone-item-name {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-    .phone-item-name.tamil {
-      font-family: 'Noto Sans Tamil', sans-serif;
-      font-size: 15px;
-    }
+    .phone-item-name { font-size: 14.5px; font-weight: 800; color: var(--text-dark); }
     .phone-item-sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
     .phone-item-action {
       width: 32px; height: 32px;
@@ -540,18 +510,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 16px;
+      font-weight: 900;
       cursor: pointer;
     }
-    .phone-item-action.add { background: var(--green-soft); }
-    .phone-item-action.check { background: var(--turmeric-soft); }
+    .phone-item-action.add { background: var(--green-soft); color: var(--green-dark); }
+    .phone-item-action.check { background: var(--turmeric-soft); color: #92400E; }
 
     @media (max-width: 768px) {
-      .bilingual-grid { grid-template-columns: 1fr; }
+      .showcase-grid { grid-template-columns: 1fr; }
     }
 
     /* ============================================================
-       PROBLEM / SOLUTION
+       PROBLEM / SOLUTION (EXACT PROPOSAL-C_OLD)
     ============================================================ */
     .ps-section { background: var(--cream); }
     .ps-grid {
@@ -594,9 +565,9 @@
     }
     .ps-label.bad  { color: var(--red); }
     .ps-label.good { color: var(--green); }
-    .ps-text { font-size: 13px; color: var(--text-mid); line-height: 1.5; font-weight: 500; }
+    .ps-text { font-size: 13.5px; color: var(--text-mid); line-height: 1.5; font-weight: 500; }
     .ps-card-title {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 800;
       color: var(--text-dark);
       margin-bottom: 14px;
@@ -607,10 +578,190 @@
 
     @media (max-width: 640px) {
       .ps-grid { grid-template-columns: 1fr; }
+      .ps-row { grid-template-columns: 1fr; }
     }
 
     /* ============================================================
-       FEATURES
+       6-CHAR PRIVACY CARD (SCREENSHOT 2 FAVORITE)
+    ============================================================ */
+    .privacy-feature-section {
+      background: var(--white);
+      padding: 80px 24px;
+    }
+    .privacy-feature-card {
+      max-width: 1040px;
+      margin: 0 auto;
+      background: #14532D;
+      border-radius: var(--radius-xl);
+      padding: 52px 48px;
+      color: #FFFFFF;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 40px;
+      box-shadow: 0 20px 50px rgba(20,83,45,0.25);
+    }
+    .pf-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 5px 14px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #86EFAC;
+      margin-bottom: 16px;
+    }
+    .pf-title {
+      font-size: clamp(26px, 3.4vw, 40px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      color: #FFFFFF;
+    }
+    .pf-desc {
+      font-size: 15.5px;
+      color: #D1E7D7;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .pf-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .pf-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14.5px;
+      color: #E2ECE5;
+      line-height: 1.5;
+    }
+    .pf-bullet span { font-size: 16px; margin-top: 2px; }
+
+    /* Dotted Code Container */
+    .pf-code-container {
+      background: rgba(255, 255, 255, 0.06);
+      border: 2px dashed #4ADE80;
+      border-radius: 24px;
+      padding: 32px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .pf-code-label {
+      font-size: 12px;
+      font-weight: 800;
+      color: #86EFAC;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+    }
+    .pf-digits-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .pf-digit {
+      width: 44px;
+      height: 54px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      color: #14532D;
+      font-size: 24px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .pf-code-sync {
+      font-size: 12px;
+      font-weight: 700;
+      color: #86EFAC;
+    }
+
+    @media (max-width: 860px) {
+      .privacy-feature-card { grid-template-columns: 1fr; padding: 36px 24px; }
+    }
+
+    /* ============================================================
+       DUAL-LUGGAGE TRIP PLANNER (SCREENSHOT 3 FAVORITE)
+    ============================================================ */
+    .trips-feature-section {
+      background: var(--cream);
+      padding: 80px 24px;
+    }
+    .trips-feature-card {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      border: 2px solid #FDE68A;
+      box-shadow: var(--shadow-card);
+    }
+    .tf-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FEE2E2;
+      color: #B91C1C;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .tf-title {
+      font-size: clamp(26px, 3.6vw, 42px);
+      font-weight: 900;
+      color: var(--green-dark);
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .tf-desc {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .tf-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .tf-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15px;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+    .tf-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .tf-item strong { color: var(--text-dark); }
+
+    /* ============================================================
+       FEATURES (EXACT PROPOSAL-C_OLD)
     ============================================================ */
     .features-section { background: var(--white); }
     .features-grid {
@@ -628,19 +779,10 @@
       position: relative;
       overflow: hidden;
     }
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
     .feature-card:hover {
       transform: translateY(-6px);
       box-shadow: var(--shadow-hover);
     }
-    .feature-card:hover::before { opacity: 1; }
     .feature-icon-wrap {
       width: 64px; height: 64px;
       border-radius: 18px;
@@ -680,15 +822,11 @@
       letter-spacing: 0.5px;
     }
 
-    @media (max-width: 900px) {
-      .features-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 560px) {
-      .features-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .features-grid { grid-template-columns: 1fr; } }
 
     /* ============================================================
-       HOW IT WORKS
+       HOW IT WORKS (EXACT PROPOSAL-C_OLD)
     ============================================================ */
     .hiw-section { background: var(--cream); }
     .hiw-steps {
@@ -698,10 +836,7 @@
       align-items: start;
       margin-top: 56px;
     }
-    .hiw-step {
-      text-align: center;
-      padding: 0 16px;
-    }
+    .hiw-step { text-align: center; padding: 0 16px; }
     .hiw-number {
       width: 72px; height: 72px;
       border-radius: 50%;
@@ -717,22 +852,9 @@
       transition: transform 0.2s;
     }
     .hiw-step:hover .hiw-number { transform: scale(1.1); }
-    .hiw-emoji {
-      font-size: 48px;
-      margin-bottom: 16px;
-      display: block;
-    }
-    .hiw-step h3 {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 10px;
-    }
-    .hiw-step p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.65;
-    }
+    .hiw-emoji { font-size: 48px; margin-bottom: 16px; display: block; }
+    .hiw-step h3 { font-size: 18px; font-weight: 800; color: var(--text-dark); margin-bottom: 10px; }
+    .hiw-step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
     .hiw-arrow {
       display: flex;
       align-items: center;
@@ -742,19 +864,12 @@
     }
 
     @media (max-width: 768px) {
-      .hiw-steps {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-      .hiw-arrow {
-        transform: rotate(90deg);
-        justify-content: center;
-        padding: 8px 0;
-      }
+      .hiw-steps { grid-template-columns: 1fr; }
+      .hiw-arrow { transform: rotate(90deg); justify-content: center; padding: 8px 0; }
     }
 
     /* ============================================================
-       ELDER MODE
+       ELDER MODE (EXACT PROPOSAL-C_OLD, ENGLISH ONLY)
     ============================================================ */
     .elder-section {
       background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 50%, #FEF3C7 100%);
@@ -837,15 +952,8 @@
       align-items: center;
       justify-content: space-between;
     }
-    .elder-demo-header-left h3 {
-      color: #fff;
-      font-size: 20px;
-      font-weight: 800;
-    }
-    .elder-demo-header-left p {
-      color: rgba(255,255,255,0.8);
-      font-size: 13px;
-    }
+    .elder-demo-header-left h3 { color: #fff; font-size: 20px; font-weight: 800; }
+    .elder-demo-header-left p { color: rgba(255,255,255,0.85); font-size: 13px; }
     .elder-mode-badge {
       background: rgba(255,255,255,0.2);
       color: #fff;
@@ -870,17 +978,8 @@
     .elder-item:hover { border-color: var(--green); }
     .elder-item-emoji { font-size: 40px; }
     .elder-item-info { flex: 1; }
-    .elder-item-name {
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--text-dark);
-    }
-    .elder-item-tamil {
-      font-family: 'Noto Sans Tamil', sans-serif;
-      font-size: 17px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
+    .elder-item-name { font-size: 22px; font-weight: 900; color: var(--text-dark); }
+    .elder-item-sub { font-size: 14px; color: var(--muted); margin-top: 2px; }
     .elder-add-btn {
       width: 52px; height: 52px;
       border-radius: 50%;
@@ -903,7 +1002,7 @@
     }
 
     /* ============================================================
-       DOWNLOAD CTA
+       DOWNLOAD CTA (EXACT PROPOSAL-C_OLD)
     ============================================================ */
     .download-section {
       background: linear-gradient(135deg, #F59E0B 0%, #E8920A 60%, #D97706 100%);
@@ -911,24 +1010,6 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-    }
-    .download-section::before {
-      content: '🛒';
-      position: absolute;
-      font-size: 240px;
-      opacity: 0.08;
-      right: -40px;
-      bottom: -40px;
-      pointer-events: none;
-    }
-    .download-section::after {
-      content: '🍅';
-      position: absolute;
-      font-size: 160px;
-      opacity: 0.07;
-      left: -20px;
-      top: -20px;
-      pointer-events: none;
     }
     .download-inner {
       max-width: 700px;
@@ -995,7 +1076,7 @@
     }
     .download-note {
       margin-top: 24px;
-      font-size: 13px;
+      font-size: 13.5px;
       color: #78716C;
       display: flex;
       align-items: center;
@@ -1004,17 +1085,14 @@
     }
 
     /* ============================================================
-       FOOTER
+       FOOTER (EXACT PROPOSAL-C_OLD)
     ============================================================ */
     footer {
       background: var(--cream);
       border-top: 1px solid #e5e7eb;
       padding: 64px 24px 32px;
     }
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
     .footer-top {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -1026,7 +1104,7 @@
       color: var(--muted);
       line-height: 1.7;
       margin-top: 14px;
-      max-width: 260px;
+      max-width: 280px;
     }
     .footer-contact {
       margin-top: 16px;
@@ -1068,23 +1146,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: gap;
+      flex-wrap: wrap;
       gap: 12px;
     }
-    .footer-bottom p {
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .footer-bottom-links {
-      display: flex;
-      gap: 20px;
-    }
-    .footer-bottom-links a {
-      font-size: 13px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .footer-bottom p { font-size: 13px; color: var(--muted); }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { font-size: 13px; color: var(--muted); text-decoration: none; }
     .footer-bottom-links a:hover { color: var(--green); }
     .footer-logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
     .footer-logo-icon {
@@ -1106,50 +1173,22 @@
       font-weight: 600;
     }
 
-    @media (max-width: 900px) {
-      .footer-top { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 560px) {
-      .footer-top { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; }
-    }
-
-    /* ============================================================
-       MISC UTILITY
-    ============================================================ */
-    .divider-wave {
-      width: 100%;
-      overflow: hidden;
-      line-height: 0;
-    }
-    .text-center { text-align: center; }
-    .mt-2 { margin-top: 8px; }
-    .mt-4 { margin-top: 16px; }
-
-    /* Scroll top button */
-    #scroll-top {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      background: var(--green);
-      color: #fff;
-      border: none;
-      font-size: 22px;
-      cursor: pointer;
-      box-shadow: 0 4px 16px rgba(22,163,74,0.4);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      transition: transform 0.2s, opacity 0.2s;
-    }
-    #scroll-top.visible { display: flex; }
-    #scroll-top:hover { transform: scale(1.1); }
+    @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .footer-top { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; align-items: flex-start; } }
   </style>
 </head>
 <body>
+
+  <!-- ============================================================
+       TOP CONCEPT NAVIGATION
+  ============================================================ -->
+  <div class="concept-top-bar">
+    <span>💡 View Website Concepts:</span>
+    <a href="proposal-a.html">Proposal A (Gravity Light)</a>
+    <a href="proposal-b.html">Proposal B (Night Market)</a>
+    <a href="proposal-c.html" class="active">Proposal C (Hybrid English)</a>
+    <a href="proposal-c_old.html">Proposal C_Old (Original Master)</a>
+  </div>
 
   <!-- ============================================================
        NAVIGATION
@@ -1162,40 +1201,26 @@
       </a>
 
       <ul class="nav-links">
+        <li><a href="#showcase">How It Works</a></li>
+        <li><a href="#problem-solution">Why GrabWise</a></li>
         <li><a href="#features">Features</a></li>
-        <li><a href="#bilingual">Tamil Support</a></li>
         <li><a href="#elder">Elder Mode</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
         <li>
           <a href="https://play.google.com/store/apps/details?id=com.grabwise.app"
              target="_blank" rel="noopener" class="nav-cta">
-            📲 Download
+            📲 Download Free
           </a>
         </li>
       </ul>
-
-      <button class="hamburger" id="hamburger" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-
-    <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="#features">Features</a>
-      <a href="#bilingual">Tamil Support</a>
-      <a href="#elder">Elder Mode</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="https://play.google.com/store/apps/details?id=com.grabwise.app" target="_blank" rel="noopener">📲 Download App</a>
-      <a href="https://grabwise.web.app" target="_blank" rel="noopener">🌐 Launch in Browser</a>
     </div>
   </nav>
 
   <!-- ============================================================
-       HERO
+       HERO: EXACT PLAN-A HEADLINE + PROPOSAL-C BOUNCING RAIN
   ============================================================ -->
   <section class="hero" id="hero">
 
-    <!-- Grocery Rain -->
+    <!-- Bouncing Grocery Rain -->
     <div class="grocery-rain" id="grocery-rain" aria-hidden="true"></div>
 
     <!-- Big cart -->
@@ -1209,14 +1234,14 @@
         <span id="badge-text">🌿 Zero Ads</span>
       </div>
 
+      <!-- Plan-A Centered Headline -->
       <h1>
-        Your Family's Grocery,<br/>
-        <span class="accent-green">Organized.</span>
+        Plan. <span class="accent-turmeric">Grab.</span> Done.
       </h1>
 
       <p class="hero-sub">
-        Visual catalog, store routes, Tamil &amp; English support, and real-time family sync.
-        All free, all offline.
+        The smartest household grocery planner for modern families.<br/>
+        No sign-ups, no ads, no chaos.
       </p>
 
       <div class="hero-actions">
@@ -1228,11 +1253,17 @@
           🌐 Launch in Browser
         </a>
       </div>
+
+      <div class="hero-trust-chips">
+        <div class="trust-pill"><span class="check">✓</span> 100% Free Forever</div>
+        <div class="trust-pill"><span class="check">✓</span> Works Offline</div>
+        <div class="trust-pill"><span class="check">✓</span> No Account Needed</div>
+      </div>
     </div>
   </section>
 
   <!-- ============================================================
-       STATS BAND
+       STATS BAND (EXACT PROPOSAL-C_OLD)
   ============================================================ -->
   <div class="stats-band">
     <div class="stats-inner">
@@ -1256,158 +1287,160 @@
   </div>
 
   <!-- ============================================================
-       BILINGUAL SHOWCASE
+       APP SHOWCASE (TWO MODES: PLAN AT HOME & SHOP IN STORE)
   ============================================================ -->
-  <section class="bilingual-section" id="bilingual">
+  <section class="showcase-section" id="showcase">
     <div class="section-inner">
       <div class="text-center reveal">
-        <div class="section-label">🌐 Language Support</div>
-        <h2 class="section-title">Shop in Your Language</h2>
+        <div class="section-label">⚡ Seamless Flow</div>
+        <h2 class="section-title">Plan at Home. Grab in the Store.</h2>
         <p class="section-sub" style="margin: 0 auto;">
-          GrabWise speaks Tamil and English natively. Toggle anytime — your whole catalog switches instantly.
+          Two distinct modes built for real life: build your list with photos from your kitchen, then switch to Shop Mode for fast supermarket runs.
         </p>
       </div>
 
-      <div class="bilingual-grid">
+      <div class="showcase-grid">
 
-        <!-- English Mockup -->
+        <!-- Mode 1: Home Planning Mockup -->
         <div class="phone-mockup reveal reveal-delay-1">
-          <div class="phone-header en">
-            <div class="phone-header-icon">🛒</div>
+          <div class="phone-header plan">
+            <div class="phone-header-icon">📋</div>
             <div class="phone-header-text">
-              <h3>GrabWise</h3>
-              <p>English • 14 items in list</p>
+              <h3>GrabWise — Home Planning</h3>
+              <p>Visual Catalog • 14 items in list</p>
             </div>
           </div>
           <div class="phone-search">
             <span>🔍</span>
-            <span>Search groceries...</span>
+            <span>Search 400+ groceries...</span>
           </div>
           <div class="phone-items">
             <div class="phone-item">
               <div class="phone-item-img" style="background:#FEF3C7;">🍅</div>
               <div class="phone-item-info">
-                <div class="phone-item-name">Tomato</div>
-                <div class="phone-item-sub">Vegetables · ₹40/kg</div>
+                <div class="phone-item-name">Tomatoes</div>
+                <div class="phone-item-sub">Produce • 1 kg • Farmers Market</div>
               </div>
               <div class="phone-item-action add">＋</div>
             </div>
             <div class="phone-item">
               <div class="phone-item-img" style="background:#DCFCE7;">🧅</div>
               <div class="phone-item-info">
-                <div class="phone-item-name">Onion</div>
-                <div class="phone-item-sub">Vegetables · ₹35/kg</div>
+                <div class="phone-item-name">Red Onions</div>
+                <div class="phone-item-sub">Produce • 2 kg • Farmers Market</div>
               </div>
               <div class="phone-item-action add">＋</div>
             </div>
             <div class="phone-item">
               <div class="phone-item-img" style="background:#FEE2E2;">🥕</div>
               <div class="phone-item-info">
-                <div class="phone-item-name">Carrot</div>
-                <div class="phone-item-sub">Vegetables · ₹60/kg</div>
+                <div class="phone-item-name">Fresh Carrots</div>
+                <div class="phone-item-sub">Produce • 500 g • Ooty Fresh</div>
               </div>
               <div class="phone-item-action check">✓</div>
             </div>
             <div class="phone-item">
               <div class="phone-item-img" style="background:#FEF3C7;">🌿</div>
               <div class="phone-item-info">
-                <div class="phone-item-name">Coriander</div>
-                <div class="phone-item-sub">Herbs · ₹20/bunch</div>
+                <div class="phone-item-name">Fresh Coriander</div>
+                <div class="phone-item-sub">Greens • 2 bunches</div>
               </div>
               <div class="phone-item-action add">＋</div>
             </div>
             <div class="phone-item">
-              <div class="phone-item-img" style="background:#EDE9FE;">🟡</div>
+              <div class="phone-item-img" style="background:#EDE9FE;">🥛</div>
               <div class="phone-item-info">
-                <div class="phone-item-name">Turmeric</div>
-                <div class="phone-item-sub">Spices · ₹180/kg</div>
+                <div class="phone-item-name">Fresh Milk</div>
+                <div class="phone-item-sub">Dairy • 2 packets • Supermarket</div>
               </div>
               <div class="phone-item-action add">＋</div>
             </div>
           </div>
         </div>
 
-        <!-- Tamil Mockup -->
+        <!-- Mode 2: In-Store Shop Mode Mockup -->
         <div class="phone-mockup reveal reveal-delay-2">
-          <div class="phone-header ta">
+          <div class="phone-header shop">
             <div class="phone-header-icon">🛒</div>
             <div class="phone-header-text">
-              <h3>கிராப்வைஸ்</h3>
-              <p>தமிழ் · 14 பொருட்கள்</p>
+              <h3>GrabWise — In-Store Mode</h3>
+              <p>Store-Routed • 4 items remaining</p>
             </div>
           </div>
           <div class="phone-search">
-            <span>🔍</span>
-            <span style="font-family:'Noto Sans Tamil',sans-serif;">பொருட்களை தேடுங்கள்...</span>
+            <span>📍</span>
+            <span>Sorted by store aisles &amp; sections</span>
           </div>
           <div class="phone-items">
             <div class="phone-item">
               <div class="phone-item-img" style="background:#FEF3C7;">🍅</div>
               <div class="phone-item-info">
-                <div class="phone-item-name tamil">தக்காளி</div>
-                <div class="phone-item-sub">Tomato · ₹40/கிலோ</div>
-              </div>
-              <div class="phone-item-action add">＋</div>
-            </div>
-            <div class="phone-item">
-              <div class="phone-item-img" style="background:#DCFCE7;">🧅</div>
-              <div class="phone-item-info">
-                <div class="phone-item-name tamil">வெங்காயம்</div>
-                <div class="phone-item-sub">Onion · ₹35/கிலோ</div>
-              </div>
-              <div class="phone-item-action add">＋</div>
-            </div>
-            <div class="phone-item">
-              <div class="phone-item-img" style="background:#FEE2E2;">🥕</div>
-              <div class="phone-item-info">
-                <div class="phone-item-name tamil">கேரட்</div>
-                <div class="phone-item-sub">Carrot · ₹60/கிலோ</div>
+                <div class="phone-item-name">Tomatoes (1 kg)</div>
+                <div class="phone-item-sub">Section: Fresh Produce</div>
               </div>
               <div class="phone-item-action check">✓</div>
             </div>
             <div class="phone-item">
-              <div class="phone-item-img" style="background:#FEF3C7;">🌿</div>
+              <div class="phone-item-img" style="background:#DCFCE7;">🧅</div>
               <div class="phone-item-info">
-                <div class="phone-item-name tamil">கொத்தமல்லி</div>
-                <div class="phone-item-sub">Coriander · ₹20/கட்டு</div>
+                <div class="phone-item-name">Red Onions (2 kg)</div>
+                <div class="phone-item-sub">Section: Fresh Produce</div>
+              </div>
+              <div class="phone-item-action check">✓</div>
+            </div>
+            <div class="phone-item">
+              <div class="phone-item-img" style="background:#DBEAFE;">🌾</div>
+              <div class="phone-item-info">
+                <div class="phone-item-name">Whole Wheat Flour (5 kg)</div>
+                <div class="phone-item-sub">Section: Grains &amp; Flour</div>
               </div>
               <div class="phone-item-action add">＋</div>
             </div>
             <div class="phone-item">
-              <div class="phone-item-img" style="background:#EDE9FE;">🟡</div>
+              <div class="phone-item-img" style="background:#EDE9FE;">🥛</div>
               <div class="phone-item-info">
-                <div class="phone-item-name tamil">மஞ்சள்</div>
-                <div class="phone-item-sub">Turmeric · ₹180/கிலோ</div>
+                <div class="phone-item-name">Fresh Milk (2 pkt)</div>
+                <div class="phone-item-sub">Section: Dairy Chiller</div>
               </div>
               <div class="phone-item-action add">＋</div>
             </div>
+            <div class="phone-item">
+              <div class="phone-item-img" style="background:#DCFCE7;">🌿</div>
+              <div class="phone-item-info">
+                <div class="phone-item-name">Green Chillies (250 g)</div>
+                <div class="phone-item-sub">Checked off by Amma ✓</div>
+              </div>
+              <div class="phone-item-action check">✓</div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       PROBLEM / SOLUTION
-  ============================================================ -->
+       PROBLEM / SOLUTION (EXACT PROPOSAL-C_OLD)
+  ============================================================ */
+  -->
   <section class="ps-section" id="problem-solution">
     <div class="section-inner">
       <div class="text-center reveal">
         <div class="section-label red-label">😤 The Problem</div>
-        <h2 class="section-title">Grocery shopping is still a mess</h2>
+        <h2 class="section-title">Grocery shopping is still chaotic</h2>
         <p class="section-sub" style="margin: 0 auto;">
-          GrabWise replaces chaos with calm — for every member of your family.
+          GrabWise replaces confusion with calm — for every member of your family.
         </p>
       </div>
 
       <div class="ps-grid">
 
         <div class="ps-card reveal reveal-delay-1">
-          <div class="ps-card-title">📝 Scattered Lists</div>
+          <div class="ps-card-title">📝 Scattered Chat Lists</div>
           <div class="ps-row">
             <div class="ps-before">
               <div class="ps-label bad">✗ Before</div>
-              <div class="ps-text">WhatsApp messages, paper slips, memory — items forgotten every trip.</div>
+              <div class="ps-text">Scattered WhatsApp texts, paper notes, memory — items forgotten on every trip.</div>
             </div>
             <div class="ps-after">
               <div class="ps-label good">✓ After</div>
@@ -1417,15 +1450,15 @@
         </div>
 
         <div class="ps-card reveal reveal-delay-2">
-          <div class="ps-card-title">🏪 Store Confusion</div>
+          <div class="ps-card-title">🏪 Aisle Backtracking</div>
           <div class="ps-row">
             <div class="ps-before">
               <div class="ps-label bad">✗ Before</div>
-              <div class="ps-text">Wandering aisles, backtracking, missing sections of the store.</div>
+              <div class="ps-text">Wandering aisles randomly, backtracking back and forth across the store.</div>
             </div>
             <div class="ps-after">
               <div class="ps-label good">✓ After</div>
-              <div class="ps-text">Smart store route groups items by section. In and out in minutes.</div>
+              <div class="ps-text">Smart store routes group items by section. In and out in record time.</div>
             </div>
           </div>
         </div>
@@ -1435,21 +1468,21 @@
           <div class="ps-row">
             <div class="ps-before">
               <div class="ps-label bad">✗ Before</div>
-              <div class="ps-text">Tiny text, confusing UI, language barrier — apps built for youth only.</div>
+              <div class="ps-text">Tiny text, confusing UI, nested menus — apps built for tech enthusiasts only.</div>
             </div>
             <div class="ps-after">
               <div class="ps-label good">✓ After</div>
-              <div class="ps-text">Elder Mode: giant text, Tamil names, big tap targets. Grandma approves.</div>
+              <div class="ps-text">Elder Mode: giant readable text, big tap targets, zero clutter. Parents approve.</div>
             </div>
           </div>
         </div>
 
         <div class="ps-card reveal reveal-delay-4">
-          <div class="ps-card-title">📡 No Internet = No App</div>
+          <div class="ps-card-title">📡 No Internet = Dead App</div>
           <div class="ps-row">
             <div class="ps-before">
               <div class="ps-label bad">✗ Before</div>
-              <div class="ps-text">Every grocery app needs internet. Dead in the market? Dead app.</div>
+              <div class="ps-text">Every online grocery app fails without active mobile data in basement supermarkets.</div>
             </div>
             <div class="ps-after">
               <div class="ps-label good">✓ After</div>
@@ -1463,7 +1496,75 @@
   </section>
 
   <!-- ============================================================
-       FEATURES
+       6-CHAR PRIVACY CARD (SCREENSHOT 2 FAVORITE)
+  ============================================================ -->
+  <section class="privacy-feature-section" id="privacy-section">
+    <div class="privacy-feature-card reveal">
+      <div>
+        <div class="pf-pill">🔒 PRIVACY BY DESIGN</div>
+        <h2 class="pf-title">No Phone Numbers. No Passwords. Just 6 Characters.</h2>
+        <p class="pf-desc">
+          Tired of OTPs, SMS verification, and apps spamming your inbox just to share a grocery list? GrabWise connects your entire household in 2 seconds with an anonymous 6-character code.
+        </p>
+        <div class="pf-bullets">
+          <div class="pf-bullet">
+            <span>🛡️</span>
+            <div><strong>Brute-Force Lockout Shield:</strong> 3 incorrect code guesses locks the device for 5 minutes. Your household privacy is bulletproof.</div>
+          </div>
+          <div class="pf-bullet">
+            <span>📴</span>
+            <div><strong>Zero Cloud Lock-in:</strong> Works 100% offline. If your internet goes down in a basement supermarket, everything stays saved locally.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dotted Join Code Box -->
+      <div class="pf-code-container">
+        <div class="pf-code-label">HOUSEHOLD JOIN CODE</div>
+        <div class="pf-digits-row">
+          <div class="pf-digit">G</div>
+          <div class="pf-digit">R</div>
+          <div class="pf-digit">A</div>
+          <div class="pf-digit">B</div>
+          <div class="pf-digit">8</div>
+          <div class="pf-digit">8</div>
+        </div>
+        <div class="pf-code-sync">✓ Instant Real-Time Sync</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DUAL-LUGGAGE TRIP PLANNER (SCREENSHOT 3 FAVORITE)
+  ============================================================ -->
+  <section class="trips-feature-section" id="trips-section">
+    <div class="trips-feature-card reveal">
+      <div class="tf-pill">🧳 CULTURALLY ATTUNED</div>
+      <h2 class="tf-title">Visiting Your Hometown? The "Dual-Luggage" Trip Planner.</h2>
+      <p class="tf-desc">
+        Planning a family trip or visiting your ancestral hometown? Western grocery apps don't understand regional travel. GrabWise separates your journey into two distinct smart pipelines:
+      </p>
+
+      <div class="tf-list">
+        <div class="tf-item">
+          <div class="tf-icon" style="background:#FEE2E2; color:#B91C1C;">📦</div>
+          <div>
+            <strong>Pack &amp; Take:</strong> Travel snacks, homemade podis, travel medicines, and gifts for relatives.
+          </div>
+        </div>
+
+        <div class="tf-item">
+          <div class="tf-icon" style="background:#FEF3C7; color:#92400E;">🍯</div>
+          <div>
+            <strong>Bring Back:</strong> Authentic regional delicacies, specialty sweets, cold-pressed oils, famous snacks, and traditional cookware.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURES (EXACT PROPOSAL-C_OLD)
   ============================================================ -->
   <section class="features-section" id="features">
     <div class="section-inner">
@@ -1471,7 +1572,7 @@
         <div class="section-label">✨ Features</div>
         <h2 class="section-title">Everything your family needs</h2>
         <p class="section-sub" style="margin: 0 auto;">
-          Thoughtfully built for Indian households — from the kitchen to the cart.
+          Thoughtfully built for busy households — from kitchen planning to supermarket checkout.
         </p>
       </div>
 
@@ -1480,7 +1581,7 @@
         <div class="feature-card reveal reveal-delay-1">
           <div class="feature-icon-wrap turmeric">🛒</div>
           <h3>Visual Grocery Catalog</h3>
-          <p>400+ items with photos, Tamil names, and categories. Browse like a market, not a spreadsheet.</p>
+          <p>400+ items with photos, standard units, and categories. Browse like a market, not a spreadsheet.</p>
           <span class="feature-tag">🟡 400+ Items</span>
         </div>
 
@@ -1513,10 +1614,10 @@
         </div>
 
         <div class="feature-card reveal reveal-delay-6">
-          <div class="feature-icon-wrap pink">🌐</div>
-          <h3>Tamil &amp; English</h3>
-          <p>Full bilingual support with Noto Sans Tamil rendering. Switch anytime, instantly.</p>
-          <span class="feature-tag" style="background:#FCE7F3;color:#831843;">🌸 Bilingual</span>
+          <div class="feature-icon-wrap pink">🏷️</div>
+          <h3>Store &amp; Brand Tags</h3>
+          <p>Tag preferred stores (Farmers Market, Supermarket) and specify brand preferences effortlessly.</p>
+          <span class="feature-tag" style="background:#FCE7F3;color:#831843;">🌸 Store Tagging</span>
         </div>
 
       </div>
@@ -1524,7 +1625,7 @@
   </section>
 
   <!-- ============================================================
-       HOW IT WORKS
+       HOW IT WORKS (EXACT PROPOSAL-C_OLD)
   ============================================================ -->
   <section class="hiw-section" id="how-it-works">
     <div class="section-inner">
@@ -1532,7 +1633,7 @@
         <div class="section-label turmeric-label">🪜 How It Works</div>
         <h2 class="section-title">Up and running in 3 steps</h2>
         <p class="section-sub" style="margin: 0 auto;">
-          No account. No password. Just download, pick your language, and start shopping smarter.
+          No sign-up. No password. Just download, add your items, and shop smarter.
         </p>
       </div>
 
@@ -1542,25 +1643,25 @@
           <div class="hiw-number">1</div>
           <span class="hiw-emoji">📲</span>
           <h3>Download &amp; Open</h3>
-          <p>Install from Play Store or open the web app. No sign-up, no email, no password required.</p>
+          <p>Install from Play Store or open in browser. No account, no email, no password required.</p>
         </div>
 
         <div class="hiw-arrow reveal">→</div>
 
         <div class="hiw-step reveal reveal-delay-2">
           <div class="hiw-number">2</div>
-          <span class="hiw-emoji">🌐</span>
-          <h3>Pick Your Language</h3>
-          <p>Choose Tamil or English. Your entire catalog, UI, and search switch instantly.</p>
+          <span class="hiw-emoji">🛒</span>
+          <h3>Tap Visual Items</h3>
+          <p>Browse the 400+ photo catalog. Tap once to add with default quantities and stores.</p>
         </div>
 
         <div class="hiw-arrow reveal">→</div>
 
         <div class="hiw-step reveal reveal-delay-3">
           <div class="hiw-number">3</div>
-          <span class="hiw-emoji">🛒</span>
-          <h3>Shop &amp; Share</h3>
-          <p>Build your list, share with family, follow the store route. Done in record time.</p>
+          <span class="hiw-emoji">⚡</span>
+          <h3>Shop by Store Route</h3>
+          <p>Group your list by store, follow the optimal path, and check items off in record time.</p>
         </div>
 
       </div>
@@ -1568,23 +1669,22 @@
   </section>
 
   <!-- ============================================================
-       ELDER MODE
+       ELDER MODE (EXACT PROPOSAL-C_OLD, ENGLISH ONLY)
   ============================================================ -->
   <section class="elder-section" id="elder">
     <div class="elder-inner">
 
       <div class="elder-text reveal">
         <div class="section-label">👴 Elder Mode</div>
-        <h2>Designed with <span class="green">love</span> for seniors in your family</h2>
+        <h2>Designed with <span class="green">care</span> for seniors in your family</h2>
         <p>
-          Elder Mode transforms GrabWise into a large-text, high-contrast, Tamil-first experience.
-          Grandparents can shop independently with confidence.
+          Elder Mode transforms GrabWise into a large-text, high-contrast, clutter-free experience.
+          Parents and grandparents can plan and shop with total confidence.
         </p>
         <ul class="elder-features">
-          <li>Jumbo text — readable at arm's length</li>
-          <li>Tamil food names displayed prominently</li>
-          <li>Giant tap targets — no tiny buttons</li>
-          <li>High contrast green &amp; white palette</li>
+          <li>Jumbo text — easily readable at arm's length</li>
+          <li>Giant tap targets — no frustrating tiny buttons</li>
+          <li>High-contrast green &amp; white palette for sharp legibility</li>
           <li>Voice-friendly item descriptions</li>
           <li>Simple 2-tap workflow — add and go</li>
         </ul>
@@ -1603,24 +1703,24 @@
           <div class="elder-item">
             <div class="elder-item-emoji">🍅</div>
             <div class="elder-item-info">
-              <div class="elder-item-name">Tomato</div>
-              <div class="elder-item-tamil">தக்காளி</div>
+              <div class="elder-item-name">Tomatoes (1 kg)</div>
+              <div class="elder-item-sub">Farmers Market Produce</div>
             </div>
             <button class="elder-add-btn" aria-label="Add Tomato">＋</button>
           </div>
           <div class="elder-item">
             <div class="elder-item-emoji">🧅</div>
             <div class="elder-item-info">
-              <div class="elder-item-name">Onion</div>
-              <div class="elder-item-tamil">வெங்காயம்</div>
+              <div class="elder-item-name">Red Onions (2 kg)</div>
+              <div class="elder-item-sub">Farmers Market Produce</div>
             </div>
             <button class="elder-add-btn" aria-label="Add Onion">＋</button>
           </div>
           <div class="elder-item">
             <div class="elder-item-emoji">🌿</div>
             <div class="elder-item-info">
-              <div class="elder-item-name">Coriander</div>
-              <div class="elder-item-tamil">கொத்தமல்லி</div>
+              <div class="elder-item-name">Coriander Leaves (2 bunches)</div>
+              <div class="elder-item-sub">Fresh Greens</div>
             </div>
             <button class="elder-add-btn" aria-label="Add Coriander">＋</button>
           </div>
@@ -1631,13 +1731,13 @@
   </section>
 
   <!-- ============================================================
-       DOWNLOAD CTA
+       DOWNLOAD CTA (EXACT PROPOSAL-C_OLD)
   ============================================================ -->
   <section class="download-section" id="download">
     <div class="download-inner">
       <div class="reveal">
         <h2>Ready to organize your family's groceries?</h2>
-        <p>Join thousands of Indian families shopping smarter with GrabWise. Free forever. No ads. No tracking.</p>
+        <p>Join thousands of families shopping smarter with GrabWise. Free forever. No ads. No tracking.</p>
         <div class="download-btns">
           <a href="https://play.google.com/store/apps/details?id=com.grabwise.app"
              target="_blank" rel="noopener" class="btn-dl-primary">
@@ -1655,7 +1755,7 @@
   </section>
 
   <!-- ============================================================
-       FOOTER
+       FOOTER (EXACT PROPOSAL-C_OLD)
   ============================================================ -->
   <footer>
     <div class="footer-inner">
@@ -1667,8 +1767,8 @@
           </div>
           <div class="footer-tagline">by WiselyRise Solutions</div>
           <p>
-            Visual grocery catalog, Tamil &amp; English support, family sync, and smart store routes.
-            All free, all offline. Built with love in India.
+            Visual grocery catalog, family sync, smart store routes, and offline-first peace of mind.
+            All free, all offline. Handcrafted by WiselyRise Solutions.
           </p>
           <div class="footer-contact">
             <a href="mailto:contact@wiselyrise.in">✉️ contact@wiselyrise.in</a>
@@ -1680,21 +1780,20 @@
           <h4>App</h4>
           <ul>
             <li><a href="#features">Features</a></li>
-            <li><a href="#bilingual">Tamil Support</a></li>
+            <li><a href="#showcase">How It Works</a></li>
             <li><a href="#elder">Elder Mode</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
             <li><a href="https://play.google.com/store/apps/details?id=com.grabwise.app" target="_blank" rel="noopener">Play Store</a></li>
             <li><a href="https://grabwise.web.app" target="_blank" rel="noopener">Web App</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Company</h4>
+          <h4>Concepts</h4>
           <ul>
-            <li><a href="#">About WiselyRise</a></li>
-            <li><a href="#">Our Apps</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="mailto:contact@wiselyrise.in">Contact</a></li>
+            <li><a href="proposal-a.html">Proposal A (Light)</a></li>
+            <li><a href="proposal-b.html">Proposal B (Dark)</a></li>
+            <li><a href="proposal-c.html">Proposal C (Hybrid)</a></li>
+            <li><a href="proposal-c_old.html">Proposal C_Old (Original)</a></li>
           </ul>
         </div>
 
@@ -1703,32 +1802,27 @@
           <ul>
             <li><a href="privacy.html">Privacy Policy</a></li>
             <li><a href="terms.html">Terms of Service</a></li>
-            <li><a href="#">Data Safety</a></li>
+            <li><a href="mailto:contact@wiselyrise.in">Contact Us</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 WiselyRise Solutions. All rights reserved.</p>
+        <p>© 2026 WiselyRise Solutions. All rights reserved. Package ID: <code>com.grabwise.app</code></p>
         <div class="footer-bottom-links">
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
-          <a href="mailto:contact@wiselyrise.in">Contact</a>
+          <a href="mailto:contact@wiselyrise.in">Support</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Scroll-to-top -->
-  <button id="scroll-top" aria-label="Back to top" title="Back to top">↑</button>
-
   <!-- ============================================================
-       JAVASCRIPT
+       JAVASCRIPT (EXACT PROPOSAL-C_OLD LOGIC)
   ============================================================ -->
   <script>
-    /* -------------------------------------------------------
-       GROCERY RAIN — generate 50 emoji items
-    ------------------------------------------------------- */
+    /* GROCERY RAIN — 50 items */
     (function () {
       const emojis = [
         '🍅','🥕','🧅','🥔','🥦','🍋','🥭','🌶️','🧄','🫚',
@@ -1737,26 +1831,20 @@
         '🍋','🥕','🍅','🧅','🥦','🌶️','🧄','🥥','🍎','🫑',
         '🥬','🍆','🥑','🌽','🫘','🧆','🍯','🌿','🥔','🫚'
       ];
-
       const rain = document.getElementById('grocery-rain');
-      const total = 50;
+      if (!rain) return;
 
-      for (let i = 0; i < total; i++) {
+      for (let i = 0; i < 50; i++) {
         const el = document.createElement('span');
         el.textContent = emojis[i % emojis.length];
-        el.className   = 'grocery-item';
+        el.className = 'grocery-item';
         el.setAttribute('aria-hidden', 'true');
 
-        // Random horizontal position
         const leftPct = (Math.random() * 96).toFixed(1);
-        // Random size: 20px – 48px
-        const size    = (20 + Math.random() * 28).toFixed(0);
-        // Random opacity: 0.12 – 0.35
-        const op      = (0.12 + Math.random() * 0.23).toFixed(2);
-        // Random delay: 0s – 4s
+        const size    = (22 + Math.random() * 26).toFixed(0);
+        const op      = (0.14 + Math.random() * 0.22).toFixed(2);
         const delay   = (Math.random() * 4).toFixed(2);
-        // Random duration: 0.6s – 1.2s
-        const dur     = (0.6 + Math.random() * 0.6).toFixed(2);
+        const dur     = (0.7 + Math.random() * 0.6).toFixed(2);
 
         el.style.setProperty('--size',  size + 'px');
         el.style.setProperty('--op',    op);
@@ -1768,49 +1856,24 @@
       }
     })();
 
-    /* -------------------------------------------------------
-       ROTATING HERO BADGE
-    ------------------------------------------------------- */
+    /* ROTATING HERO BADGE */
     (function () {
-      const badges = [
-        '🌿 Zero Ads',
-        '📱 Works Offline',
-        '👨‍👩‍👧 Family Sync'
-      ];
+      const badges = ['🌿 Zero Ads', '📱 Works Offline', '👨‍👩‍👧 Family Sync'];
       let idx = 0;
       const el = document.getElementById('badge-text');
       const badge = document.getElementById('hero-badge');
+      if (!el || !badge) return;
 
       setInterval(function () {
         idx = (idx + 1) % badges.length;
         badge.style.animation = 'none';
-        void badge.offsetWidth; // reflow
+        void badge.offsetWidth;
         badge.style.animation = 'badge-fade-in 0.4s ease both';
         el.textContent = badges[idx];
       }, 3000);
     })();
 
-    /* -------------------------------------------------------
-       HAMBURGER MENU
-    ------------------------------------------------------- */
-    (function () {
-      const btn  = document.getElementById('hamburger');
-      const menu = document.getElementById('mobile-menu');
-      btn.addEventListener('click', function () {
-        menu.classList.toggle('open');
-        btn.setAttribute('aria-expanded', menu.classList.contains('open'));
-      });
-      // Close on link click
-      menu.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', function () {
-          menu.classList.remove('open');
-        });
-      });
-    })();
-
-    /* -------------------------------------------------------
-       INTERSECTION OBSERVER — scroll reveal
-    ------------------------------------------------------- */
+    /* INTERSECTION OBSERVER — scroll reveal */
     (function () {
       const els = document.querySelectorAll('.reveal');
       const io  = new IntersectionObserver(function (entries) {
@@ -1822,23 +1885,6 @@
         });
       }, { threshold: 0.12 });
       els.forEach(function (el) { io.observe(el); });
-    })();
-
-    /* -------------------------------------------------------
-       SCROLL-TO-TOP BUTTON
-    ------------------------------------------------------- */
-    (function () {
-      const btn = document.getElementById('scroll-top');
-      window.addEventListener('scroll', function () {
-        if (window.scrollY > 500) {
-          btn.classList.add('visible');
-        } else {
-          btn.classList.remove('visible');
-        }
-      }, { passive: true });
-      btn.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
     })();
   </script>
 

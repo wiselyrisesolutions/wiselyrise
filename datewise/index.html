@@ -1954,6 +1954,15 @@
     .ss-dot{width:7px;height:7px;border-radius:50%;background:var(--muted-light);transition:all .25s;cursor:pointer;border:none;padding:0}
     .ss-dot.active{background:var(--accent);width:22px;border-radius:100px}
 
+    /* ── STORY TEASER (full story lives at /datewise/story) ── */
+    .story-teaser{background:radial-gradient(60% 80% at 50% 0%,rgba(124,58,237,.4),transparent 70%),#0d0720;color:#fff;text-align:center;padding:96px 6%}
+    .story-teaser .section-label{background:rgba(167,139,250,.16);color:var(--accent-light)}
+    .story-teaser h2{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:clamp(1.9rem,5vw,3.1rem);line-height:1.1;letter-spacing:-.03em;max-width:760px;margin:14px auto 18px}
+    .story-teaser h2 span{background:linear-gradient(135deg,#c4b5fd,#a78bfa 40%,#f0abfc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .story-teaser p{max-width:520px;margin:0 auto 30px;color:rgba(255,255,255,.72);font-size:1.05rem}
+    .story-teaser .btn-story{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);padding:14px 30px;border-radius:100px;font-weight:700;font-size:.92rem;transition:transform .2s,box-shadow .2s}
+    .story-teaser .btn-story:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(124,58,237,.5)}
+
     /* ── PRICING ────────────────────────────────────────── */
     .pricing-compare-wrap{max-width:600px;margin:44px auto 0}
     .pricing-compare-card{border-radius:var(--radius);border:1.5px solid var(--border);overflow:hidden;box-shadow:var(--shadow-md);text-align:left}
@@ -2344,6 +2353,7 @@
     <li><a href="#features">Features</a></li>
     <li><a href="#how-it-works">How it works</a></li>
     <li><a href="#screenshots">Screenshots</a></li>
+    <li><a href="/datewise/story">Our Story</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="/" style="color:var(--accent-mid);font-weight:600">WiselyRise 🏠︎</a></li>
@@ -2362,6 +2372,7 @@
   <a href="#features" onclick="closeMobileMenu()">Features</a>
   <a href="#how-it-works" onclick="closeMobileMenu()">How it works</a>
   <a href="#screenshots" onclick="closeMobileMenu()">Screenshots</a>
+  <a href="/datewise/story" onclick="closeMobileMenu()">Our Story</a>
   <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
   <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
   <a href="/" onclick="closeMobileMenu()">WiselyRise</a>
@@ -3553,6 +3564,16 @@
   </div>
 </section>
 
+<!-- ═══ THE DATEWISE STORY (teaser → /datewise/story) ═══ -->
+<section class="story-teaser" id="story">
+  <div class="section-inner">
+    <span class="section-label reveal">Our Story</span>
+    <h2 class="reveal d1">You remember everything about them. <span>Except the date.</span></h2>
+    <p class="reveal d2">A two-minute read about a late phone call, a lapsed policy, and why we built DateWise to speak to your heart, not your schedule.</p>
+    <a class="btn-story reveal d3" href="/datewise/story">Read the story →</a>
+  </div>
+</section>
+
 <!-- ═══ PRICING ══════════════════════════════ -->
 <section class="section" id="pricing">
   <div class="section-inner text-center">
@@ -3692,6 +3713,7 @@
           <li><a href="#features">Features</a></li>
           <li><a href="#how-it-works">How It Works</a></li>
           <li><a href="#screenshots">Screenshots</a></li>
+          <li><a href="/datewise/story">The Story</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="https://play.google.com/store/apps/details?id=com.datewise.app" target="_blank" rel="noopener">Google Play</a></li>
         </ul>
