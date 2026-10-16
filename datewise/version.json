@@ -1,15 +1,15 @@
 {
-  "latest_build": 88,
-  "latest_version": "2.7.28",
+  "latest_build": 96,
+  "latest_version": "2.7.36",
   "min_build": 1,
-  "changelog": "🐛 Bug fixes\n⚡ Enhanced Smart Add features.\n🔔 Cleaner notification cards & voice announcements.",
+  "changelog": "🐛 Minor Bug fixes\n⚡ UI Enhancements.\n🔔 Stability improvements.",
   "store_url": "https://play.google.com/store/apps/details?id=com.datewise.app",
   "rating_prompt": {
     "enabled": true,
     "campaign_id": "v2.7.36_growth",
     "sample_rate_percent": 100,
     "min_build": 96,
-    "min_days_installed": 5,
+    "min_days_installed": 3,
     "min_reminders_count": 2
   },
   "feature_bulb": {
