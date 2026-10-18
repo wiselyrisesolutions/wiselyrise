@@ -4,29 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — GrabWise</title>
-  <meta name="description" content="GrabWise Privacy Policy. We are privacy-first: offline by default, zero ads, zero data brokers. Contact: contact@wiselyrise.in">
+  <meta name="description" content="GrabWise Privacy Policy. Privacy-first household grocery companion by WiselyRise Solutions. Offline by default, zero ads, zero data brokers. Contact: contact@wiselyrise.in">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://grabwise.web.app/privacy.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --green:       #2C7A4D;
-      --deep:        #1B4D31;
+      --deep:        #14532D;
       --leaf-light:  #EBF5EE;
       --cream:       #F6FBF7;
       --white:       #FFFFFF;
       --text:        #1A2B1E;
+      --text-muted:  #4A6351;
       --muted:       #5C7A63;
       --border:      #D1E8D7;
       --turmeric:    #E8920A;
+      --chilli:      #D6402E;
     }
     html { scroll-behavior: smooth; }
     body {
       background: var(--cream);
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: var(--text);
       line-height: 1.75;
     }
@@ -34,56 +36,56 @@
     /* NAV */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(246,251,247,0.94);
+      background: rgba(246,251,247,0.96);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 32px;
-      height: 60px;
+      height: 64px;
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-leaf { font-size: 24px; }
-    .nav-name { font-size: 18px; font-weight: 700; color: var(--deep); }
+    .nav-name { font-size: 19px; font-weight: 700; color: var(--deep); letter-spacing: -0.3px; }
     .nav-back {
       font-size: 13px; font-weight: 600;
       color: var(--green);
       text-decoration: none;
       display: flex; align-items: center; gap: 6px;
-      padding: 7px 16px; border-radius: 100px;
+      padding: 8px 18px; border-radius: 100px;
       border: 1.5px solid var(--green);
-      transition: background 0.2s;
+      transition: all 0.2s ease;
     }
     .nav-back:hover { background: var(--leaf-light); }
 
     /* HERO STRIP */
     .hero-strip {
-      background: linear-gradient(135deg, var(--deep) 0%, var(--green) 100%);
-      padding: 56px 32px 48px;
+      background: linear-gradient(135deg, #103E22 0%, #1E7B4F 100%);
+      padding: 64px 32px 52px;
       text-align: center;
     }
     .hero-strip .tag {
       display: inline-block;
-      background: rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.9);
-      font-size: 11px; font-weight: 600;
+      background: rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.95);
+      font-size: 11px; font-weight: 700;
       letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 5px 14px; border-radius: 100px;
+      padding: 6px 16px; border-radius: 100px;
       margin-bottom: 16px;
     }
     .hero-strip h1 {
-      font-size: clamp(28px, 5vw, 42px);
+      font-size: clamp(30px, 5vw, 44px);
       font-weight: 800; color: #fff;
-      line-height: 1.15; margin-bottom: 12px;
+      line-height: 1.15; margin-bottom: 12px; letter-spacing: -0.5px;
     }
     .hero-strip p {
-      font-size: 15px; color: rgba(255,255,255,0.72);
-      max-width: 480px; margin: 0 auto;
+      font-size: 15.5px; color: rgba(255,255,255,0.85);
+      max-width: 540px; margin: 0 auto; line-height: 1.6;
     }
-    .effective { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.5); }
+    .effective { margin-top: 22px; font-size: 13px; color: rgba(255,255,255,0.65); font-weight: 500; }
 
     /* LAYOUT */
     .content-wrap {
-      max-width: 800px; margin: 0 auto;
+      max-width: 820px; margin: 0 auto;
       padding: 48px 32px 80px;
     }
 
@@ -95,107 +97,142 @@
       border-radius: 16px;
       padding: 28px 32px;
       margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(27,77,49,0.03);
     }
-    .summary-box h2 { font-size: 17px; font-weight: 700; color: var(--deep); margin-bottom: 16px; }
-    .summary-items { display: flex; flex-direction: column; gap: 10px; }
+    .summary-box h2 { font-size: 18px; font-weight: 800; color: var(--deep); margin-bottom: 18px; letter-spacing: -0.2px; }
+    .summary-items { display: flex; flex-direction: column; gap: 12px; }
     .summary-item {
-      display: flex; align-items: flex-start; gap: 12px;
+      display: flex; align-items: flex-start; gap: 14px;
       font-size: 14px; color: var(--text);
     }
     .summary-item .icon {
-      width: 28px; height: 28px; border-radius: 8px;
+      width: 32px; height: 32px; border-radius: 10px;
       background: var(--leaf-light);
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; flex-shrink: 0;
+      font-size: 15px; flex-shrink: 0;
     }
-    .summary-item p { line-height: 1.5; padding-top: 4px; }
+    .summary-item p { line-height: 1.55; padding-top: 3px; color: var(--text-muted); }
+    .summary-item strong { color: var(--text); }
+
+    /* TOC */
+    .toc {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 16px; padding: 24px 28px; margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(27,77,49,0.03);
+    }
+    .toc h2 { font-size: 13px; font-weight: 800; color: var(--muted); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 12px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 6px; font-size: 14px; }
+    .toc a { color: var(--green); text-decoration: none; font-weight: 600; }
+    .toc a:hover { text-decoration: underline; }
 
     /* SECTION */
     .section {
-      margin-bottom: 40px;
+      margin-bottom: 44px;
     }
     .section h2 {
-      font-size: 20px; font-weight: 700; color: var(--deep);
+      font-size: 21px; font-weight: 800; color: var(--deep);
       padding-bottom: 10px;
       border-bottom: 2px solid var(--leaf-light);
-      margin-bottom: 16px;
+      margin-bottom: 16px; letter-spacing: -0.3px;
     }
     .section h3 {
-      font-size: 15px; font-weight: 700; color: var(--text);
-      margin: 20px 0 8px;
+      font-size: 16px; font-weight: 700; color: var(--text);
+      margin: 22px 0 10px;
     }
     .section p {
-      font-size: 14.5px; color: #3D5540;
-      margin-bottom: 12px;
+      font-size: 14.5px; color: var(--text-muted);
+      margin-bottom: 14px;
       line-height: 1.75;
     }
     .section ul {
-      padding-left: 20px; margin-bottom: 12px;
+      padding-left: 22px; margin-bottom: 14px;
     }
     .section ul li {
-      font-size: 14.5px; color: #3D5540;
-      margin-bottom: 7px; line-height: 1.6;
+      font-size: 14.5px; color: var(--text-muted);
+      margin-bottom: 8px; line-height: 1.65;
     }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      background: var(--leaf-light); border: 1.5px solid var(--border);
+      border-left: 4px solid var(--green);
+      border-radius: 12px; padding: 18px 22px; margin: 18px 0;
+      font-size: 14px; color: var(--deep); line-height: 1.65;
+    }
+
+    /* GOOGLE POLICY BOX */
+    .google-box {
+      background: #F8FAFC; border: 1.5px solid #CBD5E1;
+      border-left: 4px solid #3B82F6;
+      border-radius: 12px; padding: 18px 22px; margin: 18px 0;
+      font-size: 14px; color: #1E293B; line-height: 1.65;
+    }
+    .google-box strong { color: #0F172A; }
 
     /* PERMISSION TABLE */
     .perm-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 16px 0; }
     .perm-table th {
       background: var(--leaf-light); color: var(--deep);
-      font-weight: 700; font-size: 11px; letter-spacing: 0.8px; text-transform: uppercase;
-      padding: 10px 14px; text-align: left;
+      font-weight: 700; font-size: 11.5px; letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 12px 16px; text-align: left;
     }
     .perm-table td {
-      padding: 11px 14px; border-bottom: 1px solid var(--border);
-      color: #3D5540; vertical-align: top; line-height: 1.55;
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+      color: var(--text-muted); vertical-align: top; line-height: 1.55;
     }
     .perm-table tr:last-child td { border-bottom: none; }
-    .perm-table td:first-child { font-family: 'Courier New', monospace; font-size: 12px; color: var(--green); background: var(--leaf-light); }
-    .perm-table-wrap { border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .perm-table td:first-child { font-family: 'Courier New', monospace; font-size: 12.5px; font-weight: 600; color: var(--green); background: #F2F8F4; }
+    .perm-table-wrap { border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--white); }
 
     /* COMPLIANCE CHIPS */
-    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 20px; }
     .chip {
-      display: flex; align-items: center; gap: 7px;
+      display: flex; align-items: center; gap: 8px;
       background: var(--white); border: 1.5px solid var(--border);
-      border-radius: 100px; padding: 6px 14px;
+      border-radius: 100px; padding: 7px 16px;
       font-size: 13px; font-weight: 600; color: var(--deep);
+      box-shadow: 0 2px 8px rgba(27,77,49,0.04);
     }
     .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
 
     /* CONTACT BOX */
     .contact-box {
-      background: var(--deep); border-radius: 16px;
-      padding: 32px; text-align: center; color: white;
-      margin-top: 48px;
+      background: var(--deep); border-radius: 20px;
+      padding: 36px 32px; text-align: center; color: white;
+      margin-top: 56px;
+      box-shadow: 0 10px 30px rgba(20,83,45,0.15);
     }
-    .contact-box h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-    .contact-box p { font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 16px; }
+    .contact-box h2 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+    .contact-box p { font-size: 14.5px; color: rgba(255,255,255,0.75); margin-bottom: 20px; max-width: 480px; margin-left: auto; margin-right: auto; }
     .contact-box a {
       display: inline-block;
-      background: rgba(255,255,255,0.12);
-      border: 1.5px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.3);
       color: white; border-radius: 100px;
-      padding: 10px 24px; font-size: 14px; font-weight: 600;
-      text-decoration: none; transition: background 0.2s;
+      padding: 11px 28px; font-size: 14px; font-weight: 700;
+      text-decoration: none; transition: all 0.2s ease;
     }
-    .contact-box a:hover { background: rgba(255,255,255,0.2); }
+    .contact-box a:hover { background: rgba(255,255,255,0.25); transform: translateY(-1px); }
 
     /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
-      padding: 24px 32px;
+      padding: 28px 32px;
       text-align: center;
-      font-size: 12.5px; color: var(--muted);
+      font-size: 13px; color: var(--muted);
+      background: var(--white);
     }
-    footer a { color: var(--green); text-decoration: none; }
+    footer a { color: var(--green); text-decoration: none; font-weight: 600; }
     footer a:hover { text-decoration: underline; }
 
     @media (max-width: 600px) {
-      nav { padding: 0 16px; }
-      .hero-strip { padding: 40px 20px 36px; }
-      .content-wrap { padding: 32px 20px 60px; }
-      .summary-box { padding: 20px; }
-      .perm-table td:first-child { font-size: 10px; }
+      nav { padding: 0 18px; }
+      .hero-strip { padding: 48px 20px 40px; }
+      .content-wrap { padding: 32px 18px 60px; }
+      .summary-box { padding: 22px 18px; }
+      .perm-table td:first-child { font-size: 10.5px; }
+      .contact-box { padding: 28px 20px; }
     }
   </style>
 </head>
@@ -212,10 +249,10 @@
 
   <!-- HERO STRIP -->
   <div class="hero-strip">
-    <div class="tag">Legal Document</div>
+    <div class="tag">Privacy & Data Governance</div>
     <h1>Privacy Policy</h1>
-    <p>We built GrabWise to respect your household's privacy, not exploit it.</p>
-    <div class="effective">Effective Date: October 11, 2026 &nbsp;·&nbsp; Publisher: WiselyRise Solutions</div>
+    <p>GrabWise is built privacy-first: offline by default, zero advertising trackers, and transparent data handling.</p>
+    <div class="effective">Effective Date: October 18, 2026 &nbsp;·&nbsp; Publisher: WiselyRise Solutions</div>
   </div>
 
   <!-- CONTENT -->
@@ -223,155 +260,277 @@
 
     <!-- Quick Summary -->
     <div class="summary-box">
-      <h2>📋 Quick Privacy Summary</h2>
+      <h2>📋 Quick Privacy Highlights</h2>
       <div class="summary-items">
         <div class="summary-item">
-          <div class="icon">📵</div>
-          <p><strong>No account required.</strong> GrabWise never asks for your phone number, email, or password to use the app.</p>
+          <div class="icon">📱</div>
+          <p><strong>Offline-First by Default:</strong> Your grocery lists and pantry preferences are stored locally on your device. You can use the app without any account or internet connection.</p>
         </div>
         <div class="summary-item">
           <div class="icon">🚫</div>
-          <p><strong>Zero ads, zero tracking.</strong> We have no advertising SDKs, no behavioural profiling, and no data brokering, ever.</p>
-        </div>
-        <div class="summary-item">
-          <div class="icon">📱</div>
-          <p><strong>Offline by default.</strong> All your grocery data stays on your device unless you explicitly opt into cloud sync.</p>
-        </div>
-        <div class="summary-item">
-          <div class="icon">🎤</div>
-          <p><strong>Microphone (voice add) is opt-in.</strong> Audio is processed on-device by your device's speech framework. We never receive or store raw audio.</p>
+          <p><strong>Zero Ads & Zero Data Brokering:</strong> We do not include third-party advertising SDKs, we never build behavioral ad profiles, and we never sell your personal data.</p>
         </div>
         <div class="summary-item">
           <div class="icon">🏠</div>
-          <p><strong>Cloud sync is anonymous.</strong> When you enable family sharing, we use anonymous Firebase Auth tokens — no personal identity linked.</p>
+          <p><strong>Frictionless Household Sync:</strong> Family sharing uses 6-character invite codes and anonymous cloud tokens. No phone numbers or passwords required.</p>
+        </div>
+        <div class="summary-item">
+          <div class="icon">🔒</div>
+          <p><strong>Optional Google Cloud Backup:</strong> If you connect Google Sign-In, we use minimal identity scopes strictly to link your lists and backup files across devices.</p>
+        </div>
+        <div class="summary-item">
+          <div class="icon">🎙️</div>
+          <p><strong>On-Device Voice Transcription:</strong> Voice Basket speech recognition runs using your device's built-in OS speech service. We never record or store raw audio files.</p>
+        </div>
+        <div class="summary-item">
+          <div class="icon">🗑️</div>
+          <p><strong>1-Tap Complete Erasure:</strong> Delete your household and cloud data directly inside the app with zero hurdles.</p>
         </div>
       </div>
     </div>
 
+    <!-- TOC -->
+    <div class="toc">
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#who-we-are">Who We Are</a></li>
+        <li><a href="#data-collection">Data We Collect & How We Use It</a></li>
+        <li><a href="#google-data">Google User Data & API Limited Use Policy</a></li>
+        <li><a href="#voice-camera">Voice, Camera & Media Handling</a></li>
+        <li><a href="#permissions">Device Permissions Disclosed</a></li>
+        <li><a href="#infrastructure">Third-Party Service Providers & Technical Processors</a></li>
+        <li><a href="#data-retention">Data Retention, Account Erasure & Deletion Requests</a></li>
+        <li><a href="#security">Security & Anti-Brute-Force Safeguards</a></li>
+        <li><a href="#children">Children's Privacy Protection</a></li>
+        <li><a href="#regulatory">Regulatory Compliance & Your Legal Rights (DPDP, GDPR, CCPA)</a></li>
+        <li><a href="#updates">Modifications to This Privacy Policy</a></li>
+        <li><a href="#contact">Grievance Officer & Contact Details</a></li>
+      </ol>
+    </div>
+
     <!-- Section 1 -->
-    <div class="section">
+    <div class="section" id="who-we-are">
       <h2>1. Who We Are</h2>
-      <p><strong>WiselyRise Solutions</strong> ("we", "our", "us") is an independent software studio based in Tamil Nadu, India. We are the publisher and developer of GrabWise — available on the Google Play Store (Android package ID: <code>com.grabwise.app</code>) and as a web application at <a href="https://grabwise.web.app" style="color:var(--green)">grabwise.web.app</a>.</p>
-      <p>For any privacy concerns, contact us at: <strong><a href="mailto:contact@wiselyrise.in" style="color:var(--green)">contact@wiselyrise.in</a></strong></p>
+      <p><strong>WiselyRise Solutions</strong> ("WiselyRise", "we", "our", or "us") is an independent software development studio based in Tamil Nadu, India. We are the publisher and developer of <strong>GrabWise</strong>, accessible via the Google Play Store (Android package ID: <code>com.grabwise.app</code>) and as a web application at <a href="https://grabwise.web.app" style="color:var(--green)">grabwise.web.app</a>.</p>
+      <p>For any privacy-related questions, data protection inquiries, or requests to exercise your legal data rights, contact us at: <strong><a href="mailto:contact@wiselyrise.in" style="color:var(--green)">contact@wiselyrise.in</a></strong>.</p>
     </div>
 
     <!-- Section 2 -->
-    <div class="section">
-      <h2>2. Data We Collect and How We Use It</h2>
+    <div class="section" id="data-collection">
+      <h2>2. Data We Collect & How We Use It</h2>
 
-      <h3>A. Local Device Data (Default Standalone Mode)</h3>
-      <p>In the default Standalone (Offline) Mode, all your data is stored entirely on your device's local storage using <code>SharedPreferences</code>. This includes:</p>
+      <h3>A. Local Device Storage (Default Standalone Mode)</h3>
+      <p>When you use GrabWise in default Standalone Mode, all data is retained strictly on your device using sandboxed local storage (<code>SharedPreferences</code>). This includes:</p>
       <ul>
-        <li>Grocery items, quantities, units, categories, custom notes, and purchase statuses.</li>
-        <li>Preferred store names and brand preferences.</li>
-        <li>Purchase history logs and frequency counters for the "Buy Again" feature.</li>
-        <li>App settings: language selection (English, Tamil, Bilingual), visual theme, Elder Mode toggle, and auto-cleanup duration.</li>
+        <li>Grocery items, quantities, measurement units, purchase status flags, and custom aisle notes.</li>
+        <li>Preferred store assignments (e.g., DMart, vegetable market, local Kirana).</li>
+        <li>Recent purchase history used strictly on-device to calculate "Buy Again" recommendations.</li>
+        <li>User interface preferences: app language (English, Tamil, Bilingual), visual style, Elder Mode settings, and auto-cleanup durations.</li>
       </ul>
-      <p><strong>WiselyRise servers never receive, process, or store this locally held data.</strong></p>
+      <p><strong>WiselyRise servers never receive, intercept, or store this local standalone data.</strong></p>
 
-      <h3>B. Cloud Sync Data (Opt-In Mode)</h3>
-      <p>If you voluntarily enable <strong>Cloud-Shared Mode</strong> to synchronize your list with family members, the following minimal data is transmitted and stored in Google Firebase Cloud Firestore:</p>
+      <h3>B. Cloud-Shared Household Data (Opt-In Family Synchronization)</h3>
+      <p>When you choose to synchronize grocery lists in real time with family members or flatmates, GrabWise transmits the following minimal information to Google Cloud Firestore:</p>
       <ul>
-        <li><strong>Household Record:</strong> A randomly generated household ID, a user-assigned household display name (e.g., "Home"), and a 6-character join invite code.</li>
-        <li><strong>Shopping List Items:</strong> Item names, quantities, category tags, brand notes, and purchase status flags.</li>
-        <li><strong>Anonymous Authentication Token (UID):</strong> A Firebase Authentication anonymous UID used exclusively to manage read/write permissions for that household document. This UID contains no email address, phone number, real name, or device hardware identifiers.</li>
-        <li><strong>Custom Item Photos (Optional):</strong> If you attach a photo to an item, the image is compressed on-device and stored in Firebase Storage scoped strictly to your household ID.</li>
+        <li><strong>Household Identifiers:</strong> A randomly generated household ID, a user-selected household name (e.g., "Our Kitchen"), and a 6-character alphanumeric join code (e.g., <code>GW-XXXXXX</code>).</li>
+        <li><strong>List Items:</strong> Item names, quantities, unit types, store tags, brand exactness preferences, and bought/pending statuses.</li>
+        <li><strong>Anonymous Session Identifiers:</strong> A Firebase Authentication anonymous unique ID (UID) used strictly to enforce Firestore security rules and prevent unauthorized cross-household access. This UID contains no email address, phone number, hardware serials, or real-world identity.</li>
       </ul>
 
-      <h3>C. Voice / Microphone Access</h3>
-      <p>GrabWise includes an optional voice dictation feature for hands-free grocery entry:</p>
+      <h3>C. Optional Google Sign-In & Cloud Backup</h3>
+      <p>GrabWise offers an optional feature allowing users to connect their Google Account for secure cross-device restoration and Google Drive list backups:</p>
       <ul>
-        <li>Microphone permission is requested only when you actively tap the microphone icon.</li>
-        <li>Speech-to-text transcription is handled entirely by your device's native speech recognition framework (Google Speech Recognition on Android, Apple Dictation on iOS).</li>
-        <li><strong>WiselyRise does not record, upload, retain, or process your raw audio recordings in any form.</strong></li>
+        <li><strong>Data Collected:</strong> User's Google email address, display name, and unique authentication ID provided via standard Google OAuth 2.0.</li>
+        <li><strong>Purpose of Collection:</strong> Used exclusively to authenticate your identity across your devices, link your household lists, and authenticate authorized Google Drive backup operations.</li>
+        <li><strong>Strict Prohibition on Marketing:</strong> We never use your Google account information for promotional communications, third-party profiling, or advertising.</li>
       </ul>
     </div>
 
     <!-- Section 3 -->
-    <div class="section">
-      <h2>3. Permissions Requested</h2>
+    <div class="section" id="google-data">
+      <h2>3. Google User Data & API Limited Use Policy</h2>
+      <div class="google-box">
+        <strong>Google API User Data Policy Compliance:</strong><br>
+        GrabWise's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" style="color:#2563EB; font-weight:600;">Google API Services User Data Policy</a>, including the Limited Use requirements.
+      </div>
+      <p>Specifically:</p>
+      <ul>
+        <li>We only request access to basic identity scopes (<code>email</code> and <code>profile</code>) and, if optionally enabled for Drive backup, the specific application-data folder scope (<code>drive.appdata</code> or <code>drive.file</code>).</li>
+        <li>Google user data is never transferred to third parties other than technical infrastructure processors (Google Firebase) required to provide the core synchronization service.</li>
+        <li>We do not use Google user data for serving advertisements, training generalized artificial intelligence or machine learning models, or market research.</li>
+        <li>Human employees or contractors of WiselyRise do not read your private backup files or Google account data unless explicitly requested by you for technical support or required by law.</li>
+      </ul>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section" id="voice-camera">
+      <h2>4. Voice, Camera & Media Handling</h2>
+
+      <h3>A. Voice Grocery Basket (Microphone Dictation)</h3>
+      <p>GrabWise includes a hands-free voice feature allowing you to speak items (e.g., "Tomatoes 1 kg vegetable shop"):</p>
+      <ul>
+        <li>Microphone permission is requested solely on-demand when you explicitly tap the microphone button.</li>
+        <li>Audio transcription is processed in real time by your operating system's native speech recognition framework (Android Google Speech Recognition or iOS Speech Framework).</li>
+        <li><strong>WiselyRise Solutions never records, uploads, captures, or retains raw audio recordings on any server.</strong> Only the resulting text transcription is staged into your grocery basket.</li>
+      </ul>
+
+      <h3>B. Custom Item Photos & Camera</h3>
+      <p>GrabWise allows you to capture or attach a photo to a grocery item to ensure family members buy the exact variant:</p>
+      <ul>
+        <li>Camera and photo gallery access are requested on-demand only when you tap "Take Photo" or "Choose from Gallery".</li>
+        <li>Photos are cropped and compressed directly on your device (target size &le; 30 KB) before optional upload to Firebase Storage, scoped strictly to your household document.</li>
+        <li>We do not scan your photo library or access metadata (such as EXIF location coordinates).</li>
+      </ul>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section" id="permissions">
+      <h2>5. Device Permissions Disclosed</h2>
+      <p>GrabWise requests only the minimum operating system permissions required for user-initiated actions:</p>
       <div class="perm-table-wrap">
         <table class="perm-table">
           <thead>
             <tr>
               <th>Permission</th>
               <th>Platform</th>
-              <th>Why It's Needed</th>
+              <th>Technical Purpose & Necessity</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>INTERNET</td>
               <td>Android, Web</td>
-              <td>Enables real-time synchronization with household members when Cloud Sharing is voluntarily enabled.</td>
+              <td>Required to communicate with Cloud Firestore and Google Authentication when real-time household sync or cloud backup is active.</td>
             </tr>
             <tr>
               <td>RECORD_AUDIO</td>
               <td>Android, iOS</td>
-              <td>Powers on-device voice dictation for adding grocery items hands-free using the microphone button.</td>
+              <td>Used exclusively on-demand when you tap the microphone button to dictate grocery items. No background listening occurs.</td>
             </tr>
             <tr>
               <td>RecognitionService</td>
               <td>Android</td>
-              <td>Queries the device's built-in speech recognizer to convert spoken words to text on-device.</td>
+              <td>Enables querying the device's native on-device speech-to-text recognition service for real-time dictation.</td>
+            </tr>
+            <tr>
+              <td>CAMERA (Optional)</td>
+              <td>Android, iOS</td>
+              <td>Requested on-demand only if you choose "Take Photo" to capture a reference picture of a specific grocery product or packaging.</td>
+            </tr>
+            <tr>
+              <td>READ_MEDIA_IMAGES (Optional)</td>
+              <td>Android, iOS</td>
+              <td>Requested on-demand only when you select an existing reference photo from your device's photo gallery.</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p style="margin-top:14px; font-size:13px; color:var(--muted);">GrabWise does <strong>NOT</strong> request access to your Contacts, GPS Location, SMS messages, Call Logs, Camera, or any other device sensor.</p>
-    </div>
-
-    <!-- Section 4 -->
-    <div class="section">
-      <h2>4. Third-Party Service Providers</h2>
-      <p>GrabWise uses trusted infrastructure services solely for technical backend hosting of the opt-in cloud synchronization feature:</p>
-      <ul>
-        <li><strong>Google Firebase Authentication</strong> — Anonymous session tokens for household document access control.</li>
-        <li><strong>Google Cloud Firestore</strong> — Real-time database hosting for shared household lists.</li>
-        <li><strong>Firebase Storage</strong> — Secure asset storage for user-uploaded custom item photos.</li>
-        <li><strong>Firebase Hosting</strong> — Static web application delivery for <a href="https://grabwise.web.app" style="color:var(--green)">grabwise.web.app</a>.</li>
-      </ul>
-      <p>Google processes this data as a technical processor under robust industry security certifications (ISO 27001, SOC 1/2/3). We have no other third-party data partnerships, analytics vendors, or advertising networks.</p>
-    </div>
-
-    <!-- Section 5 -->
-    <div class="section">
-      <h2>5. Data Retention & User Control</h2>
-      <ul>
-        <li><strong>Auto-Cleanup:</strong> You control how long purchased items stay in the list — Manual, 24 Hours, 48 Hours (default), or 7 Days.</li>
-        <li><strong>Local Data Erasure:</strong> Clear all local data at any time via <em>Settings → Reset Household / Clear Data</em>.</li>
-        <li><strong>Cloud Data Deletion:</strong> The household organizer can permanently delete all shared list data and the household document from Firebase Firestore directly from within the app settings.</li>
-      </ul>
+      <div class="highlight-box" style="margin-top:16px;">
+        🛡️ <strong>Explicit Sensor Restriction:</strong> GrabWise does <strong>NOT</strong> request or access your GPS location, phone contacts, SMS messages, call logs, calendar, biometric hardware, or health sensors.
+      </div>
     </div>
 
     <!-- Section 6 -->
-    <div class="section">
-      <h2>6. Children's Privacy</h2>
-      <p>GrabWise is a general-audience household utility. We do not knowingly collect personal identifiable information from children under 13 (or under 16 in applicable jurisdictions). Since GrabWise requires no user registration, sign-in, or personal identity information, no child's personal data is gathered by our systems.</p>
+    <div class="section" id="infrastructure">
+      <h2>6. Third-Party Service Providers & Technical Processors</h2>
+      <p>We do not operate our own advertising networks or sell data. We rely exclusively on enterprise-grade cloud service providers as technical data processors:</p>
+      <ul>
+        <li><strong>Google Firebase Authentication:</strong> Issues anonymous session tokens and manages secure Google OAuth login credentials.</li>
+        <li><strong>Google Cloud Firestore:</strong> Fully managed NoSQL cloud database providing encrypted real-time document sync.</li>
+        <li><strong>Google Cloud Storage:</strong> Secure cloud bucket storage for compressed user-attached product photos.</li>
+        <li><strong>Firebase Hosting:</strong> Global content delivery network (CDN) hosting the web application (<a href="https://grabwise.web.app" style="color:var(--green)">grabwise.web.app</a>).</li>
+      </ul>
+      <p>Google Cloud processes data in compliance with international privacy and security standards, including ISO 27001, SOC 1/2/3, and GDPR Data Processing Agreements.</p>
     </div>
 
     <!-- Section 7 -->
-    <div class="section">
-      <h2>7. Regulatory Compliance</h2>
-      <div class="chips">
-        <div class="chip"><div class="dot"></div> GDPR / UK GDPR Compliant</div>
-        <div class="chip"><div class="dot"></div> India DPDP Act 2023</div>
-        <div class="chip"><div class="dot"></div> Google Play Policy Compliant</div>
-        <div class="chip"><div class="dot"></div> Apple App Store Guidelines</div>
-      </div>
-      <p>Since accounts in GrabWise are anonymous, clearing your household or uninstalling the app instantly severs your association with any cloud-stored data without requiring any support intervention.</p>
+    <div class="section" id="data-retention">
+      <h2>7. Data Retention, Account Erasure & Deletion Requests</h2>
+      <p>We believe in absolute user control over data lifecycle:</p>
+
+      <h3>A. Automated Lifecycle Cleanups</h3>
+      <ul>
+        <li><strong>Bought Items:</strong> You can configure how long completed items stay visible (Manual, 24 Hours, 48 Hours default, or 7 Days).</li>
+        <li><strong>Stale Households:</strong> Cloud households that remain inactive with zero access for over 90 days are automatically flagged for scheduled database purging.</li>
+      </ul>
+
+      <h3>B. In-App Instant Deletion (Self-Service)</h3>
+      <p>You can erase all your data immediately from within the application at any time:</p>
+      <ul>
+        <li>Open GrabWise &rarr; Tap the <strong>Profile & Settings</strong> icon (top-right avatar).</li>
+        <li>Scroll to the danger zone and tap <strong>"Delete Account & Cloud Data"</strong>.</li>
+        <li>This action permanently purges your household record, cloud grocery items, invite codes, member associations, and Firebase Authentication UID from Cloud Firestore and Firebase Storage. Local data on the device is wiped simultaneously.</li>
+      </ul>
+
+      <h3>C. Web & Email Deletion Request (Right to Erasure)</h3>
+      <p>If you have uninstalled the app or wish to request manual administrative deletion of your cloud records, you can submit an account and data erasure request:</p>
+      <ul>
+        <li>Email us at: <strong><a href="mailto:contact@wiselyrise.in" style="color:var(--green)">contact@wiselyrise.in</a></strong> with the subject line <em>"Data Erasure Request - GrabWise"</em>.</li>
+        <li>Provide your 6-character Household Code or linked Google account email.</li>
+        <li>Our technical team will permanently wipe your data from our database within <strong>30 days</strong> of request verification and provide confirmation.</li>
+      </ul>
     </div>
 
     <!-- Section 8 -->
-    <div class="section">
-      <h2>8. Updates to This Policy</h2>
-      <p>We may update this Privacy Policy to reflect changes in our practices, legal requirements, or new features. The "Effective Date" at the top of this page will be updated accordingly. Significant changes will be communicated via an in-app notice.</p>
+    <div class="section" id="security">
+      <h2>8. Security & Anti-Brute-Force Safeguards</h2>
+      <p>We enforce rigorous technical safeguards to preserve data integrity and privacy:</p>
+      <ul>
+        <li><strong>Encryption in Transit:</strong> All communications between the mobile app, web app, and Google Firebase servers are strictly encrypted using Transport Layer Security (HTTPS / TLS 1.3).</li>
+        <li><strong>Granular Firestore Security Rules:</strong> Household documents and item subcollections are strictly locked down to authenticated members of that specific household ID.</li>
+        <li><strong>Brute-Force Protection:</strong> To prevent guessing of 6-character invite codes, our backend rate limits attempts and enforces an exponential lockout (5-minute freeze) after 3 consecutive invalid attempts.</li>
+      </ul>
+    </div>
+
+    <!-- Section 9 -->
+    <div class="section" id="children">
+      <h2>9. Children's Privacy Protection</h2>
+      <p>GrabWise is a general-audience household grocery companion and is not directed to children under 13 years of age (or under 16 in applicable European jurisdictions). We do not knowingly collect personal information from children. If you become aware that a child has provided us with personal information without parental consent, please contact us at <a href="mailto:contact@wiselyrise.in" style="color:var(--green)">contact@wiselyrise.in</a>, and we will promptly delete the data.</p>
+    </div>
+
+    <!-- Section 10 -->
+    <div class="section" id="regulatory">
+      <h2>10. Regulatory Compliance & Your Legal Rights</h2>
+      <div class="chips">
+        <div class="chip"><div class="dot"></div> India DPDP Act 2023</div>
+        <div class="chip"><div class="dot"></div> GDPR / UK GDPR</div>
+        <div class="chip"><div class="dot"></div> CCPA / CPRA (California)</div>
+        <div class="chip"><div class="dot"></div> Google Play Data Safety Compliant</div>
+      </div>
+
+      <p>Depending on your jurisdiction, you possess specific statutory rights regarding your personal data:</p>
+      <ul>
+        <li><strong>Digital Personal Data Protection Act, 2023 (DPDP Act - India):</strong> You have the right to access summaries of digital personal data processed by us, the right to correction and erasure of personal data, and the right of grievance redressal through our designated Grievance Officer.</li>
+        <li><strong>General Data Protection Regulation (GDPR - EU/UK):</strong> You have the right to access, rectify, port, restrict processing of, or erase your personal data. Our lawful basis for processing is the performance of the service requested by you and user consent.</li>
+        <li><strong>California Consumer Privacy Act (CCPA / CPRA):</strong> We do not sell or share personal information for cross-context behavioral advertising. You have the right to request disclosure of categories of information collected and the right to request deletion without discrimination.</li>
+      </ul>
+    </div>
+
+    <!-- Section 11 -->
+    <div class="section" id="updates">
+      <h2>11. Modifications to This Privacy Policy</h2>
+      <p>We may periodically update this Privacy Policy to reflect changes in legal mandates, technology upgrades, or operational improvements. The updated "Effective Date" at the top of this document will always reflect the date of the latest revision. For significant changes affecting your rights, we will provide prominent notice within the app or on our website.</p>
+    </div>
+
+    <!-- Section 12 -->
+    <div class="section" id="contact">
+      <h2>12. Grievance Officer & Contact Details</h2>
+      <p>In accordance with the Information Technology Act, 2000 and the Digital Personal Data Protection Act, 2023 of India, the contact details of the Grievance Officer for GrabWise and WiselyRise Solutions are:</p>
+
+      <div class="highlight-box">
+        <strong>Grievance & Data Protection Officer</strong><br>
+        <strong>Entity:</strong> WiselyRise Solutions<br>
+        <strong>Email:</strong> <a href="mailto:contact@wiselyrise.in" style="color:var(--green); font-weight:700;">contact@wiselyrise.in</a><br>
+        <strong>Developer Portal:</strong> <a href="https://wiselyrise.in" target="_blank" style="color:var(--green);">https://wiselyrise.in</a><br>
+        <strong>Location:</strong> Chennai, Tamil Nadu, India<br>
+        <strong>Response Timeline:</strong> We review and respond to all privacy, access, or deletion requests within thirty (30) business days.
+      </div>
     </div>
 
     <!-- Contact Box -->
     <div class="contact-box">
-      <h2>Questions About Your Privacy?</h2>
-      <p>We're a small, transparent team. Write to us directly — we respond personally.</p>
+      <h2>Questions About Your Data or Privacy?</h2>
+      <p>We are committed to honest, respectful engineering. Reach out directly with any questions or requests.</p>
       <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>
     </div>
 
@@ -380,12 +539,12 @@
   <!-- FOOTER -->
   <footer>
     <p>
-      <strong>GrabWise</strong> by <a href="https://wiselyrise.in" target="_blank">WiselyRise Solutions</a> &nbsp;·&nbsp;
+      <strong>GrabWise</strong> is an independent product developed and published by <a href="https://wiselyrise.in" target="_blank">WiselyRise Solutions</a> &nbsp;·&nbsp;
       <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
       <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
       <a href="mailto:contact@wiselyrise.in">contact@wiselyrise.in</a>
     </p>
-    <p style="margin-top:8px;">© 2026 WiselyRise Solutions. All rights reserved.</p>
+    <p style="margin-top:10px;">© 2026 WiselyRise Solutions. All rights reserved.</p>
   </footer>
 
 </body>
