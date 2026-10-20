@@ -85,14 +85,23 @@
     }
 
     .nav-logo .leaf-icon {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 40px;
       background: linear-gradient(135deg, var(--leaf), var(--deep-leaf));
-      border-radius: 10px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      padding: 4px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+    .nav-logo .leaf-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
       box-shadow: 0 2px 8px rgba(44,122,77,0.25);
     }
 
@@ -1018,7 +1027,7 @@
   ============================== -->
   <nav>
     <a href="#" class="nav-logo">
-      <div class="leaf-icon">🌿</div>
+      <div class="leaf-icon"><img src="assets/icons/app_icon_transparent.png" alt="GrabWise" /></div>
       GrabWise
     </a>
 
@@ -1386,7 +1395,7 @@
 
         <div class="footer-brand">
           <div class="nav-logo" style="color:#B8F0CC;">
-            <div class="leaf-icon">🌿</div>
+            <div class="leaf-icon"><img src="assets/icons/app_icon_transparent.png" alt="GrabWise" /></div>
             GrabWise
           </div>
           <p>The smartest household grocery planner for Indian families. Offline-first, Tamil &amp; English, zero ads — built with love by WiselyRise Solutions.</p>

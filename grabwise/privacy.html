@@ -44,7 +44,24 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-leaf { font-size: 24px; }
+    .nav-logo-icon {
+      width: 32px;
+      height: 38px;
+      background: linear-gradient(135deg, #16A34A, #14532D);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+    .nav-logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
     .nav-name { font-size: 19px; font-weight: 700; color: var(--deep); letter-spacing: -0.3px; }
     .nav-back {
       font-size: 13px; font-weight: 600;
@@ -241,7 +258,7 @@
   <!-- NAV -->
   <nav>
     <a class="nav-logo" href="index.html">
-      <span class="nav-leaf">🌿</span>
+      <div class="nav-logo-icon"><img src="assets/icons/app_icon_transparent.png" alt="GrabWise" /></div>
       <span class="nav-name">GrabWise</span>
     </a>
     <a class="nav-back" href="index.html">← Back to Home</a>
