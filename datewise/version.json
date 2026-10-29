@@ -1,8 +1,8 @@
 {
-  "latest_build": 96,
-  "latest_version": "2.7.36",
+  "latest_build": 106,
+  "latest_version": "2.7.46",
   "min_build": 82,
-  "changelog": "🐛 Minor Bug fixes\n⚡ UI Enhancements.\n🔔 Stability improvements.",
+  "changelog": "♾️ PRO users: Customize reminders types, repeat schedules\n🐛 Minor Bug fixes\n🔔 UI & Stability improvements.",
   "store_url": "https://play.google.com/store/apps/details?id=com.datewise.app",
   "rating_prompt": {
     "enabled": true,
