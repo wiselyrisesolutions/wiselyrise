@@ -2,10 +2,10 @@
   "latest_build": 106,
   "latest_version": "2.7.46",
   "min_build": 82,
-  "changelog": "♾️ PRO users: Customize reminders types, repeat schedules\n🐛 Minor Bug fixes\n🔔 UI & Stability improvements.",
+  "changelog": "🐛 Minor Bug fixes\n🔔 UI & Stability improvements.",
   "store_url": "https://play.google.com/store/apps/details?id=com.datewise.app",
   "rating_prompt": {
-    "enabled": false,
+    "enabled": true,
     "campaign_id": "v2.7.36_growth",
     "sample_rate_percent": 100,
     "min_build": 96,
@@ -13,7 +13,7 @@
     "min_reminders_count": 2
   },
   "feature_bulb": {
-    "enabled": false,
+    "enabled": true,
     "campaign_id": "v2.7.36_feedback",
     "sample_rate_percent": 100,
     "min_build": 96
